@@ -1,0 +1,20 @@
+site_name: D2I Knowledge Map
+theme:
+  name: material
+  palette:
+    scheme: default
+
+nav:
+  - Home: index.md
+  - Network Graph: network.md
+
+extra_javascript:
+  - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js
+  - js/render_graph.js
+
+extra_css:
+  - css/styles.css
+
+
+plugins:
+  - search

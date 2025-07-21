@@ -1,0 +1,24 @@
+'@type': ORGANIZATION
+name: Knowsley Council
+description: >
+  Partner in the Standard Safeguarding Dataset project, contributing to schema development and implementation pilots.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - local_authority
+version: 2025.07
+date_published: 1900-01-01
+website: https://www.knowsley.gov.uk/
+notes: >
+  Knowsley has participated in collaborative development of the SSD standard with a focus on practical alignment
+  with local authority systems and operational delivery.
+
+
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: local_authority
+  region: north_west
+  projects:
+    - standard_safeguarding_dataset
+  persons: []

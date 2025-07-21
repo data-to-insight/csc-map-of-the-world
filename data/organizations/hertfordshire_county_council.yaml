@@ -1,0 +1,24 @@
+'@type': ORGANIZATION
+name: Hertfordshire County Council
+description: >
+  Partner in the Standard Safeguarding Dataset project, contributing to schema development and implementation pilots.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - local_authority
+version: 2025.07
+date_published: 1900-01-01
+website: https://www.hertfordshire.gov.uk
+notes: >
+  Hertfordshire has actively contributed to the design, refinement and testing of the SSD schema.
+  Known for early-stage adoption and feedback across children's social care systems.
+
+
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: local_authority
+  region: south_west
+  projects:
+    - standard_safeguarding_dataset
+  persons: []

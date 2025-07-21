@@ -1,0 +1,28 @@
+'@type': PLAN
+name: Championing Kinship Care National Kinship Care Strategy
+description: >
+  First-ever national strategy enabling more children to stay with kinship carers, with £20 million
+  invested to support educational, financial, and practical reforms.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - kinship_care
+  - social_care_reform
+  - policy
+  - national_strategy
+version: 2025.07
+date_published: 2023-12-15
+website: https://www.gov.uk/government/publications/championing-kinship-care-national-kinship-care-strategy
+notes: >
+  Strategy sets out long-term support for kinship families, including trials of financial allowances,
+  Virtual School Head support, and legal reform pathways. Developed with kinship carers, LA partners, and expert input.
+
+
+# --- PLAN-specific fields ---
+plan_fields:
+  status: published
+  linked_framework: 
+  target_outcomes:
+    - increased_support_for_kinship_carers
+    - legal_recognition
+    - improved_educational_attainment

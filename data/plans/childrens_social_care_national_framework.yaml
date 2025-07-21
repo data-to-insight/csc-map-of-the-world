@@ -1,0 +1,25 @@
+'@type': PLAN
+name: Children's Social Care National Framework
+description: >
+  Statutory guidance on principles, purpose, enablers and intended outcomes for local authority children’s social care in England
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - social_care
+  - statutory_guidance
+  - national_framework
+version: 2025.07
+date_published: 2023-12-15
+website: https://www.gov.uk/government/publications/childrens-social-care-national-framework
+notes: >
+  Published by the Department for Education, supported by Ofsted. Updated July 2025.
+
+
+# --- PLAN-specific fields ---
+plan_fields:
+  status: published
+  linked_framework: 
+  target_outcomes:
+    - consistent_local_authority_practice
+    - improved_safeguarding
+    - measurable_service_outcomes

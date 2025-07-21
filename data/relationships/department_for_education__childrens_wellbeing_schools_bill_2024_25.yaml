@@ -1,0 +1,11 @@
+'@type': RELATIONSHIP
+name: Department for Education – Children’s Wellbeing and Schools Bill 2024–25
+source: department_for_education
+target: childrens_wellbeing_schools_bill_2024_25
+relationship_type: proposes
+description: >
+  The Department for Education introduced the bill to improve children's wellbeing, attendance, support for care leavers, and regulation of educational and care services.
+tags:
+  - legislation
+  - wellbeing
+  - care

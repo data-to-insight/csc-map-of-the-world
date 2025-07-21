@@ -1,0 +1,29 @@
+'@type': PLAN
+name: NVEST (National Value & Effectiveness Study Tool)
+description: >
+  NVEST helps children’s services explore whether their support is effective and proportionate.
+  It combines service-level outcomes and cost data to improve decision-making and track value.
+  Initially funded by DLUHC and maintained by Data to Insight in partnership with local authorities.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - nvest
+  - value_for_money
+  - children_services
+  - dlucl
+  - effectiveness
+version: 2025.07
+date_published: 2022-01-01
+website: https://www.datatoinsight.org/nvest
+notes: >
+  NVEST is part of Data to Insight's toolkit and supports benchmarking, impact tracking,
+  and funding evidence across local authorities.
+
+# --- PLAN-specific fields ---
+plan_fields:
+  status: active
+  linked_framework: 
+  target_outcomes:
+    - improved_value_for_money
+    - data_informed_decision_making
+    - benchmarking_across_las

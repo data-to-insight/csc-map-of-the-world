@@ -1,0 +1,25 @@
+'@type': PLAN
+name: FFP Programme Guide 2025
+description: >
+  Guidance for councils and safeguarding partners implementing pre-proceedings family group decision-making as part of children’s social care reforms
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - family_group_decision_making
+  - early_intervention
+  - practice_guide
+version: 2025.07
+date_published: 2025-04-10
+website: https://www.gov.uk/government/publications/ffp-programme-guide-2025
+notes: >
+  This guide supports implementation of early-stage family group conferencing to prevent care proceedings and strengthen multi-agency practice.
+
+
+# --- PLAN-specific fields ---
+plan_fields:
+  status: published
+  linked_framework: childrens_social_care_national_framework
+  target_outcomes:
+    - reduced_court_proceedings
+    - empowered_families
+    - effective_multi_agency_working

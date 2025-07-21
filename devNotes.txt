@@ -1,0 +1,83 @@
+Summary Table:
+Framework Type Example	Suggested @type
+Strategic policy framework or improvement plan	PLAN
+Operational guidance or how-to	METHOD
+Mandatory compliance or statutory document	RULE
+Joint protocols or memoranda of understanding	AGREEMENT
+
+
+✅ Primary Recommendation: @type: PLAN
+Why:
+Most published frameworks:
+
+Define objectives
+
+Outline steps or principles
+
+Are used to guide actions by others (e.g. local authorities)
+
+Often include timelines or recommended resources
+
+🔹 SCCM definition: “A list of steps with times and RESOURCEs, used to achieve an OBJECTIVE.”
+
+Use for:
+Children’s Social Care National Framework
+
+Kinship Care Strategy
+
+SEND Improvement Plan
+
+Safeguarding Practice Guides
+
+🟨 Secondary Options — if use case differs:
+@type: RULE
+Use only if the framework specifies mandatory behaviours or standards, such as statutory guidance or compliance obligations.
+
+🔹 “A regulation or principle governing conduct”
+
+Use sparingly, for example:
+
+Keeping Children Safe in Education (if you treat it as binding)
+
+ILACS inspection handbook (might also be a RULE or PLAN depending on modelling stance)
+
+@type: METHOD
+If the framework is purely procedural (e.g. a toolkit for how to run Family Group Conferences), it may better align with METHOD.
+
+🔹 “A pre-determined procedure, or series of steps, designed to accomplish an OBJECTIVE.”
+
+@type: AGREEMENT
+Use if the framework represents a negotiated approach, such as joint protocols between agencies.
+
+
+
+VALID_ORG_SUBTYPES = {
+    "Local Authority",
+    "Government Department",
+    "Research Partnership",
+    "University",
+    "Academic",
+    "Charity",
+    "Consultancy",
+    "Inspection Body",
+    "Health Organisation",
+    "Police Force",
+    "Voluntary Sector",
+    "Technology Provider",
+    "Funder"
+}
+
+VALID_PERSON_SUBTYPES = {
+    "DCS",
+    "Consultant",
+    "Practitioner",
+    "Academic",
+    "Analyst",
+    "Service Lead",
+    "Policy Advisor",
+    "Director",
+    "Programme Manager",
+    "Data Specialist",
+    "Commissioner",
+    "Inspector"
+}

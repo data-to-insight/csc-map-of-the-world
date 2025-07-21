@@ -1,0 +1,24 @@
+'@type': ORGANIZATION
+name: Essex County Council
+description: >
+  Early adopter of the SSD model, involved in the design and practical deployment of the data standard.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - local_authority
+version: 2025.07
+date_published: 1900-01-01
+website: https://www.essex.gov.uk/
+notes: >
+  Essex has been an early and active partner in the development of cross-authority data standards and practices,
+  particularly in the application of the Standard Safeguarding Dataset.
+
+
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: local_authority
+  region: east_of_england
+  projects:
+    - standard_safeguarding_dataset
+  persons: []

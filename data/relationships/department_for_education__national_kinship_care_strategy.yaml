@@ -1,0 +1,11 @@
+'@type': RELATIONSHIP
+name: Department for Education – National Kinship Care Strategy
+source: department_for_education
+target: national_kinship_care_strategy
+relationship_type: hasPlan
+description: >
+  The Department for Education published the first-ever national kinship care strategy to increase recognition, funding, and legal support for kinship carers across England.
+tags:
+  - kinship
+  - strategy
+  - reform

@@ -1,0 +1,238 @@
+{
+  "elements": [
+    {
+      "data": {
+        "id": "essex_county_council",
+        "label": "Essex County Council",
+        "type": "ORGANIZATION",
+        "group": "nodes",
+        "class": "org"
+      }
+    },
+    {
+      "data": {
+        "id": "knowsley_council",
+        "label": "Knowsley Council",
+        "type": "ORGANIZATION",
+        "group": "nodes",
+        "class": "org"
+      }
+    },
+    {
+      "data": {
+        "id": "lancaster_university",
+        "label": "Lancaster University",
+        "type": "ORGANIZATION",
+        "group": "nodes",
+        "class": "org"
+      }
+    },
+    {
+      "data": {
+        "id": "rcc",
+        "label": "Regional Care Co-operative (RCC)",
+        "type": "ORGANIZATION",
+        "group": "nodes",
+        "class": "org"
+      }
+    },
+    {
+      "data": {
+        "id": "data_to_insight",
+        "label": "Data to Insight",
+        "type": "ORGANIZATION",
+        "group": "nodes",
+        "class": "org"
+      }
+    },
+    {
+      "data": {
+        "id": "hertfordshire_county_council",
+        "label": "Hertfordshire County Council",
+        "type": "ORGANIZATION",
+        "group": "nodes",
+        "class": "org"
+      }
+    },
+    {
+      "data": {
+        "id": "adcs",
+        "label": "ADCS",
+        "type": "ORGANIZATION",
+        "group": "nodes",
+        "class": "org"
+      }
+    },
+    {
+      "data": {
+        "id": "department_for_education",
+        "label": "Department for Education",
+        "type": "ORGANIZATION",
+        "group": "nodes",
+        "class": "org"
+      }
+    },
+    {
+      "data": {
+        "id": "keeping_children_safe_in_education_2025",
+        "label": "Keeping Children Safe in Education 2025",
+        "type": "RULE",
+        "group": "nodes",
+        "class": "default"
+      }
+    },
+    {
+      "data": {
+        "id": "standard_safeguarding_dataset",
+        "label": "Standard Safeguarding Dataset (SSD)",
+        "type": "SERVICE",
+        "group": "nodes",
+        "class": "service"
+      }
+    },
+    {
+      "data": {
+        "id": "childrens_social_care_in_england_2025",
+        "label": "Methodology Report Children's Social Care in England 2025",
+        "type": "EVENT",
+        "group": "nodes",
+        "class": "event"
+      }
+    },
+    {
+      "data": {
+        "id": "childrens_wellbeing_schools_bill_2024_25",
+        "label": "Children's Wellbeing and Schools Bill 2024–25",
+        "type": "EVENT",
+        "group": "nodes",
+        "class": "event"
+      }
+    },
+    {
+      "data": {
+        "id": "childrens_social_care_review",
+        "label": "Children's Social Care Review",
+        "type": "EVENT",
+        "group": "nodes",
+        "class": "event"
+      }
+    },
+    {
+      "data": {
+        "id": "childrens_social_care_national_framework",
+        "label": "Children's Social Care National Framework",
+        "type": "PLAN",
+        "group": "nodes",
+        "class": "plan"
+      }
+    },
+    {
+      "data": {
+        "id": "ffp_programme_guide_2025",
+        "label": "FFP Programme Guide 2025",
+        "type": "PLAN",
+        "group": "nodes",
+        "class": "plan"
+      }
+    },
+    {
+      "data": {
+        "id": "national_kinship_care_strategy",
+        "label": "Championing Kinship Care National Kinship Care Strategy",
+        "type": "PLAN",
+        "group": "nodes",
+        "class": "plan"
+      }
+    },
+    {
+      "data": {
+        "id": "nvest",
+        "label": "NVEST (National Value & Effectiveness Study Tool)",
+        "type": "PLAN",
+        "group": "nodes",
+        "class": "plan"
+      }
+    },
+    {
+      "data": {
+        "id": "ddsf",
+        "label": "Data and Digital Solutions Fund (DDSF)",
+        "type": "PLAN",
+        "group": "nodes",
+        "class": "plan"
+      }
+    },
+    {
+      "data": {
+        "source": "essex_county_council",
+        "target": "data_to_insight",
+        "label": "collaboratesWith",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "department_for_education",
+        "target": "childrens_social_care_national_framework",
+        "label": "hasPlan",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "knowsley_council",
+        "target": "data_to_insight",
+        "label": "collaboratesWith",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "department_for_education",
+        "target": "childrens_wellbeing_schools_bill_2024_25",
+        "label": "proposes",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "hertfordshire_county_council",
+        "target": "data_to_insight",
+        "label": "collaboratesWith",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "adcs",
+        "target": "data_to_insight",
+        "label": "collaboratesWith",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "department_for_education",
+        "target": "keeping_children_safe_in_education_2025",
+        "label": "hasPlan",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "department_for_education",
+        "target": "national_kinship_care_strategy",
+        "label": "hasPlan",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "department_for_education",
+        "target": "ffp_programme_guide_2025",
+        "label": "initiates",
+        "group": "edges"
+      }
+    }
+  ]
+}

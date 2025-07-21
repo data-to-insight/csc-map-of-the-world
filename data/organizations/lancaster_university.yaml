@@ -1,0 +1,27 @@
+'@type': ORGANIZATION
+name: Lancaster University
+description: >
+  University with faculty of Social Work.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - academic
+  - children_services
+version: 2025.07
+date_published: 1900-01-01
+website: https://www.lancaster.ac.uk
+notes: >
+  Lancaster University is an active research institution in children's social care, with notable contributions
+  from its Centre for Child and Family Justice Research and involvement in national reviews and reform.
+
+
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: academic       # interpreted from original "role"
+  region: england
+  projects: []
+  persons:
+    - name: Karen Broadhurst
+      role: Researcher, Professor of Social Work
+      from: 1900-01-01

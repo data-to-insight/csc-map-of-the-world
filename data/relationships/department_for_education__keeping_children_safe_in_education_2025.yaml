@@ -1,0 +1,11 @@
+'@type': RELATIONSHIP
+name: Department for Education – Keeping Children Safe in Education 2025
+source: department_for_education
+target: keeping_children_safe_in_education_2025
+relationship_type: hasPlan
+description: >
+  This statutory guidance issued by the DfE sets mandatory requirements for safeguarding children in educational settings under the Education Act 2002.
+tags:
+  - safeguarding
+  - education
+  - statutory

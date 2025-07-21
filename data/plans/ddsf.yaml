@@ -1,0 +1,25 @@
+'@type': PLAN
+name: Data and Digital Solutions Fund (DDSF)
+description: >
+  Funding stream to support local data innovations for children’s services.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - d2i
+  - data_improvement
+version: 2025.07
+date_published: 2021-06-01
+website: https://www.gov.uk/guidance/data-and-digital-solutions-fund
+notes: >
+  DDSF was established to help local authorities invest in data infrastructure and innovation.
+  Multiple projects under the DDSF banner contributed to tools such as NVEST, SSD, and RCC.
+
+
+# --- PLAN-specific fields ---
+plan_fields:
+  status: active
+  linked_framework: 
+  target_outcomes:
+    - modernised_data_infrastructure
+    - local_data_innovation
+    - scalable_reusable_tools

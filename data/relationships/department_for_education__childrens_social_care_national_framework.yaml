@@ -1,0 +1,11 @@
+'@type': RELATIONSHIP
+name: Department for Education – Children's Social Care National Framework
+source: department_for_education
+target: childrens_social_care_national_framework
+relationship_type: hasPlan
+description: >
+  The Department for Education authored the Children's Social Care National Framework to define principles, outcomes, and enablers for all local authority children’s social care services in England.
+tags:
+  - framework
+  - children
+  - policy

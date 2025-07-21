@@ -1,0 +1,90 @@
+'@type': ORGANIZATION  # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON
+name: Template Name Here
+description: >
+  Short summary of the entity or activity
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - example_tag        # lowercase, snake_case if multi-word
+  - data_tools
+version: 2025.07
+date_published: 2025-07-21
+website: https://example.org
+notes: >
+  Optional notes for further detail, sources or internal use
+
+
+# --- Modelling context ---
+modelling_context:
+  name: Smart City Concept Model
+  version: SCCM v1.0
+  reference: http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10
+  homepage: http://www.smartcityconceptmodel.com/
+
+
+# --- Uncomment section below if this is an ORGANIZATION ---
+# organization_fields:
+#   organisation_type: local_authority    # e.g. "Local Authority", "Government Department", "Research Partnership", "University", "Academic", "Charity", "Consultancy", "Inspection Body", "Health Organisation", "Police Force", "Voluntary Sector", "Technology Provider", "Funder"olk
+#   region: England
+#   projects:
+#     -                              # must match a known snake_case ID
+#     - 
+#   persons:
+#     - name: 
+#       role: 
+#       from: 1900-01-01
+
+# --- Uncomment the section below if this is an EVENT ---
+# event_fields:
+#   lead_organisation:                    # snake_case, must match an org ID
+#   collaborators:
+#     -                                   # person or org IDs in snake_case
+#   location: UK
+#   date: 1900-01-01
+
+# --- Uncomment the section below if a SERVICE ---
+# service_fields:
+#   lead_organisation:                   # snake_case org ID
+#   delivery_partners:
+#     - 
+#   status: active                       # or retired, draft
+#   scope: >
+#     National data tool to standardise safeguarding returns
+
+# --- Uncomment the section below if a PLAN ---
+# plan_fields:
+#   status: draft
+#   linked_framework: 
+#   target_outcomes:
+#     - 
+#     - 
+
+# --- Uncomment section below if a RELATIONSHIP ---
+# relationship_fields:
+#   source:                       # snake_case org/person ID
+#   target:            # snake_case org/service ID
+#   relationship_type: 
+#   collaboratesWith,  hasPlan, hasOutcome, ...
+
+# --- Uncomment section below if a COLLECTION ---
+# collection_fields:
+#   theme:                # lowercase, snake_case preferred
+#   items:
+#     - 
+#     - 
+
+# --- Uncomment section below if a PERSON ---
+# person_fields:
+#   role: 
+#   employer:  
+#   from: 1900-01-01
+#   area_of_focus:   # optional high-level theme
+#   interests:
+#     - 
+#     - 
+#   affiliations:
+#     - 
+#     - 
+#   contact: person@example.org        # optional contact field
+
+# _example_note: This template includes all possible types. Remove unused blocks or uncomment needed section.

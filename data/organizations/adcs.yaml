@@ -1,0 +1,52 @@
+'@type': ORGANIZATION
+name: ADCS
+projects:
+  - standard_safeguarding_dataset
+tags:
+  - regional-partnership
+  - adcs
+  - safeguarding
+region: North West
+notes: >
+  Regional ADCS branch coordinating collaboration and feedback from local authorities implementing the SSD.
+
+
+
+'@type': ORGANIZATION
+name: Data to Insight
+description: >
+  A sector‑led service for local authority children’s data professionals. Led by LAs,
+  supported by ADCS, DfE, DLUHC, Ofsted. Maintains toolkits, shares best practice, and
+  enables national collaboration (DDSF, RCC, NVEST, PATCh, Standard Safeguarding Dataset).
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - data_tools
+  - children_services
+version: 2025.07
+date_published: 2020-01-01
+website: https://www.datatoinsight.org/
+notes: >
+  Collaboration hub for scalable data improvement work in the public sector, especially children’s services.
+  Known for its open, tool-based approach and partnership with government and local authorities.
+
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: consultant  
+  region: England
+  projects:
+    - ddsf
+    - rcc
+    - standard_safeguarding_dataset
+    - nvest
+    - patch
+  persons:
+    - name: Alister Herbert
+      role: Strategic Lead
+      from: 2022-01-01
+    - name: John Foster
+      role: Data Manager
+      from: 2022-01-01
+
+

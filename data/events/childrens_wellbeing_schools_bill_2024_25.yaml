@@ -1,0 +1,26 @@
+'@type': EVENT
+name: Children's Wellbeing and Schools Bill 2024–25
+description: >
+  Legislation covering safeguarding, support for children in or leaving care, regulation of care workers,
+  breakfast clubs, attendance, and more.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - legislation
+  - safeguarding
+  - social_care
+version: 2025.07
+date_published: 2024-12-17
+website: https://bills.parliament.uk/bills/3516
+notes: >
+  Introduced in Parliament December 2024. Proposes statutory measures related to children's welfare,
+  education provision, and system-wide safeguarding responsibilities.
+
+
+# --- EVENT-specific fields ---
+event_fields:
+  lead_organisation: department_for_education
+  collaborators:
+    - parliament
+  location: england
+  date: 2024-12-17

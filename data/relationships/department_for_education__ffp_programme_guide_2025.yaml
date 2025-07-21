@@ -1,0 +1,11 @@
+'@type': RELATIONSHIP
+name: Department for Education – FFP Programme Guide 2025
+source: department_for_education
+target: ffp_programme_guide_2025
+relationship_type: initiates
+description: >
+  This guide sets out the DfE’s implementation of family group decision-making as part of early intervention and pre-proceedings reforms in children’s social care.
+tags:
+  - early-intervention
+  - family-support
+  - social-care

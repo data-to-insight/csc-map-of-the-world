@@ -1,0 +1,26 @@
+'@type': ORGANIZATION
+name: Department for Education
+description: >
+  UK government department responsible for education and children's services policy.
+
+# --- Shared metadata (optional but recommended) ---
+tags:
+  - government
+  - children_services
+version: 2025.07
+date_published: 1900-01-01
+website: https://www.gov.uk/government/organisations/department-for-education
+notes: >
+  Central government body overseeing schools, children’s social care, and national education strategy.
+  Leads major reforms and funding programmes across England.
+
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: central_government_department
+  region: England
+  projects: []
+  persons:
+    - name: Paul Creasey
+      role: Project and Product Manager
+      from: 1900-01-01

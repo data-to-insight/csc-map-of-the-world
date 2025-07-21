@@ -1,0 +1,12 @@
+# ORGANIZATION TEMPLATE — copy and adapt for each new record
+# Save into: data/organizations/<your-file-name>.yaml
+
+'@type': RELATIONSHIP
+name: name_label
+source: from_org
+target: linked_to_organisation_or_other
+relationship_type: collaboratesWith
+description: >
+  frre text
+tags:
+  - example_tag
