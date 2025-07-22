@@ -6,7 +6,7 @@ from pathlib import Path
 from shutil import copyfile
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = ROOT / "data"
+DATA_DIR = ROOT / "data_yml"
 REL_DIR = DATA_DIR / "relationships"
 OUT_PATH = DATA_DIR / "graph_data.json"
 

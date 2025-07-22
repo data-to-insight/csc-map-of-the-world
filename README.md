@@ -1,8 +1,26 @@
 # Children's Services Knowledge Base
 
 [![Open Source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen)](https://opensource.org)
-[![Built with Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-ff4b4b)](https://streamlit.io)
-[![DuckDB Powered](https://img.shields.io/badge/Database-DuckDB-blueviolet)](https://duckdb.org)
+
+# D2I Knowledge Base
+
+[![Codespaces Ready](https://img.shields.io/badge/Codespaces-ready-blue?logo=github)](https://github.com/features/codespaces)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-green?logo=python)](https://www.python.org/)
+[![NLTK](https://img.shields.io/badge/NLP-NLTK-brightgreen)](https://www.nltk.org/)
+
+A browser-based knowledge-base tool for representing, and searching Children's Social Care related data eco-system. Built using Python/MKDOCS/Javascript/YAML to provide an interface across local documentation and selected GitHub repositories. This tool supports markdown, PDF, HTML, JS, and Python file types and is designed for knowledge management in children's services and data tools developed by [Data to Insight](https://github.com/data-to-insight). 
+
+---
+
+## Features
+
+- 🔍 Text search across `.md`, `.pdf`, `.html`, `.js`, `.py` files
+- 📁 Local `/docs` folder for manual document uploads
+- 🧠 NLP-based preprocessing and normalisation using NLTK
+- 🛠 GitHub repo integration and automated cleanup to conserve memory
+- 📌 Results display includes context snippets, hit count and document density
+
+---
 
 An open-source, Git-native 'map of the world' or knowledge base for connected **people**, **projects**, and **organisations** in the **children’s services sector**, aligned to the [Smart City Concept Model/framework (SCCM)](http://www.smartcityconceptmodel.com/).
 

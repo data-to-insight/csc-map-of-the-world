@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../network/">
+      
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -16,7 +18,7 @@
     
     
       
-        <title>Minimal D2I Network Test - D2I Knowledge Map</title>
+        <title>Search - D2I Knowledge Map</title>
       
     
     
@@ -42,6 +44,8 @@
       
     
     
+      <link rel="stylesheet" href="../css/styles.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -64,11 +68,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#minimal-d2i-network-test" class="md-skip">
-          Skip to content
-        </a>
       
     </div>
     <div data-md-component="announce">
@@ -102,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Minimal D2I Network Test
+              Search
             
           </span>
         </div>
@@ -235,6 +234,36 @@
   
 
     
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -252,8 +281,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -269,75 +296,13 @@
 
 
 
-<h1 id="minimal-d2i-network-test">Minimal D2I Network Test</h1>
-<div id="cy" style="width: 100%; height: 500px;"></div>
+  <h1>Search</h1>
 
-<script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const container = document.getElementById('cy');
-  if (!container) {
-    console.error("❌ Cytoscape container not found.");
-    return;
-  }
+<h2>Search the knowledge base</h2>
+<p><input id="search-query" placeholder="Search term..." style="width: 100%; padding: 0.6em; border: 1px solid #ccc; border-radius: 4px;" /></p>
+<div id="search-results" style="margin-top: 1em;"></div>
 
-
-  fetch("../data/graph_data_test.json")
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      return res.json();
-    })
-    .then(data => {
-      const validElements = (data.elements || []).filter(el => {
-        if (el.group === "nodes" && !el.data?.label) {
-          console.warn("⚠️ Node missing label:", el.data?.id);
-          return false;
-        }
-        return true;
-      });
-
-      const cy = cytoscape({
-        container: container,
-        elements: validElements,
-        style: [
-          {
-            selector: 'node[label]',
-            style: {
-              'label': 'data(label)',
-              'background-color': '#0074D9',
-              'color': '#000',
-              'text-valign': 'center',
-              'text-halign': 'center',
-              'font-size': 12,
-              'text-wrap': 'wrap',
-              'text-max-width': 100
-            }
-          },
-          {
-            selector: 'edge',
-            style: {
-              'width': 2,
-              'line-color': '#999',
-              'target-arrow-color': '#999',
-              'target-arrow-shape': 'triangle'
-            }
-          }
-        ],
-        layout: {
-          name: 'cose',
-          animate: true
-        }
-      });
-
-      console.log(`✅ Test graph loaded. Nodes: ${cy.nodes().length}, Edges: ${cy.edges().length}`);
-    })
-    .catch(err => {
-      console.error("❌ Failed to load test graph:", err);
-    });
-});
-</script>
+<script src="/js/search_tool.js"></script>
 
 
 

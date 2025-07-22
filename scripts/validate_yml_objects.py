@@ -55,7 +55,7 @@ def validate_relationship_links(relationship_dir, all_node_ids):
     return errors
 
 if __name__ == "__main__":
-    root = Path("./data")
+    root = Path("./data_yml")
     rel_dir = root / "relationships"
     all_yamls = list(root.rglob("*.yaml"))
     relationship_yamls = list(rel_dir.glob("*.yaml"))

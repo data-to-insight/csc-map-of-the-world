@@ -2,7 +2,7 @@ import os
 import sys
 
 # scan folder (from arg or default)
-BASE_DIR = sys.argv[1] if len(sys.argv) > 1 else "data"
+BASE_DIR = sys.argv[1] if len(sys.argv) > 1 else "data_yml"
 
 # exclude (e.g. .md, .yml)
 EXCLUDE_EXTENSIONS = []

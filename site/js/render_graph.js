@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
           {
             selector: "node",
             style: {
-              "background-color": "#999",
+              // "background-color": "#999",
               width: 30,
               height: 30
             }
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
           {
             selector: "edge",
             style: {
-              width: 2,
+              width: 1,
               "line-color": "#ccc",
               "target-arrow-color": "#ccc",
               "target-arrow-shape": "triangle",
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
             style: {
               "line-color": "#2ECC40",
               "target-arrow-color": "#2ECC40",
-              width: 4
+              width: 1
             }
           }
         ],

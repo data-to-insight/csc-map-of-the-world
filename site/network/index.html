@@ -12,6 +12,8 @@
         <link rel="prev" href="..">
       
       
+        <link rel="next" href="../search/">
+      
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
@@ -43,6 +45,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../css/styles.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -247,6 +251,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -282,7 +308,10 @@
 
 
 <h1 id="d2i-network-graph">D2I Network Graph</h1>
-<div id="cy" style="width: 100%; height: 600px;"></div>
+<!-- 1) mkdocs defaults, 2) css styled enlargement(not working), 3) forced full browswer win overlay -->
+<!-- <div id="cy" style="width: 100%; height: 600px;"></div> -->
+<!-- <div id="cy"></div> -->
+<div id="cy" style="position: fixed; top: 2; left: 0; width: 100vw; height: 80vh; z-index: 10;"></div>
 
 <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
 <script src="js/render_graph.js"></script>

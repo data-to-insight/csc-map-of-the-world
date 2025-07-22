@@ -7,6 +7,7 @@ theme:
 nav:
   - Home: index.md
   - Network Graph: network.md
+  - Search: search.md
 
 extra_javascript:
   - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js
