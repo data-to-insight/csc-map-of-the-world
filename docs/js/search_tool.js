@@ -58,7 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <p><strong>Description:</strong> ${entry.description || '—'}</p>
             <p><strong>Source:</strong> ${entry.source_note || '—'}</p>
             <p><strong>Keywords:</strong> ${entry.keywords?.join(", ") || '—'}</p>
-            <p><strong>Excerpt:</strong> <em>${entry.text?.substring(0, 200) || ''}...</em></p>
+            <p><strong>Excerpt:</strong> <em>${entry.text.substring(0, 80) || ''}...</em></p>
+
             <p><strong>Match score:</strong> ${matchScore}%, <strong>Density:</strong> ${density}</p>
             <hr>
           `;

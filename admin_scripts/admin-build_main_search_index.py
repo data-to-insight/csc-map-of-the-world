@@ -37,8 +37,8 @@ ADDITIONAL_STOPWORDS = {
 }
 STOPWORDS = set(stopwords.words('english')).union(ADDITIONAL_STOPWORDS)
 
-MAX_WORDS = 200
-KEYWORD_COUNT = 150
+MAX_WORDS = 1000
+KEYWORD_COUNT = 30
 
 
 def clean_text(text):
@@ -220,6 +220,58 @@ def build_index():
                     "match_count": match_count,
                     "keyword_density": keyword_density
                 })
+
+    # ./data_web/
+    for path in Path("data_web").rglob("*"):
+        if path.suffix.lower() in [".txt", ".html", ".md"]:
+            try:
+                raw_text = extract_text_from_file(path)
+                if not raw_text:
+                    continue
+
+                lines = raw_text.splitlines()
+                title, source_note, tags, content_lines = "", "", [], []
+                mode = "meta"
+
+                for line in lines:
+                    line = line.strip()
+                    if mode == "meta":
+                        if line.startswith("# "):
+                            title = line.replace("#", "").replace("Resource", "").strip()
+                        elif line.lower().startswith("source:"):
+                            source_note = line[7:].strip()
+                        elif line.lower().startswith("tags:"):
+                            tags = [t.strip().lower() for t in line[5:].split(",")]
+                        elif line.strip() == "---":
+                            mode = "body"
+                    elif mode == "body":
+                        content_lines.append(line)
+
+                if not title or not source_note:
+                    print(f"⚠️ Missing required fields in: {path.name}")
+                    continue
+
+                content = "\n".join(content_lines).strip()
+                cleaned = clean_text(content)
+                tokens = cleaned.split()
+                keywords = [k.lower() for k in extract_keywords(cleaned)]
+                match_count = sum(tokens.count(k) for k in keywords if k)
+                keyword_density = round(match_count / len(tokens), 4) if tokens else 0.0
+
+                index.append({
+                    "title": title,
+                    "description": "",
+                    "source_note": source_note,
+                    "tags": tags + ["web"],
+                    "path": str(path),
+                    "text": " ".join(tokens[:MAX_WORDS]),
+                    "keywords": keywords,
+                    "match_count": match_count,
+                    "keyword_density": keyword_density
+                })
+
+            except Exception as e:
+                print(f"❌ Error processing {path.name}: {e}")
 
 
     # put generated search index file into mkdocs data folder

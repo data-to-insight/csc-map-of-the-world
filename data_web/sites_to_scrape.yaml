@@ -1,0 +1,51 @@
+- name: ADCS Safeguarding Page
+  url: https://www.adcs.org.uk/safeguarding
+  tags: ["adcs", "web", "safeguarding"]
+  
+- name: LGA Children’s Services Overview
+  url: https://www.local.gov.uk/topics/children-and-young-people
+  tags: ["lga", "overview"]
+
+- name: Children's Services Network
+  url: https://www.childrensservices.network/network.html
+  tags: [network, organisations]
+
+- name: Department for Education
+  url: https://www.gov.uk/government/organisations/department-for-education
+  tags: [government, education]
+
+- name: Barking and Dagenham Resource
+  url: https://www.lbbd.gov.uk/children-young-people-and-families/report-serious-concern-about-child-marf-professionals
+  tags: [council, web, safeguarding, childrens-services]
+  
+- name: Barking and Dagenham Resource
+  url: https://www.lbbd.gov.uk/children-young-people-and-families/safeguarding-risk-children
+  tags: [council, web, safeguarding, childrens-services]
+
+- name: Barking and Dagenham Resource
+  url: https://www.lbbd.gov.uk/children-young-people-and-families/early-help/early-help-families
+  tags: [council, web, safeguarding, childrens-services]
+
+- name: Barnet Resource
+  url: https://www.barnet.gov.uk/children-and-families/keeping-children-safe
+  tags: [council, web, safeguarding, childrens-services]
+
+- name: Barnet Resource
+  url: https://www.barnet.gov.uk/children-and-families
+  tags: [council, web, safeguarding, childrens-services]
+
+- name: Barnet Resource
+  url: https://www.barnet.gov.uk/children-and-families/early-help-children-young-people-and-families
+  tags: [council, web, safeguarding, childrens-services]
+
+- name: Barnsley Resource
+  url: https://www.barnsley.gov.uk/services/children-young-people-and-families/childrens-social-care/
+  tags: [council, web, safeguarding, childrens-services]
+
+- name: Bath and North East Somerset Resource
+  url: https://www.bathnes.gov.uk/children-young-people-and-families
+  tags: [council, web, safeguarding, childrens-services]
+
+- name: Bath and North East Somerset Resource
+  url: https://www.bathnes.gov.uk/report-concern-about-child
+  tags: [council, web, safeguarding, childrens-services]
