@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'docs/**'
-      - 'scripts/build_search_index.py'
+      - 'admin_scripts/build_main_search_index.py'
 
 jobs:
   index:
@@ -23,7 +23,7 @@ jobs:
         run: pip install pdfplumber beautifulsoup4
 
       - name: Build search index
-        run: python scripts/build_search_index.py
+        run: python admin_scripts/build_main_search_index.py
 
       - name: Commit and push if changed
         run: |

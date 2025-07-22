@@ -38,7 +38,7 @@ REPOS = {
 
 # tmp cloned repos 
 # these can be cleaned up either by uncommenting clean-up block below or via generate_mkdocs_yml.py
-CLONE_DIR = "./cloned_repos"
+CLONE_DIR = "./data_repos"
 DEST_DIR = "./docs"  # overwriting into... 
 
 # check clone dir exists

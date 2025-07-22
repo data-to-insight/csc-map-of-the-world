@@ -74,15 +74,6 @@
     },
     {
       "data": {
-        "id": "keeping_children_safe_in_education_2025",
-        "label": "Keeping Children Safe in Education 2025",
-        "type": "RULE",
-        "group": "nodes"
-      },
-      "classes": "rule"
-    },
-    {
-      "data": {
         "id": "standard_safeguarding_dataset",
         "label": "Standard Safeguarding Dataset (SSD)",
         "type": "SERVICE",
@@ -161,6 +152,15 @@
         "group": "nodes"
       },
       "classes": "plan"
+    },
+    {
+      "data": {
+        "id": "keeping_children_safe_in_education_2025",
+        "label": "Keeping Children Safe in Education 2025",
+        "type": "RULE",
+        "group": "nodes"
+      },
+      "classes": "rule"
     },
     {
       "data": {

@@ -5,8 +5,12 @@ pdfplumber
 beautifulsoup4
 nltk
 
-# PDF font extraction support
+# PDF font extraction
 pillow
 
-# deterministic JSON output across platforms
+# deterministic JSON
 ujson  
+
+# towards importing remote repo files
+ruamel.yaml
+GitPython
