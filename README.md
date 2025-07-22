@@ -2,7 +2,7 @@
 
 A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together documentation, relationships, services, tools, rules, plans, and events, using a flexible YAML-based data model aligned with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/).
 
-It supports full-text search, graph-based visualisation, and schema validation across structured `.yml` records and supporting documents (PDF, Markdown, HTML, Python, JS). Designed to be extensible, transparent, and Git-native.
+It (aims to)supports full-text search, graph-based visualisation, and schema validation across structured `.yml` records and supporting documents (PDF, Markdown, HTML, Python, JS). Designed to be extensible, transparent, and Git-native.
 
 ---
 
@@ -10,7 +10,7 @@ It supports full-text search, graph-based visualisation, and schema validation a
 
 This project aims to **map the data ecosystems of children's social care** as a **searchable, structured resource**.
 
-By gathering structured metadata, documentation, plans, rules, and relationships across CSC tools and services, the goal is to create a **shared map of development activity and information flows**.
+By gathering structured metadata, documentation, plans, rules, and relationships across CSC tools and services, the goal is to create a **shared map of development activity, relvance sources and information flows**.
 
 This knowledge base is intended to:
 
@@ -38,7 +38,7 @@ This knowledge base is intended to:
 
 ```
 /workspaces/d2i-map-of-the-world-mkdocs/
-├── admin_scripts/        # Python scripts for index building, validation, sync
+├── admin_scripts/        # Admin scripts(.py) for index building, validation, sync
 ├── data_yml/             # SCCM-aligned YAML records (collections, plans, events...)
 │   ├── organizations/
 │   ├── relationships/
@@ -46,18 +46,19 @@ This knowledge base is intended to:
 │   ├── rules/
 │   ├── events/
 │   └── ...
-├── data_published/       # Cached/publicly released data extracts
-├── data_repos/           # Cloned GitHub documentation sources
+├── data_published/       # Cached/publicly released data reports/published frameworks
+├── data_repos/           # Cloned GitHub documentation sources (e.g. README, SCCM.yml)
+├── data_web/             # Scraped data, e.g. local authority web site, DfE, Others
 ├── docs/                 # MkDocs content (HTML, Markdown, PDF, JS, CSS)
 │   ├── js/
 │   ├── css/
 │   ├── data/
 │   │   ├── search_index.json
 │   │   └── graph_data.json
-│   └── *.md
+│   └── *.md # Mkdocs site pages, index.md etc.... 
 ├── mkdocs.yml            # Site config
 ├── requirements.txt
-├── setup.sh              # Dev setup (codespaces or local)
+├── setup.sh              # Dev setup (codespace or local)
 └── README.md
 ```
 
@@ -65,13 +66,13 @@ This knowledge base is intended to:
 
 ## Getting Started (Dev + CLI)
 
-### ✅ Environment Setup
+### Environment Setup
 
 ```bash
 ./setup.sh  # one-time setup (pip install, nltk, etc.)
 ```
 
-### 🧪 Run locally
+### Run locally
 
 ```bash
 mkdocs serve
@@ -79,20 +80,20 @@ mkdocs serve
 mkdocs serve --dev-addr=0.0.0.0:8001
 ```
 
-### 🛠 Rebuild Search Index + Graph
+### Rebuild Search Index + Graph
 
 ```bash
 python admin_scripts/build_main_search_index.py
 python admin_scripts/build_cytoscape_json.py
 ```
 
-### 🔍 Validate YAML records
+### Validate YAML records
 
 ```bash
 python admin_scripts/validate_yml_objects.py
 ```
 
-### 🧹 Cleanup (optional)
+### Cleanup (optional)
 
 ```bash
 rm -rf site/
@@ -105,7 +106,7 @@ rm -rf site/
 - **MkDocs** with Material theme
 - **Python 3.9+**
 - **NLTK** for text preprocessing
-- **YAML** for data records
+- **YAML** for data records (Incl Network graph data)
 - **Cytoscape.js** for client-side graph rendering
 - **JavaScript** for search UI
 - **pdfplumber**, `bs4`, `re`, `json`, `glob` for parsing and index creation
@@ -114,7 +115,7 @@ rm -rf site/
 
 ## Development Notes
 
-- YAML records follow SCCM concepts: `OBJECT`, `AGENT`, `SERVICE`, `EVENT`, `COLLECTION`, `OBSERVATION`, `RELATIONSHIP`, etc.
+- YAML records (attempt to)follow SCCM concepts: `OBJECT`, `AGENT`, `SERVICE`, `EVENT`, `COLLECTION`, `OBSERVATION`, `RELATIONSHIP`, etc.
 - Each YAML file should include a `name`, `description`, and optional `@type`, `tags`, `related_to`, `source_url`, etc.
 - `search_index.json` and `graph_data.json` are regenerated via scripts and used by the frontend
 - Folder structure matters: new categories of YAML content should be placed in their own folder inside `/data_yml/`
@@ -124,10 +125,13 @@ rm -rf site/
 
 ## Future Work
 
-- SCCM-compliant export to RDF / JSON-LD
+Aside the ongoing dev/fixes... 
+
+- SCCM-compliant exports
+- Live data ingress to maintain updates, via direct LA/DfE urls or alternative
 - Enhanced relationship modelling (multi-level RELATIONSHIP, EVENT chains)
-- Editable front-end (e.g. via YAML form editor or streamlit-like UI)
-- Scaled search index using DuckDB or WASM-based backend
+- Editable front-end (e.g. via YAML form editor) or enabling direct YAML contributions
+- Scaled search index using DuckDB-based backend or further optimised search index method(s)
 - Expanded integration across D2I GitHub repos via cross-referencing tags
 
 ---
@@ -140,5 +144,5 @@ rm -rf site/
 
 ---
 
-© Data to Insight — sector-driven, open knowledge.  
-Built with care for public service data projects.
+© Data to Insight — sector-driven, open knowledge 
+
