@@ -1,0 +1,24 @@
+#cy {
+  width: 100%;
+  height: 1000px;
+  max-width: 100vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.search-result {
+  margin-bottom: 1.5em;
+}
+.search-result h3 {
+  margin-bottom: 0.3em;
+}
+.search-result p {
+  margin: 0.3em 0;
+}
+
+
+input#search-query:focus {
+  border-color: #007acc;
+  outline: none;
+}

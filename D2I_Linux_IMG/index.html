@@ -1,0 +1,807 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>D2I Linux Alpha Build (v0.1.0) - CSC Map of the World</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/styles.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#d2i-linux-alpha-build-v010" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CSC Map of the World" class="md-header__button md-logo" aria-label="CSC Map of the World" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CSC Map of the World
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              D2I Linux Alpha Build (v0.1.0)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CSC Map of the World" class="md-nav__button md-logo" aria-label="CSC Map of the World" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CSC Map of the World
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSC Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSC Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-build-a-custom-linux-iso-for-d2i" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Build a Custom Linux ISO for D2I?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-open-source-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Open Source Benefits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-buildsoftware-includes" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the build/software includes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What the build/software includes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preinstalled-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preinstalled Apps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preinstalled-tweaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preinstalled tweaks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-science-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Science Environment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Science Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preinstalled-python-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preinstalled Python Packages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further notes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-quick-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to (Quick view)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-expanded-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to (Expanded view)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-download-the-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Download the ISO
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-write-the-iso-to-a-usb-stick" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Write the ISO to a USB stick
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Write the ISO to a USB stick">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opt-a-use-gui-recommended-for-beginners" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opt A: Use GUI (recommended for beginners)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opt-b-use-dd-command-linuxmacos-only-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opt B: Use dd command (Linux/macOS only - advanced)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-boot-from-usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Boot from USB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-use-d2i-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Use D2I Linux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Use D2I Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Downloading ISO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-an-iso" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's an ISO?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      First Boot
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="d2i-linux-alpha-build-v010">D2I Linux Alpha Build (v0.1.0)</h1>
+<p>Ubuntu-based ISO for D2I tooling and testing. This is an early attempt to build, deploy(to anyone who'd like to try it) and test a Linux desktop environment preconfigured with key apps towards a data-orientated workflow(incl. D2I's) straight out of the box. An exploratory and very much in-progress investigation into what a D2I open source plug-and-play data-suite might look like for our own team and for any interested data colleagues in local authorities. </p>
+<p><strong>Now a working build from release v0.1.0</strong>
+<a href="https://github.com/data-to-insight/d2i_linux_build/releases/tag/v0.1.2">Download D2I Linux v0.1.2</a></p>
+<hr />
+<h2 id="why-build-a-custom-linux-iso-for-d2i">Why Build a Custom Linux ISO for D2I?</h2>
+<p>Across lots of sectors teams like ours are increasingly exploring more sustainable, cost-effective and open approaches to tooling. This Linux build reflects that shift. We're asking ourselves, can we:</p>
+<ul>
+<li>Put together a free, open-source alternative for D2I use and potentially local authority (data)colleagues</li>
+<li>Package key D2I tools in a ready-to-use format (ideally that will run on any hardware)</li>
+<li>Make it easier for colleagues to try, adopt, (enjoy?) and understand <strong>open-source tools</strong> like Python, Anaconda, Jupyter, and LibreOffice</li>
+<li>Encourage <strong>open standards</strong>, <strong>data transparency</strong>, and <strong>independence from software lock-in</strong></li>
+</ul>
+<hr />
+<h2 id="common-open-source-benefits">Common Open Source Benefits</h2>
+<ul>
+<li><strong>Cost saving</strong>: No licence fees or platform lock-in  </li>
+<li><strong>Transparency</strong>: Code and tools can be audited and understood  </li>
+<li><strong>Security</strong>: Community-tested, widely deployed systems  </li>
+<li><strong>Portability</strong>: Run on almost any hardware  </li>
+<li><strong>Adaptability</strong>: Customise, rebuild and redistribute legally  </li>
+<li><strong>Shared knowledge</strong>: Aligns with our principles of collaboration and insight-sharing  </li>
+</ul>
+<p>Some public teams are already taking steps to switch away from proprietary platforms, e.g.:</p>
+<ul>
+<li><a href="https://economictimes.indiatimes.com/tech/technology/were-done-with-teams-german-state-hits-uninstall-on-microsoft/articleshow/121817207.cms">“We’re done with Teams” — German state uninstalls Microsoft tools</a></li>
+<li><a href="https://cybernews.com/tech/denmark-open-source-software-phase-microsoft/">Denmark exploring open source alternatives to Microsoft</a></li>
+</ul>
+<p>By offering a Linux-based, D2I-ready environment, we provide a small but practical step toward possible wider open adoption — while also improving our own portability and resilience. We're learning by doing on this one; but there is potential future value in putting together an in-one desktop solution for both D2I or local authority use. Feedback welcomed accross the board. </p>
+<hr />
+<h2 id="what-the-buildsoftware-includes">What the build/software includes</h2>
+<ul>
+<li>Ubuntu 24.04 LTS (Noble Numbat) base</li>
+<li>XFCE desktop environment (fast/ minimal </li>
+<li><strong>Live Mode</strong>: XFCE GUI with auto-login (<code>d2iuser</code>) on initial use)</li>
+<li>D2I wallpaper (placeholder atm)</li>
+</ul>
+<hr />
+<h3 id="preinstalled-apps">Preinstalled Apps</h3>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Firefox ESR</strong></td>
+<td>Web browser</td>
+</tr>
+<tr>
+<td><strong>LibreOffice</strong></td>
+<td>Office suite (Calc as initial Excel replacement)</td>
+</tr>
+<tr>
+<td><strong>Slack</strong></td>
+<td>Team comms (installed via <code>.deb</code>) (autostart on live boot or first login)</td>
+</tr>
+<tr>
+<td><strong>Thunderbird</strong></td>
+<td>Email client (autostart on live boot or first login)</td>
+</tr>
+<tr>
+<td><strong>Anaconda</strong></td>
+<td>Python data environment, includes Jupyter (installed via custom script)</td>
+</tr>
+<tr>
+<td><strong>Zenity</strong></td>
+<td>Simple GUI dialogs for scripts</td>
+</tr>
+<tr>
+<td><strong>curl, wget, git</strong></td>
+<td>Core CLI tools for dev and data use</td>
+</tr>
+<tr>
+<td><strong>Element (Matrix)</strong></td>
+<td>Decentralised chat app, alternative to Teams or Slack</td>
+</tr>
+<tr>
+<td><strong>OpenVPN Support</strong></td>
+<td>VPN client support via NetworkManager plugins (<a href="https://wiki.gnome.org/Projects/NetworkManager/VPN">setup guide</a>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="preinstalled-tweaks">Preinstalled tweaks</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wallpaper</strong></td>
+<td>(<code>d2i-wallpaper.png</code>) in <code>/usr/share/backgrounds/</code></td>
+</tr>
+<tr>
+<td><strong>Welcome Msg</strong></td>
+<td>First login popup: “Your new D2I build has installed.”</td>
+</tr>
+<tr>
+<td><strong>Autostart Apps</strong></td>
+<td>Slack and Thunderbird autostart on live boot or first login</td>
+</tr>
+<tr>
+<td><strong>Firefox Homepage</strong></td>
+<td>https://www.datatoinsight.org</td>
+</tr>
+<tr>
+<td><strong>Live Session Autologin</strong></td>
+<td>User <code>d2iuser</code> logged in automatically in live session</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="data-science-environment">Data Science Environment</h2>
+<p>D2I Linux build includes Python tools. Access via a post-install hook using <code>pip</code> inside the Anaconda environment. Anaconda is preinstalled in <code>/opt/anaconda3</code> and added to the system PATH. To start working with notebooks <code>jupyter notebook</code>(this opens the browser as per ESCC current set up)</p>
+<h3 id="preinstalled-python-packages">Preinstalled Python Packages</h3>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pandas</code></td>
+<td>Data manipulation and analysis</td>
+</tr>
+<tr>
+<td><code>numpy</code></td>
+<td>Numerical ops</td>
+</tr>
+<tr>
+<td><code>matplotlib</code></td>
+<td>Plots and visualisation</td>
+</tr>
+<tr>
+<td><code>seaborn</code></td>
+<td>Statistical visuals</td>
+</tr>
+<tr>
+<td><code>openpyxl</code></td>
+<td>Excel file reading/writing (xlsx)</td>
+</tr>
+<tr>
+<td><code>scikit-learn</code></td>
+<td>Machine learning tools</td>
+</tr>
+<tr>
+<td><code>statsmodels</code></td>
+<td>Stats modelling and tests</td>
+</tr>
+<tr>
+<td><code>jupyter</code></td>
+<td>Notebooks for data workflows</td>
+</tr>
+</tbody>
+</table>
+<p>Available by default via <code>python</code> or <code>jupyter notebook</code> from terminal or XFCE menu.</p>
+<hr />
+<h2 id="further-notes">Further notes</h2>
+<ul>
+<li>
+<p><a href="CONTRIBUTE.md">Add to or change the build</a><br />
+  Outlines how to add packages, troubleshoot common issues, and release updated ISO versions</p>
+</li>
+<li>
+<p><a href="LEARNING.md">Our/D2I learning</a><br />
+  We've experienced issues during our learn-by-doing process up to release 1.0, and we've added/formatted some of that for ref here in case useful to others.  </p>
+</li>
+</ul>
+<hr />
+<h2 id="how-to-quick-view">How to (Quick view)</h2>
+<ol>
+<li>Download latest release/ver (see below for intructions about <em>Downloading ISO</em>)</li>
+<li>Write ISO file to usb stick using a tool like <a href="https://rufus.ie">Rufus</a>, <a href="https://www.balena.io/etcher/">Etcher</a> or <code>dd</code> command</li>
+<li>Boot PC or virtual machine from usb or ISO file</li>
+<li>Use in live Mode (no changes saved) or install to disk for full access</li>
+</ol>
+<hr />
+<h2 id="how-to-expanded-view">How to (Expanded view)</h2>
+<p>A mini-guide shoiuld help you run D2I Linux build from USB stick in <strong>Live Mode</strong> (i.e. try it without installing). </p>
+<h2 id="1-download-the-iso">1. Download the ISO</h2>
+<p>Go to the <a href="https://github.com/data-to-insight/d2i_linux_build/releases/latest">Latest Release</a> and download the ZIP or TAR.GZ file.<br />
+Inside you'll find the ISO file (e.g. <code>d2i-custom.iso</code>)</p>
+<p>Unzip or extract it so you can access <code>.iso</code> file directly.</p>
+<hr />
+<h2 id="2-write-the-iso-to-a-usb-stick">2. Write the ISO to a USB stick</h2>
+<p>Choose one of the following methods:</p>
+<h3 id="opt-a-use-gui-recommended-for-beginners">Opt A: Use GUI (recommended for beginners)</h3>
+<ul>
+<li><a href="https://rufus.ie">Rufus</a> (Windows)  </li>
+<li><a href="https://www.balena.io/etcher/">Balena Etcher</a> (Windows, macOS, Linux)</li>
+</ul>
+<p><strong>Steps</strong>:
+1. Plug in a USB stick (least 4GB)
+2. Open tool and select ISO file
+3. Choose USB device
+4. Click "Flash" or "Start" to write</p>
+<h3 id="opt-b-use-dd-command-linuxmacos-only-advanced">Opt B: Use <code>dd</code> command (Linux/macOS only - advanced)</h3>
+<pre><code>sudo dd if=d2i-custom.iso of=/dev/sdX bs=4M status=progress &amp;&amp; sync
+</code></pre>
+<p>Replace <code>/dev/sdX</code> with correct USB device name (be careful – will erase disk).</p>
+<hr />
+<h2 id="3-boot-from-usb">3. Boot from USB</h2>
+<ol>
+<li>Insert USB stick into target machine.</li>
+<li>Reboot and enter BIOS/boot menu (usually by pressing F12, F2, ESC, or DEL).</li>
+<li>Select your USB stick as boot device.</li>
+</ol>
+<hr />
+<h2 id="4-use-d2i-linux">4. Use D2I Linux</h2>
+<p>Options then visible:
+- <strong>Live Mode</strong>: Try system without making changes to your computer (for testing)
+- <strong>Install Mode</strong>: Permanently install system on hard drive (for full-time use)</p>
+<hr />
+<h3 id="downloading-iso">Downloading ISO</h3>
+<p><a href="https://github.com/data-to-insight/d2i_linux_build/releases">Download D2I Latest version</a>
+<em>Note: ISO file located </em><em>inside archive</em><em> (either ZIP or TAR.GZ) and is not shown as separate download file.</em></p>
+<p>To extract ISO:</p>
+<ol>
+<li>Download the ZIP or TAR.GZ file from release (Git doesnt allow direct upload of <code>.iso</code> files, so ISO is bundled inside <code>.zip</code>|<code>.tar.gz</code> archive for compatibility)</li>
+<li>Extract it on your pc</li>
+<li>Locate ISO at <code>output/d2i-custom.iso</code> inside extracted folder</li>
+<li>You can boot this ISO in VirtualBox, write it to USB with BalenaEtcher, or install it on pc</li>
+</ol>
+<h3 id="whats-an-iso">What's an ISO?</h3>
+<p>An ISO file is a single archive that contains the entire contents of a disc or bootable installation image. In this case, it includes the full D2I Linux operating system – preconfigured with desktop, tools(increasing as we decide on what our core set is), and settings.</p>
+<p>You can use the ISO to:</p>
+<ul>
+<li>Boot a virtual machine (e.g. VirtualBox, QEMU)</li>
+<li>Create a bootable live USB (using BalenaEtcher, Rufus, etc)(try without installing)</li>
+<li>Install the system on any PC </li>
+<li>Give us an open source, consistent, customisable, ready-to-go Linux environment for the d2i team</li>
+</ul>
+<hr />
+<h2 id="first-boot">First Boot</h2>
+<p>When run via VirtualBox, QEMU, or direct install, you (should) see:</p>
+<ul>
+<li>XFCE GUI with D2I wallpaper</li>
+<li>App menu incl Firefox, LibreOffice, Slack, Thunderbird</li>
+<li>Slack and Thunderbird autostart</li>
+<li>D2I welcome popup on first boot</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
+      
+        <script src="../js/render_graph.js"></script>
+      
+    
+  </body>
+</html>
