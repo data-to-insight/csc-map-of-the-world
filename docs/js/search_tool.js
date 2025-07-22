@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const basePath = "/d2i-map-of-the-world-mkdocs/";  // hardcoded repo root
-  const indexPath = basePath + "data/search_index.json";
+  const input = document.getElementById("search-query");
+  const resultsContainer = document.getElementById("search-results");
 
-  fetch(indexPath)
+  // Ensure we're on a page with the search UI
+  if (!input || !resultsContainer) {
+    console.warn("Search page elements not found");
+    return;
+  }
+
+  fetch(new URL("data/search_index.json", window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/')))
     .then((response) => response.json())
     .then((data) => {
-      const resultsContainer = document.getElementById("search-results");
-      const input = document.getElementById("search-query");
-
       function runSearch() {
         const query = input.value.trim().toLowerCase();
         resultsContainer.innerHTML = "";
@@ -50,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
             <p><strong>Match score:</strong> ${matchScore}%, <strong>Density:</strong> ${density}</p>
             <hr>
           `;
-
           resultsContainer.appendChild(div);
         }
       }
@@ -62,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.error("Failed to load search index:", err);
     });
 });
