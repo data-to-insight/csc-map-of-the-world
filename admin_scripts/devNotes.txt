@@ -81,3 +81,14 @@ VALID_PERSON_SUBTYPES = {
     "Commissioner",
     "Inspector"
 }
+
+
+
+
+hecklist: Fixes That Got the Search Working
+Area	Fix	Description
+mkdocs.yml	js/search_tool.js included in extra_javascript	Ensures script is bundled into site/ folder
+search_tool.js	Uses relative dynamic path with window.location.pathname	Avoids hardcoded path and works across all routes (e.g. /search/)
+Search HTML (search.md)	Input and result divs have expected id attributes	Ensures JS finds them with getElementById
+JS file location docs/js/search_tool.js exists and gets copied to site/js/	Essential so GitHub Pages can serve it
+Build/deploy	mkdocs build and gh-pages deploy includes js/ folder	Without this, GitHub would return 404 for search_tool.js

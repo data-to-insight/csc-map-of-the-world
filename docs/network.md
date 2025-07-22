@@ -8,5 +8,8 @@
 
 
 <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
-<script src="js/render_graph.js"></script> 
+
+
+
+
 
