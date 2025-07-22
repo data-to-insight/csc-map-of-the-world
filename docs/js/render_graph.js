@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const container = document.getElementById("cy");
-  if (!container) {
-    console.warn("Graph container not found");
+  const cyContainer = document.getElementById("cy");
+  if (!cyContainer) {
+    console.error("No element with id 'cy' found on the page.");
     return;
   }
 
-  const graphDataURL = new URL("data/graph_data.json", window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "/"));
+  // Use an absolute path based on your GitHub Pages repo name
+  const graphDataURL = new URL("/d2i-map-of-the-world-mkdocs/data/graph_data.json", window.location.origin);
 
   fetch(graphDataURL)
     .then((response) => {
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then((data) => {
       const cy = cytoscape({
-        container: container,
+        container: cyContainer,
         elements: data.elements,
         layout: {
           name: "cose",
@@ -27,27 +28,28 @@ document.addEventListener("DOMContentLoaded", function () {
           {
             selector: "node",
             style: {
-              "background-color": "#0074D9",
               label: "data(label)",
-              color: "#fff",
+              "background-color": "#007acc",
               "text-valign": "center",
-              "text-halign": "center",
-              "font-size": "12px"
-            }
+              "color": "#fff",
+              "font-size": 12,
+              "text-outline-width": 2,
+              "text-outline-color": "#007acc",
+            },
           },
           {
             selector: "edge",
             style: {
               "width": 2,
-              "line-color": "#ccc",
-              "target-arrow-color": "#ccc",
-              "target-arrow-shape": "triangle"
-            }
-          }
-        ]
+              "line-color": "#aaa",
+              "target-arrow-color": "#aaa",
+              "target-arrow-shape": "triangle",
+              "curve-style": "bezier",
+            },
+          },
+        ],
       });
 
-      // Auto-resize nodes based on degree
       cy.nodes().forEach((node) => {
         const deg = node.degree();
         const size = Math.min(60, 20 + deg * 4);
@@ -58,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((err) => {
       console.error("Failed to load graph data:", err);
-      container.innerHTML =
-        "<p style='color:red;'>Failed to load graph data. Check path or JSON format.</p>";
+      cyContainer.innerHTML = "<p style='color:red;'>Failed to load graph data. Check path or JSON format.</p>";
     });
 });

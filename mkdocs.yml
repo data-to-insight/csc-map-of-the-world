@@ -15,7 +15,9 @@ extra_javascript:
   - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js
   - js/render_graph.js
   - js/search_tool.js  
-  
+
+
+
 extra_css:
   - css/styles.css
 
