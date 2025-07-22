@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const basePath = window.location.pathname.split("/").slice(0, -1).join("/") + "/";
+  const basePath = "/d2i-map-of-the-world-mkdocs/";  // hardcoded repo root
   const indexPath = basePath + "data/search_index.json";
 
   fetch(indexPath)
@@ -38,18 +38,18 @@ document.addEventListener("DOMContentLoaded", function () {
           const matchScore = Math.round((foundTerms.length / queryTerms.length) * 100);
 
           const density = (typeof entry.keyword_density === "number" && !isNaN(entry.keyword_density))
-            ? \`\${(entry.keyword_density * 100).toFixed(1)}%\`
+            ? `${(entry.keyword_density * 100).toFixed(1)}%`
             : "0.0%";
 
-          div.innerHTML = \`
-            <h3><a href="\${entry.path}" target="_blank">\${entry.title}</a></h3>
-            <p><strong>Description:</strong> \${entry.description || '—'}</p>
-            <p><strong>Source:</strong> \${entry.source_note || '—'}</p>
-            <p><strong>Keywords:</strong> \${entry.keywords.join(", ")}</p>
-            <p><strong>Excerpt:</strong> <em>\${entry.text.substring(0, 200)}...</em></p>
-            <p><strong>Match score:</strong> \${matchScore}%, <strong>Density:</strong> \${density}</p>
+          div.innerHTML = `
+            <h3><a href="${entry.path}" target="_blank">${entry.title}</a></h3>
+            <p><strong>Description:</strong> ${entry.description || '—'}</p>
+            <p><strong>Source:</strong> ${entry.source_note || '—'}</p>
+            <p><strong>Keywords:</strong> ${entry.keywords.join(", ")}</p>
+            <p><strong>Excerpt:</strong> <em>${entry.text.substring(0, 200)}...</em></p>
+            <p><strong>Match score:</strong> ${matchScore}%, <strong>Density:</strong> ${density}</p>
             <hr>
-          \`;
+          `;
 
           resultsContainer.appendChild(div);
         }
