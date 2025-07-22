@@ -16,6 +16,8 @@ extra_javascript:
 extra_css:
   - css/styles.css
 
+site_dir: site
+
 
 plugins:
   - search
