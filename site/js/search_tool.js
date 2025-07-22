@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("/search_index.json")
+  fetch("./data/search_index.json")
     .then((response) => response.json())
     .then((data) => {
       const resultsContainer = document.getElementById("search-results");

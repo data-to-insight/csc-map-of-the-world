@@ -1,6 +1,6 @@
-# Welcome to the D2I Knowledge Base
+# CSC Map of the World
 
-The **D2I Knowledge Base** is an open, evolving tool designed to help map and understand the data, services, tools, and organisations that make up the **children’s social care (CSC) data ecosystem**.
+The D2I **CSC Map of the World or Knowledge Base** is an open, evolving tool designed to help map and understand the data, services, tools, and organisations that make up the **children’s social care (CSC) data ecosystem**.
 
 It brings together structured descriptions of people, services, frameworks, systems, and ongoing development work across the sector — using both visual and searchable formats — to support **collaboration, data leadership, strategic planning, and operational insight**.
 
@@ -38,7 +38,9 @@ This site is designed for:
   - Frameworks and inspections (e.g. Ofsted ILACS, JTAI)
   - Relationships and service models
   - Rules, plans, events and guidance
-- **Searchable resource**: The search page (in development) will allow you to explore the data in more depth
+- **Searchable resource**: The [search page](search.md) enables you to explore the structured data model directly.
+  - This is separate from the standard MkDocs search (top-right), which only covers page text within this site.
+  - The CSC knowledge search indexes structured YAML content as well as `.md`, `.pdf`, `.py`, `.js` and `.html` files, and supports keyword relevance, match scoring, and metadata extraction.
 - **Documentation hub**: Local documentation from D2I projects is also indexed to provide technical context
 
 ---

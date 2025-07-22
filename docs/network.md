@@ -1,4 +1,5 @@
-# D2I Network Graph
+# CSC Network Graph (in dev)
+
 <!-- 1) mkdocs defaults, 2) css styled enlargement(not working), 3) forced full browswer win overlay --> 
 <!-- <div id="cy" style="width: 100%; height: 600px;"></div> -->
 <!-- <div id="cy"></div> --> 

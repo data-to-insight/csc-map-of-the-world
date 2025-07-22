@@ -1,4 +1,4 @@
-site_name: D2I Knowledge Map
+site_name: CSC Map of the World
 theme:
   name: material
   palette:
@@ -6,8 +6,8 @@ theme:
 
 nav:
   - Home: index.md
-  - Network Graph: network.md
-  - Search: search.md
+  - CSC Network: network.md
+  - CSC Search: search.md
 
 extra_javascript:
   - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js
