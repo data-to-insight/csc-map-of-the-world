@@ -41,8 +41,8 @@ This site is designed for:
 - **Searchable resource**: The [search page](search.md) enables you to explore the structured data model directly.
   - This is separate from the standard MkDocs search (top-right), which only covers page text within this site.
   - The CSC knowledge search indexes structured YAML content as well as `.md`, `.pdf`, `.py`, `.js` and `.html` files, and supports keyword relevance, match scoring, and metadata extraction.
-- **Documentation hub**: Local documentation from D2I projects is also indexed to provide technical context
-
+  - (in dev)The search index currently takes a data sample direct from local authority web sites. At the moment this is throttled to ~10, but with the potential to extract simplistic reference resource(s) directly from all ~153
+- **Documentation hub**: Local documentation from D2I projects(Git repos) is also indexed to provide technical context
 ---
 
 ## How is this structured?
