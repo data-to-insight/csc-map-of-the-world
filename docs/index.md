@@ -1,14 +1,14 @@
-# CSC Map of the World
+# CSC Map of the World (PoC)
 
-The D2I **CSC Map of the World or Knowledge Base** is an open, evolving tool designed to help map and understand the data, services, tools, and organisations that make up the **children’s social care (CSC) data ecosystem**.
+The D2I **CSC Map of the World or Knowledge Base** is an open, evolving tool designed to help map and visualise links between data, services, tools, and organisations that make up the **children’s social care (CSC) data ecosystem**.
 
-It brings together structured descriptions of people, services, frameworks, systems, and ongoing development work across the sector — using both visual and searchable formats — to support **collaboration, data leadership, strategic planning, and operational insight**.
+It brings together structured descriptions of tools, people(where agreed), services, frameworks, systems, and ongoing development work across the sector — using both visual and searchable formats — to potentially support **collaboration, data leadership, strategic planning, and operational insight**.
 
 ---
 
-## What does this tool aim to do?
+## How do we see this being of use?
 
-This knowledge base is designed to help:
+During investigation around the various potential realisations, along with the scale, scope and limitations of the tool it's hard to be precise on use-cases. However, if it's possible to create a searchable map/resource that can act as a hub for collected data resources from multiple source types, published reports, pre-defined data objects, scraped web data from such as DfE, local authorities, relevant 3rd parties where the user is able to drill down into some of this or visualise in a structured manner how CSC work might be connected. We might be able to: 
 
 - **Understand relationships** between local and national CSC data tools, standards, organisations, and policies
 - **Explore who is doing what** — whether a new tool is being developed, a framework revised, or a service restructured
@@ -21,7 +21,7 @@ We aim to offer **a map of data and service activity**, developed in collaborati
 
 ## Who is this for?
 
-This site is designed for:
+We envisage use-cases from:
 
 - **Local authority data and performance teams**
 - **Children’s social care service managers and strategic leads**
@@ -33,7 +33,7 @@ This site is designed for:
 ## What’s included?
 
 - **Interactive network map**: Navigate to [Network](network.md) to view entities, relationships, and systems as a live graph
-- **Structured data records**: Underpinning the map is a growing library of structured YAML records that describe:
+- **Structured data records**: Underpinning the map is a growing library of structured YAML records, aligned to a SCCM concept framework that describe:
   - Tools and systems (e.g. PATCH, Validator 903)
   - Frameworks and inspections (e.g. Ofsted ILACS, JTAI)
   - Relationships and service models
