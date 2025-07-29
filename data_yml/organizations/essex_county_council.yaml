@@ -3,7 +3,7 @@ name: Essex County Council
 description: >
   Early adopter of the SSD model, involved in the design and practical deployment of the data standard.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - local_authority
 version: 2025.07

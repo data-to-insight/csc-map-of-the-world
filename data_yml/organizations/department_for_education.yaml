@@ -3,7 +3,7 @@ name: Department for Education
 description: >
   UK government department responsible for education and children's services policy.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - government
   - children_services

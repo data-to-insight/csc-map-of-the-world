@@ -3,7 +3,7 @@ name: Lancaster University
 description: >
   University with faculty of Social Work.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - academic
   - children_services

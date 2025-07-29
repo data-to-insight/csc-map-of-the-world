@@ -3,7 +3,7 @@ name: Knowsley Council
 description: >
   Partner in the Standard Safeguarding Dataset project, contributing to schema development and implementation pilots.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - local_authority
 version: 2025.07

@@ -19,7 +19,7 @@ description: >
   supported by ADCS, DfE, DLUHC, Ofsted. Maintains toolkits, shares best practice, and
   enables national collaboration (DDSF, RCC, NVEST, PATCh, Standard Safeguarding Dataset).
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - data_tools
   - children_services

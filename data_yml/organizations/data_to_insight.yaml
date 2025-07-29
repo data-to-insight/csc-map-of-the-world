@@ -5,7 +5,7 @@ description: >
   supported by ADCS, DfE, DLUHC, Ofsted. Maintains toolkits, shares best practice, and
   enables national collaboration (DDSF, RCC, NVEST, PATCh, Standard Safeguarding Dataset).
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - data_tools
   - children_services
@@ -19,7 +19,7 @@ notes: >
 
 # --- ORGANIZATION-specific fields ---
 organization_fields:
-  organisation_type: consultant  
+  organisation_type: service 
   region: England
   projects:
     - ddsf
@@ -27,10 +27,9 @@ organization_fields:
     - standard_safeguarding_dataset
     - nvest
     - patch
+    - chat
   persons:
     - name: Alister Herbert
-      role: Strategic Lead
-      from: 2022-01-01
-    - name: John Foster
-      role: Data Manager
-      from: 2022-01-01
+      role: Lead Officer for Data to Insight
+      from: 2020-01-01
+

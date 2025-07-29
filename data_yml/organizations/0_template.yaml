@@ -3,7 +3,7 @@ name: Template Name Here
 description: >
   Short summary of the entity or activity
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - example_tag        # lowercase, snake_case if multi-word
   - data_tools
