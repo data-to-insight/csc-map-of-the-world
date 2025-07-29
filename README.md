@@ -5,10 +5,10 @@ A structured, open-source knowledge base and ecosystem map for the **Children’
 
 | SCCM Concept (Category)                                                                 | Suggested example(s) (in progress)                                                                                     |
 |-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| [Community](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=161)   | [LIIA](https://www.liia.london/)                                                                          |
-| [Documentation](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10) | [CSC Independent Review](https://assets.publishing.service.gov.uk/media/640a17f28fa8f5560820da4b/Independent_review_of_children_s_social_care_-_Final_report.pdf) |
-| [Events](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10)        | *Children’s Social Care Review*, *ILACS Inspections*, *Public Inquiries*                                  |
-| [Organization](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=160) | [Data to Insight](https://www.datatoinsight.org/patch)                                                   |
+| [Community](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=161)   |   South East fostering cluster                                                                        |
+| [Documentation](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=183) | [CSC Independent Review](https://assets.publishing.service.gov.uk/media/640a17f28fa8f5560820da4b/Independent_review_of_children_s_social_care_-_Final_report.pdf) |
+| [Events](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=164)        | *Children’s Social Care Review*, *ILACS Inspections*, *Public Inquiries*                                  |
+| [Organization](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=160) | [Data to Insight](https://www.datatoinsight.org/), [LIIA](https://www.liia.london/)                                                   |
 | [Plans](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=177)      | *Kinship Care Strategy*, *Children’s Social Care National Framework*                                      |
 | [Relationships](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10) | LA-1 ↔ Supports ↔ SSD Tests, DfE ↔ Pilots ↔ API Data Flows                                                 |
 | [Rules](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=175)      | Statutory Guidance, *Keeping Children Safe in Education 2025*                                             |
