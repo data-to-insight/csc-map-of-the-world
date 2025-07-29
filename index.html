@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#csc-knowledge-base-network-alpha" class="md-skip">
+        <a href="#csc-knowledge-base-network" class="md-skip">
           Skip to content
         </a>
       
@@ -254,6 +254,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#current-dev-phase-discovery-alpha" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Dev Phase: Discovery-Alpha
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-is-this-for" class="md-nav__link">
     <span class="md-ellipsis">
       What is this for?
@@ -395,6 +404,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#current-dev-phase-discovery-alpha" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Dev Phase: Discovery-Alpha
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-is-this-for" class="md-nav__link">
     <span class="md-ellipsis">
       What is this for?
@@ -473,10 +491,48 @@
 
 
 
-<h1 id="csc-knowledge-base-network-alpha">CSC Knowledge Base Network (Alpha)</h1>
-<p>A structured, open-source knowledge base and ecosystem map for the <strong>Children’s Social Care (CSC)</strong> sector. This project brings together documentation, relationships, services, sector tools(e.g. https://www.datatoinsight.org/patch), rules(e.g statuatory guidance, Keeping Children Safe in Education 2025), plans(e.g. Kinship Care National Kinship Care Strategy), and events(e.g. Children's Social Care Review), using a flexible YAML-based data model and aiming for alignment with the <a href="http://www.smartcityconceptmodel.com/">Smart City Concept Model (SCCM)</a> towards sector data interoperability.</p>
-<p>It aims to support full-text search, (filtered)graph-based visualisation, and schema validation across structured <code>.yml</code> records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.</p>
-<hr />
+<h1 id="csc-knowledge-base-network">CSC Knowledge Base Network</h1>
+<p>A structured, open-source knowledge base and ecosystem map for the <strong>Children’s Social Care (CSC)</strong> sector. This project brings together [Documentation], [Relationships], [Services], [Sector_Tools], [Rules], [Plans], [Events] using a flexible YAML-based data model and aiming for alignment with the <a href="http://www.smartcityconceptmodel.com/">Smart City Concept Model (SCCM)</a> towards sector data interoperability.</p>
+<table>
+<thead>
+<tr>
+<th>SCCM Concept (Category)</th>
+<th>Suggested example(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&amp;Id=10">Documentation</a></td>
+<td><a href="https://assets.publishing.service.gov.uk/media/640a17f28fa8f5560820da4b/Independent_review_of_children_s_social_care_-_Final_report.pdf">CSC Independent Review</a></td>
+</tr>
+<tr>
+<td><a href="http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&amp;Id=10">Relationships</a></td>
+<td>LA-1 ↔ Supports ↔ SSD Tests, DfE ↔ Pilots ↔ API Data Flows</td>
+</tr>
+<tr>
+<td><a href="http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&amp;Id=10">Services</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&amp;Id=10">Sector Tools</a></td>
+<td><a href="https://www.datatoinsight.org/patch">PATCH</a>, ChAT</td>
+</tr>
+<tr>
+<td><a href="http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&amp;Id=175">Rules</a></td>
+<td>Statutory Guidance, <em>Keeping Children Safe in Education 2025</em></td>
+</tr>
+<tr>
+<td><a href="http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&amp;Id=177">Plans</a></td>
+<td><em>Kinship Care Strategy</em>, <em>Children’s Social Care National Framework</em></td>
+</tr>
+<tr>
+<td><a href="http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&amp;Id=10">Events</a></td>
+<td><em>Children’s Social Care Review</em>, <em>ILACS Inspections</em>, <em>Public Inquiries</em></td>
+</tr>
+</tbody>
+</table>
+<p>It aims to support full-text search, (filtered)graph-based relations visualisation, and YAML schema validation across structured <code>.yml</code> records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.</p>
+<h2 id="current-dev-phase-discovery-alpha"><strong>Current Dev Phase:</strong> <em>Discovery-Alpha</em></h2>
 <h2 id="what-is-this-for">What is this for?</h2>
 <p>This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, and activity could support work across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:</p>
 <ul>
