@@ -70,16 +70,32 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const cyContainer = document.getElementById("cy");
+  const typeFilter = document.getElementById("typeFilter");
+  const resetBtn = document.getElementById("resetView");
+
   if (!cyContainer) {
-    console.error("No element with id 'cy' found on the page.");
+    console.error("No element with id 'cy' found.");
     return;
   }
 
   const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.json", window.location.origin);
+
+  // Add live count below filter
   const statusDisplay = document.createElement("p");
   statusDisplay.id = "graph-status";
   statusDisplay.style.marginTop = "0.5em";
   cyContainer.parentElement.insertBefore(statusDisplay, cyContainer);
+
+  // Initialise Choices.js on the select dropdown
+  let choicesInstance = null;
+  if (typeFilter && typeof Choices === "function") {
+    choicesInstance = new Choices(typeFilter, {
+      removeItemButton: true,
+      searchEnabled: false,
+      shouldSort: false,
+      placeholderValue: "Filter by type...",
+    });
+  }
 
   fetch(graphDataURL)
     .then((response) => {
@@ -121,16 +137,13 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
       });
 
-      // Resize nodes by degree
       cy.nodes().forEach((node) => {
         const deg = node.degree();
         const size = Math.min(60, 20 + deg * 4);
         node.style({ width: size, height: size });
       });
 
-      console.log(`Graph loaded. Nodes: ${cy.nodes().length}, Edges: ${cy.edges().length}`);
-
-      // Show only neighbourhood of "data_to_insight" on initial load
+      // Only show data_to_insight neighbourhood by default
       const defaultNode = cy.getElementById("data_to_insight");
       if (defaultNode) {
         const neighborhood = defaultNode.closedNeighborhood();
@@ -140,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateStatus(cy.nodes().length, cy.nodes().length);
       }
 
-      // Helper to update the visible node count
+      // Update visible node count
       function updateStatus(visibleCount, totalCount) {
         const status = document.getElementById("graph-status");
         if (status) {
@@ -148,43 +161,43 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // Get selected values from multi-select
-      function getSelectedClasses(selectElement) {
-        return Array.from(selectElement.selectedOptions).map(opt => opt.value);
+      // Helper: get selected filter values
+      function getSelectedClasses() {
+        if (!choicesInstance) return [];
+        return choicesInstance.getValue(true); // return selected values as array
       }
 
-      // Filter handling
-      const typeFilter = document.getElementById("typeFilter");
-      const resetBtn = document.getElementById("resetView");
+      // Apply filter logic
+      function applyFilter() {
+        const selectedClasses = getSelectedClasses();
 
-      if (typeFilter && resetBtn) {
-        typeFilter.addEventListener("change", () => {
-          const selectedClasses = getSelectedClasses(typeFilter);
+        if (selectedClasses.length === 0) {
+          cy.elements().style("display", "element");
+          updateStatus(cy.nodes().length, cy.nodes().length);
+          return;
+        }
 
-          if (selectedClasses.length === 0) {
-            cy.elements().style("display", "element");
-            updateStatus(cy.nodes().length, cy.nodes().length);
-            return;
-          }
-
-          cy.nodes().forEach((node) => {
-            const show = selectedClasses.some(cls => node.hasClass(cls));
-            node.style("display", show ? "element" : "none");
-          });
-
-          cy.edges().forEach((edge) => {
-            const srcVisible = edge.source().style("display") !== "none";
-            const tgtVisible = edge.target().style("display") !== "none";
-            edge.style("display", srcVisible && tgtVisible ? "element" : "none");
-          });
-
-          const visibleNodes = cy.nodes().filter(n => n.style("display") !== "none").length;
-          updateStatus(visibleNodes, cy.nodes().length);
+        cy.nodes().forEach((node) => {
+          const show = selectedClasses.some(cls => node.hasClass(cls));
+          node.style("display", show ? "element" : "none");
         });
 
+        cy.edges().forEach((edge) => {
+          const srcVisible = edge.source().style("display") !== "none";
+          const tgtVisible = edge.target().style("display") !== "none";
+          edge.style("display", srcVisible && tgtVisible ? "element" : "none");
+        });
+
+        const visibleNodes = cy.nodes().filter(n => n.style("display") !== "none").length;
+        updateStatus(visibleNodes, cy.nodes().length);
+      }
+
+      // Event listeners
+      if (typeFilter && resetBtn) {
+        typeFilter.addEventListener("change", applyFilter);
         resetBtn.addEventListener("click", () => {
           cy.elements().style("display", "element");
-          Array.from(typeFilter.options).forEach(opt => opt.selected = false);
+          if (choicesInstance) choicesInstance.removeActiveItems();
           updateStatus(cy.nodes().length, cy.nodes().length);
         });
       }

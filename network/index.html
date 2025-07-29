@@ -50,6 +50,8 @@
     
       <link rel="stylesheet" href="../css/styles.css">
     
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -314,20 +316,32 @@
 <!-- <div id="cy" style="width: 100%; height: 600px;"></div> -->
 <!-- <div id="cy"></div> -->
 
-<!-- Multi-select filter and reset button -->
+<!-- Enhanced multi-select filter with Choices.js -->
 <div style="margin-bottom: 1em;">
-  <label for="typeFilter">Filter by node type(s):</label>
-  <select id="typeFilter" multiple size="4" style="min-width: 200px;">
+  <label for="typeFilter"><strong>Filter by node type(s):</strong></label>
+  <select id="typeFilter" multiple>
     <option value="org">Organizations</option>
     <option value="plan">Plans</option>
     <option value="event">Events</option>
     <option value="service">Services</option>
   </select>
-  <button id="resetView">Reset View</button>
+  <button id="resetView" style="margin-left: 1em;">Reset View</button>
 </div>
 
-<!-- graph container -->
+<!-- Graph container -->
 <div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>
+
+<!-- Optional styling tweak -->
+<style>
+  #graph-status {
+    font-size: 0.9em;
+    color: #333;
+  }
+  .choices__inner {
+    background-color: #f9f9f9;
+    border-radius: 6px;
+  }
+</style>
 
 
 
@@ -382,6 +396,8 @@
       <script src="../assets/javascripts/bundle.50899def.min.js"></script>
       
         <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
       
         <script src="../js/render_graph.js"></script>
       
