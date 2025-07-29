@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Determine base path safely
   const pathParts = window.location.pathname.split("/");
-  const basePath = "/" + pathParts.slice(1, pathParts.indexOf("d2i-map-of-the-world-mkdocs") + 1).join("/");
+  const basePath = "/" + pathParts.slice(1, pathParts.indexOf("csc-map-of-the-world") + 1).join("/");
   const indexPath = basePath + "/data/search_index.json";
 
   fetch(indexPath)

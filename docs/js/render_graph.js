@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Use an absolute path based on your GitHub Pages repo name
-  const graphDataURL = new URL("/d2i-map-of-the-world-mkdocs/data/graph_data.json", window.location.origin);
+  const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.json", window.location.origin);
 
   fetch(graphDataURL)
     .then((response) => {
