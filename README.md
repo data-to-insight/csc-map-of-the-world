@@ -1,23 +1,62 @@
-# D2I Knowledge Base
+# CSC Knowledge Base Network
 
-A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together documentation, relationships, services, tools, rules, plans, and events, using a flexible YAML-based data model aligned with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/).
+A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together documentation, relationships, services, sector tools(e.g. https://www.datatoinsight.org/patch), rules(e.g statuatory guidance, Keeping Children Safe in Education 2025), plans(e.g. Kinship Care National Kinship Care Strategy), and events(e.g. Children's Social Care Review), using a flexible YAML-based data model and aiming for alignment with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards sector data interoperability.
 
-It (aims to)supports full-text search, graph-based visualisation, and schema validation across structured `.yml` records and supporting documents (PDF, Markdown, HTML, Python, JS). Designed to be extensible, transparent, and Git-native.
+It aims to support full-text search, (filtered)graph-based visualisation, and schema validation across structured `.yml` records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.
+
+<table style="width:100%">
+  <tr>
+    <th>Phase</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><em>Discovery</em></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Alpha</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Beta (Private)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Beta (Public)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Live</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Continuous Improvement</td>
+    <td></td>
+  </tr>
+</table>
+
 
 ---
 
 ## Project Purpose
 
-This project aims to **map the data ecosystems of children's social care** as a **searchable, structured resource**.
+This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, and activity could support work across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:
 
-By gathering structured metadata, documentation, plans, rules, and relationships across CSC tools and services, the goal is to create a **shared map of development activity, relvance sources and information flows**.
+- published reports  
+- pre-defined data objects  
+- web data (e.g. from the DfE, local authorities, third parties)  
+- sector-developed tools and frameworks  
 
-This knowledge base is intended to:
+All of this would be made accessible through a visual or navigable interface, allowing users to explore connections between people, projects, standards, and services.
 
-- Help colleagues find out **what work is happening in the sector**, particularly in areas related to digital development or data transformation
-- Support **collaboration and reuse**, by surfacing siloed or local efforts that may align with others
-- Provide **contextual and visual mapping** of systems, people, services and frameworks
-- Encourage direct **contributions from local teams**, building a bottom-up, federated model of knowledge management
+We think this could help:
+
+- **Make relationships clearer** — between local and national CSC initiatives, policies, systems, and data sources  
+- **Show who’s doing what** — helping users track new tools, updates to frameworks, or structural changes in services  
+- **Bring siloed or under-the-radar work into view** — so efforts can align, build on each other, or avoid duplication  
+- **Support local teams** — by contributing to a more joined-up picture of activity across the sector  
+
+We see this as **a collaborative mapping tool**, developed potentially with input from local authority teams, analysts, service leads, academic partners, and national bodies.
 
 ---
 
@@ -25,7 +64,7 @@ This knowledge base is intended to:
 
 - Full-text search across `.md`, `.pdf`, `.html`, `.py`, `.js`, `.yml`, and `.yaml` documents
 - Graph-based relationship rendering using Cytoscape.js
-- Normalised text extraction via `nltk`
+- Normalised text extraction via Python based tools, e.g. `nltk`
 - Search index + schema validation scripts
 - SCCM concept alignment across YAML content
 - Local document upload (`/docs/`) for manual additions
@@ -35,6 +74,8 @@ This knowledge base is intended to:
 ---
 
 ## Project Layout
+
+*Note: Non-UK spelling dictated by some tools.* 
 
 ```
 /workspaces/d2i-map-of-the-world-mkdocs/
@@ -78,6 +119,9 @@ This knowledge base is intended to:
 mkdocs serve
 # or if port conflict:
 mkdocs serve --dev-addr=0.0.0.0:8001
+# or 
+python -m mkdocs serve
+
 ```
 
 ### Rebuild Search Index + Graph

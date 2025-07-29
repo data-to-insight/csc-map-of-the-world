@@ -1,21 +1,32 @@
-# CSC Map of the World (PoC)
+# CSC Knowledge Base Network (Alpha)
 
-The D2I **CSC Map of the World or Knowledge Base** is an open, evolving tool designed to help map and visualise links between data, services, tools, and organisations that make up the **children’s social care (CSC) data ecosystem**.
+A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together documentation, relationships, services, sector tools(e.g. https://www.datatoinsight.org/patch), rules(e.g statuatory guidance, Keeping Children Safe in Education 2025), plans(e.g. Kinship Care National Kinship Care Strategy), and events(e.g. Children's Social Care Review), using a flexible YAML-based data model and aiming for alignment with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards sector data interoperability.
 
-It brings together structured descriptions of tools, people(where agreed), services, frameworks, systems, and ongoing development work across the sector — using both visual and searchable formats — to potentially support **collaboration, data leadership, strategic planning, and operational insight**.
+It aims to support full-text search, (filtered)graph-based visualisation, and schema validation across structured `.yml` records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.
+
 
 ---
 
-## How do we see this being of use?
+## What is this for?
 
-During investigation around the various potential realisations, along with the scale, scope and limitations of the tool it's hard to be precise on use-cases. However, if it's possible to create a searchable map/resource that can act as a hub for collected data resources from multiple source types, published reports, pre-defined data objects, scraped web data from such as DfE, local authorities, relevant 3rd parties where the user is able to drill down into some of this or visualise in a structured manner how CSC work might be connected. We might be able to: 
+This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, and activity could support work across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:
 
-- **Understand relationships** between local and national CSC data tools, standards, organisations, and policies
-- **Explore who is doing what** — whether a new tool is being developed, a framework revised, or a service restructured
-- **Surface siloed or lesser-known projects** so that local work can align with wider trends or efforts elsewhere
-- **Contribute to local insight or work** to help improve the sector-wide view
+- published reports  
+- pre-defined data objects  
+- web data (e.g. from the DfE, local authorities, third parties)  
+- sector-developed tools and frameworks  
 
-We aim to offer **a map of data and service activity**, developed in collaboration with local authority teams, analysts, service leads, academic partners, and national bodies.
+All of this would be made accessible through a visual or navigable interface, allowing users to explore connections between people, projects, standards, and services.
+
+We think this could help:
+
+- **Make relationships clearer** — between local and national CSC initiatives, policies, systems, and data sources  
+- **Show who’s doing what** — helping users track new tools, updates to frameworks, or structural changes in services  
+- **Bring siloed or under-the-radar work into view** — so efforts can align, build on each other, or avoid duplication  
+- **Support local teams** — by contributing to a more joined-up picture of activity across the sector  
+
+We see this as **a collaborative mapping tool**, developed potentially with input from local authority teams, analysts, service leads, academic partners, and national bodies.
+
 
 ---
 
@@ -30,10 +41,10 @@ We envisage use-cases from:
 
 ---
 
-## What’s included?
+## Plan/Dev Scope?
 
 - **Interactive network map**: Navigate to [Network](network.md) to view entities, relationships, and systems as a live graph
-- **Structured data records**: Underpinning the map is a growing library of structured YAML records, aligned to a SCCM concept framework that describe:
+- **Structured data records**: Underpinning the map is a growing library of structured YAML records, aligned to a SCCM concept framework(BSI as PAS 182) that describe:
   - Tools and systems (e.g. PATCH, Validator 903)
   - Frameworks and inspections (e.g. Ofsted ILACS, JTAI)
   - Relationships and service models
@@ -67,7 +78,7 @@ This project is being developed **with and for the sector**. We welcome:
 - Contributions of local projects or documentation
 - Suggestions for how the tool could better support planning and analysis
 
-To contribute or get involved, please contact the [Data to Insight](https://github.com/data-to-insight) team or fork from/visit the [GitHub repo](https://github.com/data-to-insight/d2i-map-of-the-world-mkdocs).
+To contribute or get involved, please contact the [Data to Insight](https://github.com/data-to-insight) team or fork from/visit the [GitHub repo](https://github.com/data-to-insight/csc-map-of-the-world).
 
 ---
 
@@ -89,5 +100,5 @@ It is designed to be lightweight, transparent, and **openly extensible** — ena
 
 ---
 
-**Thanks for the interest in D2I Knowledge Base**  
+**Thanks for the interest in CSC Knowledge Base**  
 We hope it supports your work, and welcome your feedback as we continue to improve and expand it.

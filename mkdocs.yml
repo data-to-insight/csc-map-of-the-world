@@ -1,5 +1,5 @@
 site_name: CSC Map of the World
-site_url: https://data-to-insight.github.io/d2i-map-of-the-world-mkdocs/
+site_url: https://data-to-insight.github.io/csc-map-of-the-world/
 
 theme:
   name: material
