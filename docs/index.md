@@ -2,16 +2,17 @@
 
 A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together [Documentation], [Relationships], [Services], [Sector_Tools], [Rules], [Plans], [Events] using a flexible YAML-based data model and aiming for alignment with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards sector data interoperability.
 
-| SCCM Concept (Category)                                                                 | Suggested example(s)                                                                                      |
-|-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| [Documentation](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10) | [CSC Independent Review](https://assets.publishing.service.gov.uk/media/640a17f28fa8f5560820da4b/Independent_review_of_children_s_social_care_-_Final_report.pdf)                                         |
-| [Relationships](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10) | LA-1 ↔ Supports ↔ SSD Tests, DfE ↔ Pilots ↔ API Data Flows                                      |
-| [Services](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10)      |                                 |
-| [Sector Tools](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10)  | [PATCH](https://www.datatoinsight.org/patch), ChAT                            |
-| [Rules](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=175)      | Statutory Guidance, *Keeping Children Safe in Education 2025* |
-| [Plans](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=177)      | *Kinship Care Strategy*, *Children’s Social Care National Framework* |
-| [Events](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10)        | *Children’s Social Care Review*, *ILACS Inspections*, *Public Inquiries*         |
-
+| SCCM Concept (Category)                                                                 | Suggested example(s) (in progress)                                                                                     |
+|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| [Community](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=161)   | [LIIA](https://www.liia.london/)                                                                          |
+| [Documentation](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10) | [CSC Independent Review](https://assets.publishing.service.gov.uk/media/640a17f28fa8f5560820da4b/Independent_review_of_children_s_social_care_-_Final_report.pdf) |
+| [Events](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10)        | *Children’s Social Care Review*, *ILACS Inspections*, *Public Inquiries*                                  |
+| [Organization](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=160) | [Data to Insight](https://www.datatoinsight.org/patch)                                                   |
+| [Plans](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=177)      | *Kinship Care Strategy*, *Children’s Social Care National Framework*                                      |
+| [Relationships](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10) | LA-1 ↔ Supports ↔ SSD Tests, DfE ↔ Pilots ↔ API Data Flows                                                 |
+| [Rules](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=175)      | Statutory Guidance, *Keeping Children Safe in Education 2025*                                             |
+| [Sector Tools](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=166) | [PATCH](https://www.datatoinsight.org/patch), ChAT                                                       |
+| [Services](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=169)   |                                                                                                            |
 
 
 It aims to support full-text search, (filtered)graph-based relations visualisation, and YAML schema validation across structured `.yml` records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.
