@@ -4,18 +4,31 @@
 <!-- <div id="cy" style="width: 100%; height: 600px;"></div> -->
 <!-- <div id="cy"></div> --> 
 
-<!-- Multi-select filter and reset button -->
+<!-- Enhanced multi-select filter with Choices.js -->
 <div style="margin-bottom: 1em;">
-  <label for="typeFilter">Filter by node type(s):</label>
-  <select id="typeFilter" multiple size="4" style="min-width: 200px;">
+  <label for="typeFilter"><strong>Filter by node type(s):</strong></label>
+  <select id="typeFilter" multiple>
     <option value="org">Organizations</option>
     <option value="plan">Plans</option>
     <option value="event">Events</option>
     <option value="service">Services</option>
   </select>
-  <button id="resetView">Reset View</button>
+  <button id="resetView" style="margin-left: 1em;">Reset View</button>
 </div>
 
-<!-- graph container -->
+<!-- Graph container -->
 <div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>
+
+<!-- Optional styling tweak -->
+<style>
+  #graph-status {
+    font-size: 0.9em;
+    color: #333;
+  }
+  .choices__inner {
+    background-color: #f9f9f9;
+    border-radius: 6px;
+  }
+</style>
+
 

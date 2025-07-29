@@ -13,16 +13,16 @@ nav:
 
 extra_javascript:
   - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js
+  - https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js
   - js/render_graph.js
   - js/search_tool.js  
 
 
-
 extra_css:
   - css/styles.css
+  - https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css
 
 site_dir: site
-
 
 plugins:
   - search
