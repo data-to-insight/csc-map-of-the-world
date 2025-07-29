@@ -283,9 +283,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plandev-scope" class="md-nav__link">
+  <a href="#plan" class="md-nav__link">
     <span class="md-ellipsis">
-      Plan/Dev Scope?
+      Plan
     </span>
   </a>
   
@@ -322,6 +322,15 @@
   <a href="#whats-next" class="md-nav__link">
     <span class="md-ellipsis">
       What’s next?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-sccm-mapping-to-csc-eco-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible SCCM Mapping to CSC Eco-System
     </span>
   </a>
   
@@ -433,9 +442,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#plandev-scope" class="md-nav__link">
+  <a href="#plan" class="md-nav__link">
     <span class="md-ellipsis">
-      Plan/Dev Scope?
+      Plan
     </span>
   </a>
   
@@ -477,6 +486,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#possible-sccm-mapping-to-csc-eco-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible SCCM Mapping to CSC Eco-System
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -495,6 +513,89 @@
 
 <h1 id="csc-knowledge-base-network">CSC Knowledge Base Network</h1>
 <p>A structured, open-source knowledge base and ecosystem map for the <strong>Children’s Social Care (CSC)</strong> sector. This project brings together [Documentation], [Relationships], [Services], [Sector_Tools], [Rules], [Plans], [Events] using a flexible YAML-based data model and aiming for alignment with the <a href="http://www.smartcityconceptmodel.com/">Smart City Concept Model (SCCM)</a> towards sector data interoperability.</p>
+<p>It aims to support full-text search, (filtered)graph-based relations visualisation, and YAML schema validation across structured <code>.yml</code> records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.</p>
+<h2 id="current-dev-phase-discovery-alpha"><strong>Current Dev Phase:</strong> <em>Discovery-Alpha</em></h2>
+<h2 id="what-is-this-for">What is this for?</h2>
+<p>This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, and activity could support work across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:</p>
+<ul>
+<li>published reports  </li>
+<li>pre-defined data objects  </li>
+<li>web data (e.g. from the DfE, local authorities, third parties)  </li>
+<li>sector-developed tools and frameworks</li>
+<li>connected people (organisational/sector tools linked where consent given or public record)  </li>
+</ul>
+<p>All of this would be made accessible through a visual or navigable interface, allowing users to explore connections between people, projects, standards, and services.</p>
+<p>We think this could help:</p>
+<ul>
+<li><strong>Make relationships clearer</strong> — between local and national CSC initiatives, policies, systems, and data sources  </li>
+<li><strong>Show who’s doing what</strong> — helping users track new tools, updates to frameworks, or structural changes in services  </li>
+<li><strong>Bring siloed or under-the-radar work into view</strong> — so efforts can align, build on each other, or avoid duplication  </li>
+<li><strong>Support local teams</strong> — by contributing to a more joined-up picture of activity across the sector  </li>
+</ul>
+<p>We see this as <strong>a collaborative mapping tool</strong>, developed potentially with input from local authority teams, analysts, service leads, academic partners, and national bodies.</p>
+<hr />
+<h2 id="who-is-this-for">Who is this for?</h2>
+<p>We envisage use-cases from:</p>
+<ul>
+<li><strong>Local authority data and performance teams</strong></li>
+<li><strong>Children’s social care service managers and strategic leads</strong></li>
+<li><strong>Academic researchers and national analysts</strong></li>
+<li><strong>Project leads, developers and architects working in CSC data or digital delivery</strong></li>
+</ul>
+<hr />
+<h2 id="plan">Plan</h2>
+<ul>
+<li><strong>Interactive network map</strong>: Navigate to <a href="network/">Network</a> to view entities, relationships, and systems as a live graph</li>
+<li><strong>Structured data records</strong>: Underpinning the map is a growing library of structured YAML records, aligned to a SCCM concept framework(BSI as PAS 182) that describe:</li>
+<li>Tools and systems (e.g. PATCH, Validator 903)</li>
+<li>Frameworks and inspections (e.g. Ofsted ILACS, JTAI)</li>
+<li>Relationships and service models</li>
+<li>Rules, plans, events and guidance</li>
+<li><strong>Searchable resource</strong>: The <a href="search/">search page</a> enables you to explore the structured data model directly.</li>
+<li>This is separate from the standard MkDocs search (top-right), which only covers page text within this site.</li>
+<li>The CSC knowledge search indexes structured YAML content as well as <code>.md</code>, <code>.pdf</code>, <code>.py</code>, <code>.js</code> and <code>.html</code> files, and supports keyword relevance, match scoring, and metadata extraction.</li>
+<li>(in dev)The search index|scope currently takes a data <em>sample</em> direct from local authority web sites. At the moment this is throttled to ~10, but with the potential to extract simplistic reference resource(s) directly from all ~153</li>
+<li>(in dev)The search index|scope aims to scrape from relevant CSC public data sources in order to increase the tool's search scope. This could schedule indexing of relevant documents or data sources from defined .gov or .edu sites.   </li>
+<li><strong>Documentation hub</strong>: Local documentation from D2I projects(Git repos) is also live-indexed to provide technical context</li>
+</ul>
+<hr />
+<h2 id="how-is-this-structured">How is this structured?</h2>
+<p>Records in this tool are aligned with the <strong>Smart City Concept Model (SCCM)</strong>, an open framework for describing public service ecosystems. Every entity towards the documented network(diagram) is represented as a YAML file, defined at the top level via (SCCM concept types)[http://www.smartcityconceptmodel.com/?Action=ShowModel&amp;Id=10]:
+e.g.
+- <code>@type: AGENT</code> – people, teams, or organisations
+- <code>@type: SERVICE</code> – a system, service or tool
+- <code>@type: EVENT</code> – events such as inspections, launches, reviews
+- <code>@type: RULE</code>, <code>@type: PLAN</code>, <code>@type: COLLECTION</code> – policy elements, datasets or strategies
+- <code>@type: RELATIONSHIP</code> – links between entities (e.g. oversight, supply, influence)</p>
+<p>YAML files are validated, searchable, and designed to be easier to contribute to as they're more human readable than other structured data forms (e.g. JSON, CSV... )</p>
+<p>Note: Further SCCM allignment examples under [Possible SCCM Mapping to CSC Eco-System]</p>
+<hr />
+<h2 id="how-can-i-get-involved">How can I get involved?</h2>
+<p>This project is being developed <strong>with and for the sector</strong>. We welcome:</p>
+<ul>
+<li>Feedback on what’s useful or missing(or broken)</li>
+<li>Contributions of local projects or documentation</li>
+<li>Suggestions for how the tool could better support planning and analysis</li>
+</ul>
+<p>To contribute or get involved, please contact the <a href="https://github.com/data-to-insight">Data to Insight</a> team or fork from/visit the <a href="https://github.com/data-to-insight/csc-map-of-the-world">GitHub repo</a>.</p>
+<hr />
+<h2 id="foundations-and-inspiration">Foundations and Inspiration</h2>
+<p>This tool builds on the thinking behind platforms like the <a href="https://www.childrensservices.network/network.html">Children’s Services Network</a> and grounded in open modelling approaches like the already mentioned <a href="http://www.smartcityconceptmodel.com/">Smart City Concept Model</a>.</p>
+<p>It is designed to be lightweight, transparent, and <strong>openly extensible</strong> — enabling others to adopt or adapt it for their own contexts.</p>
+<hr />
+<h2 id="whats-next">What’s next?</h2>
+<ul>
+<li>Ongoing expansion of linked tools, rules, and frameworks</li>
+<li>Live|scheduled scrapes from key web resources or published docs/framesworks</li>
+<li>Search and filter interface (in beta, but aiming to implement network diagram filters)</li>
+<li>Option for local teams to submit structured entries or link live repositories</li>
+<li>Export options for integration into other data tools</li>
+</ul>
+<hr />
+<p><strong>Thanks for the interest in CSC Knowledge Base</strong><br />
+We hope it supports your work, and welcome your feedback as we continue to improve and expand it.</p>
+<hr />
+<h2 id="possible-sccm-mapping-to-csc-eco-system">Possible SCCM Mapping to CSC Eco-System</h2>
 <table>
 <thead>
 <tr>
@@ -549,86 +650,6 @@
 </tr>
 </tbody>
 </table>
-<p>It aims to support full-text search, (filtered)graph-based relations visualisation, and YAML schema validation across structured <code>.yml</code> records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.</p>
-<h2 id="current-dev-phase-discovery-alpha"><strong>Current Dev Phase:</strong> <em>Discovery-Alpha</em></h2>
-<h2 id="what-is-this-for">What is this for?</h2>
-<p>This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, and activity could support work across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:</p>
-<ul>
-<li>published reports  </li>
-<li>pre-defined data objects  </li>
-<li>web data (e.g. from the DfE, local authorities, third parties)  </li>
-<li>sector-developed tools and frameworks</li>
-<li>connected people (organisational/sector tools linked where consent given or public record)  </li>
-</ul>
-<p>All of this would be made accessible through a visual or navigable interface, allowing users to explore connections between people, projects, standards, and services.</p>
-<p>We think this could help:</p>
-<ul>
-<li><strong>Make relationships clearer</strong> — between local and national CSC initiatives, policies, systems, and data sources  </li>
-<li><strong>Show who’s doing what</strong> — helping users track new tools, updates to frameworks, or structural changes in services  </li>
-<li><strong>Bring siloed or under-the-radar work into view</strong> — so efforts can align, build on each other, or avoid duplication  </li>
-<li><strong>Support local teams</strong> — by contributing to a more joined-up picture of activity across the sector  </li>
-</ul>
-<p>We see this as <strong>a collaborative mapping tool</strong>, developed potentially with input from local authority teams, analysts, service leads, academic partners, and national bodies.</p>
-<hr />
-<h2 id="who-is-this-for">Who is this for?</h2>
-<p>We envisage use-cases from:</p>
-<ul>
-<li><strong>Local authority data and performance teams</strong></li>
-<li><strong>Children’s social care service managers and strategic leads</strong></li>
-<li><strong>Academic researchers and national analysts</strong></li>
-<li><strong>Project leads, developers and architects working in CSC data or digital delivery</strong></li>
-</ul>
-<hr />
-<h2 id="plandev-scope">Plan/Dev Scope?</h2>
-<ul>
-<li><strong>Interactive network map</strong>: Navigate to <a href="network/">Network</a> to view entities, relationships, and systems as a live graph</li>
-<li><strong>Structured data records</strong>: Underpinning the map is a growing library of structured YAML records, aligned to a SCCM concept framework(BSI as PAS 182) that describe:</li>
-<li>Tools and systems (e.g. PATCH, Validator 903)</li>
-<li>Frameworks and inspections (e.g. Ofsted ILACS, JTAI)</li>
-<li>Relationships and service models</li>
-<li>Rules, plans, events and guidance</li>
-<li><strong>Searchable resource</strong>: The <a href="search/">search page</a> enables you to explore the structured data model directly.</li>
-<li>This is separate from the standard MkDocs search (top-right), which only covers page text within this site.</li>
-<li>The CSC knowledge search indexes structured YAML content as well as <code>.md</code>, <code>.pdf</code>, <code>.py</code>, <code>.js</code> and <code>.html</code> files, and supports keyword relevance, match scoring, and metadata extraction.</li>
-<li>(in dev)The search index currently takes a data sample direct from local authority web sites. At the moment this is throttled to ~10, but with the potential to extract simplistic reference resource(s) directly from all ~153</li>
-<li><strong>Documentation hub</strong>: Local documentation from D2I projects(Git repos) is also indexed to provide technical context</li>
-</ul>
-<hr />
-<h2 id="how-is-this-structured">How is this structured?</h2>
-<p>Records in this tool are aligned with the <strong>Smart City Concept Model (SCCM)</strong>, an open framework for describing public service ecosystems. Every entity towards the documented network(diagram) is represented as a YAML file using one or more of the following types:</p>
-<ul>
-<li><code>@type: AGENT</code> – people, teams, or organisations</li>
-<li><code>@type: SERVICE</code> – a system, service or tool</li>
-<li><code>@type: EVENT</code> – events such as inspections, launches, reviews</li>
-<li><code>@type: RULE</code>, <code>@type: PLAN</code>, <code>@type: COLLECTION</code> – policy elements, datasets or strategies</li>
-<li><code>@type: RELATIONSHIP</code> – links between entities (e.g. oversight, supply, influence)</li>
-</ul>
-<p>These files are validated, searchable, and designed to be easy to contribute to.</p>
-<hr />
-<h2 id="how-can-i-get-involved">How can I get involved?</h2>
-<p>This project is being developed <strong>with and for the sector</strong>. We welcome:</p>
-<ul>
-<li>Feedback on what’s useful or missing(or broken)</li>
-<li>Contributions of local projects or documentation</li>
-<li>Suggestions for how the tool could better support planning and analysis</li>
-</ul>
-<p>To contribute or get involved, please contact the <a href="https://github.com/data-to-insight">Data to Insight</a> team or fork from/visit the <a href="https://github.com/data-to-insight/csc-map-of-the-world">GitHub repo</a>.</p>
-<hr />
-<h2 id="foundations-and-inspiration">Foundations and Inspiration</h2>
-<p>This tool builds on the thinking behind platforms like the <a href="https://www.childrensservices.network/network.html">Children’s Services Network</a> and is grounded in open modelling approaches like the <a href="http://www.smartcityconceptmodel.com/">Smart City Concept Model</a>.</p>
-<p>It is designed to be lightweight, transparent, and <strong>openly extensible</strong> — enabling others to adopt or adapt it for their own contexts.</p>
-<hr />
-<h2 id="whats-next">What’s next?</h2>
-<ul>
-<li>Ongoing expansion of linked tools, rules, and frameworks</li>
-<li>Live|scheduled scrapes from key web resources or published docs/framesworks</li>
-<li>Search and filter interface (in beta, but aiming to implement network diagram filters)</li>
-<li>Option for local teams to submit structured entries or link live repositories</li>
-<li>Export options for integration into other data tools</li>
-</ul>
-<hr />
-<p><strong>Thanks for the interest in CSC Knowledge Base</strong><br />
-We hope it supports your work, and welcome your feedback as we continue to improve and expand it.</p>
 
 
 

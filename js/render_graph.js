@@ -64,11 +64,9 @@
 //     });
 // });
 
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("Script loaded and DOM ready");
+
   const cyContainer = document.getElementById("cy");
   const typeFilter = document.getElementById("typeFilter");
   const resetBtn = document.getElementById("resetView");
@@ -80,13 +78,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.json", window.location.origin);
 
-  // Add live count below filter
   const statusDisplay = document.createElement("p");
   statusDisplay.id = "graph-status";
   statusDisplay.style.marginTop = "0.5em";
   cyContainer.parentElement.insertBefore(statusDisplay, cyContainer);
 
-  // Initialise Choices.js on the select dropdown
+  const colorPalette = [
+    "#007acc", "#ff9800", "#4caf50", "#9c27b0", "#e91e63",
+    "#00bcd4", "#8bc34a", "#ffc107", "#673ab7", "#795548",
+    "#3f51b5", "#f44336", "#009688", "#cddc39", "#607d8b",
+    "#ff5722", "#b71c1c", "#1a237e", "#004d40", "#33691e"
+  ];
+
   let choicesInstance = null;
   if (typeFilter && typeof Choices === "function") {
     choicesInstance = new Choices(typeFilter, {
@@ -95,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
       shouldSort: false,
       placeholderValue: "Filter by type...",
     });
+    choicesInstance.setChoiceByValue("org"); // optional default selection
   }
 
   fetch(graphDataURL)
@@ -103,6 +107,49 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((data) => {
+      console.log("First few elements:", data.elements.slice(0, 3));
+
+      // Remove self-loops
+      data.elements = data.elements.filter(el => {
+        if (el.group === "edges" && el.data.source === el.data.target) {
+          console.warn("Removing self-loop edge:", el.data);
+          return false;
+        }
+        return true;
+      });
+
+      // Class extraction for each node
+      const nodeElements = data.elements.filter(el => el.group === "nodes");
+
+      const uniqueClasses = new Set();
+      nodeElements.forEach(el => {
+        let cls = "other";
+        if (typeof el.data?.type === "string") {
+          cls = el.data.type.toLowerCase();
+        } else if (typeof el.classes === "string") {
+          cls = el.classes.toLowerCase();
+        }
+        el.classes = cls;
+        uniqueClasses.add(cls);
+      });
+
+      console.log("Legend classes to show:", [...uniqueClasses]);
+
+      const typeColorMap = {};
+      [...uniqueClasses].forEach((cls, index) => {
+        typeColorMap[cls] = colorPalette[index % colorPalette.length];
+      });
+
+      console.log("typeColorMap:", typeColorMap);
+
+      const dynamicNodeStyles = [...uniqueClasses].map(cls => ({
+        selector: `.${cls}`,
+        style: {
+          "background-color": `${typeColorMap[cls]} !important`,
+          "background-opacity": 1
+        }
+      }));
+
       const cy = cytoscape({
         container: cyContainer,
         elements: data.elements,
@@ -116,14 +163,13 @@ document.addEventListener("DOMContentLoaded", function () {
             selector: "node",
             style: {
               label: "data(label)",
-              "background-color": "#007acc",
               "text-valign": "center",
-              "color": "#fff",
+              "color": "#000",
               "font-size": 12,
-              "text-outline-width": 2,
-              "text-outline-color": "#007acc",
+              "text-outline-width": 0
             },
           },
+          ...dynamicNodeStyles,
           {
             selector: "edge",
             style: {
@@ -133,27 +179,68 @@ document.addEventListener("DOMContentLoaded", function () {
               "target-arrow-shape": "triangle",
               "curve-style": "bezier",
             },
-          },
-        ],
+          }
+        ]
       });
 
+      // Dynamic node sizing
       cy.nodes().forEach((node) => {
         const deg = node.degree();
         const size = Math.min(60, 20 + deg * 4);
         node.style({ width: size, height: size });
       });
 
-      // Only show data_to_insight neighbourhood by default
-      const defaultNode = cy.getElementById("data_to_insight");
-      if (defaultNode) {
-        const neighborhood = defaultNode.closedNeighborhood();
-        cy.elements().difference(neighborhood).style("display", "none");
-        updateStatus(neighborhood.nodes().length, cy.nodes().length);
-      } else {
-        updateStatus(cy.nodes().length, cy.nodes().length);
+      // Initial filter (optional)
+      const initialClass = "org";
+      cy.nodes().forEach((node) => {
+        const show = node.hasClass(initialClass);
+        node.style("display", show ? "element" : "none");
+      });
+      cy.edges().forEach((edge) => {
+        const srcVisible = edge.source().style("display") !== "none";
+        const tgtVisible = edge.target().style("display") !== "none";
+        edge.style("display", srcVisible && tgtVisible ? "element" : "none");
+      });
+
+      updateStatus(cy.nodes().filter(n => n.style("display") !== "none").length, cy.nodes().length);
+
+      // === Legend ===
+      const legendContainer = document.createElement("div");
+      legendContainer.id = "graph-legend";
+      legendContainer.style.margin = "1em 0";
+      legendContainer.style.padding = "0.5em 0";
+      legendContainer.style.borderTop = "1px solid #ccc";
+
+      const legendTitle = document.createElement("div");
+      legendTitle.textContent = "Legend:";
+      legendTitle.style.fontWeight = "bold";
+      legendTitle.style.marginBottom = "0.5em";
+      legendContainer.appendChild(legendTitle);
+
+      Object.entries(typeColorMap).forEach(([cls, color]) => {
+        const label = document.createElement("span");
+        label.textContent = ` ${cls} `;
+        label.style = `
+          background: ${color};
+          color: white;
+          padding: 3px 6px;
+          margin: 2px 4px 2px 0;
+          border-radius: 4px;
+          display: inline-block;
+          font-size: 0.85em;
+        `;
+        legendContainer.appendChild(label);
+      });
+
+      console.log("Appending legend:", legendContainer);
+      cyContainer.parentElement.appendChild(legendContainer);
+
+      // === Filter logic ===
+      function getSelectedClasses() {
+        if (!choicesInstance) return [];
+        return choicesInstance.getValue(true);
       }
 
-      // Update visible node count
       function updateStatus(visibleCount, totalCount) {
         const status = document.getElementById("graph-status");
         if (status) {
@@ -161,13 +248,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // Helper: get selected filter values
-      function getSelectedClasses() {
-        if (!choicesInstance) return [];
-        return choicesInstance.getValue(true); // return selected values as array
-      }
-
-      // Apply filter logic
       function applyFilter() {
         const selectedClasses = getSelectedClasses();
 
@@ -188,17 +268,16 @@ document.addEventListener("DOMContentLoaded", function () {
           edge.style("display", srcVisible && tgtVisible ? "element" : "none");
         });
 
-        const visibleNodes = cy.nodes().filter(n => n.style("display") !== "none").length;
-        updateStatus(visibleNodes, cy.nodes().length);
+        updateStatus(cy.nodes().filter(n => n.style("display") !== "none").length, cy.nodes().length);
       }
 
-      // Event listeners
       if (typeFilter && resetBtn) {
         typeFilter.addEventListener("change", applyFilter);
         resetBtn.addEventListener("click", () => {
           cy.elements().style("display", "element");
           if (choicesInstance) choicesInstance.removeActiveItems();
           updateStatus(cy.nodes().length, cy.nodes().length);
+          cy.fit(); // recenter and zoom to fit
         });
       }
     })
