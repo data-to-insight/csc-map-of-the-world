@@ -2,15 +2,6 @@
 
 A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together [Documentation], [Relationships], [Services], [Sector_Tools], [Rules], [Plans], [Events] using a flexible YAML-based data model and aiming for alignment with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards sector data interoperability.
 
-| Category        | Example(s)                                                                                      |
-|----------------|--------------------------------------------------------------------------------------------------|
-| Documentation  | SSD specification, CIN census guidance, ILACS framework                                         |
-| Relationships  | Local authority1 ↔ Supporting ↔ SSD Testing, DfE ↔ Piloting ↔ Daily Data Flows                               |
-| Services       |                                 |
-| Sector_Tools   | [PATCH](https://www.datatoinsight.org/patch), ChAT                            |
-| Rules          | Statutory Guidance, *Keeping Children Safe in Education 2025*, *Working Together to Safeguard Children* |
-| Plans          | *Kinship Care Strategy*, *Children’s Social Care National Framework* |
-| Events         | *Children’s Social Care Review*, *ILACS Inspections*, *Public Inquiries (e.g. Child Q)*         |
 
 | SCCM Concept (Category)                                                                 | Suggested example(s)                                                                                      |
 |-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
