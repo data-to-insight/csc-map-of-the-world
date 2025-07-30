@@ -3,7 +3,7 @@ name: Data and Digital Solutions Fund (DDSF)
 description: >
   Funding stream to support local data innovations for children’s services.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - d2i
   - data_improvement

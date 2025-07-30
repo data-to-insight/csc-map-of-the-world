@@ -10,6 +10,7 @@ nav:
   - Home: index.md
   - CSC Network: network.md
   - CSC Search: search.md
+  - CSC Relationships: sccm_relation_types.md
 
 extra_javascript:
   - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js
@@ -26,3 +27,7 @@ site_dir: site
 
 plugins:
   - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details

@@ -192,7 +192,7 @@
     {
       "data": {
         "id": "nvest",
-        "label": "NVEST (National Value & Effectiveness Study Tool)",
+        "label": "NVEST (National Voice for Excellence in Safeguaring Technology)",
         "type": "PLAN",
         "group": "nodes"
       },
@@ -230,6 +230,7 @@
         "source": "essex_county_council",
         "target": "data_to_insight",
         "label": "collaboratesWith",
+        "relationship_type": "collaboratesWith",
         "group": "edges"
       }
     },
@@ -238,6 +239,7 @@
         "source": "department_for_education",
         "target": "childrens_social_care_national_framework",
         "label": "hasPlan",
+        "relationship_type": "hasPlan",
         "group": "edges"
       }
     },
@@ -246,6 +248,7 @@
         "source": "knowsley_council",
         "target": "data_to_insight",
         "label": "collaboratesWith",
+        "relationship_type": "collaboratesWith",
         "group": "edges"
       }
     },
@@ -254,6 +257,7 @@
         "source": "department_for_education",
         "target": "childrens_wellbeing_schools_bill_2024_25",
         "label": "proposes",
+        "relationship_type": "proposes",
         "group": "edges"
       }
     },
@@ -262,6 +266,7 @@
         "source": "hertfordshire_county_council",
         "target": "data_to_insight",
         "label": "collaboratesWith",
+        "relationship_type": "collaboratesWith",
         "group": "edges"
       }
     },
@@ -270,6 +275,7 @@
         "source": "adcs",
         "target": "data_to_insight",
         "label": "collaboratesWith",
+        "relationship_type": "collaboratesWith",
         "group": "edges"
       }
     },
@@ -278,6 +284,7 @@
         "source": "department_for_education",
         "target": "keeping_children_safe_in_education_2025",
         "label": "hasPlan",
+        "relationship_type": "hasPlan",
         "group": "edges"
       }
     },
@@ -286,6 +293,7 @@
         "source": "department_for_education",
         "target": "national_kinship_care_strategy",
         "label": "hasPlan",
+        "relationship_type": "hasPlan",
         "group": "edges"
       }
     },
@@ -294,6 +302,7 @@
         "source": "department_for_education",
         "target": "ffp_programme_guide_2025",
         "label": "initiates",
+        "relationship_type": "initiates",
         "group": "edges"
       }
     }

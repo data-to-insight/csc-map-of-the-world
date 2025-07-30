@@ -77,14 +77,17 @@ def get_relationships(seen_nodes):
             if source not in seen_nodes or target not in seen_nodes:
                 print(f"Skipping edge with missing node(s): {source} -> {target} in {file.name}")
                 continue
+            relationship_type = data.get("relationship_type", "relatesTo")
             edges.append({
                 "data": {
                     "source": source,
                     "target": target,
-                    "label": data.get("relationship_type", "relatesTo"),
+                    "label": relationship_type,
+                    "relationship_type": relationship_type,
                     "group": "edges"
                 }
             })
+
     return edges
 
 if __name__ == "__main__":

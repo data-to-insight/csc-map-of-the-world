@@ -1,10 +1,10 @@
 '@type': PLAN
-name: Championing Kinship Care National Kinship Care Strategy
+name: Kinship Care Strategy
 description: >
   First-ever national strategy enabling more children to stay with kinship carers, with £20 million
   invested to support educational, financial, and practical reforms.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - kinship_care
   - social_care_reform
