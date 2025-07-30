@@ -1,5 +1,5 @@
 '@type': RELATIONSHIP
-name: Hertfordshire – Data to Insight SSD collaboration
+name: Hertfordshire | Data to Insight SSD collaboration
 source: hertfordshire_county_council
 target: data_to_insight
 relationship_type: collaboratesWith
@@ -9,3 +9,4 @@ tags:
   - safeguarding
   - ssd
   - local-authority
+  - data-standard

@@ -54,9 +54,33 @@ def validate_relationship_links(relationship_dir, all_node_ids):
             errors.append(f"{file}: target '{target}' not found among node IDs")
     return errors
 
+def rename_files_with_spaces(directory):
+    renamed_files = []
+    for ext in ("*.yml", "*.yaml"):
+        for path in directory.rglob(ext):
+            new_stem = path.stem.replace(" ", "_").lower()
+            new_name = f"{new_stem}{path.suffix.lower()}"
+            new_path = path.with_name(new_name)
+            if path.name != new_name:
+                path.rename(new_path)
+                renamed_files.append((path, new_path))
+    return renamed_files
+
+
 if __name__ == "__main__":
     root = Path("./data_yml")
     rel_dir = root / "relationships"
+
+    # Step 1: rename .yml and .yaml files with spaces
+    renames = rename_files_with_spaces(root)
+    if renames:
+        print("Renamed files:")
+        for old, new in renames:
+            print(f"  {old} -> {new}")
+    else:
+        print("No filenames with spaces found.")
+
+    # Step 2: validate contents
     all_yamls = list(root.rglob("*.yaml"))
     relationship_yamls = list(rel_dir.glob("*.yaml"))
     node_yamls = [p for p in all_yamls if p not in relationship_yamls]
@@ -70,8 +94,9 @@ if __name__ == "__main__":
     all_errors.extend(validate_relationship_links(rel_dir, node_ids))
 
     if all_errors:
-        print("Validation issues found:\n")
+        print("\nValidation issues found:")
         for err in all_errors:
             print(err)
+        print("\n")
     else:
-        print("\u2705 All YAML files passed validation and relationship integrity checks.")
+        print("\nAll YAML files passed validation and relationship integrity checks.")

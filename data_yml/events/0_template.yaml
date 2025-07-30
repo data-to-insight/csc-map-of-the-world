@@ -1,9 +1,11 @@
 '@type': EVENT  # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON
+super_concept:    # optional SCCM root (AGENT, OBJECT, EVENT, etc.) — helpful for graphs, schema logic 
+sub_concept: OBSERVATION     # optional sub-role
 name: Template Name Here
 description: >
   Short summary of the entity or activity
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - example_tag        # lowercase, use snake_case if multi-word
   - data_tools
@@ -13,78 +15,10 @@ website: https://example.org
 notes: >
   Optional notes for further detail, sources or internal use
 
-
-# --- Modelling context ---
-modelling_context:
-  name: Smart City Concept Model
-  version: SCCM v1.0
-  reference: http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10
-  homepage: http://www.smartcityconceptmodel.com/
-
-  
-# --- Uncomment the section below if this is an ORGANIZATION ---
-# organization_fields:
-#   organisation_type: local_authority  # e.g. network, research, vendor
-#   region: England
-#   projects:
-#     - ddsf                    # must match a known snake_case ID
-#     - nvest
-#   persons:
-#     - name: Alister Herbert
-#       role: Strategic Lead
-#       from: 2022-01-01
-
-# --- Uncomment the section below if this is an EVENT ---
+# --- EVENT-specific fields ---
 event_fields:
   lead_organisation: department_for_education  # snake_case, must match an org ID
   collaborators:
     - karen_broadhurst       # person or org IDs in snake_case
   location: UK
   date: 2023-12-15
-
-# --- Uncomment the section below if a SERVICE ---
-# service_fields:
-#   lead_organisation: data_to_insight           # snake_case org ID
-#   delivery_partners:
-#     - adcs
-#   status: active              # or retired, draft
-#   scope: >
-#     National data tool to standardise safeguarding returns
-
-# --- Uncomment the section below if a PLAN ---
-# plan_fields:
-#   status: draft
-#   linked_framework: childrens_social_care_national_framework
-#   target_outcomes:
-#     - improved_quality
-#     - reduced_variation
-
-# --- Uncomment the section below if a RELATIONSHIP ---
-# relationship_fields:
-#   source: adcs                      # snake_case org/person ID
-#   target: data_to_insight           # snake_case org/service ID
-#   relationship_type: collaboratesWith  # use SCCM types like hasPlan, hasOutcome
-
-# --- Uncomment the section below if a COLLECTION ---
-# collection_fields:
-#   theme: safeguarding               # lowercase, snake_case preferred
-#   items:
-#     - kinship_policy_2024
-#     - child_protection_strategy
-
-# --- Uncomment the section below if a PERSON ---
-# person_fields:
-#   role: Strategic Data Lead
-#   employer: lancaster_university     # snake_case org ID
-#   from: 2020-09-01
-#   area_of_focus: child_placement_stability  # optional high-level theme
-#   interests:
-#     - evidence_based_practice
-#     - sector_standards
-#     - linked_open_data
-#   affiliations:
-#     - data_to_insight
-#     - adcs
-#   contact: person@example.org        # optional contact field
-
-# _example_note: This template includes all possible types. Remove unused blocks or just uncomment the needed section.

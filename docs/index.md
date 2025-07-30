@@ -93,6 +93,27 @@ This tool builds on the thinking behind platforms like the [Children’s Service
 
 It is designed to be lightweight, transparent, and **openly extensible** — enabling others to adopt or adapt it for their own contexts.
 
+
+# Soft Systems Conceptual Mapping – Children's Social Care Data Ecosystem
+
+## Root Definitions
+
+**System of Interest**  
+> Shared|public data platform and ecosystem used within Children’s Social Care to connect people|LA colleagues, data, tools, and services
+
+**Purpose**  
+> To enable shared understanding, validation, discovery, and collaboration between local authorities, tools, projects and initiatives in CSC
+
+**Worldview (Weltanschauung)**  
+> Fragmented data landscapes transformed into collaborative, open ecosystems using lightweight, transparent structures like SCCM YAML + MkDocs
+
+**Owner(s)**  
+> Data platform stewards(e.g. D2I): local authority data teams, analysts, strategic alliances, and ecosystem developers
+
+**Environment (External Constraints)**  
+> GitHub Pages (no backend), data security and ethics, evolving standards, distributed maintenance, browser-only deployments
+
+
 ---
 
 ## What’s next?

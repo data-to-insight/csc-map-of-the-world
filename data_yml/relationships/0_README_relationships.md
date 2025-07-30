@@ -1,6 +1,6 @@
 # 0_README_relationships.md
 
-Each file defines a relationship between two SCCM entities (typically AGENT → AGENT or AGENT → SERVICE).
+Each file defines one relationship between two SCCM entities (typically AGENT → AGENT or AGENT → SERVICE or ORGANIZATION → SERVICE).
 Use `'@type': RELATIONSHIP` and include relationship_type, source, and target.
 
 Maps to SCCM: **RELATIONSHIP** (subject-predicate-object model)

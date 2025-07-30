@@ -1,0 +1,12 @@
+
+name: Smart City Concept Model
+version: SCCM v0.0.0
+reference: http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10
+homepage: http://www.smartcityconceptmodel.com/
+description: >
+  The Smart City Concept Model (SCCM) defines a shared vocabulary for describing entities,
+  events, and relationships within data ecosystems. This model provides the foundation
+  for representing the entities and interactions in the Children's Social Care data platform,
+  including tools, people, organisations, datasets, services, and relationships.
+usage_notes: >
+  This context is imported logically across all entity types in the CSC Map of the World project.

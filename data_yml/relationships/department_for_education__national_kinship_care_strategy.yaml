@@ -1,5 +1,5 @@
 '@type': RELATIONSHIP
-name: Department for Education – National Kinship Care Strategy
+name: Department for Education | National Kinship Care Strategy
 source: department_for_education
 target: national_kinship_care_strategy
 relationship_type: hasPlan

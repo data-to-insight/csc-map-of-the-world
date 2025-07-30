@@ -1,5 +1,5 @@
 '@type': RELATIONSHIP
-name: Department for Education – FFP Programme Guide 2025
+name: Department for Education | FFP Programme Guide 2025
 source: department_for_education
 target: ffp_programme_guide_2025
 relationship_type: initiates

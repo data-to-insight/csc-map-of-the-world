@@ -74,8 +74,62 @@
     },
     {
       "data": {
+        "id": "ddsf2a_social_workers_and_cms_constraints",
+        "label": "Research DDSF2a social workers and CMS constraints",
+        "type": "RESOURCE",
+        "group": "nodes"
+      },
+      "classes": "default"
+    },
+    {
+      "data": {
+        "id": "ddsf1a_standard_safeguarding_dataset",
+        "label": "Standard Safeguarding Dataset (SSD)",
+        "type": "RESOURCE",
+        "group": "nodes"
+      },
+      "classes": "default"
+    },
+    {
+      "data": {
         "id": "standard_safeguarding_dataset",
         "label": "Standard Safeguarding Dataset (SSD)",
+        "type": "RESOURCE",
+        "group": "nodes"
+      },
+      "classes": "default"
+    },
+    {
+      "data": {
+        "id": "centre_of_excellence",
+        "label": "Centre of Excellence",
+        "type": "SERVICE",
+        "group": "nodes"
+      },
+      "classes": "service"
+    },
+    {
+      "data": {
+        "id": "d2i_data_validators",
+        "label": "D2I Data Validators",
+        "type": "SERVICE",
+        "group": "nodes"
+      },
+      "classes": "service"
+    },
+    {
+      "data": {
+        "id": "d2i_excel_toolkit",
+        "label": "D2I Excel Toolkit",
+        "type": "SERVICE",
+        "group": "nodes"
+      },
+      "classes": "service"
+    },
+    {
+      "data": {
+        "id": "d2i_apprenticeships",
+        "label": "D2I Apprenticeships",
         "type": "SERVICE",
         "group": "nodes"
       },
@@ -152,6 +206,15 @@
         "group": "nodes"
       },
       "classes": "plan"
+    },
+    {
+      "data": {
+        "id": "childrens_act_1989",
+        "label": "Childrens Act 1989",
+        "type": "RULE",
+        "group": "nodes"
+      },
+      "classes": "rule"
     },
     {
       "data": {

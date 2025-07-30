@@ -2,21 +2,6 @@
 
 A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together [Documentation], [Relationships], [Services], [Sector_Tools], [Rules], [Plans], [Events] using a flexible YAML-based data model and aiming for alignment with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards sector data interoperability.
 
-
-| SCCM Concept (Category)                                                                 | Suggested example(s) (in progress)                                                                                     | 
-|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| [Community](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=161)   | South East fostering cluster                                                                                            |
-| [Documentation](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=183) | [CSC Independent Review](https://assets.publishing.service.gov.uk/media/640a17f28fa8f5560820da4b/Independent_review_of_children_s_social_care_-_Final_report.pdf) |
-| [Events](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=164)        | *Children’s Social Care Review*, *ILACS Inspections*, *Public Inquiries*                                                |
-| [Organization](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=160) | [Data to Insight](https://www.datatoinsight.org/), [LIIA](https://www.liia.london/)                                     |
-| [Persons](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=159)      | Organisational/sector tools linked where consent given or public record                                                 |
-| [Plans](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=177)        | *Kinship Care Strategy*, *Children’s Social Care National Framework*                                                    |
-| [Relationships](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10)   | LA-1 ↔ Supports ↔ SSD Tests, DfE ↔ Pilots ↔ API Data Flows                                                               |
-| [Rules](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=175)        | Statutory Guidance, *Keeping Children Safe in Education 2025*                                                           |
-| [Sector Tools](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=166) | [PATCH](https://www.datatoinsight.org/patch), ChAT                                                                      |
-| [Services](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=169)     |                                                                                                                         |
-
-
 It aims to support full-text search, (filtered)graph-based relations visualisation, and YAML schema validation across structured `.yml` records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.
 
 **Current Dev Phase:** *Discovery-Alpha*
@@ -66,24 +51,26 @@ We see this as **a collaborative mapping tool**, developed potentially with inpu
 ```
 /workspaces/d2i-map-of-the-world-mkdocs/
 ├── admin_scripts/        # Admin scripts(.py) for index building, validation, sync
-├── data_yml/             # SCCM-aligned YAML records (collections, plans, events...)
+│   └──dev/
+├── data_yml/             # Core SCCM-aligned YAML metadata (collections, plans, events...) 
 │   ├── organizations/
 │   ├── relationships/
 │   ├── services/
 │   ├── rules/
 │   ├── events/
+│   ├── resources/
 │   └── ...
-├── data_published/       # Cached/publicly released data reports/published frameworks
-├── data_repos/           # Cloned GitHub documentation sources (e.g. README, SCCM.yml)
-├── data_web/             # Scraped data, e.g. local authority web site, DfE, Others
-├── docs/                 # MkDocs content (HTML, Markdown, PDF, JS, CSS)
+├── data_published/       # Cached/publicly released data reports/published frameworks (.pdfs)
+├── data_repos/           # Cloned remote GitHub documentation sources (e.g. README, SCCM.yml)
+├── data_web/             # Public scraped data, (e.g. local authority web sites, DfE, Others)
+├── docs/                 # MkDocs content populates public /site after build (HTML, Markdown, PDF, JS, CSS)
 │   ├── js/
 │   ├── css/
 │   ├── data/
-│   │   ├── search_index.json
-│   │   └── graph_data.json
+│   │   ├── search_index.json # Pre-rendered search data used by search.js
+│   │   └── graph_data.json # Pre-rendered graph data for network diagram used by graph.js
 │   └── *.md # Mkdocs site pages, index.md etc.... 
-├── mkdocs.yml            # Site config
+├── mkdocs.yml            # Site config MKDOCS
 ├── requirements.txt
 ├── setup.sh              # Dev setup (codespace or local)
 └── README.md
@@ -110,35 +97,44 @@ python -m mkdocs serve
 
 ```
 
-### Rebuild Search Index + Graph
-
-```bash
-python admin_scripts/build_main_search_index.py
-python admin_scripts/build_cytoscape_json.py
-```
 
 ### Validate YAML records
 
 ```bash
 python admin_scripts/validate_yml_objects.py
 ```
+Ensure the core YML files are valid before running subsequent update processes. 
+
+### Rebuild Search Index + Graph
+
+```bash
+python admin_scripts/build_main_search_index.py
+```
+Re-create/update the search index file from available data. 
+
+```bash
+python admin_scripts/build_cytoscape_json.py
+```
+Re-create/update the graph/network diagram index file from available data. 
+
 
 ### Cleanup (optional)
 
 ```bash
 rm -rf site/
 ```
+To ensure clean re-build of mkdocs site folder. Rarely needed but in case. 
 
 ---
 
 ## Tech Stack
 
-- **MkDocs** with Material theme
+- **MkDocs** with Material theme (note-some limitations for bespoke settings)
 - **Python 3.9+**
-- **NLTK** for text preprocessing
-- **YAML** for data records (Incl Network graph data)
-- **Cytoscape.js** for client-side graph rendering
-- **JavaScript** for search UI
+- **NLTK** text preprocessing (used in main search)
+- **YAML** data ibject definitions incl SCCM (Incl Network graph data)
+- **Cytoscape.js** client-side graph rendering
+- **JavaScript** for search UI, and graph render(+legend)
 - **pdfplumber**, `bs4`, `re`, `json`, `glob` for parsing and index creation
 
 ---
@@ -153,7 +149,7 @@ rm -rf site/
 
 ---
 
-## Future Work
+## Dev/Future Work
 
 Aside the ongoing dev/fixes... 
 
@@ -164,15 +160,32 @@ Aside the ongoing dev/fixes...
 - Scaled search index using DuckDB-based backend or further optimised search index method(s)
 - Expanded integration across D2I GitHub repos via cross-referencing tags
 
----
-
-## Developer To-Dos
-
 - Consider how best to model *temporal relationships* (e.g. `start_date`, `end_date`, `published`)
 - Decide on storing personal names (e.g. contributors, collaborators) in `AGENT` vs anonymised role-based entries
 - Test load/search performance as data grows (browser-side memory vs backend streaming)
+- Can this stack/structure and git file allowance sufficiently scale up..... 
 
 ---
+
+## Smart City Concept Model (SCCM) 
+
+Possible mapping examples within this tool, these and others currently in internal review. 
+
+| SCCM Concept (Category)                                                                 | Suggested example(s) (in progress)                                                                                     | 
+|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| [Community](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=161)   | South East fostering cluster                                                                                            |
+| [Documentation](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=183) | [CSC Independent Review](https://assets.publishing.service.gov.uk/media/640a17f28fa8f5560820da4b/Independent_review_of_children_s_social_care_-_Final_report.pdf) |
+| [Events](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=164)        | *Children’s Social Care Review*, *ILACS Inspections*, *Public Inquiries*                                                |
+| [Organization](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=160) | [Data to Insight](https://www.datatoinsight.org/), [LIIA](https://www.liia.london/)                                     |
+| [Persons](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=159)      | Organisational/sector tools linked where consent given or public record                                                 |
+| [Plans](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=177)        | *Kinship Care Strategy*, *Children’s Social Care National Framework*                                                    |
+| [Relationships](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10)   | LA-1 ↔ Supports ↔ SSD Tests, DfE ↔ Pilots ↔ API Data Flows                                                               |
+| [Rules](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=175)        | Statutory Guidance, *Keeping Children Safe in Education 2025*                                                           |
+| [Sector Tools](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=166) | [PATCH](https://www.datatoinsight.org/patch), ChAT                                                                      |
+| [Services](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=169)     |                                                                                                                         |
+
+
+
 
 © Data to Insight — sector-driven, open knowledge 
 

@@ -1,4 +1,4 @@
-'@type': SERVICE
+'@type': RESOURCE
 name: Standard Safeguarding Dataset (SSD)
 description: >
   A Department for Education‑funded initiative led by Data to Insight, working with
@@ -6,7 +6,7 @@ description: >
   standardised dataset for children’s social care data sharing and outcomes tracking.
   Based on the SSD data model and schema published in the public GitHub repo.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - ssd
   - data_standard
@@ -20,7 +20,7 @@ notes: >
   and updated through partner feedback and implementation experience.
 
 
-# --- SERVICE-specific fields ---
+# --- RESOURCE-specific fields ---
 service_fields:
   lead_organisation: data_to_insight
   delivery_partners:

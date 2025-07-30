@@ -1,9 +1,9 @@
-'@type': PLAN  # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON, RESOURCE
+'@type': SERVICE  # EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON, RESOURCE, ORGANIZATION
 super_concept: ABSTRACT   # SCCM root (AGENT, OBJECT, EVENT, etc.) — helpful for graphs, schema logic 
 sub_concept:      # optional sub-role
-name: Template Name Here
+name: Centre of Excellence
 description: >
-  Short summary of the entity or activity
+  Short summary of entity or activity
 
 # --- Shared metadata (optional) ---
 tags:
@@ -15,11 +15,10 @@ website: https://example.org
 notes: >
   Optional notes for further detail, sources or internal use
 
-  
-# --- PLAN-specific fields ---
-plan_fields:
-  status: draft
-  linked_framework: 
-  target_outcomes:
+service_fields: 
+  lead_organisation: data_to_insight           # snake_case org ID
+  delivery_partners:
     - 
-
+  status: active              # or retired, draft
+  scope: >
+    Sample txt
