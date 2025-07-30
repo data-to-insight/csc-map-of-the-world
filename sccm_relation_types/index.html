@@ -8,8 +8,10 @@
       
       
       
-        <link rel="canonical" href="https://data-to-insight.github.io/csc-map-of-the-world/D2I_Contacts_Processing/">
+        <link rel="canonical" href="https://data-to-insight.github.io/csc-map-of-the-world/sccm_relation_types/">
       
+      
+        <link rel="prev" href="../search/">
       
       
       
@@ -18,7 +20,7 @@
     
     
       
-        <title>D2I Contacts Tool - CSC Map of the World</title>
+        <title>CSC Relationships - CSC Map of the World</title>
       
     
     
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contacts-processing-to-maintain-d2i-members" class="md-skip">
+        <a href="#csc-network-relationships" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              D2I Contacts Tool
+              CSC Relationships
             
           </span>
         </div>
@@ -267,10 +269,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../sccm_relation_types/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -281,6 +292,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -305,74 +317,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      Problem
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Problem">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#issues-summarised" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issues summarised
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repo-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repo structure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tech-stack" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tech stack
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dev-notes-testing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dev notes &amp; testing
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploymentdevelopment-notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deployment/Development notes
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -387,69 +331,117 @@
 
 
 
-<h1 id="contacts-processing-to-maintain-d2i-members">Contacts processing to maintain d2i members</h1>
-<p>A browser-based process towards enabling and maintaining a clean(er) and reliable members and contact record; reducing|removing our need to use Wix as core contacts management. Uses <strong>stlite</strong> to run Streamlit/pyodide(in stlite) directly in browser and embeds views via <code>&lt;iframe&gt;</code> containers into the html page(s). Currently only one tool is defined/requested but this might be extended to include others as needed. </p>
-<p>Tool(s) available via : <a href="https://data-to-insight.github.io/d2i-contacts/">Contacts Tool(s)</a></p>
-<h2 id="problem">Problem</h2>
-<p>Our contacts/members continue to sign up via our web platform Wix, and through the signup process gain access to both the main tools, and if relevant seperate access to such as the Early Help/Apprenticeships groups. Our outgoing contact/updates/newsletters have historically/typically gone out to our entire contacts list, or a (Wix)identifiable group within. However, we increasingly want to reduce both unneccessary/excess/invalid contact with some members and improve individual update quality and relevance of it. Our current data(and Wix limited processing) is proving to be problematic, uncertain and has a bloated time-cost overhead for simple tasks(incl. filtering). </p>
-<p>One solution is to clean the existing data and address the shortfalls within Wix itself. However within this approach is the potential for introducing new problems specifically around tool members access tied to Wix internals incl. contact labelling, and the poor time-efficiency when handling contacts via the Wix interface(e.g. paginated views only) as well as the difficulty around reliably grouping contacts - and access to user defined groupings in exports. Alongside ongoing conversations with Wix to identify and enable work-arounds to improve legacy contacts handling/enrichment/sepertion, we have made a long-term plan to move away from Wix to a clean d2i site build(most likely using Django). As such <strong>this tool supports any interim move to manage contacts outside of Wix, concurrently maintain/refresh members details</strong> (as Wix remains our members' single sign-up entry point).</p>
-<h3 id="issues-summarised">Issues summarised</h3>
-<ul>
-<li>Searches in Wix limited to complete-email|name only</li>
-<li>Use of custom labelling in Wix is problematic on export/import</li>
-<li>Wix forces a paginated view of members, which as d2i members base expands is increasingly slow to work with </li>
-<li>New/Legacy labelling within Wix means we now have unreliable single source of truth</li>
-<li>Filtering some specific groups e.g. Members-NVEST only has heavy time-cost overhead, unreliable</li>
-<li>Enriching members data is not easily possible as export/import limits fields</li>
-<li>Data fixes/corrects are record by record </li>
-<li>Ineffective Wix members overview enables duplicate records</li>
-<li>Newsletter rejections can only be handled 1:1 with manual deletion in Wix (we have PoC scripted versions towards this)</li>
-<li>Re-imports back into Wix problematic, custom field loss</li>
-</ul>
-<hr />
-<h2 id="repo-structure">Repo structure</h2>
-<ul>
-<li><code>index.html</code>:<br />
-  Landing page, currently with: </li>
-<li>
-<p>Left: <code>upload_tool.html</code> (iframe)  </p>
-</li>
-<li>
-<p><code>upload_tool.html</code>:<br />
-  HTML file embedding a stlite-powered Streamlit app</p>
-</li>
-<li>
-<p><code>assets/</code>:<br />
-  Img assets (e.g., <code>images/d2i_logo.png</code>)
-  Styling assets (e.g., <code>css/styles.css</code>)</p>
-</li>
-</ul>
-<hr />
-<h2 id="tech-stack">Tech stack</h2>
-<ul>
-<li><a href="https://streamlit.io">Streamlit</a> for data interface  </li>
-<li><a href="https://github.com/whitphx/stlite">stlite</a> to run Streamlit app directly in browser (Pyodide)  </li>
-<li><a href="https://getbootstrap.com">Bootstrap 5</a> for layout  </li>
-</ul>
-<h2 id="dev-notes-testing">Dev notes &amp; testing</h2>
-<ul>
-<li>At the moment py code is embedded into index/upload_tool page, so can't be tested via usual streamlit local running. Instead run:
-python -m http.server 8000, or select a different port/py: python3 -m http.server 8501</li>
-</ul>
-<hr />
-<h2 id="deploymentdevelopment-notes">Deployment/Development notes</h2>
-<p>Built to run in <strong>GitHub Pages</strong>. 
-Note: avoid direct browser refresh on subpages (e.g., <code>/upload_tool.html</code>) unless served (e.g., via iframe or root-relative path) - as i've not added # or 404 handling</p>
-<hr />
+<h1 id="csc-network-relationships">CSC Network Relationships</h1>
+<p>This is a reference page detailing the scope of relationship labels from the Smart City Concept Model (SCCM) as applied to the Children's Social Care (CSC) (network diagram)[network.md]. These relationships are reproduced directly from the <a href="http://www.smartcityconceptmodel.com/" target="_blank">Smart City Concept Model</a> definitions, but shown here for each relevant object type towards additional clarity on the derived network diagram (generated from the core YAML definitions within this tool).</p>
+<details><summary><strong>Service Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Service</td><td>contains</td><td>Service</td></tr>
+<tr><td>Service</td><td>influencedBy</td><td>Objective</td></tr>
+<tr><td>Service</td><td>providedBy</td><td>Agent</td></tr>
+<tr><td>Service</td><td>responsibilityOf</td><td>Agent</td></tr>
+<tr><td>Service</td><td>serviceImplementsMethod</td><td>Method</td></tr>
+<tr><td>Service</td><td>usedBy</td><td>Community</td></tr>
+<tr><td>Service</td><td>subjectOf</td><td>Agreement</td></tr>
+<tr><td>Service</td><td>containedIn</td><td>Service</td></tr>
+<tr><td>Service</td><td>containedIn</td><td>Function</td></tr>
+<tr><td>Service</td><td>raises</td><td>Case</td></tr>
+<tr><td>Service</td><td>usesResource</td><td>Resource</td></tr>
+<tr><td>Service</td><td>hasRule</td><td>Rule</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Event Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Event</td><td>atPlace</td><td>Place</td></tr>
+<tr><td>Event</td><td>hasOutcome</td><td>State</td></tr>
+<tr><td>Event</td><td>containedIn</td><td>Case</td></tr>
+<tr><td>Event</td><td>containedIn</td><td>Account</td></tr>
+<tr><td>Event</td><td>hasRoleFrom</td><td>Item</td></tr>
+<tr><td>Event</td><td>hasOutcome</td><td>Decision</td></tr>
+<tr><td>Event</td><td>eventPlannedIn</td><td>Plan</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Plan Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Plan</td><td>contains</td><td>Plan</td></tr>
+<tr><td>Plan</td><td>hasTarget</td><td>Target</td></tr>
+<tr><td>Plan</td><td>influencedBy</td><td>Objective</td></tr>
+<tr><td>Plan</td><td>planDerivedFromMethod</td><td>Method</td></tr>
+<tr><td>Plan</td><td>planForEvent</td><td>Event</td></tr>
+<tr><td>Plan</td><td>planForCase</td><td>Case</td></tr>
+<tr><td>Plan</td><td>containedIn</td><td>Plan</td></tr>
+<tr><td>Plan</td><td>planOf</td><td>Agent</td></tr>
+<tr><td>Plan</td><td>usesResource</td><td>Resource</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Community Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Community</td><td>contains</td><td>Community</td></tr>
+<tr><td>Community</td><td>containedIn</td><td>Community</td></tr>
+<tr><td>Community</td><td>uses</td><td>Service</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Organization Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Organization</td><td>contains</td><td>Organization</td></tr>
+<tr><td>Organization</td><td>containedIn</td><td>Organization</td></tr>
+<tr><td>Organization</td><td>hasMember</td><td>Person</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Person Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Person</td><td>memberOf</td><td>Organization</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Rule Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Rule</td><td>ruleFor</td><td>Service</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Resource Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Resource</td><td>resourceFor</td><td>Service</td></tr>
+<tr><td>Resource</td><td>resourceFor</td><td>Plan</td></tr>
+<tr><td>Resource</td><td>resourceOf</td><td>Agent</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Collection Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Collection</td><td>collectionContains</td><td>Item</td></tr>
+<tr><td>Collection</td><td>collectionDefinedBy</td><td>Agent</td></tr>
+</tbody></table>
+</details>
+
+<details><summary><strong>Agent Relationships</strong></summary>
+<table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
+<tr><td>Agent</td><td>has</td><td>Object</td></tr>
+<tr><td>Agent</td><td>has</td><td>Abstract</td></tr>
+<tr><td>Agent</td><td>hasAgreement</td><td>Agreement</td></tr>
+<tr><td>Agent</td><td>hasObjective</td><td>Objective</td></tr>
+<tr><td>Agent</td><td>hasPlan</td><td>Plan</td></tr>
+<tr><td>Agent</td><td>hasResource</td><td>Resource</td></tr>
+<tr><td>Agent</td><td>takesDecision</td><td>Decision</td></tr>
+<tr><td>Agent</td><td>uses</td><td>Item</td></tr>
+<tr><td>Agent</td><td>makesAssumption</td><td>Assumption</td></tr>
+<tr><td>Agent</td><td>definesCollection</td><td>Collection</td></tr>
+<tr><td>Agent</td><td>owns</td><td>Account</td></tr>
+<tr><td>Agent</td><td>provides</td><td>Service</td></tr>
+<tr><td>Agent</td><td>responsibleFor</td><td>Service</td></tr>
+</tbody></table>
+</details>
 
 
 
 
 
 
-
-  
-  
 
 
 

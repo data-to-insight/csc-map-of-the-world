@@ -160,6 +160,11 @@ document.addEventListener("DOMContentLoaded", function () {
           {
             selector: "edge",
             style: {
+              "label": "data(label)",          // pull from edge labels in graph.json
+              "font-size": 9,                  
+              "text-rotation": "autorotate",  // rotate text along edge
+              "text-margin-y": -5,            // move label closer to edge
+              "color": "#444",                // label text colour
               "width": 2,
               "line-color": "#aaa",
               "target-arrow-color": "#aaa",
