@@ -1,4 +1,4 @@
-'@type': ORGANIZATION  # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON
+'@type': COLLECTION # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON
 name: Template Name Here
 description: >
   Short summary of the entity or activity
