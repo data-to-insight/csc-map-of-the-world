@@ -274,15 +274,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-is-this-for" class="md-nav__link">
-    <span class="md-ellipsis">
-      Who is this for?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#plan" class="md-nav__link">
     <span class="md-ellipsis">
       Plan
@@ -313,6 +304,33 @@
   <a href="#foundations-and-inspiration" class="md-nav__link">
     <span class="md-ellipsis">
       Foundations and Inspiration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#soft-systems-conceptual-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soft Systems Conceptual Mapping
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What’s next?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-sccm-mapping-to-csc-eco-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible SCCM Mapping to CSC Eco-System
     </span>
   </a>
   
@@ -459,15 +477,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-is-this-for" class="md-nav__link">
-    <span class="md-ellipsis">
-      Who is this for?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#plan" class="md-nav__link">
     <span class="md-ellipsis">
       Plan
@@ -503,6 +512,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#soft-systems-conceptual-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Soft Systems Conceptual Mapping
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      What’s next?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#possible-sccm-mapping-to-csc-eco-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Possible SCCM Mapping to CSC Eco-System
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -525,7 +561,7 @@
 <p>With a focus on ensuring an entirely open-source and Git-native tool, there are some interesting and potentially constraining problems to solve just within the available tech-stack(even before we address the arguably bigger issues of how to bring all the relvant data together, and what's a sustainable internal structure). We're particularly interested in the Git data limits vs CSC sector need on data storage towards such as optimised full text searches. The potential data-estate in this exploratory development, alongside how we might take or manage direct sector input into the YML structure(s) also ongoing factors. </p>
 <h2 id="current-dev-phase-discovery-alpha"><strong>Current Dev Phase:</strong> <em>Discovery-Alpha</em></h2>
 <h2 id="what-is-this-for">What is this for?</h2>
-<p>This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, and activity could support work across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:</p>
+<p>This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, data projects, key frameworks, statuatoary guidance and activity could enable collaboration and support or optimise efforts across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:</p>
 <ul>
 <li>published reports  </li>
 <li>pre-defined data objects  </li>
@@ -541,9 +577,6 @@
 <li><strong>Bring siloed or under-the-radar work into view</strong> — so efforts can align, build on each other, or avoid duplication  </li>
 <li><strong>Support local teams</strong> — by contributing to a more joined-up picture of activity across the sector  </li>
 </ul>
-<p>We see this as <strong>a collaborative mapping tool</strong>, developed potentially with input from local authority teams, analysts, service leads, academic partners, and national bodies.</p>
-<hr />
-<h2 id="who-is-this-for">Who is this for?</h2>
 <p>We envisage use-cases from:</p>
 <ul>
 <li><strong>Local authority data and performance teams</strong></li>
@@ -551,6 +584,7 @@
 <li><strong>Academic researchers and national analysts</strong></li>
 <li><strong>Project leads, developers and architects working in CSC data or digital delivery</strong></li>
 </ul>
+<p>We see this as <strong>a collaborative mapping tool</strong>, developed potentially with input from local authority teams, analysts, service leads, academic partners, and national bodies.</p>
 <hr />
 <h2 id="plan">Plan</h2>
 <ul>
@@ -569,49 +603,49 @@
 </ul>
 <hr />
 <h2 id="how-is-this-structured">How is this structured?</h2>
-<p>Records in this tool are aligned with the <strong>Smart City Concept Model (SCCM)</strong>, an open framework for describing public service ecosystems. Every entity towards the documented network(diagram) is represented as a YAML file, defined at the top level via (SCCM concept types)[http://www.smartcityconceptmodel.com/?Action=ShowModel&amp;Id=10]:
-e.g.
+<p>Records in this tool are aligned with the <strong>Smart City Concept Model (SCCM)</strong>, an open framework for describing public service ecosystems. Every entity towards the documented network(diagram) is represented as a YAML file, defined at the top level via <a href="http://www.smartcityconceptmodel.com/?Action=ShowModel&amp;Id=10">SCCM concept types</a> :</p>
+<p>e.g.
 - <code>@type: AGENT</code> – people, teams, or organisations
 - <code>@type: SERVICE</code> – a system, service or tool
 - <code>@type: EVENT</code> – events such as inspections, launches, reviews
 - <code>@type: RULE</code>, <code>@type: PLAN</code>, <code>@type: COLLECTION</code> – policy elements, datasets or strategies
 - <code>@type: RELATIONSHIP</code> – links between entities (e.g. oversight, supply, influence)</p>
 <p>YAML files are validated, searchable, and designed to be easier to contribute to as they're more human readable than other structured data forms (e.g. JSON, CSV... )</p>
-<p>Note: Further SCCM allignment examples under [Possible SCCM Mapping to CSC Eco-System]</p>
+<p>Note: Further SCCM allignment examples under <a href="#possible-sccm-mapping-to-csc-eco-system">Possible SCCM Mapping to CSC Eco-System</a></p>
 <hr />
 <h2 id="how-can-i-get-involved">How can I get involved?</h2>
 <p>This project is being developed <strong>with and for the sector</strong>. We welcome:</p>
 <ul>
-<li>Feedback on what’s useful or missing(or broken)</li>
+<li>Feedback and suggestions on what’s useful or missing(or broken)</li>
 <li>Contributions of local projects or documentation</li>
-<li>Suggestions for how the tool could better support planning and analysis</li>
+<li>Ideas for how the tool could better support the sector</li>
 </ul>
 <p>To contribute or get involved, please contact the <a href="https://github.com/data-to-insight">Data to Insight</a> team or fork from/visit the <a href="https://github.com/data-to-insight/csc-map-of-the-world">GitHub repo</a>.</p>
 <hr />
 <h2 id="foundations-and-inspiration">Foundations and Inspiration</h2>
 <p>This tool builds on the thinking behind platforms like the <a href="https://www.childrensservices.network/network.html">Children’s Services Network</a> and grounded in open modelling approaches like the already mentioned <a href="http://www.smartcityconceptmodel.com/">Smart City Concept Model</a>.</p>
 <p>It is designed to be lightweight, transparent, and <strong>openly extensible</strong> — enabling others to adopt or adapt it for their own contexts.</p>
-<h1 id="soft-systems-conceptual-mapping-childrens-social-care-data-ecosystem">Soft Systems Conceptual Mapping – Children's Social Care Data Ecosystem</h1>
-<h2 id="root-definitions">Root Definitions</h2>
+<hr />
+<h2 id="soft-systems-conceptual-mapping">Soft Systems Conceptual Mapping</h2>
 <p><strong>System of Interest</strong>  </p>
 <blockquote>
 <p>Shared|public data platform and ecosystem used within Children’s Social Care to connect people|LA colleagues, data, tools, and services</p>
 </blockquote>
 <p><strong>Purpose</strong>  </p>
 <blockquote>
-<p>To enable shared understanding, validation, discovery, and collaboration between local authorities, tools, projects and initiatives in CSC</p>
+<p>To enable shared sector understanding, validation, discovery, and collaboration between local authorities, tool development, projects and other initiatives in CSC</p>
 </blockquote>
 <p><strong>Worldview (Weltanschauung)</strong>  </p>
 <blockquote>
-<p>Fragmented data landscapes transformed into collaborative, open ecosystems using lightweight, transparent structures like SCCM YAML + MkDocs</p>
+<p>Fragmented data landscapes transformed into a collaborative, open ecosystem using lightweight, transparent structures like SCCM, JSON, YAML + MkDocs</p>
 </blockquote>
 <p><strong>Owner(s)</strong>  </p>
 <blockquote>
-<p>Data platform stewards(e.g. D2I): local authority data teams, analysts, strategic alliances, and ecosystem developers</p>
+<p>Likely data platform stewards: D2I, local authority data teams, ecosystem developers</p>
 </blockquote>
 <p><strong>Environment (External Constraints)</strong>  </p>
 <blockquote>
-<p>GitHub Pages (no backend), data security and ethics, evolving standards, distributed maintenance, browser-only deployments</p>
+<p>GitHub Pages (no backend), data security and ethics, evolving standards, distributed maintenance, changing ecosystem, frameworks and statuatory guidance, browser-only deployments</p>
 </blockquote>
 <hr />
 <h2 id="whats-next">What’s next?</h2>
@@ -623,7 +657,7 @@ e.g.
 <li>Export options for integration into other data tools</li>
 </ul>
 <hr />
-<p><strong>Thanks for the interest in CSC Knowledge Base</strong><br />
+<p><strong>Thanks for the interest in CSC Knowledge Base Network</strong><br />
 We hope it supports your work, and welcome your feedback as we continue to improve and expand it.</p>
 <hr />
 <h2 id="possible-sccm-mapping-to-csc-eco-system">Possible SCCM Mapping to CSC Eco-System</h2>
