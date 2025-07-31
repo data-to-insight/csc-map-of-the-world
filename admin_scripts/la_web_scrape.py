@@ -97,8 +97,8 @@ for idx, row in df.iterrows():
         df.at[idx, "childrens_services_links"] = "; ".join(service_links)
         df.at[idx, "jobs_links"] = "; ".join(jobs_links)
     except Exception as e:
-        print(f"❌ Failed for {la_name}: {e}")
+        print(f"Failed for {la_name}: {e}")
 
 # --- Save ---
 df.to_csv(OUTPUT_FILE, index=False)
-print(f"\n✅ Done. Output saved to: {OUTPUT_FILE}")
+print(f"\nDone. Output saved to: {OUTPUT_FILE}")

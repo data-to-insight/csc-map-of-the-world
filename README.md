@@ -117,6 +117,11 @@ python admin_scripts/build_cytoscape_json.py
 ```
 Re-create/update the graph/network diagram index file from available data. 
 
+```bash
+python /workspaces/csc-map-of-the-world/admin_scripts/admin-re-build-sources-page.py
+```
+Refresh the sources page with any refreshed files or sources. Note that this overwrites the sources.md page. 
+
 
 ### Cleanup (optional)
 

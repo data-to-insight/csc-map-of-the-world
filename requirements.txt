@@ -1,7 +1,6 @@
 mkdocs
 mkdocs-material
 pyyaml
-pdfplumber
 beautifulsoup4
 nltk
 
@@ -14,3 +13,8 @@ ujson
 # towards importing remote repo files
 ruamel.yaml
 GitPython
+
+# docs extraction 
+pdfplumber
+
+

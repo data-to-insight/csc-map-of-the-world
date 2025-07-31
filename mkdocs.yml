@@ -11,6 +11,7 @@ nav:
   - CSC Network: network.md
   - CSC Search: search.md
   - CSC Relationships: sccm_relation_types.md
+  - CSC Sources: sources.md
 
 extra_javascript:
   - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js

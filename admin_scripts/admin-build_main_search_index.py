@@ -248,7 +248,7 @@ def build_index():
                         content_lines.append(line)
 
                 if not title or not source_note:
-                    print(f"⚠️ Missing required fields in: {path.name}")
+                    print(f"Missing required fields in: {path.name}")
                     continue
 
                 content = "\n".join(content_lines).strip()
@@ -271,7 +271,7 @@ def build_index():
                 })
 
             except Exception as e:
-                print(f"❌ Error processing {path.name}: {e}")
+                print(f"Error processing {path.name}: {e}")
 
 
     # put generated search index file into mkdocs data folder
