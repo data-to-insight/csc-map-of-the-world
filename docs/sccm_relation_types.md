@@ -1,8 +1,8 @@
 # CSC Network Relationships
 
-This is a reference page detailing the scope of relationship labels from the Smart City Concept Model (SCCM) as applied to the Children's Social Care (CSC) (network diagram)[network.md]. These relationships are reproduced directly from the <a href="http://www.smartcityconceptmodel.com/" target="_blank">Smart City Concept Model</a> definitions, but shown here for each relevant object type towards additional clarity on the derived network diagram (generated from the core YAML definitions within this tool).
+This is a reference page detailing the scope of relationship types defined within the Smart City Concept Model (SCCM) as applied to this tools Children's Social Care [CSC Network Diagram](network.md). These relationships are reproduced directly from the <a href="http://www.smartcityconceptmodel.com/" target="_blank">Smart City Concept Model</a> definitions, but shown here for each relevant object type towards additional clarity on the derived network diagram (generated from the core YAML definitions within this tool).
 
-<details><summary><strong>Service Relationships</strong></summary>
+<details><summary><strong>Service type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Service</td><td>contains</td><td>Service</td></tr>
 <tr><td>Service</td><td>influencedBy</td><td>Objective</td></tr>
@@ -19,7 +19,7 @@ This is a reference page detailing the scope of relationship labels from the Sma
 </tbody></table>
 </details>
 
-<details><summary><strong>Event Relationships</strong></summary>
+<details><summary><strong>Event type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Event</td><td>atPlace</td><td>Place</td></tr>
 <tr><td>Event</td><td>hasOutcome</td><td>State</td></tr>
@@ -31,7 +31,7 @@ This is a reference page detailing the scope of relationship labels from the Sma
 </tbody></table>
 </details>
 
-<details><summary><strong>Plan Relationships</strong></summary>
+<details><summary><strong>Plan type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Plan</td><td>contains</td><td>Plan</td></tr>
 <tr><td>Plan</td><td>hasTarget</td><td>Target</td></tr>
@@ -45,7 +45,7 @@ This is a reference page detailing the scope of relationship labels from the Sma
 </tbody></table>
 </details>
 
-<details><summary><strong>Community Relationships</strong></summary>
+<details><summary><strong>Community type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Community</td><td>contains</td><td>Community</td></tr>
 <tr><td>Community</td><td>containedIn</td><td>Community</td></tr>
@@ -53,7 +53,7 @@ This is a reference page detailing the scope of relationship labels from the Sma
 </tbody></table>
 </details>
 
-<details><summary><strong>Organization Relationships</strong></summary>
+<details><summary><strong>Organization type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Organization</td><td>contains</td><td>Organization</td></tr>
 <tr><td>Organization</td><td>containedIn</td><td>Organization</td></tr>
@@ -61,19 +61,19 @@ This is a reference page detailing the scope of relationship labels from the Sma
 </tbody></table>
 </details>
 
-<details><summary><strong>Person Relationships</strong></summary>
+<details><summary><strong>Person type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Person</td><td>memberOf</td><td>Organization</td></tr>
 </tbody></table>
 </details>
 
-<details><summary><strong>Rule Relationships</strong></summary>
+<details><summary><strong>Rule type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Rule</td><td>ruleFor</td><td>Service</td></tr>
 </tbody></table>
 </details>
 
-<details><summary><strong>Resource Relationships</strong></summary>
+<details><summary><strong>Resource type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Resource</td><td>resourceFor</td><td>Service</td></tr>
 <tr><td>Resource</td><td>resourceFor</td><td>Plan</td></tr>
@@ -81,14 +81,14 @@ This is a reference page detailing the scope of relationship labels from the Sma
 </tbody></table>
 </details>
 
-<details><summary><strong>Collection Relationships</strong></summary>
+<details><summary><strong>Collection type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Collection</td><td>collectionContains</td><td>Item</td></tr>
 <tr><td>Collection</td><td>collectionDefinedBy</td><td>Agent</td></tr>
 </tbody></table>
 </details>
 
-<details><summary><strong>Agent Relationships</strong></summary>
+<details><summary><strong>Agent type relationships</strong></summary>
 <table><thead><tr><th>Subject</th><th>Relationship</th><th>Object</th></tr></thead><tbody>
 <tr><td>Agent</td><td>has</td><td>Object</td></tr>
 <tr><td>Agent</td><td>has</td><td>Abstract</td></tr>

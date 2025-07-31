@@ -11,7 +11,7 @@ With a focus on ensuring an entirely open-source and Git-native tool, there are 
 
 ## What is this for?
 
-This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, and activity could support work across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:
+This proof of concept(PoC) project explores how a structured, searchable map of Children’s Social Care (CSC) data, tools, data projects, key frameworks, statuatoary guidance and activity could enable collaboration and support or optimise efforts across the sector. While exact use-cases are still emerging, our goal is to create a shared resource that brings together:
 
 - published reports  
 - pre-defined data objects  
@@ -28,19 +28,16 @@ We think this could help:
 - **Bring siloed or under-the-radar work into view** — so efforts can align, build on each other, or avoid duplication  
 - **Support local teams** — by contributing to a more joined-up picture of activity across the sector  
 
-We see this as **a collaborative mapping tool**, developed potentially with input from local authority teams, analysts, service leads, academic partners, and national bodies.
-
-
----
-
-## Who is this for?
-
 We envisage use-cases from:
 
 - **Local authority data and performance teams**
 - **Children’s social care service managers and strategic leads**
 - **Academic researchers and national analysts**
 - **Project leads, developers and architects working in CSC data or digital delivery**
+
+
+We see this as **a collaborative mapping tool**, developed potentially with input from local authority teams, analysts, service leads, academic partners, and national bodies.
+
 
 ---
 
@@ -61,9 +58,11 @@ We envisage use-cases from:
 
 ---
 
+
 ## How is this structured?
 
-Records in this tool are aligned with the **Smart City Concept Model (SCCM)**, an open framework for describing public service ecosystems. Every entity towards the documented network(diagram) is represented as a YAML file, defined at the top level via (SCCM concept types)[http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10]:
+Records in this tool are aligned with the **Smart City Concept Model (SCCM)**, an open framework for describing public service ecosystems. Every entity towards the documented network(diagram) is represented as a YAML file, defined at the top level via [SCCM concept types](http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10) :
+
 e.g.
 - `@type: AGENT` – people, teams, or organisations
 - `@type: SERVICE` – a system, service or tool
@@ -73,7 +72,8 @@ e.g.
 
 YAML files are validated, searchable, and designed to be easier to contribute to as they're more human readable than other structured data forms (e.g. JSON, CSV... )
 
-Note: Further SCCM allignment examples under [Possible SCCM Mapping to CSC Eco-System]
+Note: Further SCCM allignment examples under [Possible SCCM Mapping to CSC Eco-System](#possible-sccm-mapping-to-csc-eco-system)
+
 
 ---
 
@@ -81,9 +81,9 @@ Note: Further SCCM allignment examples under [Possible SCCM Mapping to CSC Eco-S
 
 This project is being developed **with and for the sector**. We welcome:
 
-- Feedback on what’s useful or missing(or broken)
+- Feedback and suggestions on what’s useful or missing(or broken)
 - Contributions of local projects or documentation
-- Suggestions for how the tool could better support planning and analysis
+- Ideas for how the tool could better support the sector
 
 To contribute or get involved, please contact the [Data to Insight](https://github.com/data-to-insight) team or fork from/visit the [GitHub repo](https://github.com/data-to-insight/csc-map-of-the-world).
 
@@ -95,25 +95,24 @@ This tool builds on the thinking behind platforms like the [Children’s Service
 
 It is designed to be lightweight, transparent, and **openly extensible** — enabling others to adopt or adapt it for their own contexts.
 
+--- 
 
-# Soft Systems Conceptual Mapping – Children's Social Care Data Ecosystem
-
-## Root Definitions
+## Soft Systems Conceptual Mapping
 
 **System of Interest**  
 > Shared|public data platform and ecosystem used within Children’s Social Care to connect people|LA colleagues, data, tools, and services
 
 **Purpose**  
-> To enable shared understanding, validation, discovery, and collaboration between local authorities, tools, projects and initiatives in CSC
+> To enable shared sector understanding, validation, discovery, and collaboration between local authorities, tool development, projects and other initiatives in CSC
 
 **Worldview (Weltanschauung)**  
-> Fragmented data landscapes transformed into collaborative, open ecosystems using lightweight, transparent structures like SCCM YAML + MkDocs
+> Fragmented data landscapes transformed into a collaborative, open ecosystem using lightweight, transparent structures like SCCM, JSON, YAML + MkDocs
 
 **Owner(s)**  
-> Data platform stewards(e.g. D2I): local authority data teams, analysts, strategic alliances, and ecosystem developers
+> Likely data platform stewards: D2I, local authority data teams, ecosystem developers
 
 **Environment (External Constraints)**  
-> GitHub Pages (no backend), data security and ethics, evolving standards, distributed maintenance, browser-only deployments
+> GitHub Pages (no backend), data security and ethics, evolving standards, distributed maintenance, changing ecosystem, frameworks and statuatory guidance, browser-only deployments
 
 
 ---
@@ -128,7 +127,7 @@ It is designed to be lightweight, transparent, and **openly extensible** — ena
 
 ---
 
-**Thanks for the interest in CSC Knowledge Base**  
+**Thanks for the interest in CSC Knowledge Base Network**  
 We hope it supports your work, and welcome your feedback as we continue to improve and expand it.
 
 
