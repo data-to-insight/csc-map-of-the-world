@@ -4,7 +4,7 @@ A structured, extensible open-source data-eco-system map and 'knowledge base' fo
 
 Alongside the (filtered)graph-based relations visualisation, it aims to support key-term search and YAML schema validation across the structured/human readable `.yml` structured records. Development is scaffolded/designed to be extensible, transparent, and Git-native.
 
-With a focus on ensuring an entirely open-source and Git-native tool, there are some interesting and potentially constraining problems to solve just within the available tech-stack(even before we address the arguably bigger issues of how to bring all the relvant data together, and what's a sustainable internal structure). We're particularly interested in the Git data limits vs CSC sector need on data storage towards such as optimised full text searches. The potential data-estate in this exploratory development, alongside how we might take or manage direct sector input into the YML structure(s). 
+With a focus on ensuring an entirely open-source and Git-native tool, there are some interesting and potentially constraining problems to solve just within the available tech-stack(even before we address the arguably bigger issues of how to bring all the relvant data together, and what's a sustainable internal structure). We're particularly interested in the Git data limits vs CSC sector need on data storage towards such as optimised full text searches. The potential data-estate in this exploratory development, alongside how we might take or manage direct sector input into the YML structure(s) also ongoing factors. 
 
 **Current Dev Phase:** *Discovery-Alpha*
 ---
