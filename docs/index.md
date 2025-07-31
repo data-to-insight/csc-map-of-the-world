@@ -1,8 +1,10 @@
 # CSC Knowledge Base Network
 
-A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together [Documentation], [Relationships], [Services], [Sector_Tools], [Rules], [Plans], [Events] using a flexible YAML-based data model and aiming for alignment with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards sector data interoperability.
+A structured, extensible open-source data-eco-system map and 'knowledge base' for the **Children’s Social Care (CSC)** sector. This project collates and creates an overview of key sector documentation, project relationships, data services, sector tools, rules, plans and events using a flexible YAML-based data model aligned with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards data interoperability.
 
-It aims to support full-text search, (filtered)graph-based relations visualisation, and YAML schema validation across structured `.yml` records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.
+Alongside the (filtered)graph-based relations visualisation, it aims to support key-term search and YAML schema validation across the structured/human readable `.yml` structured records. Development is scaffolded/designed to be extensible, transparent, and Git-native.
+
+With a focus on ensuring an entirely open-source and Git-native tool, there are some interesting and potentially constraining problems to solve just within the available tech-stack(even before we address the arguably bigger issues of how to bring all the relvant data together, and what's a sustainable internal structure). We're particularly interested in the Git data limits vs CSC sector need on data storage towards such as optimised full text searches. The potential data-estate in this exploratory development, alongside how we might take or manage direct sector input into the YML structure(s). 
 
 **Current Dev Phase:** *Discovery-Alpha*
 ---
