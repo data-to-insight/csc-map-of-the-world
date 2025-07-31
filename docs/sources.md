@@ -1,5 +1,7 @@
 # Data Sources
 
+*To add transparency to the search in particular, below is the current scope of the input data/sources. Some of the labelling comes direct/dynamically off the sources themselves and may therefore be inconsistent.*
+
 ## SCCM-aligned YAML Metadata *(~25 sources)*
 ### events
 | Source | File Type | Word Count | Last Refreshed |
