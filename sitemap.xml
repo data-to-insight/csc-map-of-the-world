@@ -2,70 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/network/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/sccm_relation_types/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/search/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
+    </url>
+    <url>
+         <loc>https://data-to-insight.github.io/csc-map-of-the-world/sources/</loc>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/D2I_Contacts_Processing/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/D2I_Linux_IMG/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/Demand_Model/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/FOI_Scrape/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/ILACS_Scrape/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/JTAI_Scrape/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/NVEST/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/PATCH/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/SEND_Scrape/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/Validator_903/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/Validator_CiN/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/Validator_SEN/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
     <url>
          <loc>https://data-to-insight.github.io/csc-map-of-the-world/YouthJustice_Scrape/</loc>
-         <lastmod>2025-07-30</lastmod>
+         <lastmod>2025-07-31</lastmod>
     </url>
 </urlset>
