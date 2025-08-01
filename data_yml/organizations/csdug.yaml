@@ -24,6 +24,9 @@ organization_fields:
   projects:
     -                              # must match a known snake_case ID
   persons:
-    - name: 
+    - name: Prof. Lisa Holmes
+      role: 
+      from: 1900-01-01
+    - name: Prof. Jenny Woodman
       role: 
       from: 1900-01-01

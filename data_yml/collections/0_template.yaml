@@ -1,11 +1,11 @@
 '@type': COLLECTION # EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON, RESOURCE, ORGANIZATION
-super_concept: ABSTRACT    # SCCM root (AGENT, OBJECT, EVENT, etc.) — helpful for graphs, schema logic 
+super_concept: ABSTRACT    # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept: FUNCTION     # optional sub-role
 name: Template Name Here
 description: >
   Short summary of the entity or activity
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - example_tag        # lowercase, snake_case if multi-word
   - data_tools

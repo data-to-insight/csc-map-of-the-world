@@ -1,7 +1,7 @@
 '@type': ORGANIZATION  # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON
 super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.) 
 sub_concept:      # optional sub-role
-name: Template Name Here
+name: NPIMG
 description: >
   Short summary of the entity or activity
 
@@ -24,6 +24,6 @@ organization_fields:
   projects:
     -                              # must match a known snake_case ID
   persons:
-    - name: 
+    - name: Carole Brookes
       role: 
       from: 1900-01-01

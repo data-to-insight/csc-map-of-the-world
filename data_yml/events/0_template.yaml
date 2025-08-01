@@ -1,5 +1,5 @@
 '@type': EVENT  # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON
-super_concept:    # optional SCCM root (AGENT, OBJECT, EVENT, etc.) — helpful for graphs, schema logic 
+super_concept:    # optional SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept: OBSERVATION     # optional sub-role
 name: Template Name Here
 description: >

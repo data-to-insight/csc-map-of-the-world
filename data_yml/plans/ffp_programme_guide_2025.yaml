@@ -1,7 +1,7 @@
 '@type': PLAN
 name: FFP Programme Guide 2025
 description: >
-  Guidance for councils and safeguarding partners implementing pre-proceedings family group decision-making as part of children’s social care reforms
+  The FFC pathfinder was announced in February 2023 as part of the government’s children’s social care implementation strategy, stable homes, built on love. 
 
 # --- Shared metadata (optional) ---
 tags:
@@ -12,8 +12,9 @@ version: 2025.07
 date_published: 2025-04-10
 website: https://www.gov.uk/government/publications/ffp-programme-guide-2025
 notes: >
-  This guide supports implementation of early-stage family group conferencing to prevent care proceedings and strengthen multi-agency practice.
-
+  From July 2023 to March 2025, the programme is investing over £45 million to design and test radical reforms in a number of local areas, across the following policies: 
+  family help, child protection, family networks, safeguarding partners. The pathfinder draws on evidence and existing good practice, including from other government programmes:
+  family hubs and start for life, supporting families, reducing parental conflict, strengthening families, protecting children
 
 # --- PLAN-specific fields ---
 plan_fields:

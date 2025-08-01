@@ -1,4 +1,6 @@
 '@type': ORGANIZATION
+super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.) 
+sub_concept:      # optional sub-role
 name: Data to Insight
 description: >
   A sector‑led service for local authority children’s data professionals. Led by LAs,

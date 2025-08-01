@@ -1,4 +1,6 @@
 '@type': ORGANIZATION
+super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.) 
+sub_concept:      # optional sub-role
 name: Regional Care Co-operative (RCC)
 description: >
   National initiative exploring regional models for children's placements and commissioning.
