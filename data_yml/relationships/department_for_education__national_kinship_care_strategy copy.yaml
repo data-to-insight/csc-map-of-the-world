@@ -1,0 +1,11 @@
+'@type': RELATIONSHIP
+name: Department for Education | Cin Census Collection
+source: department_for_education
+target: cin_census_data_requirements
+relationship_type: definesCollection
+description: >
+  The Department for Education publishes the requirements for the CiN data collection and associated rules
+tags:
+  - statutory_returns
+  - data_collection
+  - cin

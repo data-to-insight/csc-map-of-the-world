@@ -25,7 +25,8 @@ Dev-notes: Placeholder, awaiting data/sample node-set shown & some relations not
 <div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>
 
 
-If you'd like to suggest additions, please [submit a request](mailto:datatoinsight.enquiries@gmail.com).
+Submit suggested map [corrections](mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-CORRECTION&body=I%20suggest%20that%20the%20following%20needs%20correcting:) or data [additions](mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-DATA&body=I%20suggest%20that%20the%20Map%20should%20have%20the%20following%20added:)
+
 
 <style>
   #graph-status {
