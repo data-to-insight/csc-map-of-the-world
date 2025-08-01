@@ -1,0 +1,10 @@
+'@type': RELATIONSHIP
+name: Excel Tools Maintenance
+source: data_to_insight
+target: d2i_excel_toolkit_maintenance
+relationship_type: responsibleFor
+description: >
+  D2I provide ongoing maintenance and hold responsibility for the Excel tool kit
+tags:
+  - excel
+  - maintenance

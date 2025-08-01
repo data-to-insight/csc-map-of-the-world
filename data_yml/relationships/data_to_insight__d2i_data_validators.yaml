@@ -1,0 +1,10 @@
+'@type': RELATIONSHIP
+name: Excel Tools Maintenance
+source: data_to_insight
+target: d2i_data_validators
+relationship_type: responsibleFor
+description: >
+  D2I provide ongoing maintenance and hold responsibility for the stat returns data validators
+tags:
+  - excel
+  - maintenance

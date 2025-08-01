@@ -1,0 +1,11 @@
+'@type': RELATIONSHIP
+name: CiN Data Requirements
+source: cin_census_data_requirements
+target: d2i_data_validators
+relationship_type: appliedTo
+description: >
+  CiN data requirements are applied to the data validators.
+tags:
+  - dfe
+  - cin
+  - maintenance

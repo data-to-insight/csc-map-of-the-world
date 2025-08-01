@@ -1,0 +1,10 @@
+'@type': RELATIONSHIP
+name: Excel Tools Maintenance
+source: data_to_insight
+target: centre_of_excellence
+relationship_type: responsibleFor
+description: >
+  D2I consortium group we successful in their bid for the CoE
+tags:
+  - excel
+  - maintenance

@@ -1,14 +1,15 @@
 '@type': SERVICE  # EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON, RESOURCE, ORGANIZATION
-super_concept: ABSTRACT   # SCCM root (AGENT, OBJECT, EVENT, etc.) — helpful for graphs, schema logic 
+super_concept: ABSTRACT   # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept:      # optional sub-role
-name: D2I Excel Toolkit
+name: D2I Excel Toolkit Maintenance
 description: >
   Short summary of entity or activity
 
+
 # --- Shared metadata (optional) ---
 tags:
-  - example_tag        # lowercase, use snake_case if multi-word
-  - data_tools
+  - excel
+  - maintenance
 version: 2025.07
 date_published: 2025-07-21
 website: https://example.org

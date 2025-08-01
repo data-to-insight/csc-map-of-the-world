@@ -1,0 +1,9 @@
+'@type': RULE
+name: CiN Census Data Validation Requirements
+description: Validation rules implementation
+lead_organisation: department_for_education
+collaborators:
+  - d2i
+tags:
+  - validation
+  - statutory-guidance

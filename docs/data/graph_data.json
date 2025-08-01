@@ -155,6 +155,15 @@
     },
     {
       "data": {
+        "id": "d2i_excel_toolkit_maintenance",
+        "label": "D2I Excel Toolkit Maintenance",
+        "type": "SERVICE",
+        "group": "nodes"
+      },
+      "classes": "service"
+    },
+    {
+      "data": {
         "id": "centre_of_excellence",
         "label": "Centre of Excellence",
         "type": "SERVICE",
@@ -166,15 +175,6 @@
       "data": {
         "id": "d2i_data_validators",
         "label": "D2I Data Validators",
-        "type": "SERVICE",
-        "group": "nodes"
-      },
-      "classes": "service"
-    },
-    {
-      "data": {
-        "id": "d2i_excel_toolkit",
-        "label": "D2I Excel Toolkit",
         "type": "SERVICE",
         "group": "nodes"
       },
@@ -272,6 +272,15 @@
     },
     {
       "data": {
+        "id": "cin_census_data_requirements",
+        "label": "CiN Census Data Validation Requirements",
+        "type": "RULE",
+        "group": "nodes"
+      },
+      "classes": "rule"
+    },
+    {
+      "data": {
         "id": "keeping_children_safe_in_education_2025",
         "label": "Keeping Children Safe in Education 2025",
         "type": "RULE",
@@ -290,6 +299,15 @@
     },
     {
       "data": {
+        "source": "cin_census_data_requirements",
+        "target": "d2i_data_validators",
+        "label": "appliedTo",
+        "relationship_type": "appliedTo",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
         "source": "department_for_education",
         "target": "childrens_social_care_national_framework",
         "label": "hasPlan",
@@ -299,10 +317,28 @@
     },
     {
       "data": {
+        "source": "data_to_insight",
+        "target": "d2i_data_validators",
+        "label": "responsibleFor",
+        "relationship_type": "responsibleFor",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
         "source": "knowsley_council",
         "target": "data_to_insight",
         "label": "collaboratesWith",
         "relationship_type": "collaboratesWith",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "data_to_insight",
+        "target": "d2i_apprenticeships",
+        "label": "provides",
+        "relationship_type": "provides",
         "group": "edges"
       }
     },
@@ -321,6 +357,15 @@
         "target": "data_to_insight",
         "label": "collaboratesWith",
         "relationship_type": "collaboratesWith",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "data_to_insight",
+        "target": "d2i_excel_toolkit_maintenance",
+        "label": "responsibleFor",
+        "relationship_type": "responsibleFor",
         "group": "edges"
       }
     },
@@ -357,6 +402,15 @@
         "target": "ffp_programme_guide_2025",
         "label": "initiates",
         "relationship_type": "initiates",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "data_to_insight",
+        "target": "centre_of_excellence",
+        "label": "responsibleFor",
+        "relationship_type": "responsibleFor",
         "group": "edges"
       }
     }
