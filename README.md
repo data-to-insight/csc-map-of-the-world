@@ -176,6 +176,12 @@ To ensure clean re-build of mkdocs site folder. Rarely needed but in case.
 
 Aside the ongoing dev/fixes... 
 
+**To do notes**
+- already integrated the repo clone into index compile, need the same for web scrape 
+- data_published needs sub structure to aid management - or an index/tracking file for ease of over sight. 
+- data_published needsa dedup?
+- tidy up admin script process flow, need one refresh all script
+
 - SCCM-compliant exports
 - Live data ingress to maintain updates, via direct LA/DfE urls or alternative
 - Enhanced relationship modelling (multi-level RELATIONSHIP, EVENT chains)

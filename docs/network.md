@@ -7,7 +7,7 @@
 This interactive graph shows key organisations, plans, and events in the children’s services data ecosystem.
 Use the dropdown to filter by type. You can select more than one item using Ctrl/Cmd.
 
-Dev-note: Some relations not yet in place. Graph spacing etc still in progress
+Dev-notes: Placeholder, awaiting data/sample node-set shown & some relations not yet in place, graph spacing all in progress.
 
 <!-- Enhanced multi-select filter with Choices.js -->
 <div style="margin-bottom: 1em;">
@@ -24,9 +24,6 @@ Dev-note: Some relations not yet in place. Graph spacing etc still in progress
 <!-- Graph container -->
 <div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>
 
-
-This is an early version of the graph. More entities and relationships will be added over time.
-Dev-note: We're aware the legend is not yet visible. 
 
 If you'd like to suggest additions, please [submit a request](mailto:datatoinsight.enquiries@gmail.com).
 
