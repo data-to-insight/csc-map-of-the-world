@@ -1,0 +1,1062 @@
+# sources-list.yaml
+# Seed list of source hubs and direct documents to build local content index
+# ------------------------------------------------------------------------------
+# Optional classification taxonomy (independent of SCCM):
+# - statutory_guidance     => Often maps to SCCM: RULE
+# - policy_document        => Sometimes SCCM: DOCUMENTATION
+# - inspection_framework   => May loosely relate to EVENT
+# - consultation_report    => Rarely fits SCCM
+# - legislation_reference  => Possibly RULE or standalone
+# - thematic_review        => Might be DOCUMENTATION or COLLECTION
+# ------------------------------------------------------------------------------
+
+- name: Children Act 1989
+  url: https://www.legislation.gov.uk/ukpga/1989/41/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Care Standards Act 2000
+  url: https://www.legislation.gov.uk/ukpga/2000/14/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Children (Leaving Care) Act 2000
+  url: https://www.legislation.gov.uk/ukpga/2000/35/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Adoption and Children Act 2002
+  url: https://www.legislation.gov.uk/ukpga/2002/38/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Children Act 2004
+  url: https://www.legislation.gov.uk/ukpga/2004/31/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Education and Inspections Act 2006
+  url: https://www.legislation.gov.uk/ukpga/2006/40/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Safeguarding Vulnerable Groups Act 2006
+  url: https://www.legislation.gov.uk/ukpga/2006/47/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Children and Young Persons Act 2008
+  url: https://www.legislation.gov.uk/ukpga/2008/23/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Equality Act 2010
+  url: https://www.legislation.gov.uk/ukpga/2010/15/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: Children and Families Act 2014
+  url: https://www.legislation.gov.uk/ukpga/2014/6/contents/enacted
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - acts_of_parliament
+- name: adoption
+  url: '#adoption'
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: fostering
+  url: '#fostering'
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: 'The Children Act 1989 Guidance and Regulations Volume 1: Court Orders'
+  url: https://www.gov.uk/government/publications/children-act-1989-court-orders--2
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: 'The Children Act 1989 Guidance and Regulations Volume 2: Care Planning, Placement
+    and Case Review (2010)'
+  url: https://www.gov.uk/government/publications/children-act-1989-care-planning-placement-and-case-review
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: 'The Children Act 1989 Guidance and Regulations Volume 3: Planning Transition
+    to Adulthood for Care Leavers'
+  url: https://www.gov.uk/government/publications/children-act-1989-transition-to-adulthood-for-care-leavers
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: The Her Majesty’s Chief Inspector of Education, Children’s Services and Skills
+    (Fees and Frequency of Inspections) (Children’s Homes etc.) Regulations 2007 (as
+    amended)
+  url: https://www.legislation.gov.uk/uksi/2007/694/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: The Care Planning, Placement and Case Review (England) Regulations 2010
+  url: https://www.legislation.gov.uk/uksi/2010/959/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: Visits to Former Children in Care in Detention (England) Regulations 2010
+  url: https://www.legislation.gov.uk/uksi/2010/2797/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: The Arrangements for Placement of Children by Voluntary Organisations and
+    Others (England) Regulations 2011
+  url: https://www.legislation.gov.uk/uksi/2011/582/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: Visits to Children in Long-Term Residential Care Regulations 2011
+  url: https://www.legislation.gov.uk/uksi/2011/1010/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: The Children and Young Persons Act 2008 (Relevant Care Functions) (England)
+    Regulations 2014
+  url: https://www.legislation.gov.uk/id/uksi/2014/2407
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: The Children’s Homes (England) Regulations 2015
+  url: https://www.legislation.gov.uk/uksi/2015/541/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - regulations
+- name: adoption
+  url: '#adoption'
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: fostering
+  url: '#fostering'
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Providing advocacy services for children and young people (2004)
+  url: https://www.gov.uk/government/publications/advocacy-services-for-children-and-young-people
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Children’s social care: getting the best from complaints (2006)'
+  url: https://www.gov.uk/government/publications/childrens-social-care-getting-the-best-from-complaints
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Designated teacher for looked-after children (2009)
+  url: https://www.gov.uk/government/publications/designated-teacher-for-looked-after-children
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Children Act 1989 Guidance and Regulations: Local authority responsibilities
+    towards former children in care in custody (2010)'
+  url: https://www.gov.uk/government/publications/children-act-1989-former-looked-after-children-in-custody
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'IRO handbook: Statutory guidance for independent reviewing officers (IROs)
+    and local authorities on their functions in relation to case management and review
+    for children in care (2010)'
+  url: https://www.gov.uk/government/publications/independent-reviewing-officers-handbook
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Provision of accommodation for 16 and 17 year old young people who may be
+    homeless and/or require accommodation (2010)
+  url: https://www.gov.uk/government/publications/provision-of-accommodation-for-16-and-17-year-olds-who-may-be-homeless-and-or-require-accommodation
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Short breaks: statutory guidance on how to safeguard and promote the welfare
+    of disabled children using short breaks (2010)'
+  url: https://www.gov.uk/government/publications/short-breaks-for-disabled-children
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Sufficiency: Statutory guidance on securing sufficient accommodation for
+    children in care (2010)'
+  url: https://www.gov.uk/government/publications/securing-sufficient-accommodation-for-looked-after-children
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Junior individual saving accounts for looked-after children: Statutory guidance
+    for local authorities (2012)'
+  url: https://www.gov.uk/government/publications/junior-individual-saving-accounts-for-looked-after-children
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Special guardianship guidance and regulations (2012)
+  url: https://www.gov.uk/government/publications/special-guardianship-guidance
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Children missing education: statutory guidance for local authorities, Department
+    for Education, 2013'
+  url: https://www.gov.uk/government/publications/children-missing-education
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Placement of looked-after children in EU member states (2013)
+  url: https://www.gov.uk/government/publications/placement-of-looked-after-children-in-eu-member-states
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Statutory guidance on the roles and responsibilities of the Director of Children’s
+    Services and the Lead Member for Children’s Services (2013)
+  url: https://www.gov.uk/government/publications/directors-of-childrens-services-roles-and-responsibilities
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Promoting the education of looked-after children and previously looked-after
+    children: statutory guidance for local authorities (2014)'
+  url: https://www.gov.uk/government/publications/promoting-the-education-of-looked-after-children
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Statutory guidance on children who run away and go missing from home or care
+    (2014)
+  url: https://www.gov.uk/government/publications/children-who-run-away-or-go-missing-from-home-or-care
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Guide to the Children’s Homes Regulations, including the quality standards
+    (2015)
+  url: https://www.gov.uk/government/publications/childrens-homes-regulations-including-quality-standards-guide
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Keeping children safe in education (2015)
+  url: https://www.gov.uk/government/publications/keeping-children-safe-in-education--2
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Statutory guidance: Promoting the health and well-being of looked-after children
+    (2015)'
+  url: https://www.gov.uk/government/publications/promoting-the-health-and-wellbeing-of-looked-after-children--2
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Working together to safeguard children: a guide to inter-agency working to
+    safeguard and promote the welfare of children (2015)'
+  url: https://www.gov.uk/government/publications/working-together-to-safeguard-children--2
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Care of unaccompanied migrant children and child victims of modern slavery
+    (2017)
+  url: https://www.gov.uk/government/publications/care-of-unaccompanied-and-trafficked-children
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: Guidance for local authorities on the local offer for care leavers (2018)
+  url: https://www.gov.uk/government/publications/local-offer-guidance
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - statutory_guidance
+- name: 'Child sexual exploitation: definition and guide for practitioners'
+  url: https://www.gov.uk/government/publications/child-sexual-exploitation-definition-and-guide-for-practitioners
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: 'Improving the outcomes for Gypsy, Roma and Traveller pupils: final report
+    (2010)'
+  url: https://www.gov.uk/government/publications/improving-the-outcomes-for-gypsy-roma-and-traveller-pupils-final-report
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: 'Maltreated children in the looked-after system: a comparison of outcomes
+    for those who go home and those who do not (2010)'
+  url: https://www.gov.uk/government/publications/maltreated-children-in-the-looked-after-system-a-comparison-of-outcomes-for-those-who-go-home-and-those-who-do-not
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: What works re-engaging young people who are not in education, employment or
+    training (NEET)? Summary of evidence from the activity agreement pilots and the
+    entry to learning pilots (2010)
+  url: https://www.gov.uk/government/publications/what-works-re-engaging-young-people-who-are-not-in-education-employment-or-training-neet-summary-of-evidence-from-the-activity-agreement-pilots-an
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: Missing children and adults strategy (2011)
+  url: https://www.gov.uk/government/publications/missing-children-and-adults-strategy
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: 'Prospectus: delivering intensive interventions for looked-after children
+    and those on the edge of care or custody and their families (2011)'
+  url: https://www.gov.uk/government/publications/prospectus-delivering-intensive-interventions-for-looked-after-children-and-those-on-the-edge-of-care-or-custody-and-their-families
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: 'Safeguarding children who may have been trafficked: practice guidance (2011)'
+  url: https://www.gov.uk/government/publications/safeguarding-children-who-may-have-been-trafficked-practice-guidance
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: 'Tackling child sexual exploitation: action plan (2011)'
+  url: https://www.gov.uk/government/publications/tackling-child-sexual-exploitation-action-plan
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: A framework of outcomes for young people (2012)
+  url: https://www.gov.uk/government/publications/framework-of-outcomes-for-young-people
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: Care leavers in England data pack (2012)
+  url: https://www.gov.uk/government/publications/care-leavers-in-england-local-authority-data-pack
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: Children in care and adoption performance tables 2012 to 2014 (2012)
+  url: https://www.gov.uk/government/collections/children-in-care-and-adoption-performance-tables
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: Care leaver strategy (2013)
+  url: https://www.gov.uk/government/publications/care-leaver-strategy
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: 'Staying put: arrangements for care leavers aged 18 and above to stay on with
+    their former foster carers (2013)'
+  url: https://www.gov.uk/government/publications/staying-put-arrangements-for-care-leavers-aged-18-years-and-above
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: '2010 to 2015 government policy: children’s social workers (2015)'
+  url: https://www.gov.uk/government/publications/2010-to-2015-government-policy-childrens-social-workers/2010-to-2015-government-policy-childrens-social-workers
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: Information sharing advice for safeguarding practitioners (2015)
+  url: https://www.gov.uk/government/publications/safeguarding-practitioners-information-sharing-advice
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: Social mobility indicators (includes attainment gap at ages 11, 16 and 19)
+    (2015)
+  url: https://www.gov.uk/government/publications/social-mobility-indicators/social-mobility-indicators
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: What to do if you’re worried a child is being abused (2015)
+  url: https://www.gov.uk/government/publications/what-to-do-if-youre-worried-a-child-is-being-abused--2
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: 'What to do if you’re worried a child is being abused: advice for practitioners
+    (2015)'
+  url: https://www.gov.uk/government/publications/what-to-do-if-you-suspect-a-child-is-being-sexually-exploited
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: Missing Persons (College of Policing) (2016)
+  url: https://www.app.college.police.uk/app-content/major-investigation-and-public-protection/missing-persons/
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: 'Family Justice Council: Interim Guidance on Special Guardianship (2019)'
+  url: https://www.judiciary.uk/announcements/family-justice-council-interim-guidance-on-special-guardianship/
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - additional_guidance
+- name: Local Authority Social Services Act 1970
+  url: https://www.legislation.gov.uk/ukpga/1970/42/contents
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: Adoption Information and Intermediary Services (Pre-Commencement Adoptions)
+    Regulations 2005
+  url: https://www.legislation.gov.uk/uksi/2005/890/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: Adoption Support Agencies (England) and Adoption Agencies (Miscellaneous Amendments)
+    Regulations 2005
+  url: https://www.legislation.gov.uk/uksi/2005/2720/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: Adoption Support Services Regulations 2005
+  url: https://www.legislation.gov.uk/uksi/2005/691/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: Disclosure of Adoption Information (Post-Commencement Adoptions) Regulations
+    2005
+  url: https://www.legislation.gov.uk/uksi/2005/888/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: Restriction on the Preparation of Adoption Reports Regulations 2005
+  url: https://www.legislation.gov.uk/uksi/2005/1711/made?view=plain
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: The Adoption Agencies Regulations 2005
+  url: https://www.legislation.gov.uk/uksi/2005/389/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: Independent Review of Determinations (Adoption and Fostering) Regulations
+    2009
+  url: https://www.legislation.gov.uk/uksi/2009/395/introduction/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: 'Adoption: National Minimum Standards (2011)'
+  url: https://www.gov.uk/government/publications/adoption-national-minimum-standards
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: 'Right on time: exploring delays in adoption (2012)'
+  url: https://www.gov.uk/government/publications/exploring-delays-in-adoption-right-on-time
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: Statutory guidance on adoption (2013)
+  url: https://www.gov.uk/government/publications/adoption-statutory-guidance-2013
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: Regionalising adoption (2015)
+  url: https://www.gov.uk/government/publications/regional-adoption-agencies-programme
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - adoption
+- name: 'Children Act 1989: private fostering'
+  url: https://www.gov.uk/government/publications/children-act-1989-private-fostering
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - fostering
+- name: 'Family and Friends Care: Statutory Guidance for Local Authorities (2011)'
+  url: https://www.gov.uk/government/publications/children-act-1989-family-and-friends-care
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - fostering
+- name: 'Fostering services: national minimum standards (2011)'
+  url: https://www.gov.uk/government/publications/fostering-services-national-minimum-standards
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - fostering
+- name: 'The Children Act 1989 guidance and regulations volume 4: fostering services
+    (2011)'
+  url: https://www.gov.uk/government/publications/children-act-1989-fostering-services
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - fostering
+- name: The Fostering Services (England) Regulations 2011 (as amended)
+  url: https://www.legislation.gov.uk/uksi/2011/581/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - fostering
+- name: 'The demographic characteristics of foster carers in the UK: motivations,
+    barriers and messages for recruitment and retention (2012)'
+  url: https://www.gov.uk/government/publications/the-demographic-characteristics-of-foster-carers-in-the-uk-motivations-barriers-and-messages-for-recruitment-and-retention
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: legislation_reference
+  sccm_type: RULE
+  tags:
+  - fostering
+- name: 'Training, support and development standards for foster care: guidance for
+    managers, supervising social workers (2012)'
+  url: https://www.gov.uk/government/publications/training-support-and-development-standards-for-foster-care-evidence-workbook
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - fostering
+- name: 'Assessment and approval of foster carers: amended guidance (2013)'
+  url: https://www.gov.uk/government/publications/fostering-services-assessment-and-approval-of-foster-carers
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - fostering
+- name: Local Safeguarding Children Boards Regulations 2006
+  url: https://www.legislation.gov.uk/uksi/2006/90/contents/made
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - local_safeguarding_arrangements
+- name: 'Working Together: transitional guidance (Statutory guidance for Local Safeguarding
+    Children Boards, local authorities, safeguarding partners, child death review
+    partners, and the Child Safeguarding Practice Review Panel) (2015)'
+  url: https://www.gov.uk/government/publications/working-together-to-safeguard-children--2
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: statutory_guidance
+  sccm_type: RULE
+  tags:
+  - local_safeguarding_arrangements
+- name: Child Exploitation and Online Protection Centre (CEOP)
+  url: https://www.ceop.police.uk/
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - useful_websites
+- name: Disclosure and Barring Service
+  url: https://www.gov.uk/government/organisations/disclosure-and-barring-service
+  source_type: govuk_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - useful_websites
+- name: 'NSPCC Childline number (telephone: 0800 1111)'
+  url: https://www.childline.org.uk/
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - useful_websites
+- name: NSPCC National Child Trafficking Advice Centre (CTAC)
+  url: https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/child-trafficking/
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - useful_websites
+- name: Parents Against Child Sexual Exploitation (PACE)
+  url: https://www.paceuk.info/
+  source_type: external_page
+  expected_filetypes:
+  - html
+  follow_links: false
+  manual_download: false
+  classification: policy_document
+  sccm_type: RULE
+  tags:
+  - useful_websites

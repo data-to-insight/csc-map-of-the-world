@@ -134,13 +134,31 @@ To ensure clean re-build of mkdocs site folder. Rarely needed but in case.
 
 ## Tech Stack
 
-- **MkDocs** with Material theme (note-some limitations for bespoke settings)
-- **Python 3.9+**
-- **NLTK** text preprocessing (used in main search)
-- **YAML** data ibject definitions incl SCCM (Incl Network graph data)
-- **Cytoscape.js** client-side graph rendering
-- **JavaScript** for search UI, and graph render(+legend)
-- **pdfplumber**, `bs4`, `re`, `json`, `glob` for parsing and index creation
+###  Python Stack
+| Purpose             | Tools                                                                  |
+| ------------------- | ---------------------------------------------------------------------- |
+| YAML parsing        | `PyYAML`, `ruamel.yaml`                                                |
+| PDF parsing         | `pdfplumber`, `PyMuPDF`                                                |
+| HTML scraping       | `requests`, `BeautifulSoup4`                                           |
+| NLP & text cleaning | `nltk` (stopwords, lemmatisation), `spacy`, `transformers`             |
+| Keyword filtering   | `scikit-learn` (`CountVectorizer` for frequency-based filtering)       |
+| Parquet support     | `fastparquet` (used with `pandas.to_parquet`)                          |
+| Data handling       | `pandas`, `json`, `os`, `re`, `datetime`, `hashlib`                    |
+| File handling       | `pathlib`, `glob`, `shutil`, `unicodedata`                             |
+| Indexing (planned)  | `lunr`, `duckdb`, custom JSON-based indexing                           |
+| Graph generation    | `networkx`, `pyvis`, `cytoscape.js` (via JSON export)                  |
+| Markdown generation | `markdown`, `mkdocs`, `mkdocs-material`, `pandoc` (for `.docx` export) |
+| Visualisation UI    | `streamlit`, `stlite`, `Cytoscape.js`                                  |
+
+
+### Frontend / Docs / Search
+| Purpose        | Tools                                                               |
+| -------------- | ------------------------------------------------------------------- |
+| Documentation  | `MkDocs`, `Material for MkDocs`, `mkdocs.yml`, `mkdocs-private.yml` |
+| Hosting        | GitHub Pages (`gh-pages`, `GitHub Actions`)                         |
+| Graph frontend | `Cytoscape.js` (embedded via JS inside MkDocs site)                 |
+| Static search  | `list.js`, planned integration of `lunr.js`                         |
+
 
 ---
 
