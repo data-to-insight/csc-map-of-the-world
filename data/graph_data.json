@@ -381,6 +381,15 @@
     {
       "data": {
         "source": "department_for_education",
+        "target": "cin_census_data_requirements",
+        "label": "definesCollection",
+        "relationship_type": "definesCollection",
+        "group": "edges"
+      }
+    },
+    {
+      "data": {
+        "source": "department_for_education",
         "target": "keeping_children_safe_in_education_2025",
         "label": "hasPlan",
         "relationship_type": "hasPlan",
