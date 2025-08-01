@@ -29,6 +29,15 @@
     },
     {
       "data": {
+        "id": "coram",
+        "label": "CORAM",
+        "type": "ORGANIZATION",
+        "group": "nodes"
+      },
+      "classes": "org"
+    },
+    {
+      "data": {
         "id": "rcc",
         "label": "Regional Care Co-operative (RCC)",
         "type": "ORGANIZATION",
@@ -47,6 +56,51 @@
     },
     {
       "data": {
+        "id": "npimg",
+        "label": "NPIMG",
+        "type": "ORGANIZATION",
+        "group": "nodes"
+      },
+      "classes": "org"
+    },
+    {
+      "data": {
+        "id": "lga",
+        "label": "LGA",
+        "type": "ORGANIZATION",
+        "group": "nodes"
+      },
+      "classes": "org"
+    },
+    {
+      "data": {
+        "id": "research_in_practice",
+        "label": "RiP (Research in Practice)",
+        "type": "ORGANIZATION",
+        "group": "nodes"
+      },
+      "classes": "org"
+    },
+    {
+      "data": {
+        "id": "social_finance",
+        "label": "Social Finance",
+        "type": "ORGANIZATION",
+        "group": "nodes"
+      },
+      "classes": "org"
+    },
+    {
+      "data": {
+        "id": "csdug",
+        "label": "Template Name Here",
+        "type": "ORGANIZATION",
+        "group": "nodes"
+      },
+      "classes": "org"
+    },
+    {
+      "data": {
         "id": "hertfordshire_county_council",
         "label": "Hertfordshire County Council",
         "type": "ORGANIZATION",
@@ -57,7 +111,7 @@
     {
       "data": {
         "id": "adcs",
-        "label": "Data to Insight",
+        "label": "ADCS",
         "type": "ORGANIZATION",
         "group": "nodes"
       },
