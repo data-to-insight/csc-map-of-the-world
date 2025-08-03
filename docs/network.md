@@ -7,7 +7,7 @@
 This interactive graph shows key organisations, plans, and events in the children’s services data ecosystem.
 Use the dropdown to filter by type. You can select more than one item using Ctrl/Cmd.
 
-Dev-notes: Placeholder, awaiting data/sample node-set shown & some relations not yet in place, graph spacing all in progress.
+Dev-notes: Data & relations currently being added, graph layout and naming conventions for nodes in particular is a work in progress as we progress possible use-cases and standardise yml object structure.
 
 <!-- Enhanced multi-select filter with Choices.js -->
 <div style="margin-bottom: 1em;">
