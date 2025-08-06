@@ -1,4 +1,4 @@
-// revised version with node lock for unconnected
+// None lock version
 // 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Script loaded and DOM ready");
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((data) => {
-      // Remove self-loops
+      // Filter self-loop edges
       data.elements = data.elements.filter(el => {
         if (el.group === "edges" && el.data.source === el.data.target) {
           console.warn("Removing self-loop:", el.data);
@@ -52,15 +52,16 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
       });
 
-      // Assign lowercase class names
+      // Assign lowercase class names for nodes
       data.elements.forEach(el => {
         if (el.group === "nodes") {
           const type = (el.data?.type || "other").toLowerCase();
+          // Workaround: map "organization" type to "org" for class purposes
           el.classes = type === "organization" ? "org" : type;
         }
       });
 
-      // Node color styling
+      // Style nodes by class based on staticTypeColorMap
       const dynamicNodeStyles = Object.entries(staticTypeColorMap).map(([cls, color]) => ({
         selector: `.${cls === "organization" ? "org" : cls}`,
         style: {
@@ -72,7 +73,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const cy = cytoscape({
         container: cyContainer,
         elements: data.elements,
-        layout: { name: "preset" },  // We'll call layout manually after positioning isolateds
+        layout: {
+          name: "cose",
+          animate: true,
+          padding: 30,
+        },
         style: [
           {
             selector: "node",
@@ -88,11 +93,11 @@ document.addEventListener("DOMContentLoaded", function () {
           {
             selector: "edge",
             style: {
-              "label": "data(label)",
-              "font-size": 9,
-              "text-rotation": "autorotate",
-              "text-margin-y": -5,
-              "color": "#444",
+              "label": "data(label)",          // pull from edge labels in graph.json
+              "font-size": 9,                  
+              "text-rotation": "autorotate",  // rotate text along edge
+              "text-margin-y": -5,            // move label closer to edge
+              "color": "#444",                // label text colour
               "width": 2,
               "line-color": "#aaa",
               "target-arrow-color": "#aaa",
@@ -103,46 +108,16 @@ document.addEventListener("DOMContentLoaded", function () {
         ]
       });
 
-      // === Isolated node layout logic ===
-      // to reduce unpredicable/messy layout, force unconnected nodes into fixed rows on lowest frame edge
-      const connected = cy.nodes().filter(n => n.connectedEdges().length > 0);
-      const isolated = cy.nodes().filter(n => n.connectedEdges().length === 0);
-
-      const padding = 50; 
-      const xSpacing = 120; // split spacing away from const spacing = 120; so we have some flex
-      const ySpacing = 40; // row(s) distance vertical 
-      const nodesPerRow = Math.max(3, Math.ceil(Math.sqrt(isolated.length))); // ensure static nodes fit row
-      isolated.forEach((node, i) => {
-        const row = Math.floor(i / nodesPerRow);
-        const col = i % nodesPerRow;
-        node.position({
-          x: padding + col * xSpacing,
-          y: cyContainer.clientHeight - padding - row * ySpacing
-        });
-        node.lock();
-      });
-
-      // Apply cose layout only to connected nodes
-      connected.unlock(); // Unlock in case locked
-      cy.layout({
-        name: "cose",
-        animate: true,
-        padding: 50,
-        boundingBox: { x1: 0, y1: 0, x2: cyContainer.clientWidth, y2: cyContainer.clientHeight - 200 },
-        fit: true,
-        nodeDimensionsIncludeLabels: true
-      }).run();
-
-      // === Resize nodes by degree
+      // Resize nodes based on degree
       cy.nodes().forEach((node) => {
         const deg = node.degree();
         const size = Math.min(60, 20 + deg * 4);
         node.style({ width: size, height: size });
       });
 
-      // === Initial org filter
+      // === Apply initial filter to "org" ===
       const initialClass = "org";
-      setTimeout(() => {
+      function applyInitialFilter() {
         cy.nodes().forEach((node) => {
           const show = node.hasClass(initialClass);
           node.style("display", show ? "element" : "none");
@@ -153,13 +128,18 @@ document.addEventListener("DOMContentLoaded", function () {
           edge.style("display", srcVisible && tgtVisible ? "element" : "none");
         });
         updateStatus(cy.nodes().filter(n => n.style("display") !== "none").length, cy.nodes().length);
+      }
+
+      // Delay to ensure rendering completes before applying filter
+      setTimeout(() => {
+        applyInitialFilter();
       }, 200);
 
-      // === Legend ===
+      // === Static Legend Block ===
       /*
-        (now static) legend as dynamic extraction of node types failled
-        Dev note: Likely issues with MkDocs page load order, caching, and asynchronous rendering
-        legend generated from known fixed set of types to increase stability
+        We use a static legend because dynamic extraction of node types was failing.
+        This happened due to issues with MkDocs page load order, caching, and asynchronous rendering.
+        To ensure stability, the legend is now generated from a known fixed set of types.
       */
       const legendBlock = document.createElement("details");
       legendBlock.id = "static-legend";
@@ -176,7 +156,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const row = document.createElement("div");
         row.style = "display: flex; align-items: center; margin: 4px 0;";
         row.innerHTML = `
-          <span style="width: 14px; height: 14px; background: ${color}; display: inline-block; margin-right: 6px; border-radius: 3px;"></span> ${type.charAt(0).toUpperCase() + type.slice(1)}
+          <span style="
+            width: 14px;
+            height: 14px;
+            background: ${color};
+            display: inline-block;
+            margin-right: 6px;
+            border-radius: 3px;
+          "></span> ${type.charAt(0).toUpperCase() + type.slice(1)}
         `;
         legendList.appendChild(row);
       });
@@ -226,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cy.fit();
       });
 
-      // Status counter
+      // Live node count display
       const statusDisplay = document.createElement("p");
       statusDisplay.id = "graph-status";
       statusDisplay.style.fontSize = "0.75em";
