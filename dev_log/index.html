@@ -378,9 +378,75 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2025-08-01-mailto-links-devlog-structure-and-public-facing-logging" class="md-nav__link">
+  <a href="#2025-08-06-review-the-savvi-model-concepts-agin" class="md-nav__link">
     <span class="md-ellipsis">
-      2025-08-01 — Mailto links, devlog structure, and public-facing logging
+      2025-08-06 - Review the SAVVI model concepts agin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-08-05-input-form-logic-with-yaml-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      2025-08-05 — Input form logic with YAML export
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-08-05 — Input form logic with YAML export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation rationale
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-compatibility-with-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full compatibility with GitHub Pages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-native-and-open-source-aligned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git-native and open source aligned
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problems-encountered" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problems encountered
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-08-01-mailto-links-devlog-structure-and-public-facing-dev-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      2025-08-01 — Mailto links, devlog structure, and public-facing dev log
     </span>
   </a>
   
@@ -502,94 +568,122 @@
 
 
 <h1 id="development-log-mapoftheworld">Development Log — MapOfTheWorld</h1>
-<h2 id="2025-08-01-mailto-links-devlog-structure-and-public-facing-logging">2025-08-01 — Mailto links, devlog structure, and public-facing logging</h2>
+<h2 id="2025-08-06-review-the-savvi-model-concepts-agin">2025-08-06 - Review the SAVVI model concepts agin</h2>
 <ul>
-<li>Revised the 'suggest improvement|fix' to be mailto to make it easier for direct contributions. </li>
-<li>Took the opportunity to define a structure for this devlog. Since it’s public-facing, I’m treating it as a hybrid devlog/changelog. Decided on reverse chronological order and clear date headings.</li>
-<li>Skipped tags and automation for now — Markdown works well and is fast to edit manually.</li>
+<li>Landed back on the SAVVI model, wondering if that was perhaps a better fit for htis project. Decided against. </li>
+</ul>
+<h2 id="2025-08-05-input-form-logic-with-yaml-export">2025-08-05 — Input form logic with YAML export</h2>
+<ul>
+<li>Finalised static HTML form for submitting new entries to the Map of the World</li>
+<li>Form supports(relevant) <code>@type</code> values defined in the SCCM-aligned data model: ORGANIZATION, SERVICE, EVENT, PLAN, COLLECTION, PERSON, RESOURCE, RELATIONSHIP</li>
+<li>Each type has type specific field section, dynamically shown/hidden on selection</li>
+<li>RELATIONSHIP includes source type dropdown to filter valid <code>relationship_type</code> options</li>
+<li>To help users, placeholder examples added (in grey text) for multi-value fields like Collaborators, Related Entities, Interests, etc</li>
+<li>Placeholders are auto-stripped from YAML output if unchanged(to make sure examples dont go into yml output)</li>
+<li>When <code>@type</code> changes, previously generated YAML box cleared to avoid confusion between entries</li>
+</ul>
+<h3 id="implementation-rationale"><em>Implementation rationale</em></h3>
+<p>The form built using a <strong>lightweight HTML/CSS/JS stack - no frameworks or backend</strong>, relying only on <a href="https://github.com/nodeca/js-yaml">js-yaml</a> to handle YAML serialisation in browser. This driven by the following initial thinking:</p>
+<h4 id="full-compatibility-with-github-pages">Full compatibility with GitHub Pages</h4>
+<p>Form intended to be served directly from the repo — no server, no build process. Fully static ensures <a href="https://pages.github.com/">GitHub Pages</a> compatibility, i.e. support for only static HTML/CSS/JS. This ensures all aspects of the form is human-readable, no reliance on 3rd party form, JS frameworks, or backend APIs that could disappear or break over time. </p>
+<h4 id="git-native-and-open-source-aligned">Git-native and open source aligned</h4>
+<p>The YAML output integrates directly with the project’s Git-based workflow — contributors can download the file or submit via PR(not yet implemented), and the data remains version-controlled. This supports the vision of open, and collaborative mapping of the CSC ecosystem.</p>
+<h3 id="problems-encountered">Problems encountered</h3>
+<ul>
+<li><strong>Type-specific sections not appearing</strong>: logic flaw, only <code>ORGANIZATION</code> and <code>RELATIONSHIP</code> type fields were initially showing. fixed by ensuring <code>toggleTypeSections()</code> logic applied on both load and change.</li>
+<li><strong>YAML not generating or clearing the form unexpectedly</strong>: "Generate YAML" button reset the form and wipe data. caused by incorrect form handling, resolved by preventing the default submit behaviour.</li>
+<li><strong>Type-specific fields missing from YAML output</strong>: type fields not always included in the final output. fixed by reintroducing and checking all relevant fields per type</li>
+<li><strong>Placeholder values being treated as real input</strong>: <code>example_value</code> showing in YAML. We introduced <code>cleanList()</code> and <code>cleanTextList()</code> utilities to strip placeholder content automatically.</li>
+</ul>
+<hr />
+<h2 id="2025-08-01-mailto-links-devlog-structure-and-public-facing-dev-log">2025-08-01 — Mailto links, devlog structure, and public-facing dev log</h2>
+<ul>
+<li>Revised 'suggest improvement|fix' mailto to make it easier for direct contributions</li>
+<li>define a structure for this devlog. Using as a hybrid devlog/changelog</li>
+<li>Skipped tags and automation for now — Markdown works well and is fast to edit manually</li>
 </ul>
 <p><em>Notes:</em>  </p>
 <hr />
 <h2 id="2025-07-31-cytoscape-class-filters-bug-stlite-graph-fixes">2025-07-31 — Cytoscape class filters bug, stlite graph fixes</h2>
 <ul>
-<li>Found a stubborn bug where class-based filters in Cytoscape weren’t applying on page load.</li>
-<li>After investigating, I discovered that class assignment lagged layout rendering. A simple <code>setTimeout</code> workaround after graph layout stabilisation solved it.</li>
-<li>Also fixed a mismatch in hardcoded colours and class names in the static legend — ‘ORGANIZATION’ nodes were showing grey due to casing.</li>
+<li>Found a stubborn bug where class-based filters in Cytoscape weren’t applying on page load</li>
+<li>After investigating, I discovered that class assignment lagged layout rendering. A simple <code>setTimeout</code> workaround after graph layout stabilisation solved it</li>
+<li>Also fixed a mismatch in hardcoded colours and class names in the static legend — ‘ORGANIZATION’ nodes were showing grey due to casing</li>
 </ul>
 <hr />
 <h2 id="2025-07-30-static-legend-switch-for-graph-ui">2025-07-30 — Static legend switch for graph UI</h2>
 <ul>
-<li>The dynamic legend system was fragile, especially when class names didn’t match types consistently.</li>
-<li>I rebuilt the legend as a static block — hardcoding known entity types like <code>ORGANIZATION</code>, <code>SERVICE</code>, <code>PERSON</code> etc. with consistent colours.</li>
-<li>Filter defaults now apply correctly on page load. The legend also starts collapsed, which feels cleaner.</li>
+<li>The dynamic legend system was fragile, especially when class names didn’t match types consistently</li>
+<li>I rebuilt the legend as a static block — hardcoding known entity types like <code>ORGANIZATION</code>, <code>SERVICE</code>, <code>PERSON</code> etc. with consistent colours</li>
+<li>Filter defaults now apply correctly on page load. The legend also starts collapsed, which feels cleaner</li>
 </ul>
 <hr />
 <h2 id="2025-07-29-yaml-errors-and-edge-failures-in-cytoscape-build">2025-07-29 — YAML errors and edge failures in Cytoscape build</h2>
 <ul>
-<li>Ran into YAML errors during <code>admin-build_cytoscape_json.py</code> — one malformed file broke the whole build.</li>
-<li>Also noticed skipped edges due to missing nodes, traced to naming mismatches (e.g. <code>data_to_insight -&gt; d2i_excel_toolkit_maintenance</code>).</li>
-<li>Rebuilt one broken relationship YAML from a working template, which fixed the issue — reinforcing the need for stricter YAML validation tooling.</li>
+<li>Ran into YAML errors during <code>admin-build_cytoscape_json.py</code> — one malformed file broke the whole build</li>
+<li>Also noticed skipped edges due to missing nodes, traced to naming mismatches (e.g. <code>data_to_insight -&gt; d2i_excel_toolkit_maintenance</code>)</li>
+<li>Rebuilt one broken relationship YAML from a working template, which fixed the issue — reinforcing the need for stricter YAML validation tooling</li>
 </ul>
 <hr />
 <h2 id="2025-07-22-to-2025-07-26-external-data-inclusion-and-web-scraping">2025-07-22 to 2025-07-26 — External data inclusion and web scraping</h2>
 <ul>
-<li>Decided to expand the knowledge base by integrating published web content (PDFs, guidance, reports).</li>
-<li>Designed a strategy to store scraped content under <code>data_web/</code> and generate YAML metadata for indexing.</li>
-<li>Early blockers included inconsistent text extraction (e.g. malformed GOV.UK PDFs) and parsing issues for structured headers in some <code>.txt</code> and <code>.pdf</code> files.</li>
+<li>Decided to expand the knowledge base by integrating published web content (PDFs, guidance, reports)</li>
+<li>Designed a strategy to store scraped content under <code>data_web/</code> and generate YAML metadata for indexing</li>
+<li>Early blockers included inconsistent text extraction (e.g. malformed GOV.UK PDFs) and parsing issues for structured headers in some <code>.txt</code> and <code>.pdf</code> files</li>
 </ul>
 <hr />
 <h2 id="2025-07-19-pivot-away-from-streamlitstlite-to-mkdocs-js">2025-07-19 — Pivot away from Streamlit/stlite to MkDocs + JS</h2>
 <ul>
-<li>After several attempts to render interactive network graphs in <code>stlite</code>, I hit repeated blockers.</li>
-<li>Despite simplifying the data and testing basic layouts, Cytoscape.js would either not load properly or failed silently due to lack of support for external JavaScript modules and delayed layout rendering.</li>
-<li>These limitations made <code>stlite</code> too fragile for graph-based exploration — especially with filters, tooltips, and legend controls.</li>
-<li>Decided to switch fully to <strong>MkDocs</strong> as the primary documentation and frontend base, embedding <strong>custom HTML + JavaScript</strong> components directly.</li>
-<li>This offered a much more stable and extensible foundation for publishing network diagrams, filtered views, and layered data exploration.</li>
+<li>After several attempts to render interactive network graphs in <code>stlite</code>, I hit repeated blockers</li>
+<li>Despite simplifying the data and testing basic layouts, Cytoscape.js would either not load properly or failed silently due to lack of support for external JavaScript modules and delayed layout rendering</li>
+<li>These limitations made <code>stlite</code> too fragile for graph-based exploration — especially with filters, tooltips, and legend controls</li>
+<li>Decided to switch fully to <strong>MkDocs</strong> as the primary documentation and frontend base, embedding <strong>custom HTML + JavaScript</strong> components directly</li>
+<li>This offered a much more stable and extensible foundation for publishing network diagrams, filtered views, and layered data exploration</li>
 </ul>
 <p><em>Notes:</em><br />
-This was a significant architectural shift, but it unlocked better search integration, reusable visual components, and static hosting via GitHub Pages without relying on Python runtime hacks.</p>
+This was a significant architectural shift, but it unlocked better search integration, reusable visual components, and static hosting via GitHub Pages without relying on Python runtime hacks</p>
 <hr />
 <h2 id="2025-07-18-migration-to-stlite-for-frontend-hosting">2025-07-18 — Migration to <code>stlite</code> for frontend hosting</h2>
 <ul>
-<li>Shifted from standard Streamlit to <code>stlite</code> to support deployment via GitHub Pages — keeping everything browser-based.</li>
-<li>Had to strip out unsupported modules like <code>pyvis</code>, <code>pathlib.Path(__file__)</code>, and Parquet I/O.</li>
-<li>Rebuilt the visualisation to use JSON and embedded Cytoscape.js directly in HTML.</li>
+<li>Shifted from standard Streamlit to <code>stlite</code> to support deployment via GitHub Pages — keeping everything browser-based</li>
+<li>Had to strip out unsupported modules like <code>pyvis</code>, <code>pathlib.Path(__file__)</code>, and Parquet I/O</li>
+<li>Rebuilt the visualisation to use JSON and embedded Cytoscape.js directly in HTML</li>
 </ul>
 <hr />
 <h2 id="2025-07-17-parquet-removal-and-frontend-browser-shift">2025-07-17 — Parquet removal and frontend browser shift</h2>
 <ul>
-<li>Began adapting the Streamlit app to run fully in-browser using <code>stlite</code>.</li>
-<li>Removed Parquet-based data loading due to Pyodide/browser compatibility.</li>
-<li>Replaced with pre-generated JSON stored in <code>data/index_data.json</code> and loaded via HTTP.</li>
-<li>Shifted from Python visualisation tools to pure JS (Cytoscape.js) for performance and portability.</li>
+<li>Began adapting the Streamlit app to run fully in-browser using <code>stlite</code></li>
+<li>Removed Parquet-based data loading due to Pyodide/browser compatibility</li>
+<li>Replaced with pre-generated JSON stored in <code>data/index_data.json</code> and loaded via HTTP</li>
+<li>Shifted from Python visualisation tools to pure JS (Cytoscape.js) for performance and portability</li>
 </ul>
 <hr />
 <h2 id="2025-07-16-sccm-node-type-update-for-yaml-compatibility">2025-07-16 — SCCM node type update for YAML compatibility</h2>
 <ul>
-<li>Switched all entity type declarations from <code>@type: PERSON</code> to <code>@type: 'PERSON'</code> (with quotes) to avoid YAML parsing issues.</li>
-<li>This change rippled through the data layer and required updates to validation and the graph builder.</li>
-<li>Highlighted the need for stricter YAML schema validation down the line.</li>
+<li>Switched all entity type declarations from <code>@type: PERSON</code> to <code>@type: 'PERSON'</code> (with quotes) to avoid YAML parsing issues</li>
+<li>This change rippled through the data layer and required updates to validation and the graph builder</li>
+<li>Highlighted the need for stricter YAML schema validation down the line</li>
 </ul>
 <hr />
 <h2 id="2025-07-14-fixing-schema-to-graph-disconnects">2025-07-14 — Fixing schema-to-graph disconnects</h2>
 <ul>
-<li>Spotted broken links and dangling edges in the graph caused by mismatches between service/organisation IDs and their relationship definitions.</li>
-<li>Rewrote edge-building logic to verify both subject and object exist before drawing the edge.</li>
-<li>Output clearer error messages when skipping invalid relationships.</li>
+<li>Spotted broken links and dangling edges in the graph caused by mismatches between service/organisation IDs and their relationship definitions</li>
+<li>Rewrote edge-building logic to verify both subject and object exist before drawing the edge</li>
+<li>Output clearer error messages when skipping invalid relationships</li>
 </ul>
 <hr />
 <h2 id="2025-07-09-visual-and-navigational-structure-rethink">2025-07-09 — Visual and navigational structure rethink</h2>
 <ul>
-<li>Reorganised the <code>/docs/</code> folder to avoid the sprawl of earlier MkDocs projects.</li>
-<li>Added grouped navigation for tools, scrapes, and thematic areas like Early Help, SEND, and Benchmarking.</li>
-<li>Refined the script that auto-generates <code>mkdocs.yml</code> navigation from the folder structure.</li>
+<li>Reorganised the <code>/docs/</code> folder to avoid the sprawl of earlier MkDocs projects</li>
+<li>Added grouped navigation for tools, scrapes, and thematic areas like Early Help, SEND, and Benchmarking</li>
+<li>Refined the script that auto-generates <code>mkdocs.yml</code> navigation from the folder structure</li>
 </ul>
 <hr />
 <h2 id="2025-07-03-csv-and-contact-data-integration">2025-07-03 — CSV and contact data integration</h2>
 <ul>
-<li>Added ability to merge contact lists from separate sources (e.g. Wix exports and curated CSVs).</li>
-<li>Extracted email domains and lowercased fields for consistency.</li>
-<li>Laid early groundwork for people-entity mapping within the broader ecosystem graph.</li>
+<li>Added ability to merge contact lists from separate sources (e.g. Wix exports and curated CSVs)</li>
+<li>Extracted email domains and lowercased fields for consistency</li>
+<li>Laid early groundwork for people-entity mapping within the broader ecosystem graph</li>
 </ul>
 
 
