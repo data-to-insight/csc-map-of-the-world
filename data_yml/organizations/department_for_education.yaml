@@ -1,7 +1,7 @@
 '@type': ORGANIZATION
 super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.) 
 sub_concept:      # optional sub-role
-name: Department for Education
+name: DfE
 description: >
   UK government department responsible for education and children's services policy.
 

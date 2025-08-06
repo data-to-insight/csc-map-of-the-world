@@ -1,7 +1,7 @@
 '@type': ORGANIZATION  # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON
 super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.) 
 sub_concept:      # optional sub-role
-name: RiP (Research in Practice)
+name: Research in Practice (RiP)
 description: >
   Short summary of the entity or activity
 

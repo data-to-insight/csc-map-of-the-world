@@ -131,10 +131,17 @@
           <option value="AGENT">AGENT</option>
         </select>
       </div>
-      <div>
+      <!-- <div> // replacing with populated drop-list see populateSourceOptions()
         <label for="rel_source">Source</label>
         <input id="rel_source" placeholder="example_value">
+      </div> -->
+      <div>
+        <label for="rel_source">Source</label>
+        <select id="rel_source">
+          <option value="">-- Select Source --</option>
+        </select>
       </div>
+
       <div>
         <label for="rel_type">Relationship Type</label>
         <select id="rel_type">
@@ -383,6 +390,43 @@
     // Convert object to YAML and display in output box
     output.value = jsyaml.dump(base);
   });
+
+
+  // Load --already generated-- valid source nodes into RELATIONSHIP source select box
+  // generated via admin_scripts/admin-extract_relationship_form_sources.py
+ 
+  async function populateSourceOptions() {
+    try {
+      const sourceDataURL = new URL("csc-map-of-the-world/data/source_nodes.json", window.location.origin);
+      console.log("📦 Fetching source nodes from:", sourceDataURL.href);
+
+      const res = await fetch(sourceDataURL);
+
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}`);
+      }
+
+      const sourceList = await res.json();
+      console.log("✅ Loaded source nodes:", sourceList);
+
+      const sourceSelect = document.getElementById("rel_source");
+      sourceList.forEach(name => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name;
+        sourceSelect.appendChild(opt);
+      });
+    } catch (err) {
+      console.error("❌ Failed to load source_nodes.json:", err);
+    }
+  }
+
+  // Load source options when DOM is ready to ensure pre-populated for source nodes
+  window.addEventListener("DOMContentLoaded", () => {
+    toggleTypeSections(); // existing call
+    populateSourceOptions(); // new call
+  });
+
 
   // Download YAML as file
   function downloadYAML() {

@@ -1,7 +1,7 @@
 '@type': ORGANIZATION
 super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.) 
 sub_concept:      # optional sub-role
-name: Hertfordshire County Council
+name: Hertfordshire CC
 description: >
   Partner in the Standard Safeguarding Dataset project, contributing to schema development and implementation pilots.
 
