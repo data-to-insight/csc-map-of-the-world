@@ -61,7 +61,7 @@ notes: >
 # relationship_fields:
 #   source:                               # snake_case org/person ID
 #   target:                               # snake_case org/service ID
-#   relationship_type: collaboratesWith   # use SCCM types like hasPlan, hasOutcome
+#   relationship_type: e.g. collaboratesWith   # use SCCM named relations like hasPlan, hasOutcome(see list for full reference)
 
 
 # --- Uncomment section below if a COLLECTION ---

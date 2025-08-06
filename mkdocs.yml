@@ -14,6 +14,8 @@ nav:
   - CSC Search Strategy: search_pipeline.md
   - CSC Search Sources: sources.md
 
+  - Submit Entry: form/index.html
+
 
 extra_javascript:
   - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js
