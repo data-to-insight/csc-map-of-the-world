@@ -20,10 +20,10 @@
 </head>
 <body>
   <h2>Submit new entry into CSC Map of the World</h2>
-  <!-- Main form for entering structured data -->
+  <!-- Main data entry form -->
   <form id="submission-form">
     <div class="grid">
-      <!-- Core shared fields -->
+      <!-- Core|common shared fields -->
       <div>
         <label for="type">Type</label>
         <select id="type" required>
@@ -38,10 +38,12 @@
           <option value="RELATIONSHIP">RELATIONSHIP</option>
         </select>
       </div>
-      <!-- Super/Sub concepts auto-filled -->
+      <div><label>Name</label><input id="name" required></div>
+
+      <!-- Super/Sub concepts auto-filled based on known SCCM definitions hence disabled -->
       <div><label>Super Concept</label><input id="super_concept" disabled class="disabled"></div>
       <div><label>Sub Concept</label><input id="sub_concept" disabled class="disabled"></div>
-      <div><label>Name</label><input id="name" required></div>
+
       <div><label>Tags</label><input id="tags"></div>
       <div><label>Version</label><input id="version" value="2025.07"></div>
       <div><label>Date Published</label><input type="date" id="date_published"></div>
@@ -106,8 +108,48 @@
       <div><label>Related Entities</label><textarea id="res_related" placeholder="example_value, example_value"></textarea></div>
     </div>
 
+    <!-- <div id="RELATIONSHIP" class="section grid">
+      <div><label>Source</label><input id="rel_source" placeholder="example_value"></div>
+      <div><label>Target</label><input id="rel_target" placeholder="example_value"></div>
+      <div><label>Relationship Type</label><input id="rel_type" placeholder="collaboratesWith, providesServiceFor, etc."></div>
+    </div> -->
+
+    <div id="RELATIONSHIP" class="section grid">
+      <div>
+        <label for="rel_source_type">Source Type (for filtering)</label>
+        <select id="rel_source_type">
+          <option value="">-- Select Source Type --</option>
+          <option value="SERVICE">SERVICE</option>
+          <option value="EVENT">EVENT</option>
+          <option value="PLAN">PLAN</option>
+          <option value="ORGANIZATION">ORGANIZATION</option>
+          <option value="PERSON">PERSON</option>
+          <option value="RULE">RULE</option>
+          <option value="RESOURCE">RESOURCE</option>
+          <option value="COMMUNITY">COMMUNITY</option>
+          <option value="COLLECTION">COLLECTION</option>
+          <option value="AGENT">AGENT</option>
+        </select>
+      </div>
+      <div>
+        <label for="rel_source">Source</label>
+        <input id="rel_source" placeholder="example_value">
+      </div>
+      <div>
+        <label for="rel_type">Relationship Type</label>
+        <select id="rel_type">
+          <option value="">-- Select Relationship --</option>
+        </select>
+      </div>
+      <div>
+        <label for="rel_target">Target</label>
+        <input id="rel_target" placeholder="example_value">
+      </div>
+    </div>
+
+
     <div class="button-row">
-      <!-- Button(s) to gen|grab the needed yml after form completrion -->
+      <!-- Button(s) to gen|grab needed yml after form completrion -->
       <button type="submit" id="generate-btn">Generate YAML</button>
       <button type="button" onclick="downloadYAML()">Download YAML</button>
       <a id="github-link" href="#" target="_blank">Submit via GitHub PR</a>
@@ -115,21 +157,23 @@
   </form>
 
   <h3>Generated YAML</h3>
-    <!-- When Generate yml button pressed, yml appears in this -->
+    <!-- When Generate yml button pressed, yml appears here -->
   <textarea id="yaml-output" readonly></textarea>
 
   <script>
-  // Get references to key form elements
+  // Get refs to key form elements
   const typeSelector = document.getElementById("type");
   const superConcept = document.getElementById("super_concept");
   const subConcept = document.getElementById("sub_concept");
   const datePublished = document.getElementById("date_published");
   const output = document.getElementById("yaml-output");
 
-  // Constant used to detect unchanged placeholder examples
+  // Constant to detect unchanged placeholder egs
   const PLACEHOLDER = "example_value";
 
   // Predefined super/sub concept values mapped by type
+  // Add to this dict any subsequent sub|sper concept changes from SCCM
+  // These are known from SCCM definitions
   const TYPE_SUPER_SUB_PRESETS = {
     ORGANIZATION: { super: "Agent" },
     RULE: { super: "Abstract" },
@@ -140,26 +184,28 @@
     COMMUNITY: { super: "Item" }
   };
 
-  // Cleans comma-separated lists, removing whitespace and placeholder values
+  // Clean comma-separated lists, rem whitespace and placeholder vals
   function cleanList(value) {
     return value.split(",").map(x => x.trim()).filter(x => x && x !== PLACEHOLDER);
   }
 
-  // Cleans newline-separated lists (e.g., for persons), removing placeholder lines
+  // Clean newline-separated lists (e.g., for persons), rem placeholder lines
   function cleanTextList(value) {
     return value.split("\n").map(x => x.trim()).filter(x => x && x !== PLACEHOLDER);
   }
 
-  // Called whenever the type dropdown changes
+  // Called when type dropdown changes
   function toggleTypeSections() {
     const currentType = typeSelector.value;
 
-    // Show only the relevant type-specific form section
+    // Show only relevant type-specific form section
+    // i.e. when PLAN selected, then PLAN related/specific fields show in form
     document.querySelectorAll(".section").forEach(section => {
       section.style.display = section.id === currentType ? "grid" : "none";
     });
 
     // Clear the YAML output on type change
+    // Otherwise prev yaml text output still shows as as the form is reset
     output.value = "";
 
     // Set and lock super/sub concepts based on type presets
@@ -171,11 +217,78 @@
     superConcept.classList.add("disabled");
     subConcept.classList.add("disabled");
 
-    // Disable date_published for ORGANIZATION and PERSON types
-    const shouldDisableDate = ["ORGANIZATION", "PERSON"].includes(currentType);
+    // Disable date_published field - for specified types
+    const shouldDisableDate = ["ORGANIZATION", "PERSON", "RELATIONSHIP"].includes(currentType);
     datePublished.disabled = shouldDisableDate;
     datePublished.classList.toggle("disabled", shouldDisableDate);
+
+    // Disable website field - for specified types
+    const shouldDisableWebsite = ["RELATIONSHIP", "PERSON"].includes(currentType);
+    website.disabled = shouldDisableWebsite;
+    website.classList.toggle("disabled", shouldDisableWebsite);
   }
+
+
+  // RELATIONSHIP: Mapping from object source_type to valid relationship types
+  // All following relations taken direct from http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10
+  const RELATIONSHIP_OPTIONS = {
+    SERVICE: [
+      // i.e. SCCM service type has these relations associated to it
+      "contains", "influencedBy", "providedBy", "responsibilityOf",
+      "serviceImplementsMethod", "usedBy", "subjectOf", "containedIn",
+      "raises", "usesResource", "hasRule"
+    ],
+    EVENT: [
+      "atPlace", "hasOutcome", "containedIn", "hasRoleFrom",
+      "eventPlannedIn"
+    ],
+    PLAN: [
+      "contains", "hasTarget", "influencedBy", "planDerivedFromMethod",
+      "planForEvent", "planForCase", "containedIn", "planOf", "usesResource"
+    ],
+    ORGANIZATION: [
+      "contains", "containedIn", "hasMember"
+    ],
+    PERSON: [
+      "memberOf"
+    ],
+    RULE: [
+      "ruleFor"
+    ],
+    RESOURCE: [
+      "resourceFor", "resourceOf"
+    ],
+    COMMUNITY: [
+      "contains", "containedIn", "uses"
+    ],
+    COLLECTION: [
+      "collectionContains", "collectionDefinedBy"
+    ],
+    AGENT: [
+      "has", "hasAgreement", "hasObjective", "hasPlan", "hasResource",
+      "takesDecision", "uses", "makesAssumption", "definesCollection",
+      "owns", "provides", "responsibleFor"
+    ]
+  };
+
+  // When source type changes, update available relationship types
+  document.getElementById("rel_source_type").addEventListener("change", function () {
+    const selectedType = this.value;
+    const relTypeSelect = document.getElementById("rel_type");
+
+    // Clear current options
+    relTypeSelect.innerHTML = '<option value="">-- Select Relationship --</option>';
+
+    // Populate new options
+    if (RELATIONSHIP_OPTIONS[selectedType]) {
+      RELATIONSHIP_OPTIONS[selectedType].forEach(rel => {
+        const option = document.createElement("option");
+        option.value = rel;
+        option.textContent = rel;
+        relTypeSelect.appendChild(option);
+      });
+    }
+  });
 
   // Attach toggleTypeSections to page load and dropdown change
   typeSelector.addEventListener("change", toggleTypeSections);
@@ -188,6 +301,7 @@
     const type = typeSelector.value;
 
     // Start building base YAML object
+    // i.e. this is the core or common field:value set
     const base = {
       "@type": type,
       name: name.value,
@@ -201,8 +315,10 @@
       sub_concept: subConcept.value
     };
 
+    // submit related
+
     // Extend YAML object with type-specific fields
-    // These fields being those specific to each object beyond the core set (toggled on/of in form)
+    // These fields specific to each object beyond the core set (& then toggled on/of in form)
     if (type === "ORGANIZATION") {
       base.organisation_type = org_type.value;
       base.region = org_region.value;
@@ -256,6 +372,13 @@
       base.access_url = res_url.value;
       base.related_entities = cleanList(res_related.value);
     }
+
+    if (type === "RELATIONSHIP") {
+      base.source = rel_source.value;
+      base.target = rel_target.value;
+      base.relationship_type = rel_type.value;
+    }
+
 
     // Convert object to YAML and display in output box
     output.value = jsyaml.dump(base);
