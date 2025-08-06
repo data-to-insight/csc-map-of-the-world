@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Map of the World Submission Form</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 2em; max-width: 960px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .long { grid-column: 1 / -1; }
+    textarea { width: 100%; min-height: 80px; resize: vertical; }
+    #yaml-output { width: 100%; height: 300px; margin-top: 2em; font-family: monospace; }
+    .button-row { margin-top: 1em; display: flex; flex-wrap: wrap; gap: 1rem; }
+    label { font-weight: bold; margin-top: 0.5em; }
+    input, select, textarea { width: 100%; box-sizing: border-box; padding: 0.4em; }
+    .section { display: none; margin-top: 1em; }
+    .disabled { background-color: #eee; opacity: 0.6; }
+    ::placeholder { color: #aaa; }
+  </style>
+</head>
+<body>
+  <h2>Submit new entry into CSC Map of the World</h2>
+  <!-- Main form for entering structured data -->
+  <form id="submission-form">
+    <div class="grid">
+      <!-- Core shared fields -->
+      <div>
+        <label for="type">Type</label>
+        <select id="type" required>
+          <option value="">-- Select --</option>
+          <option value="ORGANIZATION">ORGANIZATION</option>
+          <option value="SERVICE">SERVICE</option>
+          <option value="EVENT">EVENT</option>
+          <option value="PLAN">PLAN</option>
+          <option value="COLLECTION">COLLECTION</option>
+          <option value="PERSON">PERSON</option>
+          <option value="RESOURCE">RESOURCE</option>
+          <option value="RELATIONSHIP">RELATIONSHIP</option>
+        </select>
+      </div>
+      <!-- Super/Sub concepts auto-filled -->
+      <div><label>Super Concept</label><input id="super_concept" disabled class="disabled"></div>
+      <div><label>Sub Concept</label><input id="sub_concept" disabled class="disabled"></div>
+      <div><label>Name</label><input id="name" required></div>
+      <div><label>Tags</label><input id="tags"></div>
+      <div><label>Version</label><input id="version" value="2025.07"></div>
+      <div><label>Date Published</label><input type="date" id="date_published"></div>
+      <div><label>Website</label><input type="url" id="website"></div>
+      <div class="long"><label>Description</label><textarea id="description" required></textarea></div>
+      <div class="long"><label>Notes</label><textarea id="notes"></textarea></div>
+    </div>
+
+    <!-- Type-specific sections below, only one is shown depending on selected @type -->
+    <!-- (Placeholder with example_value for guidance just in multi-value fields) -->
+    <div id="ORGANIZATION" class="section grid">
+      <div><label>Organisation Type</label><input id="org_type"></div>
+      <div><label>Region</label><input id="org_region"></div>
+      <div><label>Projects</label><textarea id="org_projects" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Persons</label><textarea id="org_persons" placeholder="example_value|example_value|example_value"></textarea></div>
+    </div>
+
+    <div id="SERVICE" class="section grid">
+      <div><label>Lead Organisation</label><input id="srv_lead"></div>
+      <div><label>Delivery Partners</label><textarea id="srv_partners" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Status</label><input id="srv_status"></div>
+      <div class="long"><label>Scope</label><textarea id="srv_scope"></textarea></div>
+    </div>
+
+    <div id="EVENT" class="section grid">
+      <div><label>Lead Organisation</label><input id="evt_lead"></div>
+      <div><label>Collaborators</label><textarea id="evt_collab" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Location</label><input id="evt_loc"></div>
+      <div><label>Date</label><input type="date" id="evt_date"></div>
+    </div>
+
+    <div id="PLAN" class="section grid">
+      <div><label>Status</label><input id="plan_status"></div>
+      <div><label>Linked Framework</label><input id="plan_linked"></div>
+      <div><label>Target Outcomes</label><textarea id="plan_outcomes" placeholder="example_value, example_value"></textarea></div>
+    </div>
+
+    <div id="COLLECTION" class="section grid">
+      <div><label>Theme</label><input id="col_theme"></div>
+      <div><label>Items</label><textarea id="col_items" placeholder="example_value, example_value"></textarea></div>
+    </div>
+
+    <div id="PERSON" class="section grid">
+      <div><label>Role</label><input id="per_role"></div>
+      <div><label>Employer</label><input id="per_employer"></div>
+      <div><label>From</label><input type="date" id="per_from"></div>
+      <div><label>Area of Focus</label><input id="per_focus"></div>
+      <div><label>Interests</label><textarea id="per_interests" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Affiliations</label><textarea id="per_affiliations" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Contact</label><input id="per_contact"></div>
+    </div>
+
+    <div id="RESOURCE" class="section grid">
+      <div><label>Resource Type</label><input id="res_type"></div>
+      <div><label>Format</label><input id="res_format"></div>
+      <div><label>Language</label><input id="res_lang"></div>
+      <div><label>Publisher</label><input id="res_pub"></div>
+      <div><label>Date Created</label><input type="date" id="res_created"></div>
+      <div><label>Date Updated</label><input type="date" id="res_updated"></div>
+      <div><label>License</label><input id="res_license"></div>
+      <div><label>Access URL</label><input id="res_url"></div>
+      <div><label>Related Entities</label><textarea id="res_related" placeholder="example_value, example_value"></textarea></div>
+    </div>
+
+    <div class="button-row">
+      <!-- Button(s) to gen|grab the needed yml after form completrion -->
+      <button type="submit" id="generate-btn">Generate YAML</button>
+      <button type="button" onclick="downloadYAML()">Download YAML</button>
+      <a id="github-link" href="#" target="_blank">Submit via GitHub PR</a>
+    </div>
+  </form>
+
+  <h3>Generated YAML</h3>
+    <!-- When Generate yml button pressed, yml appears in this -->
+  <textarea id="yaml-output" readonly></textarea>
+
+  <script>
+  // Get references to key form elements
+  const typeSelector = document.getElementById("type");
+  const superConcept = document.getElementById("super_concept");
+  const subConcept = document.getElementById("sub_concept");
+  const datePublished = document.getElementById("date_published");
+  const output = document.getElementById("yaml-output");
+
+  // Constant used to detect unchanged placeholder examples
+  const PLACEHOLDER = "example_value";
+
+  // Predefined super/sub concept values mapped by type
+  const TYPE_SUPER_SUB_PRESETS = {
+    ORGANIZATION: { super: "Agent" },
+    RULE: { super: "Abstract" },
+    PERSON: { super: "Agent" },
+    SERVICE: { super: "Abstract" },
+    EVENT: { sub: "Observation" },
+    PLAN: { super: "Abstract" },
+    COMMUNITY: { super: "Item" }
+  };
+
+  // Cleans comma-separated lists, removing whitespace and placeholder values
+  function cleanList(value) {
+    return value.split(",").map(x => x.trim()).filter(x => x && x !== PLACEHOLDER);
+  }
+
+  // Cleans newline-separated lists (e.g., for persons), removing placeholder lines
+  function cleanTextList(value) {
+    return value.split("\n").map(x => x.trim()).filter(x => x && x !== PLACEHOLDER);
+  }
+
+  // Called whenever the type dropdown changes
+  function toggleTypeSections() {
+    const currentType = typeSelector.value;
+
+    // Show only the relevant type-specific form section
+    document.querySelectorAll(".section").forEach(section => {
+      section.style.display = section.id === currentType ? "grid" : "none";
+    });
+
+    // Clear the YAML output on type change
+    output.value = "";
+
+    // Set and lock super/sub concepts based on type presets
+    const preset = TYPE_SUPER_SUB_PRESETS[currentType] || {};
+    superConcept.value = preset.super || "";
+    subConcept.value = preset.sub || "";
+    superConcept.disabled = true;
+    subConcept.disabled = true;
+    superConcept.classList.add("disabled");
+    subConcept.classList.add("disabled");
+
+    // Disable date_published for ORGANIZATION and PERSON types
+    const shouldDisableDate = ["ORGANIZATION", "PERSON"].includes(currentType);
+    datePublished.disabled = shouldDisableDate;
+    datePublished.classList.toggle("disabled", shouldDisableDate);
+  }
+
+  // Attach toggleTypeSections to page load and dropdown change
+  typeSelector.addEventListener("change", toggleTypeSections);
+  window.addEventListener("DOMContentLoaded", toggleTypeSections);
+
+  // When form is submitted, generate YAML and display it
+  document.getElementById("submission-form").addEventListener("submit", (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    const type = typeSelector.value;
+
+    // Start building base YAML object
+    const base = {
+      "@type": type,
+      name: name.value,
+      description: description.value,
+      tags: cleanList(tags.value),
+      version: version.value,
+      date_published: datePublished.value,
+      website: website.value,
+      notes: notes.value,
+      super_concept: superConcept.value,
+      sub_concept: subConcept.value
+    };
+
+    // Extend YAML object with type-specific fields
+    // These fields being those specific to each object beyond the core set (toggled on/of in form)
+    if (type === "ORGANIZATION") {
+      base.organisation_type = org_type.value;
+      base.region = org_region.value;
+      base.projects = cleanList(org_projects.value);
+      base.persons = cleanTextList(org_persons.value);
+    }
+
+    if (type === "SERVICE") {
+      base.lead_organisation = srv_lead.value;
+      base.delivery_partners = cleanList(srv_partners.value);
+      base.status = srv_status.value;
+      base.scope = srv_scope.value;
+    }
+
+    if (type === "EVENT") {
+      base.lead_organisation = evt_lead.value;
+      base.collaborators = cleanList(evt_collab.value);
+      base.location = evt_loc.value;
+      base.date = evt_date.value;
+    }
+
+    if (type === "PLAN") {
+      base.status = plan_status.value;
+      base.linked_framework = plan_linked.value;
+      base.target_outcomes = cleanList(plan_outcomes.value);
+    }
+
+    if (type === "COLLECTION") {
+      base.theme = col_theme.value;
+      base.items = cleanList(col_items.value);
+    }
+
+    if (type === "PERSON") {
+      base.role = per_role.value;
+      base.employer = per_employer.value;
+      base.from = per_from.value;
+      base.area_of_focus = per_focus.value;
+      base.interests = cleanList(per_interests.value);
+      base.affiliations = cleanList(per_affiliations.value);
+      base.contact = per_contact.value;
+    }
+
+    if (type === "RESOURCE") {
+      base.resource_type = res_type.value;
+      base.format = res_format.value;
+      base.language = res_lang.value;
+      base.publisher = res_pub.value;
+      base.date_created = res_created.value;
+      base.date_updated = res_updated.value;
+      base.license = res_license.value;
+      base.access_url = res_url.value;
+      base.related_entities = cleanList(res_related.value);
+    }
+
+    // Convert object to YAML and display in output box
+    output.value = jsyaml.dump(base);
+  });
+
+  // Download YAML as file
+  function downloadYAML() {
+    const blob = new Blob([output.value], { type: "text/yaml" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "submission.yaml";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+</script>
+
+</body>
+</html>

@@ -22,3 +22,27 @@ input#search-query:focus {
   border-color: #007acc;
   outline: none;
 }
+
+
+
+.short input,
+.short select {
+  width: 25%;
+  min-width: 200px;
+}
+
+.medium input {
+  width: 50%;
+  min-width: 300px;
+}
+
+.long textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+}
+
+input.disabled {
+  background-color: #eee;
+  opacity: 0.6;
+}
