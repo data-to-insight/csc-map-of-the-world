@@ -1,4 +1,16 @@
 ﻿urn,id,active_depreciated_inactive,la_code,la_name,region_name,region_code,url
+80486,301,A,E09000002,Barking and Dagenham,Outer London,GL,www.lbbd.gov.uk
+80487,302,A,E09000003,Barnet,Outer London,GL,www.barnet.gov.uk
+80426,370,A,E08000016,Barnsley,Yorkshire and The Humber,YH,www.barnsley.gov.uk
+80427,800,A,E06000022,Bath and North East Somerset,South West,SW,www.bathnes.gov.uk
+80428,822,A,E06000055,Bedford Borough,Eastern,E,www.bedford.gov.uk
+80488,303,A,E09000004,Bexley,Outer London,GL,www.bexley.gov.uk
+80429,330,A,E08000025,Birmingham,West Midlands,WM,www.birminghamchildrenstrust.co.uk
+80430,889,A,E06000008,Blackburn with Darwen,North West,NW,www.blackburn.gov.uk
+80431,890,A,E06000009,Blackpool,North West,NW,www.blackpool.gov.uk
+80432,350,A,E08000001,Bolton,North West,NW,www.bolton.gov.uk
+2532287,839,A,E06000058,"Bournemouth, Christchurch and Poole",South West,SW,www.bcpcouncil.gov.uk
+80436,867,A,E06000036,Bracknell Forest,South East,SE,www.bracknell-forest.gov.uk
 80449,380,A,E08000032,Bradford,Yorkshire and The Humber,YH,www.bradford.gov.uk
 80489,304,A,E09000005,Brent,Outer London,GL,www.brent.gov.uk
 80438,846,A,E06000043,Brighton and Hove,South East,SE,www.brighton-hove.gov.uk
