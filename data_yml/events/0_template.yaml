@@ -8,7 +8,6 @@ description: >
 # --- Shared metadata (optional) ---
 tags:
   - example_tag        # lowercase, use snake_case if multi-word
-  - data_tools
 version: 2025.07
 date_published: 2025-07-21
 website: https://example.org
@@ -19,6 +18,6 @@ notes: >
 event_fields:
   lead_organisation: department_for_education  # snake_case, must match an org ID
   collaborators:
-    - karen_broadhurst       # person or org IDs in snake_case
+    - example_name       # person or org IDs in snake_case
   location: UK
   date: 2023-12-15
