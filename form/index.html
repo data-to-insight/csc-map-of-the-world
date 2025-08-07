@@ -170,6 +170,7 @@
   <script>
   // Get refs to key form elements
   const typeSelector = document.getElementById("type");
+  const name = document.getElementById("name");
   const superConcept = document.getElementById("super_concept");
   const subConcept = document.getElementById("sub_concept");
   const datePublished = document.getElementById("date_published");
@@ -327,63 +328,79 @@
     // Extend YAML object with type-specific fields
     // These fields specific to each object beyond the core set (& then toggled on/of in form)
     if (type === "ORGANIZATION") {
-      base.organisation_type = org_type.value;
-      base.region = org_region.value;
-      base.projects = cleanList(org_projects.value);
-      base.persons = cleanTextList(org_persons.value);
+      base.organization_fields = { // rem nest block {} to un-nest
+        organisation_type: org_type.value,             // use base.organisation_type to un-nest
+        region: org_region.value,                      // use base.region to un-nest
+        projects: cleanList(org_projects.value),       // use base.projects to un-nest
+        persons: cleanTextList(org_persons.value)      // use base.persons to un-nest
+      };
     }
 
     if (type === "SERVICE") {
-      base.lead_organisation = srv_lead.value;
-      base.delivery_partners = cleanList(srv_partners.value);
-      base.status = srv_status.value;
-      base.scope = srv_scope.value;
+      base.service_fields = { // rem nest block {} to un-nest
+        lead_organisation: srv_lead.value,             // use base.lead_organisation to un-nest
+        delivery_partners: cleanList(srv_partners.value), // use base.delivery_partners to un-nest
+        status: srv_status.value,                      // use base.status to un-nest
+        scope: srv_scope.value                         // use base.scope to un-nest
+      };
     }
 
     if (type === "EVENT") {
-      base.lead_organisation = evt_lead.value;
-      base.collaborators = cleanList(evt_collab.value);
-      base.location = evt_loc.value;
-      base.date = evt_date.value;
+      base.event_fields = { // rem nest block {} to un-nest
+        lead_organisation: evt_lead.value,             // use base.lead_organisation to un-nest
+        collaborators: cleanList(evt_collab.value),    // use base.collaborators to un-nest
+        location: evt_loc.value,                       // use base.location to un-nest
+        date: evt_date.value                           // use base.date to un-nest
+      };
     }
 
     if (type === "PLAN") {
-      base.status = plan_status.value;
-      base.linked_framework = plan_linked.value;
-      base.target_outcomes = cleanList(plan_outcomes.value);
+      base.plan_fields = { // rem nest block {} to un-nest
+        status: plan_status.value,                     // use base.status to un-nest
+        linked_framework: plan_linked.value,           // use base.linked_framework to un-nest
+        target_outcomes: cleanList(plan_outcomes.value) // use base.target_outcomes to un-nest
+      };
     }
 
     if (type === "COLLECTION") {
-      base.theme = col_theme.value;
-      base.items = cleanList(col_items.value);
+      base.collection_fields = { // rem nest block {} to un-nest
+        theme: col_theme.value,                        // use base.theme to un-nest
+        items: cleanList(col_items.value)              // use base.items to un-nest
+      };
     }
 
     if (type === "PERSON") {
-      base.role = per_role.value;
-      base.employer = per_employer.value;
-      base.from = per_from.value;
-      base.area_of_focus = per_focus.value;
-      base.interests = cleanList(per_interests.value);
-      base.affiliations = cleanList(per_affiliations.value);
-      base.contact = per_contact.value;
+      base.person_fields = { // rem nest block {} to un-nest
+        role: per_role.value,                          // use base.role to un-nest
+        employer: per_employer.value,                  // use base.employer to un-nest
+        from: per_from.value,                          // use base.from to un-nest
+        area_of_focus: per_focus.value,                // use base.area_of_focus to un-nest
+        interests: cleanList(per_interests.value),     // use base.interests to un-nest
+        affiliations: cleanList(per_affiliations.value), // use base.affiliations to un-nest
+        contact: per_contact.value                     // use base.contact to un-nest
+      };
     }
 
     if (type === "RESOURCE") {
-      base.resource_type = res_type.value;
-      base.format = res_format.value;
-      base.language = res_lang.value;
-      base.publisher = res_pub.value;
-      base.date_created = res_created.value;
-      base.date_updated = res_updated.value;
-      base.license = res_license.value;
-      base.access_url = res_url.value;
-      base.related_entities = cleanList(res_related.value);
+      base.resource_fields = { // rem nest block {} to un-nest
+        resource_type: res_type.value,                 // use base.resource_type to un-nest
+        format: res_format.value,                      // use base.format to un-nest
+        language: res_lang.value,                      // use base.language to un-nest
+        publisher: res_pub.value,                      // use base.publisher to un-nest
+        date_created: res_created.value,               // use base.date_created to un-nest
+        date_updated: res_updated.value,               // use base.date_updated to un-nest
+        license: res_license.value,                    // use base.license to un-nest
+        access_url: res_url.value,                     // use base.access_url to un-nest
+        related_entities: cleanList(res_related.value) // use base.related_entities to un-nest
+      };
     }
 
     if (type === "RELATIONSHIP") {
-      base.source = rel_source.value;
-      base.target = rel_target.value;
-      base.relationship_type = rel_type.value;
+      base.relationship_fields = { // rem nest block {} to un-nest
+        source: rel_source.value,                      // use base.source to un-nest
+        target: rel_target.value,                      // use base.target to un-nest
+        relationship_type: rel_type.value              // use base.relationship_type to un-nest
+      };
     }
 
 
