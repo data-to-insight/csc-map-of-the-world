@@ -1,5 +1,7 @@
 '@type': EVENT
 name: Methodology Report Children's Social Care in England 2025
+super_concept: 
+sub_concept: Observation
 description: >
   Quality and methodology documentation supporting Ofsted’s annual data publication on children's social care
   providers, inspections and outcomes in England.
@@ -15,13 +17,6 @@ website: https://www.gov.uk/government/statistics/childrens-social-care-in-engla
 notes: >
   This methodology report accompanies Ofsted’s annual release of data and findings.
   It outlines data sources, inspection processes, and interpretation guidance for national statistics users.
-
-# --- Modelling context ---
-modelling_context:
-  name: Smart City Concept Model
-  version: SCCM v1.0
-  reference: http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10
-  homepage: http://www.smartcityconceptmodel.com/
 
 # --- EVENT-specific fields ---
 event_fields:

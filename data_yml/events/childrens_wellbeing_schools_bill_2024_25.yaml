@@ -1,5 +1,7 @@
 '@type': EVENT
 name: Children's Wellbeing and Schools Bill 2024–25
+super_concept: 
+sub_concept: Observation
 description: >
   Legislation covering safeguarding, support for children in or leaving care, regulation of care workers,
   breakfast clubs, attendance, and more.

@@ -1,5 +1,7 @@
 '@type': EVENT
 name: Children's Social Care Review
+super_concept: 
+sub_concept: Observation
 description: >
   An independent review commissioned by the Department for Education to evaluate the state of children's social care in England
   and propose system-wide reforms to improve outcomes for children and families.
@@ -14,12 +16,6 @@ notes: >
   Led by Josh MacAlister, with contributions from Karen Broadhurst and others.
   The review informed major reform proposals including the National Framework and investment priorities.
 
-# --- Modelling context ---
-modelling_context:
-  name: Smart City Concept Model
-  version: SCCM v1.0
-  reference: http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10
-  homepage: http://www.smartcityconceptmodel.com/
 
 # --- EVENT-specific fields ---
 event_fields:
