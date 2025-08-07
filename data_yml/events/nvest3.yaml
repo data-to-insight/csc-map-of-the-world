@@ -1,0 +1,27 @@
+'@type': EVENT
+name: NVEST3 | Tbc
+description: >
+  National Voice for Excellence in Safeguarding Tech.
+
+tags:
+  - nvest
+  - data
+  - social_work
+  - safeguarding
+version: 2025.07
+date_published: ''
+website: https://www.datatoinsight.org/nvest
+notes: 
+super_concept: 
+sub_concept: Observation
+
+
+# --- EVENT-specific fields ---
+event_fields:
+  lead_organisation: data_to_insight
+  collaborators:
+    - essex
+    - Ida_Cohen
+    - Pippa_Barker
+  location: england
+  date: 2025-09-01

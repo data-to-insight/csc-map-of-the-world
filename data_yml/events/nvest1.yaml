@@ -1,0 +1,32 @@
+'@type': EVENT
+name: NVEST1
+description: >
+  National Voice for Excellence in Safeguarding Tech.
+
+  Co-designed with Data to Insight, the LA-owned service for CSC data
+  professionals, NVEST is chaired by Essex County Council with the assistance of
+  independent consultants Ida Cohen and Pippa Barker, who have a background in
+  children’s services leadership and CMS development and implementation. Funding
+  is provided by Data to Insight.
+tags:
+  - nvest
+  - data
+  - social_work
+  - safeguarding
+version: 2025.07
+date_published: ''
+website: https://www.datatoinsight.org/nvest
+notes: 
+super_concept: 
+sub_concept: Observation
+
+
+# --- EVENT-specific fields ---
+event_fields:
+  lead_organisation: data_to_insight
+  collaborators:
+    - essex
+    - Ida_Cohen
+    - Pippa_Barker
+  location: england
+  date: 2025-03-03
