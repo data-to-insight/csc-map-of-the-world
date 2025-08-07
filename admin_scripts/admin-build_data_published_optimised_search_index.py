@@ -13,18 +13,18 @@ import nltk
 # CONFIG
 SAVE_PARQUET = False # not used within mkdocs search, only internal proc
 
-# File paths
+
 pdf_dir = Path("data_published")
 output_json_path = Path("docs/search_index.json")
 output_parquet_path = Path("admin_scripts/docs_index.parquet")
 
-# NLTK resources
+# NLTK resource
 nltk.download("stopwords")
 nltk.download("wordnet")
 
 
 # Unicode normalisation
-
+# needed as otherwise end up with non-useful chars in such as visible headings
 def normalise_unicode(text):
     replacements = {
         "\u2018": "'", "\u2019": "'",
@@ -39,7 +39,6 @@ def normalise_unicode(text):
 
 
 # Cleaning & summary
-
 def clean_text(text):
     text = normalise_unicode(text)
     text = re.sub(r"\s+", " ", text)
@@ -56,7 +55,6 @@ def extract_summary(text, max_chars=300):
 
 
 # NLP + keyword extraction
-
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words("english"))
 
@@ -89,14 +87,12 @@ for pdf_file in pdf_dir.glob("*.pdf"):
 
 
 # Frequency filtering
-
 vectorizer = CountVectorizer(max_df=0.85, min_df=2) # if appearing in % of docs, filter as too common
 X = vectorizer.fit_transform(texts)
 features = vectorizer.get_feature_names_out()
 
 
 # Build and save
-
 search_index = []
 for i, doc in enumerate(docs):
     keywords = [features[j] for j in X[i].nonzero()[1]]
