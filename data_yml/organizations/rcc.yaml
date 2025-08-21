@@ -5,7 +5,7 @@ name: Regional Care Co-op (RCC)
 description: >
   National initiative exploring regional models for children's placements and commissioning.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - placement
   - commissioning

@@ -1,16 +1,15 @@
-'@type': PLAN  # or EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON, RESOURCE
-super_concept: ABSTRACT   # SCCM root (AGENT, OBJECT, EVENT, etc.) — helpful for graphs, schema logic 
+'@type': RULE  # EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON, RESOURCE, ORGANIZATION
+super_concept:    # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept:      # optional sub-role
 name: Template Name Here
 description: >
   Short free text summary or description
 
-# --- PLAN-specific fields ---
-plan_fields:
-  status: draft
-  linked_framework: 
-  target_outcomes:
-    - 
+# --- RULE-specific fields ---
+rule_fields:
+  lead_organisation: 
+  collaborators: 
+    - local_authority
 
 # --- Shared metadata (optional) ---
 tags:

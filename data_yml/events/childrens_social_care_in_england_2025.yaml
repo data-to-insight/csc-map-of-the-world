@@ -3,10 +3,19 @@ name: Methodology Report Children's Social Care in England 2025
 super_concept: 
 sub_concept: Observation
 description: >
-  Quality and methodology documentation supporting Ofsted’s annual data publication on children's social care
+  Quality and methodology documentation supporting Ofsted's annual data publication on children's social care
   providers, inspections and outcomes in England.
 
-# --- Shared metadata (optional but recommended) ---
+# --- EVENT-specific fields ---
+event_fields:
+  lead_organisation: ofsted
+  collaborators:
+    - department_for_education
+  location: england
+  date: 2025-07-16
+
+
+# --- Shared metadata (optional) ---
 tags:
   - social_care
   - methodology
@@ -17,11 +26,3 @@ website: https://www.gov.uk/government/statistics/childrens-social-care-in-engla
 notes: >
   This methodology report accompanies Ofsted’s annual release of data and findings.
   It outlines data sources, inspection processes, and interpretation guidance for national statistics users.
-
-# --- EVENT-specific fields ---
-event_fields:
-  lead_organisation: ofsted
-  collaborators:
-    - department_for_education
-  location: england
-  date: 2025-07-16

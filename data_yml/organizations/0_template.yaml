@@ -3,7 +3,19 @@ super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept:      # optional sub-role
 name: Template Name Here
 description: >
-  Short summary of the entity or activity
+  Short free text summary or description
+
+#--- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type:    # e.g.<e.g. Local Authority, Charity, Academic, Community/Network, Vendor>
+  region: England
+  projects:
+    -                              # must match a known snake_case ID
+  persons:
+    - name: 
+      role: 
+      from: 1900-01-01
+
 
 # --- Shared metadata (optional) ---
 tags:
@@ -16,14 +28,3 @@ notes: >
   Optional notes for further detail, sources or internal use
 
 
-
-#--- ORGANIZATION-specific fields ---
-organization_fields:
-  organisation_type:    # e.g.<e.g. Local Authority, Charity, Academic, Community/Network, Vendor>
-  region: England
-  projects:
-    -                              # must match a known snake_case ID
-  persons:
-    - name: 
-      role: 
-      from: 1900-01-01

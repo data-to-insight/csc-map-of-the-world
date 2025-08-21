@@ -3,7 +3,15 @@ super_concept: ABSTRACT    # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept: FUNCTION     # optional sub-role
 name: Template Name Here
 description: >
-  Short summary of the entity or activity
+  Short free text summary or description
+
+# --- COLLECTION-specific fields ---
+collection_fields:
+  theme:               # lowercase, snake_case preferred
+  items:
+    - 
+    - 
+
 
 # --- Shared metadata (optional) ---
 tags:
@@ -14,5 +22,3 @@ date_published: 2025-07-21
 website: https://example.org
 notes: >
   Optional notes for further detail, sources or internal use
-
-# --- COLLECTION-specific fields ---

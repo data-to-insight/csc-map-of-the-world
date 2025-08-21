@@ -4,15 +4,6 @@ sub_concept:      # optional sub-role
 name: ADCS
 description: >
   -
-# --- Shared metadata (optional) ---
-tags:
-  - 
-version: 2025.07
-date_published: 2020-01-01
-website: https://www.adcs.org.uk
-notes: >
-  -
-
 
 # --- ORGANIZATION-specific fields ---
 organization_fields:
@@ -25,5 +16,13 @@ organization_fields:
       role: 
       from: 1900-01-01
 
+# --- Shared metadata (optional) ---
+tags:
+  - 
+version: 2025.07
+date_published: 2020-01-01
+website: https://www.adcs.org.uk
+notes: >
+  -
 
 

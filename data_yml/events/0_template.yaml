@@ -3,7 +3,16 @@ super_concept:    # optional SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept: OBSERVATION     # optional sub-role
 name: Template Name Here
 description: >
-  Short summary of the entity or activity
+  Short free text summary or description
+
+# --- EVENT-specific fields ---
+event_fields:
+  lead_organisation: department_for_education  # snake_case, must match an org ID
+  collaborators:
+    - example_name       # person or org IDs in snake_case
+  location: UK
+  date: 2023-12-15
+
 
 # --- Shared metadata (optional) ---
 tags:
@@ -13,11 +22,3 @@ date_published: 2025-07-21
 website: https://example.org
 notes: >
   Optional notes for further detail, sources or internal use
-
-# --- EVENT-specific fields ---
-event_fields:
-  lead_organisation: department_for_education  # snake_case, must match an org ID
-  collaborators:
-    - example_name       # person or org IDs in snake_case
-  location: UK
-  date: 2023-12-15

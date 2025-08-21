@@ -5,6 +5,18 @@ name: CORAM
 description: >
   Short summary of the entity or activity
 
+#--- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type:    # e.g.<e.g. Local Authority, Charity, Academic, Community/Network, Vendor>
+  region: England
+  projects:
+    -                              # must match a known snake_case ID
+  persons:
+    - name: 
+      role: 
+      from: 1900-01-01
+
+
 # --- Shared metadata (optional) ---
 tags:
   - example_tag        # lowercase, snake_case if multi-word
@@ -16,14 +28,3 @@ notes: >
   Optional notes for further detail, sources or internal use
 
 
-
-#--- ORGANIZATION-specific fields ---
-organization_fields:
-  organisation_type:    # e.g.<e.g. Local Authority, Charity, Academic, Community/Network, Vendor>
-  region: England
-  projects:
-    -                              # must match a known snake_case ID
-  persons:
-    - name: 
-      role: 
-      from: 1900-01-01

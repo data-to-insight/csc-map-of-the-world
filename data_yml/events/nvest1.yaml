@@ -30,3 +30,17 @@ event_fields:
     - Pippa_Barker
   location: england
   date: 2025-03-03
+
+
+# --- Shared metadata (optional) ---
+tags:
+  - nvest
+  - data
+  - social_work
+  - safeguarding
+version: 2025.07
+date_published: ''
+website: https://www.datatoinsight.org/nvest
+notes: 
+super_concept: 
+sub_concept: Observation

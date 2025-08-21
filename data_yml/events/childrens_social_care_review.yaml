@@ -6,7 +6,7 @@ description: >
   An independent review commissioned by the Department for Education to evaluate the state of children's social care in England
   and propose system-wide reforms to improve outcomes for children and families.
 
-# --- Shared metadata (optional but recommended) ---
+# --- Shared metadata (optional) ---
 tags:
   - social_worker
 version: 2025.07

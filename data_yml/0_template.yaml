@@ -3,20 +3,10 @@ super_concept:    # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept:      # optional sub-role
 name: Template Name Here
 description: >
-  Short summary of entity or activity
-
-# --- Shared metadata (optional) ---
-tags:
-  - example_tag        # lowercase, use snake_case if multi-word
-  - data_tools
-version: 2025.07
-date_published: 2025-07-21
-website: https://example.org
-notes: >
-  Optional notes for further detail, sources or internal use
-
+  Short free text summary or description
 
 # --- Uncomment section below if an ORGANIZATION ---
+# # --- ORGANIZATION-specific fields ---
 # organization_fields:
 #   organisation_type: local_authority  # e.g. network, research, vendor
 #   region: England
@@ -30,6 +20,7 @@ notes: >
 
 
 # --- Uncomment section below if an EVENT ---
+# # --- EVENT-specific fields ---
 # event_fields:
 #   lead_organisation:   # snake_case, must match an org ID
 #   collaborators:
@@ -39,6 +30,7 @@ notes: >
 
 
 # --- Uncomment section below if a SERVICE ---
+# # --- SERVICE-specific fields ---
 # service_fields:
 #   lead_organisation:            # snake_case org ID
 #   delivery_partners:
@@ -49,6 +41,7 @@ notes: >
 
 
 # --- Uncomment section below if a PLAN ---
+# # --- PLAN-specific fields ---
 # plan_fields:
 #   status: draft
 #   linked_framework: 
@@ -58,13 +51,25 @@ notes: >
 
 
 # --- Uncomment section below if a RELATIONSHIP ---
+# # --- RELATIONSHIP-specific fields ---
 # relationship_fields:
 #   source:                               # snake_case org/person ID
 #   target:                               # snake_case org/service ID
 #   relationship_type: e.g. collaboratesWith   # use SCCM named relations like hasPlan, hasOutcome(see list for full reference)
 
 
+
+# --- Uncomment section below if a RULE---
+# # --- RULE-specific fields ---
+# rule_fields:
+#   lead_organisation: 
+#   collaborators: 
+#     - local_authority
+
+
+
 # --- Uncomment section below if a COLLECTION ---
+# # --- COLLECTION-specific fields ---
 # collection_fields:
 #   theme:               # lowercase, snake_case preferred
 #   items:
@@ -73,6 +78,7 @@ notes: >
 
 
 # --- Uncomment section below if a PERSON ---
+# # --- PERSON-specific fields ---
 # person_fields:
 #   role: 
 #   employer:      # snake_case org ID
@@ -88,7 +94,9 @@ notes: >
 #   contact: person@example.org        # optional contact field
 
 
+
 # --- Uncomment section below if a RESOURCE ---
+# # --- RESOURCE-specific fields ---
 # resource_fields:
 #   resource_type: dataset      # e.g. dataset, report, website, API
 #   format: CSV                 # optional format (CSV, PDF, JSON, HTML, etc.)
@@ -105,3 +113,13 @@ notes: >
 # _example_note: Remove unused blocks or just uncomment needed section
 
 
+
+# --- Shared metadata (optional) ---
+tags:
+  - example_tag        # lowercase, use snake_case if multi-word
+  - data_tools
+version: 2025.07
+date_published: 2025-07-21
+website: https://example.org
+notes: >
+  Optional notes for further detail, sources or internal use
