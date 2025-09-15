@@ -4,7 +4,7 @@ A structured, open-source knowledge base and ecosystem map for the **Children’
 
 It aims to support full-text search, (filtered)graph-based relations visualisation, and YAML schema validation across structured `.yml` records. Supporting documents (PDF, Markdown, HTML, Python, JS). Development is scaffolded/designed to be extensible, transparent, and Git-native.
 
-**Current Dev Phase:** *Discovery-Alpha*
+**Current Dev Phase:** *Discovery-Alpha*  
 CSC Network Map Tool & Knowledge Search available at: [data-to-insight.github.io/csc-map-of-the-world](https://data-to-insight.github.io/csc-map-of-the-world/)
 ---
 
