@@ -1,5 +1,8 @@
 # scripts/validate_yml_objects.py
 
+# run this periodically, or post new additions. IT will scan the yml folder(s) looking for out of place typos/content/filenames 
+# against the expected yml schema and flag the errors it finds, e.g. filenames with spaces, missing elements within the ymls
+
 import yaml
 import re
 from pathlib import Path
@@ -71,7 +74,7 @@ if __name__ == "__main__":
     root = Path("./data_yml")
     rel_dir = root / "relationships"
 
-    # Step 1: rename .yml and .yaml files with spaces
+    # rename .yml and .yaml files with spaces
     renames = rename_files_with_spaces(root)
     if renames:
         print("Renamed files:")
@@ -80,7 +83,7 @@ if __name__ == "__main__":
     else:
         print("No filenames with spaces found.")
 
-    # Step 2: validate contents
+    # validate contents
     all_yamls = list(root.rglob("*.yaml"))
     relationship_yamls = list(rel_dir.glob("*.yaml"))
     node_yamls = [p for p in all_yamls if p not in relationship_yamls]
@@ -94,9 +97,9 @@ if __name__ == "__main__":
     all_errors.extend(validate_relationship_links(rel_dir, node_ids))
 
     if all_errors:
-        print("\nValidation issues found:")
+        print("\nValidation issue(s) found:")
         for err in all_errors:
             print(err)
         print("\n")
     else:
-        print("\nAll YAML files passed validation and relationship integrity checks.")
+        print("\nAll YAML files passed validation and relationship integrity checks")

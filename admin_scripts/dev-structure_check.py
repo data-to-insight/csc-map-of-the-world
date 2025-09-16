@@ -1,6 +1,9 @@
 import os
 
-# folders to exclude
+# simple dev output on console of repo structure tree for reference
+# can be run at any time, makes no changes, console output only for ref or adding output manually to .md files if needed
+
+# folders to exclude(makes output tree huge/plus not required)
 EXCLUDED_DIRS = {
     ".git", "site", "__pycache__", ".ipynb_checkpoints", ".venv",
     "env", ".mypy_cache", ".pytest_cache", ".vscode", ".DS_Store",
@@ -14,7 +17,7 @@ def print_tree(base_path, prefix=""):
     try:
         entries = sorted(os.listdir(base_path))
     except PermissionError:
-        return  # skip folders that cannot be accessed
+        return  # skip inaccessible folders 
 
     entries = [
         e for e in entries
@@ -34,5 +37,5 @@ def print_tree(base_path, prefix=""):
         else:
             print(f"{prefix}{connector}📄 {entry}")
 
-# start from current directory
+# start from current dir
 print_tree(os.getcwd())

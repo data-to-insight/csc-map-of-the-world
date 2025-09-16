@@ -1,4 +1,14 @@
 # admin_scripts/get_r2_cloudflare_files.py
+
+# this set up to pull pdf files from R2 bucket. R2 is currently set up under RH personal 
+# address as ESCC was needing approval. 
+
+# script authenticates via API,needs either .env file with secrets or multiple 'export .... 
+# running before the script. 
+# Will then pull from r2 root, any files matching below defined file types and bring down
+# into existing/new created "data_r2files2" folder in repo. 
+ 
+
 import os
 import sys
 from pathlib import Path

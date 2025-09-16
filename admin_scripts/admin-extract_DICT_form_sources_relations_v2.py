@@ -7,11 +7,11 @@ from pathlib import Path
 # in the submit form for RELATIONSHIP.Source (this added to enforce that no relation is added for none-existent objects)
 
 
-# Update this path to match your repo structure
+# 
 BASE_DIR = Path("/workspaces/csc-map-of-the-world")
 OUTPUT_FILE = BASE_DIR / "docs/data/source_nodes.json"
 
-# Mapping of subfolder → source type label
+# Mapping subfolder ->> source type label
 SOURCE_TYPE_MAP = {
     "events": "EVENT",
     "plans": "PLAN",

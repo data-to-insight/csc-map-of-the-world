@@ -1,4 +1,4 @@
-# sources-list.yaml
+# url_scrape_csc_sources.yml
 # Seed list of source hubs and direct documents to build local content index
 # ------------------------------------------------------------------------------
 # Optional classification taxonomy (independent of SCCM):

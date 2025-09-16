@@ -12,7 +12,12 @@ Dev-notes: Data & relations currently being added, graph layout and naming conve
 <!-- Content search filter (in dev) -->
 <div style="margin-bottom: 0.5em;">
   <label for="textSearch"><strong>Search:</strong></label>
-  <input id="textSearch" type="text" placeholder="name, tag, keyword…" style="width: 320px; margin-left: 0.5em;">
+  <input id="textSearch" type="text" placeholder="[IN DEV] name, tag, keyword…" style="width: 320px; margin-left: 0.5em;">
+  <label style="margin-left: 0.75em; user-select: none;">
+    <!-- Context toggle - keep neighbours visible in search or not -->
+    <input type="checkbox" id="contextModeToggle" checked>
+    <strong>Keep neighbours (context)</strong>
+  </label>
 </div>
 
 

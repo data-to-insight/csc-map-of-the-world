@@ -48,7 +48,7 @@ for folder_name, rules in FOLDER_RULES.items():
             if stem:
                 node_names.add(stem)
 
-# Output to JSON
+# Output JSON
 OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     json.dump(sorted(node_names), f, indent=2)

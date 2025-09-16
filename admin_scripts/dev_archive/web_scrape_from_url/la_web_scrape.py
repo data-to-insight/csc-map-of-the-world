@@ -4,19 +4,14 @@
 import pandas as pd
 import time
 import sys
-
-# Optional: conditionally import based on engine
 import importlib.util
 
-# Try to import duckduckgo-search safely
 try:
     from duckduckgo_search.ddg import ddg
     duckduckgo_search_available = True
 except ImportError:
     duckduckgo_search_available = False
-
-
-# Try to import googlesearch-python safely
+    
 try:
     from googlesearch import search as google_search
     google_search_available = True
@@ -83,7 +78,7 @@ df["url"] = df["url"].str.strip().str.replace("https://", "", regex=False).str.r
 df["childrens_services_links"] = ""
 df["jobs_links"] = ""
 
-# --- Loop ---
+# --- Loop urls ---
 for idx, row in df.iterrows():
     base_url = row["url"]
     la_name = row["la_name"]

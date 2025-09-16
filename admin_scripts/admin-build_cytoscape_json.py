@@ -98,7 +98,7 @@ if __name__ == "__main__":
     if not nodes:
         raise ValueError("No nodes were generated. Check input YAMLs.")
     if not edges:
-        print("No edges generated. You may only see isolated nodes.")
+        print("No edges generated. You may see isolated nodes.")
 
     graph = {"elements": nodes + edges}
 
