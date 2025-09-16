@@ -9,6 +9,13 @@ Use the dropdown to filter by type. You can select more than one item using Ctrl
 
 Dev-notes: Data & relations currently being added, graph layout and naming conventions for nodes in particular is a work in progress as we progress possible use-cases and standardise yml object structure.
 
+<!-- Content search filter (in dev) -->
+<div style="margin-bottom: 0.5em;">
+  <label for="textSearch"><strong>Search:</strong></label>
+  <input id="textSearch" type="text" placeholder="name, tag, keyword…" style="width: 320px; margin-left: 0.5em;">
+</div>
+
+
 <!-- Enhanced multi-select filter with Choices.js -->
 <div style="margin-bottom: 1em;">
   <label for="typeFilter"><strong>Filter by node type(s):</strong></label>
