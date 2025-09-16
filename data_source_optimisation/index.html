@@ -1,0 +1,958 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://data-to-insight.github.io/csc-map-of-the-world/data_source_optimisation/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Optimising Search for “Map of the World” - CSC Map of the World</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/styles.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#optimising-search-for-map-of-the-world" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CSC Map of the World" class="md-header__button md-logo" aria-label="CSC Map of the World" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CSC Map of the World
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Optimising Search for “Map of the World”
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CSC Map of the World" class="md-nav__button md-logo" aria-label="CSC Map of the World" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CSC Map of the World
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSC Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sccm_relation_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSC Network Relations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSC Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search_pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSC Search Strategy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSC Search Sources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Submit Entry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-matters-for-childrens-social-care-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why this matters for children’s social care data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-this-is-for-and-what-youll-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      Who this is for (and what you’ll get)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-approach-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why this approach works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-tiny-recall-loss-means-plain-english-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      What “tiny recall loss” means (plain English first)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What “tiny recall loss” means (plain English first)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-quick-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      The quick math
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-pipeline-what-we-do-and-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      The pipeline (what we do and why)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#realworld-impact-for-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real‑world impact for users
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#realworld-impact-for-engineers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real‑world impact for engineers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sizing-scaling-rules-of-thumb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sizing &amp; scaling (rules of thumb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sizing &amp; scaling (rules of thumb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-projections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example projections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keyword-index-whats-in-the-tiny-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Keyword index (what’s in the tiny JSON)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-hnsw-now-ivfpq-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why HNSW now, IVF‑PQ later?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interoperability-reuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interoperability &amp; reuse
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-but-will-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frequently asked “but will it…?”
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-libraries-and-why-we-chose-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key libraries and why we chose them
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      Takeaways
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="optimising-search-for-map-of-the-world">Optimising Search for “Map of the World”</h1>
+<p><strong>From PDFs to compact, fast, portable indexes</strong></p>
+<hr />
+<h2 id="why-this-matters-for-childrens-social-care-data">Why this matters for children’s social care data</h2>
+<p>Children’s social care information is <strong>extensive and often spread very wide</strong> across government and partner websites, (long)PDFs, and research portals. Our approach (in-part)focuses on making that material <strong>accessible and searchable</strong> without moving heavy files around or duplicating storage.</p>
+<ul>
+<li><strong>Fast, lightweight search:</strong> we extract text once and publish a very small index, so people can jump straight to <strong>relevant paragraphs</strong> instead of paging through 120-page PDFs.</li>
+<li><strong>Clarity and provenance:</strong> chunk-level search surfaces the <strong>exact clauses</strong> (for example thresholds, Section 47, kinship care) with links back to the authoritative source and licence.</li>
+<li><strong>Low overhead, high resilience:</strong> compact Parquet/FAISS artefacts are inexpensive to store (for example in R2), simple to mirror, and easy to reuse locally by partners.</li>
+<li><strong>Keeps pace with change:</strong> incremental builds detect updates and only reprocess what changed, so the map stays current as guidance evolves.</li>
+<li><strong>Privacy by design:</strong> data minimisation (no PDFs in the site), licensing metadata, and explicit source tracking align with safeguarding and governance expectations.</li>
+</ul>
+<h2 id="who-this-is-for-and-what-youll-get">Who this is for (and what you’ll get)</h2>
+<ul>
+<li><strong>Product / content folks:</strong> how we take lots of PDFs and turn them into a <strong>tiny, fast</strong> search index that still finds the right things.</li>
+<li><strong>Engineers / data people:</strong> the design choices, math, and scaling numbers so you can <strong>reuse this pipeline</strong> on your own document sets.</li>
+</ul>
+<p><strong>One‑line summary:</strong> we extract text -&gt; split into semantically sensible chunks -&gt; embed each chunk as a vector -&gt; store compactly in Parquet using <strong>uint8 quantisation</strong> -&gt; build a <strong>FAISS</strong> similarity index (HNSW by default). The public search can then use a <strong>small JSON keyword index</strong> for near-instant client‑side search; deeper semantic search uses the vector index as needed.</p>
+<hr />
+<h2 id="why-this-approach-works">Why this approach works</h2>
+<ol>
+<li><strong>We do heavy lifting once, locally.</strong> PDFs are slow to parse and (comparitively)large to store especially at scale; we extract the text and never ship the raw files within this site.</li>
+<li><strong>We chunk long documents.</strong> Searching against topically coherent chunks beats whole‑document matching for retrieval quality.</li>
+<li><strong>We use sentence embeddings.</strong> Similarity in embedding space approximates “is this about the same thing?”</li>
+<li><strong>We store vectors compactly.</strong> Quantising embeddings to <strong>uint8</strong> shrinks storage ~4× with negligible impact on retrieval quality for our use case.</li>
+<li><strong>We separate UX search from deep search.</strong> The site ships a tiny keyword index for instant results; power workflows can use the vector index offline or via services.</li>
+</ol>
+<hr />
+<h2 id="what-tiny-recall-loss-means-plain-english-first">What “tiny recall loss” means (plain English first)</h2>
+<p>When we save embeddings as <strong>uint8</strong> instead of 32‑bit floats, we’re using a <strong>lossy</strong> compression scheme. That slightly perturbs the numbers. If someone later rebuilds a vector index <strong>from those saved numbers</strong>, the nearest‑neighbour results may differ <em>a little</em> from a float32 baseline.</p>
+<p>In practice with normalised sentence embeddings:</p>
+<ul>
+<li>Cosine similarity between original and dequantised vectors is usually <strong>≥ 0.995</strong> (often ~0.999).</li>
+<li>End‑to‑end <strong>recall@10</strong> typically changes by <strong>0-2%</strong> on common text corpora.</li>
+<li>Our live FAISS index is built directly from <strong>float32</strong> in memory, so <strong>website retrieval quality is unaffected</strong> by how we store vectors in Parquet.</li>
+</ul>
+<h3 id="the-quick-math">The quick math</h3>
+<p>We L2‑normalise each embedding vector <code>x</code> (so values lie roughly in [-1, 1]) and map each component to 8 bits:</p>
+<ul>
+<li><strong>Quantise:</strong> <code>q = round((x + 1) * 127.5)</code> -&gt; <code>q ∈ {0,…,255}</code>  </li>
+<li><strong>Dequantise:</strong> <code>x' = (q / 127.5) - 1.0</code>  </li>
+<li><strong>Re‑normalise:</strong> <code>x'' = x' / ||x'||</code> (keeps cosine similarity meaningful)</li>
+</ul>
+<p>Because most information in sentence embeddings is in <strong>direction</strong> (not exact magnitudes), cosine similarity is very stable after this process.</p>
+<hr />
+<h2 id="the-pipeline-what-we-do-and-why">The pipeline (what we do and why)</h2>
+<ol>
+<li><strong>Text extraction</strong> (PyMuPDF fast path; pdfminer fallback)  </li>
+<li>Why: PyMuPDF is 2-5× faster on many PDFs; we skip OCR for now.</li>
+<li><strong>Chunking</strong> (default ~1,800 chars with ~150 overlap)  </li>
+<li>Why: balances context and index size; fewer, richer chunks -&gt; faster builds and smaller artefacts.</li>
+<li><strong>Embedding</strong> (<code>all-MiniLM-L6-v2</code>, 384‑dim, normalised)  </li>
+<li>Why: Small, fast, good quality; normalisation makes cosine = inner product and improves quantisation robustness.</li>
+<li><strong>Storage</strong>  </li>
+<li><strong>Per‑doc Parquet</strong> (text + metadata) -&gt; easy incremental updates.  </li>
+<li><strong>Vectors in Parquet as <code>uint8</code></strong> -&gt; ~4× smaller than float32, plus schema metadata describing de/quantisation.  </li>
+<li><strong>Combined Parquet</strong> (optional) for simple downstream consumption.</li>
+<li><strong>Indexing</strong> (FAISS)  </li>
+<li><strong>HNSW</strong> default: excellent recall, simple to tune.  </li>
+<li><strong>IVF‑PQ</strong> optional: order‑of‑magnitude smaller index for very large corpora; small recall trade‑off, tunable with <code>nprobe</code>.</li>
+<li><strong>Incremental builds</strong>  </li>
+<li><code>state.json</code> records per‑document SHA‑256; unchanged docs are skipped. Rebuilds are proportional to change, not corpus size.</li>
+<li><strong>Website search index (keyword JSON)</strong>  </li>
+<li>From Parquet, not PDFs. We clean text, remove stop‑words and over‑common terms, derive per‑doc keywords -&gt; a <strong>very small</strong> JSON file for client‑side search.</li>
+</ol>
+<hr />
+<h2 id="realworld-impact-for-users">Real‑world impact for users</h2>
+<ul>
+<li><strong>Fast search:</strong> small on‑site JSON makes type‑ahead and filters instant.  </li>
+<li><strong>Better hits:</strong> chunk‑level indexing surfaces relevant passages from long PDFs.  </li>
+<li><strong>Stable URLs:</strong> search results refer back to authoritative documents and locations.  </li>
+<li><strong>Scales with you:</strong> adding thousands of documents won’t slow the site or bloat the repo.</li>
+</ul>
+<hr />
+<h2 id="realworld-impact-for-engineers">Real‑world impact for engineers</h2>
+<ul>
+<li><strong>Artefacts, not assets:</strong> Git &amp; Pages store compact Parquet/JSON, not PDFs.  </li>
+<li><strong>Cheap storage:</strong> vectors as <code>uint8</code> and HNSW/IVF‑PQ keep R2 costs low.  </li>
+<li><strong>Reproducible builds:</strong> manifest + hashes = deterministic rebuilds.  </li>
+<li><strong>Interoperability:</strong> Parquet + FAISS are standard; others can reuse the corpus locally.</li>
+</ul>
+<hr />
+<h2 id="sizing-scaling-rules-of-thumb">Sizing &amp; scaling (rules of thumb)</h2>
+<p>Let <strong>C</strong> = number of chunks. With 384‑dim embeddings:</p>
+<ul>
+<li><strong>Float32 vector size (raw):</strong> <code>C × 384 × 4</code> bytes  </li>
+<li><strong>UInt8 vector size (raw):</strong> <code>C × 384 × 1</code> bytes (~4× smaller)  </li>
+<li><strong>HNSW index size:</strong> typically <strong>~1-2 KB per chunk</strong> (depends on <code>M</code>, dataset)  </li>
+<li><strong>Parquet overhead:</strong> +10-30% over raw, but ZSTD helps especially for text.</li>
+</ul>
+<h3 id="example-projections">Example projections</h3>
+<p>Assuming current chunking yields ~<strong>74 chunks/doc</strong> (observed ~1,928 chunks for 26 docs) -&gt; <strong>3,000 docs ~ 222k chunks</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Formula</th>
+<th style="text-align: right;">222k chunks (est.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parquet vectors (float32 raw)</td>
+<td><code>C × 384 × 4</code></td>
+<td style="text-align: right;">~<strong>341 MB</strong> (+overhead)</td>
+</tr>
+<tr>
+<td>Parquet vectors (uint8 raw)</td>
+<td><code>C × 384 × 1</code></td>
+<td style="text-align: right;">~<strong>85 MB</strong> (+overhead)</td>
+</tr>
+<tr>
+<td>HNSW index</td>
+<td>~1-2 KB × C</td>
+<td style="text-align: right;"><strong>~220-440 MB</strong></td>
+</tr>
+<tr>
+<td>Parquet text+meta</td>
+<td>compressed</td>
+<td style="text-align: right;"><strong>tens of MB</strong> (depends on text volume)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>If the HNSW index starts feeling large to juggle, flip to <strong>IVF‑PQ</strong>: you can expect <strong>tens of MB</strong> with recall@10 often <strong>95-99%</strong>, tunable via <code>nprobe</code>.</p>
+</blockquote>
+<hr />
+<h2 id="keyword-index-whats-in-the-tiny-json">Keyword index (what’s in the tiny JSON)</h2>
+<p>We derive a compact per‑document keyword list from the Parquet text:</p>
+<ul>
+<li>Normalise punctuation/quotes and remove boilerplate (e.g., page headers).  </li>
+<li>Lowercase, keep words of 4+ letters.  </li>
+<li>Remove <strong>stop‑words</strong> (scikit‑learn English) and <strong>domain‑common words</strong> (CSC custom list of high freq/low importance words).  </li>
+<li>Filter <strong>too‑common</strong> terms with <code>max_df</code> (e.g., drop tokens appearing in &gt;85% of docs) and <strong>too‑rare</strong> with <code>min_df</code> (e.g., keep tokens in ≥2 docs).</li>
+</ul>
+<p>This makes <code>docs/search_index.json</code> <strong>tiny</strong> and fast(er) for lookup/searches.</p>
+<hr />
+<h2 id="why-hnsw-now-ivfpq-later">Why HNSW now, IVF‑PQ later?</h2>
+<ul>
+<li><strong>HNSW</strong> gives near‑exact recall with simple knobs (<code>M</code>, <code>efConstruction</code>, <code>efSearch</code>), great for up to a few hundred thousand vectors on a single machine.</li>
+<li><strong>IVF‑PQ</strong> compresses vectors and partitions the space. It is useful when you need <strong>smaller indexes</strong> and faster queries at scale. We trade some/a little recall, but can dial it back with <code>nprobe</code> and codebook size.</li>
+</ul>
+<p><strong>Switching rule of thumb:</strong> if chunks exceed <strong>~200-250k</strong> or HNSW file becomes problematic (&gt;~300 MB), toggle IVF‑PQ.</p>
+<hr />
+<h2 id="interoperability-reuse">Interoperability &amp; reuse</h2>
+<ul>
+<li><strong>Parquet</strong> is easy to read from Python, R, Spark, DuckDB, Polars, etc.</li>
+<li><strong>FAISS</strong> is a standard ANN engine; the index can be loaded locally or by a lightweight service.</li>
+<li>The corpus is <strong>self‑describing</strong>: Parquet schema metadata indicates whether embeddings are <code>float32</code> or quantised (<code>uint8</code> with dequant rule).</li>
+</ul>
+<hr />
+<h2 id="frequently-asked-but-will-it">Frequently asked “but will it…?”</h2>
+<ul>
+<li>
+<p><strong>…find the right stuff if we've compressed vectors?</strong><br />
+  Yes-for docs and model, differences are tiny. We've normalised vectors, which preserves cosine structure.</p>
+</li>
+<li>
+<p><strong>…scale to thousands of PDFs?</strong><br />
+  Yes. We already decouple build time from corpus size via incremental hashing, and so work with only compact artefacts.</p>
+</li>
+<li>
+<p><strong>…lock me into a specific, or needed paid software?</strong><br />
+  No. We use open formats (Parquet, FAISS) + standard Python libs.</p>
+</li>
+<li>
+<p><strong>…support OCR/scanned PDFs?</strong><br />
+  Not yet; we can add Tesseract or cloud OCR later if needed but we've not come accross any relevant pdfs that weren't text content based. We'll fix this later if any colleagues are aware of such docs. </p>
+</li>
+</ul>
+<hr />
+<h2 id="key-libraries-and-why-we-chose-them">Key libraries and why we chose them</h2>
+<ul>
+<li><strong>PyMuPDF (<code>pymupdf</code>)</strong>: fast, robust PDF text extraction.  </li>
+<li><strong>Sentence‑Transformers</strong>: high‑quality sentence embeddings + easy APIs.  </li>
+<li><strong>FAISS</strong>: full vector search (HNSW, IVF‑PQ) with scalable performance.  </li>
+<li><strong>PyArrow/Parquet</strong>: portable column based storage; perfect for text + vectors + metadata.  </li>
+<li><strong>scikit‑learn</strong>: light‑weight keyword vocab building with stop‑word &amp; frequency filters.</li>
+</ul>
+<hr />
+<h2 id="takeaways">Takeaways</h2>
+<ul>
+<li>By <strong>separating heavy preprocessing</strong> from what's hosted in the main/mkdocs site here, plus by <strong>quantising vectors</strong>, we massively cut the needed storage and bandwidth without compromising colleagues' experience in the search etc</li>
+<li>The site’s search is able to be <strong>near-instant with smaller footprint</strong>, and an underlying corpus remains <strong>portable and reusable</strong> for future or onward data projects.</li>
+</ul>
+<hr />
+<h1 id="faiss-and-parquet-artefacts-structure-and-reference">FAISS and Parquet artefacts: structure and reference</h1>
+<p>A bit about how derived files are organised within the project, what's inside Parquet tables, and what the FAISS index stores. </p>
+<hr />
+<h2 id="repo-layout-derived-artefacts">Repo layout (derived artefacts)</h2>
+<pre><code>artifacts/
+  state.json                        # per-document hashes, build config, last_built
+  chunks/                           # per-document Parquet (text + metadata)
+    1a2b3c4d5e6f7a8b.parquet
+    9c0d1e2f3a4b5c6d.parquet
+    ...
+  vectors/                          # per-document Parquet (text + vectors)
+    1a2b3c4d5e6f7a8b.parquet
+    9c0d1e2f3a4b5c6d.parquet
+    ...
+  motw_chunks.parquet               # combined (optional)
+  motw_vectors.parquet              # combined (optional)
+  motw_index.faiss                  # FAISS HNSW index (default)
+  motw_index_ivfpq.faiss            # FAISS IVF-PQ index (optional)
+</code></pre>
+<ul>
+<li><code>doc_id</code> is the first 16 hex of the SHA-256 of the raw file content.</li>
+<li>Per-document Parquet files enable incremental builds and quick reloads.</li>
+<li>Combined Parquet files are optional and exist for convenience.</li>
+</ul>
+<hr />
+<h2 id="parquet-schemas">Parquet schemas</h2>
+<h3 id="per-document-chunks-parquet-artifactschunksdoc_idparquet">Per-document <strong>chunks</strong> Parquet (<code>artifacts/chunks/&lt;doc_id&gt;.parquet</code>)</h3>
+<p>Schema:</p>
+<pre><code>doc_id:      string          # 16-char hex id (content address)
+chunk_id:    int32           # 0..N-1 per document
+source_path: string          # original path on disk
+source_name: string          # original filename (for example My_File.pdf)
+text:        string          # chunked, cleaned text
+</code></pre>
+<p>Example row:</p>
+<table>
+<thead>
+<tr>
+<th>doc_id</th>
+<th style="text-align: right;">chunk_id</th>
+<th>source_name</th>
+<th>text (truncated)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1a2b3c4d5e6f7a8b</td>
+<td style="text-align: right;">0</td>
+<td>ADCS_Safeguarding_...pdf</td>
+<td>Local authorities should...</td>
+</tr>
+</tbody>
+</table>
+<h3 id="per-document-vectors-parquet-artifactsvectorsdoc_idparquet">Per-document <strong>vectors</strong> Parquet (<code>artifacts/vectors/&lt;doc_id&gt;.parquet</code>)</h3>
+<p>Same columns as <strong>chunks</strong>, plus one embedding column:</p>
+<ul>
+<li>If stored as float32:
+  <code>embedding: list&lt;float32&gt;    # length 384</code></li>
+<li>If stored as uint8 (space-saving default):
+  <code>embedding_q: list&lt;uint8&gt;    # length 384, quantised</code></li>
+</ul>
+<p>Parquet schema metadata (present on the vectors file) indicates storage:</p>
+<pre><code>motw.embedding.storage = &quot;float32&quot;      # or &quot;uint8_sym&quot;
+motw.embedding.dequant  = &quot;x = (q / 127.5) - 1.0&quot;
+</code></pre>
+<ul>
+<li>For <code>embedding_q</code>, clients can reconstruct an approximate float vector as:</li>
+<li><code>x = (q / 127.5) - 1.0</code>, then L2-normalise <code>x</code> before cosine similarity.</li>
+<li>Vectors were normalised during embedding, which keeps cosine behaviour stable after dequantisation.</li>
+</ul>
+<h3 id="combined-parquet-files-optional">Combined Parquet files (optional)</h3>
+<p><code>artifacts/motw_chunks.parquet</code> and <code>artifacts/motw_vectors.parquet</code> have the same schemas as above, but hold all docs together. They are convenient for one-shot analysis and for users/colleagues that do not want to iterate per-doc files.</p>
+<hr />
+<h2 id="faiss-index-files">FAISS index files</h2>
+<p>The pipeline can build either:</p>
+<h3 id="hnsw-index-default-artifactsmotw_indexfaiss">HNSW index (default) - <code>artifacts/motw_index.faiss</code></h3>
+<p>Stored properties inside the binary:</p>
+<ul>
+<li><code>d</code> -&gt; 384 (embedding dimension)</li>
+<li><code>metric</code> -&gt; inner product (cosine when vectors are normalised)</li>
+<li><code>ntotal</code> -&gt; number of vectors (equals total chunks)</li>
+<li>Graph parameters saved with the index:</li>
+<li><code>M</code> -&gt; graph degree used at build time (for example 32)</li>
+<li><code>efConstruction</code> -&gt; build breadth (for example 80)</li>
+<li>Query-time parameter you set after loading:</li>
+<li><code>efSearch</code> -&gt; search breadth (for example 64 or 128). Higher -&gt; better recall, slower.</li>
+</ul>
+<p>Notes:
+- Excellent recall and speed up to a few hundred thousand vectors on a single machine.
+- File size typically ~1-2 KB per vector, depending on <code>M</code> and data.</p>
+<h3 id="ivf-pq-index-optional-artifactsmotw_index_ivfpqfaiss">IVF-PQ index (optional) - <code>artifacts/motw_index_ivfpq.faiss</code></h3>
+<p>Stored properties:</p>
+<ul>
+<li><code>d</code> -&gt; 384</li>
+<li><code>metric</code> -&gt; inner product</li>
+<li><code>ntotal</code> -&gt; number of vectors</li>
+<li>Coarse quantiser and codebooks:</li>
+<li><code>nlist</code> -&gt; number of coarse centroids (for example 1024)</li>
+<li><code>m</code> -&gt; number of subquantisers (for example 16)</li>
+<li><code>nbits</code> -&gt; bits per subvector (for example 8)</li>
+<li>Trained centroids and PQ codebooks included in the file</li>
+<li>Query-time parameter (set after loading):</li>
+<li><code>nprobe</code> -&gt; how many coarse lists to search (for example 16, 32, 64). Higher -&gt; better recall, slower.</li>
+</ul>
+<p>Notes:
+- Much smaller on disk than HNSW (often tens of MB), with a small recall trade-off that you can tune via <code>nprobe</code>.</p>
+<hr />
+<h2 id="minimal-load-examples-for-ref">Minimal load examples (for ref)</h2>
+<pre><code class="language-python"># Load FAISS index
+import faiss
+index = faiss.read_index(&quot;artifacts/motw_index.faiss&quot;)  # or motw_index_ivfpq.faiss
+# For HNSW, can increase recall at query time:
+try:
+    index.hnsw.efSearch = 64
+except AttributeError:
+    pass
+# For IVF-PQ:
+try:
+    index.nprobe = 32
+except AttributeError:
+    pass
+</code></pre>
+<pre><code class="language-python"># Load vectors from Parquet (handles float32 or uint8 storage)
+import pyarrow.parquet as pq
+import numpy as np
+
+t = pq.read_table(&quot;artifacts/motw_vectors.parquet&quot;)  # or per-document under artifacts/vectors/
+cols = set(t.schema.names)
+
+if &quot;embedding&quot; in cols:  # float32
+    embs = np.array([np.array(x) for x in t.column(&quot;embedding&quot;).to_pylist()], dtype=&quot;float32&quot;)
+elif &quot;embedding_q&quot; in cols:  # uint8
+    q = np.array([np.array(x, dtype=&quot;uint8&quot;) for x in t.column(&quot;embedding_q&quot;).to_pylist()], dtype=&quot;uint8&quot;)
+    x = (q.astype(&quot;float32&quot;) / 127.5) - 1.0
+    # re-normalise to unit length
+    n = np.linalg.norm(x, axis=1, keepdims=True) + 1e-6
+    embs = x / n
+else:
+    raise ValueError(&quot;No embedding column found&quot;)
+</code></pre>
+<hr />
+<h2 id="how-these-pieces-fit-the-platform">How these pieces fit the platform</h2>
+<ul>
+<li><strong>Parquet</strong> carries all chunk text and metadata for analytics, auditing, and lightweight keyword indexing.</li>
+<li><strong>FAISS</strong> provides high-quality semantic retrieval over the same chunks.</li>
+<li>Storing Parquet embeddings as <strong>uint8</strong> keeps long-term storage small while preserving near-identical search behaviour when vectors are dequantised and normalised.</li>
+<li>HNSW is the default for accuracy and simplicity. IVF-PQ is available when a much smaller index is needed, with tunable recall.</li>
+</ul>
+<hr />
+<h2 id="glossary">Glossary</h2>
+<ul>
+<li><strong>Parquet</strong>: a columnar file format for tables. Efficient to store and quick to scan. Works well with Pandas, DuckDB, Spark and friends.</li>
+<li><strong>FAISS</strong>: Facebook AI Similarity Search - a library for fast similarity search over vectors (numerical representations of text). Lets you find "things like this" quickly. </li>
+<li><strong>HNSW</strong>: Hierarchical Navigable Small World graph. A very fast index structure used by FAISS for high‑quality approximate nearest‑neighbour search.</li>
+<li><strong>Artefacts</strong>: the files we produce from processing (e.g. Parquet tables and FAISS indexes) that you can store, publish, or reuse.</li>
+<li><strong>L2‑normalise</strong>: scale a vector so its length is 1. This keeps cosine similarity meaningful and makes quantisation behave well.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+      
+        <script src="../js/render_graph.js"></script>
+      
+        <script src="../js/search_tool.js"></script>
+      
+    
+  </body>
+</html>

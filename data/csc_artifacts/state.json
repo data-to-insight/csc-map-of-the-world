@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "chunk_chars": 1800,
+  "chunk_overlap": 150,
+  "docs": {
+    "07eef5fbf069ed5d": {
+      "path": "data_published\\CA1989_Transitions_Guidance.pdf",
+      "source_name": "CA1989_Transitions_Guidance.pdf",
+      "sha256": "07eef5fbf069ed5ddb79cb41a2c9eb9ba4c284521d17a0ecfa79146329e38b77",
+      "chunks": 162,
+      "bytes": 1342583,
+      "last_built": "2025-09-16T09:41:26Z"
+    },
+    "17f5e97228d278b5": {
+      "path": "data_published\\providing_effective_advocacy.pdf",
+      "source_name": "providing_effective_advocacy.pdf",
+      "sha256": "17f5e97228d278b5ca1e6316011d07104752192ba5c59380c171715cbc02d263",
+      "chunks": 34,
+      "bytes": 426002,
+      "last_built": "2025-09-16T09:41:26Z"
+    },
+    "1ae41f9180acd206": {
+      "path": "data_published\\Children_in_need_census_2023_to_2024_guide_v1.0.pdf",
+      "source_name": "Children_in_need_census_2023_to_2024_guide_v1.0.pdf",
+      "sha256": "1ae41f9180acd206170970d34e9a132694e95515ab1378b1c44467d20c0599bd",
+      "chunks": 76,
+      "bytes": 507327,
+      "last_built": "2025-09-16T09:41:26Z"
+    },
+    "299624ff1227f5c4": {
+      "path": "data_published\\Keeping_children_safe_in_education_2025.pdf",
+      "source_name": "Keeping_children_safe_in_education_2025.pdf",
+      "sha256": "299624ff1227f5c488cfd1b63066b03d40053af6f592bdd8ada92e0587292548",
+      "chunks": 259,
+      "bytes": 1513111,
+      "last_built": "2025-09-16T09:41:26Z"
+    },
+    "3454eac8c5d61df2": {
+      "path": "data_published\\Understanding social worker recording (Essex).pdf",
+      "source_name": "Understanding social worker recording (Essex).pdf",
+      "sha256": "3454eac8c5d61df2590d5f1d3f1ef8eb5687820808972d378e609bbc082771f6",
+      "chunks": 133,
+      "bytes": 1801647,
+      "last_built": "2025-09-16T09:41:27Z"
+    },
+    "40de019f7022a504": {
+      "path": "data_published\\Childrens_social_care_dashboard_supporting_information_Oct_2024.pdf",
+      "source_name": "Childrens_social_care_dashboard_supporting_information_Oct_2024.pdf",
+      "sha256": "40de019f7022a504ae4039ae7e6cf04af93d4a52edc9cad4af3fc927d890713e",
+      "chunks": 17,
+      "bytes": 263299,
+      "last_built": "2025-09-16T09:41:27Z"
+    },
+    "41b0220c9eda0ed8": {
+      "path": "data_published\\Evaluation of the outcomes and impact of the TFD and associated.pdf",
+      "source_name": "Evaluation of the outcomes and impact of the TFD and associated.pdf",
+      "sha256": "41b0220c9eda0ed828c5ce1062cc6048c6efdb77c987ecdfcad733fc2ac25fcc",
+      "chunks": 163,
+      "bytes": 3576163,
+      "last_built": "2025-09-16T09:41:27Z"
+    },
+    "4f04231c47258e87": {
+      "path": "data_published\\Adapting Case Management Systems for Families First_May 2025.pdf",
+      "source_name": "Adapting Case Management Systems for Families First_May 2025.pdf",
+      "sha256": "4f04231c47258e877c890b215d62d70637d872d83d88d057b5966390a51c1acb",
+      "chunks": 10,
+      "bytes": 137793,
+      "last_built": "2025-09-16T09:41:27Z"
+    },
+    "7bebfd5d08f092dc": {
+      "path": "data_published\\Local_offer_guidance.pdf",
+      "source_name": "Local_offer_guidance.pdf",
+      "sha256": "7bebfd5d08f092dc1ebd7ac93caeac0d96b2c863a17781e9479f6a6147e57d43",
+      "chunks": 15,
+      "bytes": 385823,
+      "last_built": "2025-09-16T09:41:27Z"
+    },
+    "82cf164d1af40555": {
+      "path": "data_published\\SSD for Power BI and Tableau.pdf",
+      "source_name": "SSD for Power BI and Tableau.pdf",
+      "sha256": "82cf164d1af405559a0ee9eef05cf5012ea64b2190a02f62769f990ffda7ae8c",
+      "chunks": 4,
+      "bytes": 190118,
+      "last_built": "2025-09-16T09:41:27Z"
+    },
+    "9201ed0854711ba4": {
+      "path": "data_published\\NVEST Newsletter June 25.pdf",
+      "source_name": "NVEST Newsletter June 25.pdf",
+      "sha256": "9201ed0854711ba44afe1925fdf14ead1a79f684f767765f8fcf18618731600a",
+      "chunks": 3,
+      "bytes": 113999,
+      "last_built": "2025-09-16T09:41:27Z"
+    },
+    "980d1ad483b10a64": {
+      "path": "data_published\\adoption_statutory_guidance_2013.pdf",
+      "source_name": "adoption_statutory_guidance_2013.pdf",
+      "sha256": "980d1ad483b10a6474a8fc6606edf27ebae8801035366f5dfe83a98ed1dd42ba",
+      "chunks": 348,
+      "bytes": 1048202,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "9b907f7c60a8cded": {
+      "path": "data_published\\Childrens_Social_Care_National_Framework__Dec_2023.pdf",
+      "source_name": "Childrens_Social_Care_National_Framework__Dec_2023.pdf",
+      "sha256": "9b907f7c60a8cdedf148d108859cd134617ba9503c1f678f52ba1f4b76064d9f",
+      "chunks": 86,
+      "bytes": 398621,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "a0c76f1d1f43775c": {
+      "path": "data_published\\SSD Benefits Summary.pdf",
+      "source_name": "SSD Benefits Summary.pdf",
+      "sha256": "a0c76f1d1f43775cae76c4a2ab635804ec2cc5019464fc88a465c18ff8044cf4",
+      "chunks": 2,
+      "bytes": 264419,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "a13a262849189de6": {
+      "path": "data_published\\Standard Safeguarding Dataset - Final Report April 2024 v1.0.pdf",
+      "source_name": "Standard Safeguarding Dataset - Final Report April 2024 v1.0.pdf",
+      "sha256": "a13a262849189de6a525f37e237a9fe080454b169242c35e5a44dec2f16b9e03",
+      "chunks": 38,
+      "bytes": 522228,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "adc207bd3ded87ca": {
+      "path": "data_published\\Children_missing_education_guidance_-_August_2024.pdf",
+      "source_name": "Children_missing_education_guidance_-_August_2024.pdf",
+      "sha256": "adc207bd3ded87ca67823db561dd620b82b9e1aab4171439acb2e86bc75b7fe6",
+      "chunks": 38,
+      "bytes": 359107,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "ae135799b3f8b266": {
+      "path": "data_published\\ADCS_Safeguarding_Pressures_Phase9_FINAL.pdf",
+      "source_name": "ADCS_Safeguarding_Pressures_Phase9_FINAL.pdf",
+      "sha256": "ae135799b3f8b266a7e1f06c2e7e38c3e6ac1873ed077bfa7546f3def3077250",
+      "chunks": 117,
+      "bytes": 1214007,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "af44fa2356125ef7": {
+      "path": "data_published\\Children_s_social_work_workforce_census_2024_to_2025_-_business_and_technical_specification_v1.pdf",
+      "source_name": "Children_s_social_work_workforce_census_2024_to_2025_-_business_and_technical_specification_v1.pdf",
+      "sha256": "af44fa2356125ef7560c9d7169112aa8320b32f4a927b9b38cd2b0b0fd3d76b9",
+      "chunks": 32,
+      "bytes": 285089,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "b560b1f0bfc18192": {
+      "path": "data_published\\Promoting_the_health_and_well-being_of_looked-after_children_August_2022_update.pdf",
+      "source_name": "Promoting_the_health_and_well-being_of_looked-after_children_August_2022_update.pdf",
+      "sha256": "b560b1f0bfc18192e4cf2341f0060aa9ec5b0fc8ffa67faf79a7617553d0c056",
+      "chunks": 50,
+      "bytes": 413393,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "b760222a80d451a0": {
+      "path": "data_published\\Info_sharing_advice_content_May_2024.pdf",
+      "source_name": "Info_sharing_advice_content_May_2024.pdf",
+      "sha256": "b760222a80d451a0f7f67d0d0392b3d66ce4f4bb42174c18ffcf761601f6701f",
+      "chunks": 34,
+      "bytes": 510517,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "bfa778be86eb98a7": {
+      "path": "data_published\\Standard Safeguarding Dataset - User Research Synthesis June 2023 v1.0.pdf",
+      "source_name": "Standard Safeguarding Dataset - User Research Synthesis June 2023 v1.0.pdf",
+      "sha256": "bfa778be86eb98a775572544c8c74fffcbf679b3215e564f31c659314c0214e5",
+      "chunks": 12,
+      "bytes": 1589633,
+      "last_built": "2025-09-16T09:41:28Z"
+    },
+    "f08e89090429186b": {
+      "path": "data_published\\Reimagining Case Management in Children's Social Care Pilot - NYC Evaluation.pdf",
+      "source_name": "Reimagining Case Management in Children's Social Care Pilot - NYC Evaluation.pdf",
+      "sha256": "f08e89090429186b81cefd5a9c7464d4ef9314f3a084516390f456811a136d11",
+      "chunks": 89,
+      "bytes": 1350775,
+      "last_built": "2025-09-16T09:41:29Z"
+    },
+    "f2540beaa0a0cbac": {
+      "path": "data_published\\The_designated_teacher_for_looked-after_and_previously_looked-after_children.pdf",
+      "source_name": "The_designated_teacher_for_looked-after_and_previously_looked-after_children.pdf",
+      "sha256": "f2540beaa0a0cbaca9ca78571710f72ecb65219991e0250b273ec24884249381",
+      "chunks": 62,
+      "bytes": 380898,
+      "last_built": "2025-09-16T09:41:29Z"
+    },
+    "f82b003ee352fa7f": {
+      "path": "data_published\\Families_first_for_children_pathfinder_implementation_and_process_evaluation_report.pdf",
+      "source_name": "Families_first_for_children_pathfinder_implementation_and_process_evaluation_report.pdf",
+      "sha256": "f82b003ee352fa7f43c6f6e3a8cb21ef971717ed505ef21b3856bab399c19328",
+      "chunks": 117,
+      "bytes": 990719,
+      "last_built": "2025-09-16T09:41:29Z"
+    },
+    "fec436f0ed277634": {
+      "path": "data_published\\CSC for Data People v1.0 2024-05-21.pdf",
+      "source_name": "CSC for Data People v1.0 2024-05-21.pdf",
+      "sha256": "fec436f0ed277634add376f295dbd9b6a5b5ab1274024a27fc093849ddb9348c",
+      "chunks": 27,
+      "bytes": 1201097,
+      "last_built": "2025-09-16T09:41:29Z"
+    }
+  }
+}

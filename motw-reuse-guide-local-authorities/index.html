@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://data-to-insight.github.io/csc-map-of-the-world/network/">
+        <link rel="canonical" href="https://data-to-insight.github.io/csc-map-of-the-world/motw-reuse-guide-local-authorities/">
       
       
-        <link rel="prev" href="..">
-      
-      
-        <link rel="next" href="../sccm_relation_types/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>CSC Network - CSC Map of the World</title>
+        <title>Reusing the “Map of the World” corpus locally - CSC Map of the World</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#csc-network-graph-in-dev" class="md-skip">
+        <a href="#reusing-the-map-of-the-world-corpus-locally" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CSC Network
+              Reusing the “Map of the World” corpus locally
             
           </span>
         </div>
@@ -227,19 +223,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
         
   
   
@@ -250,7 +237,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -385,6 +371,110 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      What you can do
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-in-the-shared-pack" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is in the shared pack
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-notebook-creates" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the notebook creates
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-main-ways-to-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two main ways to run
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two main ways to run">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-fresh-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      1) Fresh build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-append-your-new-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      2) Append your new files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-useful-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other useful options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-on-changes-and-deletions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes on changes and deletions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-success-looks-like" class="md-nav__link">
+    <span class="md-ellipsis">
+      What success looks like
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-is-shareable-and-future-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why this is shareable and future proof
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -399,46 +489,96 @@
 
 
 
-<h1 id="csc-network-graph-in-dev">CSC Network Graph (in dev)</h1>
-<!-- 1) mkdocs defaults, 2) css styled enlargement(not working), 3) forced full browswer win overlay -->
-<!-- <div id="cy" style="width: 100%; height: 600px;"></div> -->
-<!-- <div id="cy"></div> -->
-
-<p>This interactive graph shows key organisations, plans, and events in the children’s services data ecosystem.
-Use the dropdown to filter by type. You can select more than one item using Ctrl/Cmd.</p>
-<p>Dev-notes: Data &amp; relations currently being added, graph layout and naming conventions for nodes in particular is a work in progress as we progress possible use-cases and standardise yml object structure.</p>
-<!-- Content search filter (in dev) -->
-<div style="margin-bottom: 0.5em;">
-  <label for="textSearch"><strong>Search:</strong></label>
-  <input id="textSearch" type="text" placeholder="name, tag, keyword…" style="width: 320px; margin-left: 0.5em;">
-</div>
-
-<!-- Enhanced multi-select filter with Choices.js -->
-<div style="margin-bottom: 1em;">
-  <label for="typeFilter"><strong>Filter by node type(s):</strong></label>
-  <select id="typeFilter" multiple>
-    <option value="org" selected>Organizations</option>
-    <option value="plan">Plans</option>
-    <option value="event">Events</option>
-    <option value="service">Services</option>
-  </select>
-  <button id="resetView" style="margin-left: 1em;">Reset View</button>
-</div>
-
-<!-- Graph container -->
-<div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>
-
-<p>Submit suggested map <a href="mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-CORRECTION&amp;body=I%20suggest%20that%20the%20following%20needs%20correcting:">corrections</a> or data <a href="mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-DATA&amp;body=I%20suggest%20that%20the%20Map%20should%20have%20the%20following%20added:">additions</a></p>
-<style>
-  #graph-status {
-    font-size: 0.7em;
-    color: #333;
-  }
-  .choices__inner {
-    background-color: #f9f9f9;
-    border-radius: 6px;
-  }
-</style>
+<h1 id="reusing-the-map-of-the-world-corpus-locally">Reusing the “Map of the World” corpus locally</h1>
+<p><em>A short guide for local authority colleagues</em></p>
+<p>This note explains how you can start from the shared corpus and <strong>add your own documents</strong> without rebuilding everything. It also lists the files the notebook creates and where they live.</p>
+<hr />
+<h2 id="what-you-can-do">What you can do</h2>
+<ul>
+<li><strong>Start from the shared corpus</strong> and add your own PDFs, Word documents, or text files.  </li>
+<li><strong>Append only what is new</strong>. Unchanged documents are skipped automatically.  </li>
+<li><strong>Keep storage small</strong>. We store compact Parquet tables and a FAISS index, not the original PDFs.  </li>
+<li><strong>Reuse the corpus</strong> in your own analysis tools. Parquet and FAISS are standard, portable formats.</li>
+</ul>
+<hr />
+<h2 id="what-is-in-the-shared-pack">What is in the shared pack</h2>
+<p>Place these in your project folder:</p>
+<pre><code>csc_artifacts/
+  state.json                 # records which documents were processed and with which settings
+  chunks/                    # per-document Parquet of chunked text + metadata
+  vectors/                   # per-document Parquet of vectors (uint8 by default)
+  motw_index.faiss           # FAISS index (HNSW) built over all vectors
+# optional
+  motw_chunks.parquet        # combined text+meta (only if materialised)
+  motw_vectors.parquet       # combined text+vectors (only if materialised)
+</code></pre>
+<p>You provide your own documents here:</p>
+<pre><code>data_published/              # put your PDFs, .docx, or .txt here
+</code></pre>
+<blockquote>
+<p>We avoid storing PDFs in Git. Keep them local or in object storage if you need an archive.</p>
+</blockquote>
+<hr />
+<h2 id="what-the-notebook-creates">What the notebook creates</h2>
+<p>When you run the notebook, it will create or update:</p>
+<ul>
+<li><code>csc_artifacts/state.json</code> - a small manifest with hashes, sizes, chunk counts, and build settings.  </li>
+<li><code>csc_artifacts/chunks/&lt;doc_id&gt;.parquet</code> - chunked text and metadata for each document.  </li>
+<li><code>csc_artifacts/vectors/&lt;doc_id&gt;.parquet</code> - the matching vectors for each document. Stored as <code>embedding_q</code> (uint8) with a note on how to dequantise.  </li>
+<li><code>csc_artifacts/motw_index.faiss</code> - the FAISS search index.  </li>
+<li>Optionally, <code>csc_artifacts/motw_chunks.parquet</code> and <code>csc_artifacts/motw_vectors.parquet</code> if you turn on materialisation.</li>
+</ul>
+<p>We identify each document by the first 16 hex characters of its SHA-256 hash. This keeps the build <strong>incremental</strong> and avoids duplicates.</p>
+<hr />
+<h2 id="two-main-ways-to-run">Two main ways to run</h2>
+<h3 id="1-fresh-build">1) Fresh build</h3>
+<p>Use when you are starting from scratch or want a clean rebuild.</p>
+<ul>
+<li>The notebook scans <code>data_published/</code>, extracts text, chunks it, embeds it, writes per-document Parquet, and builds a fresh FAISS index.  </li>
+<li>It writes a new <code>state.json</code> so future runs are incremental.</li>
+</ul>
+<h3 id="2-append-your-new-files">2) Append your new files</h3>
+<p>Use when you are starting from the shared pack and want to add your own documents.</p>
+<ul>
+<li>Put your documents into <code>data_published/</code>.  </li>
+<li>The notebook compares hashes against <code>state.json</code>. Unchanged documents are skipped.  </li>
+<li>New documents are processed and <strong>appended</strong> to the existing FAISS index.  </li>
+<li>If any existing document has changed, the notebook <strong>rebuilds the index</strong> from the per-document Parquet to keep it correct.</li>
+</ul>
+<hr />
+<h2 id="other-useful-options">Other useful options</h2>
+<ul>
+<li><strong>Rebuild from Parquet only</strong> - if you have the per-document Parquet but no FAISS file, the notebook can rebuild the index without touching PDFs.  </li>
+<li><strong>Materialise a single-file Parquet</strong> - if you prefer a single file, turn on materialisation to write <code>motw_chunks.parquet</code> and <code>motw_vectors.parquet</code>. This is optional because the per-document layout already supports incremental updates.  </li>
+<li><strong>Upload to object storage</strong> - if you set the Cloudflare R2 variables, the notebook can upload updated artefacts after a run.</li>
+</ul>
+<hr />
+<h2 id="notes-on-changes-and-deletions">Notes on changes and deletions</h2>
+<ul>
+<li><strong>Changed documents</strong> - if the content of a document changes, its hash changes. The notebook reprocesses that document and <strong>rebuilds</strong> the FAISS index so your search stays correct.  </li>
+<li><strong>Deleted documents</strong> - remove the matching files in <code>csc_artifacts/chunks/</code> and <code>csc_artifacts/vectors/</code> and delete the entry in <code>state.json</code>, then run the notebook to rebuild the FAISS index.</li>
+</ul>
+<hr />
+<h2 id="what-success-looks-like">What success looks like</h2>
+<p>At the end of a run you will see a summary like:</p>
+<pre><code>Docs: 120  Read errors: 0  Empty: 0
+Chars: 14,200,000  Chunks: 95,400
+[Embedding] 00:02:15s
+Write/Update FAISS...
+rows (meta, vectors, index): 95,400, 95,400, 95,400
+Done.
+</code></pre>
+<ul>
+<li>The counts for <strong>meta</strong>, <strong>vectors</strong>, and the FAISS <strong>index</strong> should match.  </li>
+<li>If you only added new files, you should see a note about <strong>appending</strong> to the index rather than rebuilding.</li>
+</ul>
+<hr />
+<h2 id="why-this-is-shareable-and-future-proof">Why this is shareable and future proof</h2>
+<ul>
+<li><strong>Standard formats</strong> - Parquet can be read by Pandas, Polars, DuckDB, Spark and more. FAISS is a common vector index.  </li>
+<li><strong>Local-first</strong> - you can work entirely on your machine. No need to upload PDFs.  </li>
+<li><strong>Incremental by design</strong> - starting from the shared pack means you only build what is new, then carry on where we left off.</li>
+</ul>
 
 
 
