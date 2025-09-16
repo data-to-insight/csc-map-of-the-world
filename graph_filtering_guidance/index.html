@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://data-to-insight.github.io/csc-map-of-the-world/network/">
+        <link rel="canonical" href="https://data-to-insight.github.io/csc-map-of-the-world/graph_filtering_guidance/">
       
       
-        <link rel="prev" href="..">
-      
-      
-        <link rel="next" href="../sccm_relation_types/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>CSC Network - CSC Map of the World</title>
+        <title>Graph Filtering Guide - CSC Map of the World</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#csc-network-graph-in-dev" class="md-skip">
+        <a href="#graph-filtering-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CSC Network
+              Graph Filtering Guide
             
           </span>
         </div>
@@ -227,19 +223,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
         
   
   
@@ -250,7 +237,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -385,6 +371,119 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-filtering-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How filtering works
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How filtering works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-text-is-searchable" class="md-nav__link">
+    <span class="md-ellipsis">
+      What text is searchable?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debounced-typing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debounced typing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-mode-keep-neighbours-of-matches-visible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Context mode (keep neighbours of matches visible)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-search-operators-power-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple search operators (power users)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combining-filters-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combining filters: examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-state-and-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      URL state and sharing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legend-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legend counts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resetting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting tips
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -399,51 +498,106 @@
 
 
 
-<h1 id="csc-network-graph-in-dev">CSC Network Graph (in dev)</h1>
-<!-- 1) mkdocs defaults, 2) css styled enlargement(not working), 3) forced full browswer win overlay -->
-<!-- <div id="cy" style="width: 100%; height: 600px;"></div> -->
-<!-- <div id="cy"></div> -->
-
-<p>This interactive graph shows key organisations, plans, and events in the children’s services data ecosystem.
-Use the dropdown to filter by type. You can select more than one item using Ctrl/Cmd.</p>
-<p>Dev-notes: Data &amp; relations currently being added, graph layout and naming conventions for nodes in particular is a work in progress as we progress possible use-cases and standardise yml object structure.</p>
-<!-- Content search filter (in dev) -->
-<div style="margin-bottom: 0.5em;">
-  <label for="textSearch"><strong>Search:</strong></label>
-  <input id="textSearch" type="text" placeholder="[IN DEV] name, tag, keyword…" style="width: 320px; margin-left: 0.5em;">
-  <label style="margin-left: 0.75em; user-select: none;">
-    <!-- Context toggle - keep neighbours visible in search or not -->
-    <input type="checkbox" id="contextModeToggle" checked>
-    <strong>Keep neighbours (context)</strong>
-  </label>
-</div>
-
-<!-- Enhanced multi-select filter with Choices.js -->
-<div style="margin-bottom: 1em;">
-  <label for="typeFilter"><strong>Filter by node type(s):</strong></label>
-  <select id="typeFilter" multiple>
-    <option value="org" selected>Organizations</option>
-    <option value="plan">Plans</option>
-    <option value="event">Events</option>
-    <option value="service">Services</option>
-  </select>
-  <button id="resetView" style="margin-left: 1em;">Reset View</button>
-</div>
-
-<!-- Graph container -->
-<div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>
-
-<p>Submit suggested map <a href="mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-CORRECTION&amp;body=I%20suggest%20that%20the%20following%20needs%20correcting:">corrections</a> or data <a href="mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-DATA&amp;body=I%20suggest%20that%20the%20Map%20should%20have%20the%20following%20added:">additions</a></p>
-<style>
-  #graph-status {
-    font-size: 0.7em;
-    color: #333;
-  }
-  .choices__inner {
-    background-color: #f9f9f9;
-    border-radius: 6px;
-  }
-</style>
+<h1 id="graph-filtering-guide">Graph Filtering Guide</h1>
+<p>Make the most of the network graph using <strong>type filters</strong>, a <strong>search box</strong>, and an optional <strong>context mode</strong> that reveals nearby connections. This page explains how it works and gives practical examples.</p>
+<hr />
+<h2 id="quick-start">Quick start</h2>
+<ul>
+<li><strong>Type filter</strong> (chips/select): show only Organizations, Events, Plans, etc.</li>
+<li><strong>Search box</strong>: find nodes by name, tags, summary text, or slug (we index these into a <code>search_blob</code> for fast matching).</li>
+<li><strong>Context mode</strong>: optionally keep <strong>neighbours of matches</strong> visible so you can see how results connect.</li>
+<li><strong>Shareable views</strong>: your current filter state is encoded in the URL (types + query), so you can copy the link and share what you’re seeing.</li>
+<li><strong>Legend counts</strong>: the legend shows live totals for visible nodes by type.</li>
+<li><strong>Reset</strong>: click <em>Reset view</em> to clear filters and fit the graph.</li>
+</ul>
+<hr />
+<h2 id="how-filtering-works">How filtering works</h2>
+<p>Filtering is <strong>intersection-based</strong>:</p>
+<ul>
+<li>The <strong>type filter</strong> (e.g. Organizations + Events) selects <em>what kinds</em> of nodes are considered.</li>
+<li>The <strong>search box</strong> narrows this further to nodes whose text matches your query.</li>
+<li>The result is <strong>Type AND Search</strong>.</li>
+</ul>
+<p>Edges remain visible <strong>only</strong> if both endpoints are visible. This keeps the picture tidy and relevant.</p>
+<h3 id="what-text-is-searchable">What text is searchable?</h3>
+<p>Each node has a lightweight <code>search_blob</code> built at publish time, which includes:
+- <strong>Name/label</strong>
+- <strong>Tags</strong>
+- <strong>Summary/description (shortened)</strong>
+- <strong>Slug</strong> (path-like identifier)
+- <strong>Type</strong> (e.g. <code>organization</code>, <code>event</code>)</p>
+<p>The search matches plain words anywhere in that blob.</p>
+<hr />
+<h2 id="debounced-typing">Debounced typing</h2>
+<p>When you type in the search box, the filter doesn’t run on <em>every</em> keystroke. It waits ~150 ms for a short pause before applying the filter. </p>
+<p><strong>Why it helps:</strong> As we scale up the visualised network(graph), filtering can get expensive (show/hide many nodes, recompute edges, update legend). Debouncing reduces unnecessary work and makes your searches smooth(er) but importantly reduces those our background processing overheads.</p>
+<p><strong>Example:</strong> typing <code>ilacs</code> would normally trigger 5 full filter runs. With debounce, you typically get 1–2 runs total.</p>
+<hr />
+<h2 id="context-mode-keep-neighbours-of-matches-visible">Context mode (keep neighbours of matches visible)</h2>
+<p>If <strong>Context mode</strong> is ON, then when your search finds some nodes, we also show their <strong>immediate neighbours</strong> and the <strong>edges</strong> between them. That gives you a mini ego-network around each hit, which we think offers better network exploration/search relevance.</p>
+<p><strong>Example:</strong> search <code>tag:ilacs</code>. You’ll see the nodes that are tagged <code>ilacs</code>, plus the organizations that run them, related events, or connected plans—so you understand each hit <em>in context</em>.</p>
+<p>Turn it OFF when you want a strict, minimal view showing only the direct matches.</p>
+<hr />
+<h2 id="simple-search-operators-power-users">Simple search operators (power users)</h2>
+<p>You can mix operators with plain keywords to express intent quickly:</p>
+<ul>
+<li><code>type:org</code> — show organizations (same as picking Organizations in the type filter).</li>
+<li><code>tag:ilacs</code> — show nodes with the tag <code>ilacs</code>.</li>
+<li><code>type:event tag:training</code> — events tagged <code>training</code>.</li>
+<li><code>tag:ilacs charity</code> — nodes tagged <code>ilacs</code> <strong>and</strong> whose text contains <code>charity</code>.</li>
+<li><code>type:org type:event</code> — organizations <strong>or</strong> events (operator values are ORed).</li>
+</ul>
+<p><strong>Rules:</strong><br />
+- <strong>Within the same operator</strong> (e.g., multiple <code>type:</code>), values are <strong>ORed</strong>.<br />
+- <strong>Across different buckets</strong> (type, tag, and plain text), conditions are <strong>ANDed</strong>.<br />
+- Text tokens (non-operator words) must all appear somewhere in the node’s <code>search_blob</code>.</p>
+<p><strong>Aliases:</strong> <code>type:org</code>, <code>type:organisation</code>, and <code>type:organization</code> are treated the same.</p>
+<hr />
+<h2 id="combining-filters-examples">Combining filters: examples</h2>
+<ul>
+<li>
+<p><strong>Only organizations with ILACS in the text</strong><br />
+  Type filter: Organizations; Search: <code>ilacs</code><br />
+<em>Shows only orgs whose name/summary/tags include “ilacs”.</em></p>
+</li>
+<li>
+<p><strong>Any node tagged ILACS that mentions Ofsted</strong><br />
+  Type filter: All; Search: <code>tag:ilacs ofsted</code><br />
+<em>Matches the ILACS tag AND the word “ofsted” appears in the node’s text.</em></p>
+</li>
+<li>
+<p><strong>Events or Organizations related to training</strong><br />
+  Type filter: All; Search: <code>type:event type:org training</code><br />
+<em>Matches if the node is an Event OR Organization, AND contains “training”.</em></p>
+</li>
+<li>
+<p><strong>Strict list without neighbours</strong><br />
+  Toggle <strong>Context mode</strong> OFF; Search: <code>tag:procurement framework</code><br />
+<em>Only nodes that match will display (no neighbours). Useful for tight lists.</em></p>
+</li>
+</ul>
+<hr />
+<h2 id="url-state-and-sharing">URL state and sharing</h2>
+<p>When you change filters or search, the page updates the URL with your current <strong>types</strong> and <strong>query</strong>. Copy the URL to share your exact view with someone else, including the existing zoom/pan context.</p>
+<hr />
+<h2 id="legend-counts">Legend counts</h2>
+<p>The legend shows the <strong>number of visible nodes</strong> per type. Counts update as you filter so you can see how your query impacts the mix.</p>
+<hr />
+<h2 id="resetting">Resetting</h2>
+<p>Use the <strong>Reset view</strong> button to:<br />
+- Clear the type filter and search query<br />
+- Remove match highlighting<br />
+- Fit the graph to the viewport</p>
+<hr />
+<h2 id="troubleshooting-tips">Troubleshooting tips</h2>
+<ul>
+<li><strong>Nothing shows up?</strong> Clear the search box, check the type chips, or hit <em>Reset view</em>.</li>
+<li><strong>Too much disappears when I type?</strong> Turn <strong>Context mode</strong> ON to keep neighbours of hits visible.</li>
+<li><strong>I can’t find a node I know exists.</strong> Try broader terms, check spelling, or search by <code>tag:</code> if you know one.</li>
+<li><strong>Sharing a view.</strong> Copy the page URL after you’ve set filters; it contains your state.</li>
+</ul>
+<hr />
+<p><em>This graph is built from YAML entities (Organization, Event, Plan, etc.) with extra build-time fields for search (slug, search blob). The filters you see operate entirely in the browser for quick, privacy-friendly exploration.</em></p>
 
 
 

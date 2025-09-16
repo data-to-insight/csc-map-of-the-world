@@ -3,7 +3,7 @@
     {
       "data": {
         "id": "essex_county_council",
-        "label": "Essex County Council",
+        "label": "Essex CC",
         "type": "ORGANIZATION",
         "group": "nodes"
       },
@@ -12,7 +12,7 @@
     {
       "data": {
         "id": "knowsley_council",
-        "label": "Knowsley Council",
+        "label": "Knowsley CC",
         "type": "ORGANIZATION",
         "group": "nodes"
       },
@@ -39,7 +39,7 @@
     {
       "data": {
         "id": "rcc",
-        "label": "Regional Care Co-operative (RCC)",
+        "label": "Regional Care Co-op (RCC)",
         "type": "ORGANIZATION",
         "group": "nodes"
       },
@@ -75,7 +75,7 @@
     {
       "data": {
         "id": "research_in_practice",
-        "label": "RiP (Research in Practice)",
+        "label": "Research in Practice (RiP)",
         "type": "ORGANIZATION",
         "group": "nodes"
       },
@@ -93,7 +93,7 @@
     {
       "data": {
         "id": "csdug",
-        "label": "Template Name Here",
+        "label": "CSDUG",
         "type": "ORGANIZATION",
         "group": "nodes"
       },
@@ -102,7 +102,7 @@
     {
       "data": {
         "id": "hertfordshire_county_council",
-        "label": "Hertfordshire County Council",
+        "label": "Hertfordshire CC",
         "type": "ORGANIZATION",
         "group": "nodes"
       },
@@ -120,7 +120,7 @@
     {
       "data": {
         "id": "department_for_education",
-        "label": "Department for Education",
+        "label": "DfE",
         "type": "ORGANIZATION",
         "group": "nodes"
       },
@@ -202,6 +202,33 @@
       "data": {
         "id": "childrens_wellbeing_schools_bill_2024_25",
         "label": "Children's Wellbeing and Schools Bill 2024–25",
+        "type": "EVENT",
+        "group": "nodes"
+      },
+      "classes": "event"
+    },
+    {
+      "data": {
+        "id": "nvest2",
+        "label": "NVEST2 | Families First CMS challenges",
+        "type": "EVENT",
+        "group": "nodes"
+      },
+      "classes": "event"
+    },
+    {
+      "data": {
+        "id": "nvest3",
+        "label": "NVEST3 | Tbc",
+        "type": "EVENT",
+        "group": "nodes"
+      },
+      "classes": "event"
+    },
+    {
+      "data": {
+        "id": "nvest1",
+        "label": "NVEST1",
         "type": "EVENT",
         "group": "nodes"
       },
@@ -381,18 +408,18 @@
     {
       "data": {
         "source": "department_for_education",
-        "target": "cin_census_data_requirements",
-        "label": "definesCollection",
-        "relationship_type": "definesCollection",
+        "target": "keeping_children_safe_in_education_2025",
+        "label": "hasPlan",
+        "relationship_type": "hasPlan",
         "group": "edges"
       }
     },
     {
       "data": {
         "source": "department_for_education",
-        "target": "keeping_children_safe_in_education_2025",
-        "label": "hasPlan",
-        "relationship_type": "hasPlan",
+        "target": "cin_census_data_requirements",
+        "label": "definesCollection",
+        "relationship_type": "definesCollection",
         "group": "edges"
       }
     },
