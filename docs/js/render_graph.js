@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Site base for building correct links on GitHub Pages (e.g. "/csc-map-of-the-world/")
   const SITE_BASE = graphDataURL.pathname.replace(/data\/graph_data\.json$/, "");
 
+
   const staticTypeColorMap = {
     "organization": "#007acc",
     "event": "#ff9800",
@@ -173,118 +174,166 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(obj => { window.__relatedIndex = obj || {}; })
         .catch(() => { window.__relatedIndex = {}; });
 
-      // --- Side panel (V2) ---
-      const panel = document.getElementById("nodePanel");
+      // Ensure the details panel exists even if the page forgot to include it
+      let panel = document.getElementById("nodePanel");
+      if (!panel) {
+        panel = document.createElement("aside");
+        panel.id = "nodePanel";
+        panel.className = "node-panel";
+        document.body.appendChild(panel);
+      }
 
+      // --- Side panel (V2) ---
       function openNodePanel(node) {
         if (!panel) return;
+        try {
+          const esc = (s) =>
+            s == null
+              ? ""
+              : String(s).replace(/[&<>"']/g, (c) => ({
+                  "&": "&amp;",
+                  "<": "&lt;",
+                  ">": "&gt;",
+                  '"': "&quot;",
+                  "'": "&#39;",
+                })[c]);
 
-        // HTML escaper
-        const esc = (s) =>
-          s == null
-            ? ""
-            : String(s).replace(/[&<>"']/g, (c) => ({
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;",
-              })[c]);
+          const d = node.data();
+          const tagsHtml  = (d.tags || []).map(t => `<span>#${esc(t)}</span>`).join("");
 
-        const d = node.data();
-        const tagsHtml  = (d.tags || []).map(t => `<span>#${esc(t)}</span>`).join("");
+          const pageUrl = d.page_url
+            ? `${SITE_BASE}${String(d.page_url).replace(/^\/+/, "")}`
+            : (d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/, "")}/` : "");
 
-        // Build URLs rooted at site base
-        const pageUrl = d.page_url
-          ? `${SITE_BASE}${String(d.page_url).replace(/^\/+/, "")}`
-          : (d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/, "")}/` : "");
+          const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(d.slug || d.label || d.id || "")}`;
+          const hasRelated = window.__relatedIndex && d.slug && window.__relatedIndex[d.slug];
 
-        const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(d.slug || d.label || d.id || "")}`;
+          const websiteRow = d.website ? `
+            <div class="row">
+              <div class="subhead"><strong>Website</strong></div>
+              <div><a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>
+            </div>` : "";
 
-        const hasRelated = window.__relatedIndex && d.slug && window.__relatedIndex[d.slug];
+          const projectsRow = (Array.isArray(d.projects) && d.projects.length) ? `
+            <div class="row">
+              <div class="subhead"><strong>Projects</strong></div>
+              <ul style="margin:6px 0 0 18px; padding:0;">
+                ${d.projects.map(p => `<li>${esc(p).replace(/[_-]/g," ")}</li>`).join("")}
+              </ul>
+            </div>` : "";
 
-        // Optional sections
-        const websiteRow = d.website ? `
-          <div class="row">
-            <div class="subhead"><strong>Website</strong></div>
-            <div><a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>
-          </div>` : "";
+          const personsRow = (Array.isArray(d.persons) && d.persons.length) ? `
+            <div class="row">
+              <div class="subhead"><strong>People</strong></div>
+              <ul style="margin:6px 0 0 18px; padding:0;">
+                ${d.persons.map(p => {
+                  const name = esc(p.name || "");
+                  const role = p.role ? ` — ${esc(p.role)}` : "";
+                  const frm  = p.from ? ` <span style="color:#666;">(${esc(p.from)})</span>` : "";
+                  return `<li>${name}${role}${frm}</li>`;
+                }).join("")}
+              </ul>
+            </div>` : "";
 
-        const projectsRow = (Array.isArray(d.projects) && d.projects.length) ? `
-          <div class="row">
-            <div class="subhead"><strong>Projects</strong></div>
-            <ul style="margin:6px 0 0 18px; padding:0;">
-              ${d.projects.map(p => `<li>${esc(p).replace(/[_-]/g," ")}</li>`).join("")}
-            </ul>
-          </div>` : "";
+          const orgMetaRow = (d.organisation_type || d.region) ? `
+            <div class="row">
+              <div class="subhead"><strong>Organisation</strong></div>
+              <div>
+                ${d.organisation_type ? `<div>Type: ${esc(d.organisation_type)}</div>` : ""}
+                ${d.region ? `<div>Region: ${esc(d.region)}</div>` : ""}
+              </div>
+            </div>` : "";
 
-        const personsRow = (Array.isArray(d.persons) && d.persons.length) ? `
-          <div class="row">
-            <div class="subhead"><strong>People</strong></div>
-            <ul style="margin:6px 0 0 18px; padding:0;">
-              ${d.persons.map(p => {
-                const name = esc(p.name || "");
-                const role = p.role ? ` — ${esc(p.role)}` : "";
-                const frm  = p.from ? ` <span style="color:#666;">(${esc(p.from)})</span>` : "";
-                return `<li>${name}${role}${frm}</li>`;
-              }).join("")}
-            </ul>
-          </div>` : "";
+          const notesRow = d.notes ? `
+            <div class="row">
+              <div class="subhead"><strong>Notes</strong></div>
+              <div>${esc(d.notes)}</div>
+            </div>` : "";
 
-        const orgMetaRow = (d.organisation_type || d.region) ? `
-          <div class="row">
-            <div class="subhead"><strong>Organisation</strong></div>
-            <div>
-              ${d.organisation_type ? `<div>Type: ${esc(d.organisation_type)}</div>` : ""}
-              ${d.region ? `<div>Region: ${esc(d.region)}</div>` : ""}
+          panel.innerHTML = `
+            <div class="row" style="display:flex; justify-content: space-between; align-items:center;">
+              <h3>${esc(d.label || d.slug || d.id || "(untitled)")}</h3>
+              <button id="panelClose">✕</button>
             </div>
-          </div>` : "";
+            <div class="meta">${esc((d.type||"").toLowerCase())}</div>
 
-        const notesRow = d.notes ? `
-          <div class="row">
-            <div class="subhead"><strong>Notes</strong></div>
-            <div>${esc(d.notes)}</div>
-          </div>` : "";
+            <div class="row">${esc((d.summary || "")).slice(0, 800)}</div>
+            <div class="row tags">${tagsHtml}</div>
 
-        panel.innerHTML = `
-          <div class="row" style="display:flex; justify-content: space-between; align-items:center;">
-            <h3>${esc(d.label || d.slug || d.id || "(untitled)")}</h3>
-            <button id="panelClose">✕</button>
-          </div>
-          <div class="meta">${esc((d.type||"").toLowerCase())}</div>
+            ${websiteRow}
+            ${projectsRow}
+            ${personsRow}
+            ${orgMetaRow}
+            ${notesRow}
 
-          <div class="row">${esc((d.summary || "")).slice(0, 800)}</div>
-          <div class="row tags">${tagsHtml}</div>
+            <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
+              <a href="${esc(searchUrl)}">Search</a>
+              ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details</a>` : ""}
+              ${hasRelated ? `<button data-related-slug="${esc(d.slug)}">Show related</button>` : ""}
+            </div>
+          `;
+          panel.classList.add("open");
 
-          ${websiteRow}
-          ${projectsRow}
-          ${personsRow}
-          ${orgMetaRow}
-          ${notesRow}
+          // ensure visible
+          panel.style.transform = "translateX(0)";
+          panel.style.display = "block";
+          // // Fallback in case CSS class isn’t present:
+          // if (getComputedStyle(panel).transform === "matrix(1, 0, 0, 1, 0, 0)" ||
+          //     getComputedStyle(panel).transform === "none") {
+          //   panel.style.transform = "translateX(0)";  // ensure visible
+          // }
 
-          <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
-            <a href="${esc(searchUrl)}">Search</a>
-            ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details</a>` : ""}
-            ${hasRelated ? `<button data-related-slug="${esc(d.slug)}">Show related</button>` : ""}
-          </div>
-        `;
-
-        panel.classList.add("open");
+        } catch (err) {
+          console.error("openNodePanel failed:", err);
+        }
       }
+
+      // Fallback styles if the CSS block isn't present or overridden
+      function applyPanelBaseStyles(p) {
+        const cs = window.getComputedStyle(p);
+        const needsFix =
+          cs.position !== "fixed" ||
+          cs.transform === "none" ||
+          parseInt(cs.zIndex || "0", 10) < 1000;
+
+        if (needsFix) {
+          // Minimal but robust defaults
+          Object.assign(p.style, {
+            position: "fixed",
+            top: "96px",
+            right: "16px",
+            width: "min(380px, 95vw)",
+            maxHeight: "70vh",
+            overflow: "auto",
+            background: "#fff",
+            border: "1px solid #ddd",
+            borderRadius: "8px",
+            boxShadow: "0 10px 24px rgba(0,0,0,0.12)",
+            padding: "12px 14px",
+            zIndex: "9999",         // higher than graph
+            transform: "translateX(110%)",
+            transition: "transform 160ms ease-in-out",
+          });
+        }
+      }
+      applyPanelBaseStyles(panel);
+
 
       function closeNodePanel() {
         if (!panel) return;
-        panel.classList.remove("open");
-        panel.style.display = ""; // clear any inline display
-      }
+
+          panel.classList.remove("open");
+          panel.style.transform = "translateX(110%)"; // fallback close
+          panel.style.display = ""; // clear any inline
+        }
 
       // Open on node tap
       cy.on("tap", "node", (e) => openNodePanel(e.target));
 
-      // Close when tapping the empty background of the graph
-      cy.on("tap", (e) => {
-        if (e.target === cy) closeNodePanel();
-      });
+      // // Close on tapping empty background of the graph
+      // cy.on("tap", (e) => {
+      //   if (e.target === cy) closeNodePanel();
+      // });
 
       // Close on X button and handle "Show related"
       document.addEventListener("click", (ev) => {

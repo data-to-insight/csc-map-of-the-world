@@ -34,13 +34,17 @@ Dev-notes: Data & relations currently being added, graph layout and naming conve
   <button id="resetView" style="margin-left: 1em;">Reset View</button>
 </div>
 
+
+<!-- Graph container -->
+<div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>
+
+
 <!-- Help link + quick tips -->
-<div class="filter-help">
-  <!-- Change this href to your guide page path -->
-  <a href="guides/filtering_graph/" class="help-link">Help: Filtering guide</a>
-  <span aria-hidden="true"> · </span>
-  <a href="#filtering-help" class="help-link">Quick tips</a>
-</div>
+<!-- <div class="filter-help"> -->
+  <!-- <a href="graph_filtering_guidance.md" class="help-link">Help: Filtering guide</a> -->
+  <!-- <span aria-hidden="true"> · </span> -->
+  <!-- <a href="#filtering-help" class="help-link">Quick tips</a> -->
+<!-- </div> -->
 
 <details id="filtering-help" class="filtering-help">
   <summary>Quick tips for filtering</summary>
@@ -65,13 +69,6 @@ Dev-notes: Data & relations currently being added, graph layout and naming conve
   </div>
 </details>
 
-<!-- Graph container -->
-<div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>
-
-
-Submit suggested map [corrections](mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-CORRECTION&body=I%20suggest%20that%20the%20following%20needs%20correcting:) or data [additions](mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-DATA&body=I%20suggest%20that%20the%20Map%20should%20have%20the%20following%20added:)
-
-
 <style>
   #graph-status {
     font-size: 0.7em;
@@ -81,4 +78,32 @@ Submit suggested map [corrections](mailto:datatoinsight.enquiries@gmail.com?subj
     background-color: #f9f9f9;
     border-radius: 6px;
   }
+
+  /* Panel polish */
+.node-panel { font-size: 0.95em; line-height: 1.35; }
+.node-panel .row { margin: 10px 0; }
+.node-panel .meta { color:#666; font-size:0.9em; margin-top:-4px; }
+.node-panel .subhead { color:#444; font-size:0.9em; margin-bottom:4px; }
+.node-panel a { color:#2b4a9e; text-decoration: underline; }
+.node-panel a:hover { text-decoration: none; }
+.node-panel ul { margin: 6px 0 0 18px; padding: 0; }
+.node-panel li { margin: 2px 0; }
+
+/* Tag chips */
+.node-panel .tags span{
+  display:inline-block;
+  background:#eef3ff;
+  border:1px solid #dbe3ff;
+  color:#2b4a9e;
+  padding:2px 6px;
+  border-radius:6px;
+  margin:2px 6px 0 0;
+  font-size:0.85em;
+}
+
 </style>
+
+
+
+<!-- Submit suggested map [corrections](mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-CORRECTION&body=I%20suggest%20that%20the%20following%20needs%20correcting:) or data [additions](mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-DATA&body=I%20suggest%20that%20the%20Map%20should%20have%20the%20following%20added:)
+ -->

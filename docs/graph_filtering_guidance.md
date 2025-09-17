@@ -23,7 +23,7 @@ Filtering is **intersection-based**:
 - The **search box** narrows this further to nodes whose text matches your query.
 - The result is **Type AND Search**.
 
-Edges remain visible **only** if both endpoints are visible. This keeps the picture tidy and relevant.
+Edges remain visible **only** if both endpoints are visible. This offers scope to reduce less relevant showing, keep the visualisation cleaner and relevant.
 
 ### What text is searchable?
 
@@ -42,9 +42,9 @@ The search matches plain words anywhere in that blob.
 
 When you type in the search box, the filter doesn’t run on *every* keystroke. It waits ~150 ms for a short pause before applying the filter. 
 
-**Why it helps:** As we scale up the visualised network(graph), filtering can get expensive (show/hide many nodes, recompute edges, update legend). Debouncing reduces unnecessary work and makes your searches smooth(er) but importantly reduces those our background processing overheads.
+**Why we've done this:** As we scale up the visualised network(graph), filtering can get expensive (show/hide many nodes, recompute edges, update legend). Debouncing reduces unnecessary work and makes your searches smooth(er) but importantly reduces our background processing overheads - making your interactions more rapid. 
 
-**Example:** typing `ilacs` would normally trigger 5 full filter runs. With debounce, you typically get 1–2 runs total.
+**Example:** typing `ilacs` would normally trigger 5 full filter runs. With debounce, you typically get just 1–2 runs total.
 
 ---
 
