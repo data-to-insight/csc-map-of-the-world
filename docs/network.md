@@ -1,14 +1,13 @@
 
-# CSC Network Graph (in dev)
+# CSC Network Graph (IN DEV)
 
 <!-- 1) mkdocs defaults, 2) css styled enlargement(not working), 3) forced full browswer win overlay --> 
 <!-- <div id="cy" style="width: 100%; height: 600px;"></div> -->
 <!-- <div id="cy"></div> --> 
 
-This interactive graph shows key organisations, plans, and events in the children’s services data ecosystem.
-Use the dropdown to filter by type. You can select more than one item using Ctrl/Cmd.
+This interactive graph is a work in progress mapping of key organisations, plans, and events and more that form the children’s services data ecosystem. It aims to provide both the simple connections and interelations between related CSC data work, projects, guidance, people and sub layer of detail and meta-data for those connected elements. 
 
-Dev-notes: Data & relations currently being added, graph layout and naming conventions for nodes in particular is a work in progress as we progress possible use-cases and standardise yml object structure.
+This is a large scale mapping with many interconnected (moving)parts; currently a work-in-progress MVP. Data & relations are currently being added, graph layout and naming conventions for nodes in particular, is an ongoing discussion as we progress possible use-cases and standardise yml object structure.
 
 <!-- Content search filter (in dev) -->
 <div style="margin-bottom: 0.5em;">

@@ -6,7 +6,6 @@
   margin-right: auto;
 }
 
-
 .search-result {
   margin-bottom: 1.5em;
 }
@@ -22,7 +21,6 @@ input#search-query:focus {
   border-color: #007acc;
   outline: none;
 }
-
 
 
 .short input,

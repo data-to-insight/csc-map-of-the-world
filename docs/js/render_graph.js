@@ -205,7 +205,22 @@ document.addEventListener("DOMContentLoaded", function () {
             ? `${SITE_BASE}${String(d.page_url).replace(/^\/+/, "")}`
             : (d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/, "")}/` : "");
 
-          const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(d.slug || d.label || d.id || "")}`;
+
+          // whole path in the info panel search query
+          // const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(d.slug || d.label || d.id || "")}`;
+          
+          // only node name in query (better enables direct search from info panel)
+          // helper to strip "folder/node label" -> "node label"
+          const base = (s) => (s ? String(s).split("/").filter(Boolean).pop() : "");
+
+          // pick clean query term 
+          const queryTerm =
+            (d.label && d.label.trim()) ||
+            base(d.slug || d.page_url) ||
+            (d.id || "");
+          // final search URL
+          const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(queryTerm)}`;
+
           const hasRelated = window.__relatedIndex && d.slug && window.__relatedIndex[d.slug];
 
           const websiteRow = d.website ? `
@@ -267,14 +282,14 @@ document.addEventListener("DOMContentLoaded", function () {
             ${notesRow}
 
             <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
-              <a href="${esc(searchUrl)}">Search</a>
-              ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details</a>` : ""}
+              <a href="${esc(searchUrl)}">Search [IN DEV]</a>
+              ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details [IN DEV]</a>` : ""}
               ${hasRelated ? `<button data-related-slug="${esc(d.slug)}">Show related</button>` : ""}
             </div>
           `;
           panel.classList.add("open");
 
-          // ensure visible
+          // force visible
           panel.style.transform = "translateX(0)";
           panel.style.display = "block";
           // // Fallback in case CSS class isn’t present:
@@ -399,14 +414,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const legendBlock = document.createElement("details");
       legendBlock.id = "static-legend";
       legendBlock.open = false;
-      legendBlock.style = "margin-top: 1em; padding: 0.5em; border: 1px solid #ccc; background: #fafafa; border-radius: 4px; font-size: 0.9em;";
+      legendBlock.style = "margin-top: 1em; padding: 0.5em; border: 1px solid #ccc; background: #fafafa; border-radius: 4px;";
 
       const summary = document.createElement("summary");
       summary.textContent = "Show Graph Legend";
       legendBlock.appendChild(summary);
 
       const legendList = document.createElement("div");
-      legendList.style = "margin-top: 0.5em;";
+      // legendList.style = "margin-top: 0.5em;";
+      legendList.style = "margin-top: 0.5em; font-size: 0.9em;"; // make body txt smaller
+
       Object.entries(staticTypeColorMap).forEach(([type, color]) => {
         const row = document.createElement("div");
         row.style = "display: flex; align-items: center; margin: 4px 0;";
