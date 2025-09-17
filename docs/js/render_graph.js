@@ -5,7 +5,7 @@
 // simple query operators (tag: & type:), URL state persistence, legend counts, and batched updates.
 
 // revised version with node lock for unconnected
-// 
+//
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Script loaded and DOM ready");
 
@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.json", window.location.origin);
+  // Site base for building correct links on GitHub Pages (e.g. "/csc-map-of-the-world/")
+  const SITE_BASE = graphDataURL.pathname.replace(/data\/graph_data\.json$/, "");
 
   const staticTypeColorMap = {
     "organization": "#007acc",
@@ -34,7 +36,20 @@ document.addEventListener("DOMContentLoaded", function () {
     "other": "#999999"
   };
 
-  // --- New helpers (added) ---
+  // --- ensure Choices.js is available (nice multi-select UI) ---
+  function ensureChoices(cb) {
+    if (typeof Choices === "function") { cb(); return; }
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css";
+    document.head.appendChild(css);
+    const s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js";
+    s.onload = cb;
+    document.head.appendChild(s);
+  }
+
+  // --- text search / query funcs ---
   function debounce(fn, ms = 150) {
     let t;
     return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
@@ -68,35 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams();
     if (types && types.length) params.set("types", types.join(","));
     if (q) params.set("q", q);
-    // Avoid adding a trailing '#' if empty
     const str = params.toString();
     if (str) location.hash = str; else history.replaceState(null, "", location.pathname + location.search);
   }
 
-
-  // --------------------------------
-
-  // Context mode: 
-  let contextModeEnabled = contextToggle ? contextToggle.checked : true;
-  if (contextToggle) {
-    contextToggle.addEventListener("change", () => {
-      contextModeEnabled = contextToggle.checked;
-      applyFilter(); // re-apply to reveal/hide neighbours immediately
-    });
-  }
-  //
-
-  let choicesInstance = null;
-  if (typeFilter && typeof Choices === "function") {
-    choicesInstance = new Choices(typeFilter, {
-      removeItemButton: true,
-      searchEnabled: false,
-      shouldSort: false,
-      placeholderValue: "Filter by type...",
-    });
-    choicesInstance.setChoiceByValue("org");
-  }
-
+  // Load graph
   fetch(graphDataURL)
     .then((response) => {
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -175,14 +166,157 @@ document.addEventListener("DOMContentLoaded", function () {
         ]
       });
 
+      // Load related_nodes.json if present (non-blocking)
+      const relatedURL = new URL("csc-map-of-the-world/data/related_nodes.json", window.location.origin);
+      fetch(relatedURL)
+        .then(r => r.ok ? r.json() : {})
+        .then(obj => { window.__relatedIndex = obj || {}; })
+        .catch(() => { window.__relatedIndex = {}; });
+
+      // --- Side panel (V2) ---
+      const panel = document.getElementById("nodePanel");
+
+      function openNodePanel(node) {
+        if (!panel) return;
+
+        // HTML escaper
+        const esc = (s) =>
+          s == null
+            ? ""
+            : String(s).replace(/[&<>"']/g, (c) => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[c]);
+
+        const d = node.data();
+        const tagsHtml  = (d.tags || []).map(t => `<span>#${esc(t)}</span>`).join("");
+
+        // Build URLs rooted at site base
+        const pageUrl = d.page_url
+          ? `${SITE_BASE}${String(d.page_url).replace(/^\/+/, "")}`
+          : (d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/, "")}/` : "");
+
+        const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(d.slug || d.label || d.id || "")}`;
+
+        const hasRelated = window.__relatedIndex && d.slug && window.__relatedIndex[d.slug];
+
+        // Optional sections
+        const websiteRow = d.website ? `
+          <div class="row">
+            <div class="subhead"><strong>Website</strong></div>
+            <div><a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>
+          </div>` : "";
+
+        const projectsRow = (Array.isArray(d.projects) && d.projects.length) ? `
+          <div class="row">
+            <div class="subhead"><strong>Projects</strong></div>
+            <ul style="margin:6px 0 0 18px; padding:0;">
+              ${d.projects.map(p => `<li>${esc(p).replace(/[_-]/g," ")}</li>`).join("")}
+            </ul>
+          </div>` : "";
+
+        const personsRow = (Array.isArray(d.persons) && d.persons.length) ? `
+          <div class="row">
+            <div class="subhead"><strong>People</strong></div>
+            <ul style="margin:6px 0 0 18px; padding:0;">
+              ${d.persons.map(p => {
+                const name = esc(p.name || "");
+                const role = p.role ? ` — ${esc(p.role)}` : "";
+                const frm  = p.from ? ` <span style="color:#666;">(${esc(p.from)})</span>` : "";
+                return `<li>${name}${role}${frm}</li>`;
+              }).join("")}
+            </ul>
+          </div>` : "";
+
+        const orgMetaRow = (d.organisation_type || d.region) ? `
+          <div class="row">
+            <div class="subhead"><strong>Organisation</strong></div>
+            <div>
+              ${d.organisation_type ? `<div>Type: ${esc(d.organisation_type)}</div>` : ""}
+              ${d.region ? `<div>Region: ${esc(d.region)}</div>` : ""}
+            </div>
+          </div>` : "";
+
+        const notesRow = d.notes ? `
+          <div class="row">
+            <div class="subhead"><strong>Notes</strong></div>
+            <div>${esc(d.notes)}</div>
+          </div>` : "";
+
+        panel.innerHTML = `
+          <div class="row" style="display:flex; justify-content: space-between; align-items:center;">
+            <h3>${esc(d.label || d.slug || d.id || "(untitled)")}</h3>
+            <button id="panelClose">✕</button>
+          </div>
+          <div class="meta">${esc((d.type||"").toLowerCase())}</div>
+
+          <div class="row">${esc((d.summary || "")).slice(0, 800)}</div>
+          <div class="row tags">${tagsHtml}</div>
+
+          ${websiteRow}
+          ${projectsRow}
+          ${personsRow}
+          ${orgMetaRow}
+          ${notesRow}
+
+          <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
+            <a href="${esc(searchUrl)}">Search</a>
+            ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details</a>` : ""}
+            ${hasRelated ? `<button data-related-slug="${esc(d.slug)}">Show related</button>` : ""}
+          </div>
+        `;
+
+        panel.classList.add("open");
+      }
+
+      function closeNodePanel() {
+        if (!panel) return;
+        panel.classList.remove("open");
+        panel.style.display = ""; // clear any inline display
+      }
+
+      // Open on node tap
+      cy.on("tap", "node", (e) => openNodePanel(e.target));
+
+      // Close when tapping the empty background of the graph
+      cy.on("tap", (e) => {
+        if (e.target === cy) closeNodePanel();
+      });
+
+      // Close on X button and handle "Show related"
+      document.addEventListener("click", (ev) => {
+        const closeHit = ev.target.id === "panelClose" || ev.target.closest("#panelClose");
+        if (closeHit) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          closeNodePanel();
+          return;
+        }
+
+        const btn = ev.target.closest("button[data-related-slug]");
+        if (btn) {
+          const slug = btn.getAttribute("data-related-slug");
+          if (slug && window.__relatedIndex) {
+            const rel = window.__relatedIndex[slug] || [];
+            filterToRelated(rel.map(r => r.slug));
+            // optionally: closeNodePanel();
+          }
+          return;
+        }
+      });
+      // --- end side panel ---
+
       // === Isolated node layout logic ===
       // to reduce unpredicable/messy layout, force unconnected nodes into fixed rows on lowest frame edge
       const connected = cy.nodes().filter(n => n.connectedEdges().length > 0);
       const isolated = cy.nodes().filter(n => n.connectedEdges().length === 0);
 
-      const padding = 50; 
+      const padding = 50;
       const xSpacing = 120; // split spacing away from const spacing = 120; so we have some flex
-      const ySpacing = 40; // row(s) distance vertical 
+      const ySpacing = 40; // row(s) distance vertical
       const nodesPerRow = Math.max(3, Math.ceil(Math.sqrt(isolated.length))); // ensure static nodes fit row
       isolated.forEach((node, i) => {
         const row = Math.floor(i / nodesPerRow);
@@ -224,18 +358,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const legendList = document.createElement("div");
       legendList.style = "margin-top: 0.5em;";
-      const legendTypeRows = {};
       Object.entries(staticTypeColorMap).forEach(([type, color]) => {
         const row = document.createElement("div");
         row.style = "display: flex; align-items: center; margin: 4px 0;";
-        // Save by class (org vs organization)
         const cls = type === "organization" ? "org" : type;
         row.dataset.type = cls;
         row.innerHTML = `
           <span style="width: 14px; height: 14px; background: ${color}; display: inline-block; margin-right: 6px; border-radius: 3px;"></span> ${type.charAt(0).toUpperCase() + type.slice(1)}
         `;
         legendList.appendChild(row);
-        legendTypeRows[cls] = row;
       });
       legendBlock.appendChild(legendList);
       cyContainer.parentElement.appendChild(legendBlock);
@@ -249,6 +380,26 @@ document.addEventListener("DOMContentLoaded", function () {
       function getSelectedClasses() {
         if (!choicesInstance) return [];
         return choicesInstance.getValue(true);
+      }
+
+      function filterToRelated(slugs) {
+        if (!Array.isArray(slugs) || !slugs.length) return;
+        cy.batch(() => {
+          cy.nodes().forEach(n => {
+            const s = n.data("slug");
+            const show = !!(s && slugs.includes(s));
+            n.style("display", show ? "element" : "none");
+          });
+          cy.edges().forEach(e => {
+            const show = e.source().style("display") !== "none" && e.target().style("display") !== "none";
+            e.style("display", show ? "element" : "none");
+          });
+          if (contextModeEnabled) {
+            const visible = cy.nodes(":visible");
+            const neigh = visible.closedNeighborhood();
+            neigh.style("display","element");
+          }
+        });
       }
 
       // free-text query state + matcher (+ simple operators)
@@ -280,15 +431,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return qobj.text.every(t => blob.includes(t));
       }
 
-      // Context mode flag (always on when there is a text query)
-      const CONTEXT_MODE = true;
-
       function applyFilter() {
         const selected = getSelectedClasses();
         const q = (currentQuery || "").trim().toLowerCase();
 
         cy.batch(() => {
-          // if nothing selected and no query, show all
           if (!selected.length && !q) {
             cy.elements().style("display", "element");
             cy.nodes().removeClass("match");
@@ -324,8 +471,6 @@ document.addEventListener("DOMContentLoaded", function () {
             edge.style("display", show ? "element" : "none");
           });
 
-          // Context mode: if enabled and a query exists, reveal matched nodes' neighbours
-          // Run from context toggle in network.md
           if (contextModeEnabled && q) {
             const matched = cy.nodes(".match");
             if (matched.length) {
@@ -333,16 +478,6 @@ document.addEventListener("DOMContentLoaded", function () {
               neighbors.style("display", "element");
             }
           }
-
-          // // Context mode: if a query exists, reveal matched nodes' neighbours
-          // if (CONTEXT_MODE && q) {
-          //   const matched = cy.nodes(".match");
-          //   if (matched.length) {
-          //     const neighbors = matched.closedNeighborhood(); // nodes + incident edges
-          //     neighbors.style("display", "element");
-          //   }
-          // }
-
 
           const visible = cy.nodes().filter(n => n.style("display") !== "none").length;
           updateStatus(visible, cy.nodes().length);
@@ -360,12 +495,33 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           });
 
-          // persist state to URL
           updateHash(selected, q);
         });
       }
 
-      typeFilter.addEventListener("change", applyFilter);
+      // Set up Choices after DOM + data (ensures CSS/JS are present)
+      let choicesInstance = null;
+      if (typeFilter) {
+        ensureChoices(() => {
+          choicesInstance = new Choices(typeFilter, {
+            removeItemButton: true,
+            searchEnabled: false,
+            shouldSort: false,
+            placeholderValue: "Filter by type...",
+          });
+          choicesInstance.setChoiceByValue("org");
+          typeFilter.addEventListener("change", applyFilter);
+        });
+      }
+
+      // Context toggle (bind AFTER applyFilter exists)
+      let contextModeEnabled = contextToggle ? contextToggle.checked : true;
+      if (contextToggle) {
+        contextToggle.addEventListener("change", () => {
+          contextModeEnabled = contextToggle.checked;
+          applyFilter();
+        });
+      }
 
       // Debounced input binding
       if (textSearch) {
@@ -375,6 +531,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 150));
       }
 
+      // Reset
       resetBtn.addEventListener("click", () => {
         cy.batch(() => {
           cy.elements().style("display", "element");
@@ -407,16 +564,20 @@ document.addEventListener("DOMContentLoaded", function () {
       statusDisplay.style.margin = "0.5em 0";
       cyContainer.parentElement.insertBefore(statusDisplay, cyContainer);
 
-      // === Initial org filter
+      // === Initial org filter or state from URL
       const initialClass = "org";
-
-      // Load state from URL (types and q). If present, apply and skip initial org-only filter.
       const { types: hashTypes, q: hashQ } = readStateFromHash();
-      let hasInitialState = (hashTypes && hashTypes.length) || (hashQ && hashQ.length);
+      const hasInitialState = (hashTypes && hashTypes.length) || (hashQ && hashQ.length);
+
       if (hasInitialState) {
         if (choicesInstance) {
           choicesInstance.removeActiveItems();
           hashTypes.forEach(t => choicesInstance.setChoiceByValue(normalizeTypeToken(t)));
+        } else if (typeFilter && hashTypes && hashTypes.length) {
+          // fallback: set raw select values until Choices initializes
+          Array.from(typeFilter.options).forEach(opt => {
+            opt.selected = hashTypes.includes(opt.value);
+          });
         }
         if (textSearch) {
           textSearch.value = hashQ || "";
