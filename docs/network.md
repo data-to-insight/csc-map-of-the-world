@@ -1,3 +1,4 @@
+
 # CSC Network Graph (in dev)
 
 <!-- 1) mkdocs defaults, 2) css styled enlargement(not working), 3) forced full browswer win overlay --> 
@@ -32,6 +33,37 @@ Dev-notes: Data & relations currently being added, graph layout and naming conve
   </select>
   <button id="resetView" style="margin-left: 1em;">Reset View</button>
 </div>
+
+<!-- Help link + quick tips -->
+<div class="filter-help">
+  <!-- Change this href to your guide page path -->
+  <a href="guides/filtering_graph/" class="help-link">Help: Filtering guide</a>
+  <span aria-hidden="true"> · </span>
+  <a href="#filtering-help" class="help-link">Quick tips</a>
+</div>
+
+<details id="filtering-help" class="filtering-help">
+  <summary>Quick tips for filtering</summary>
+  <div class="help-body">
+    <p><strong>Free text</strong> matches the node’s <em>name</em>, <em>tags</em>, and <em>summary</em>.</p>
+    <ul>
+      <li><code>tag:&lt;word&gt;</code> — match nodes with that tag (e.g. <code>tag:ilacs</code>)</li>
+      <li><code>type:&lt;kind&gt;</code> — restrict by type (<code>type:org</code>, <code>type:plan</code>, <code>type:event</code>, <code>type:service</code>)</li>
+      <li>Combine terms: <code>tag:ilacs type:org</code> (all terms must match)</li>
+      <li><em>Context mode</em>: keeps neighbours of matches visible for exploration</li>
+      <li>Filters + search intersect (both must match)</li>
+      <li>Share state: copy the URL (types and query persist in the hash)</li>
+    </ul>
+
+    <p><strong>Examples</strong></p>
+    <ul>
+      <li><code>ilacs</code> — any node mentioning “ilacs”</li>
+      <li><code>tag:children_services</code> — nodes tagged “children_services”</li>
+      <li><code>type:org dfe</code> — organisation nodes mentioning “dfe”</li>
+      <li><code>tag:data_tools type:service</code> — services tagged “data_tools”</li>
+    </ul>
+  </div>
+</details>
 
 <!-- Graph container -->
 <div id="cy" style="width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 1em;"></div>

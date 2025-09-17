@@ -227,8 +227,10 @@ def get_relationships(seen_nodes):
 
 
 if __name__ == "__main__":
+
+    MINIFY = True # for now, CLI not in use
     # Output format toggle (env only): GRAPH_MINIFY=0 -> pretty; else minified (default)
-    MINIFY = os.getenv("GRAPH_MINIFY", "1") != "0"
+    # MINIFY = os.getenv("GRAPH_MINIFY", "1") != "0"
 
     print("Building Cytoscape JSON from YAMLs...")
     nodes, seen_nodes = get_entities()
