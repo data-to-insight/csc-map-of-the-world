@@ -518,7 +518,7 @@
 <li>The <strong>search box</strong> narrows this further to nodes whose text matches your query.</li>
 <li>The result is <strong>Type AND Search</strong>.</li>
 </ul>
-<p>Edges remain visible <strong>only</strong> if both endpoints are visible. This keeps the picture tidy and relevant.</p>
+<p>Edges remain visible <strong>only</strong> if both endpoints are visible. This offers scope to reduce less relevant showing, keep the visualisation cleaner and relevant.</p>
 <h3 id="what-text-is-searchable">What text is searchable?</h3>
 <p>Each node has a lightweight <code>search_blob</code> built at publish time, which includes:
 - <strong>Name/label</strong>
@@ -530,8 +530,8 @@
 <hr />
 <h2 id="debounced-typing">Debounced typing</h2>
 <p>When you type in the search box, the filter doesn’t run on <em>every</em> keystroke. It waits ~150 ms for a short pause before applying the filter. </p>
-<p><strong>Why it helps:</strong> As we scale up the visualised network(graph), filtering can get expensive (show/hide many nodes, recompute edges, update legend). Debouncing reduces unnecessary work and makes your searches smooth(er) but importantly reduces those our background processing overheads.</p>
-<p><strong>Example:</strong> typing <code>ilacs</code> would normally trigger 5 full filter runs. With debounce, you typically get 1–2 runs total.</p>
+<p><strong>Why we've done this:</strong> As we scale up the visualised network(graph), filtering can get expensive (show/hide many nodes, recompute edges, update legend). Debouncing reduces unnecessary work and makes your searches smooth(er) but importantly reduces our background processing overheads - making your interactions more rapid. </p>
+<p><strong>Example:</strong> typing <code>ilacs</code> would normally trigger 5 full filter runs. With debounce, you typically get just 1–2 runs total.</p>
 <hr />
 <h2 id="context-mode-keep-neighbours-of-matches-visible">Context mode (keep neighbours of matches visible)</h2>
 <p>If <strong>Context mode</strong> is ON, then when your search finds some nodes, we also show their <strong>immediate neighbours</strong> and the <strong>edges</strong> between them. That gives you a mini ego-network around each hit, which we think offers better network exploration/search relevance.</p>
