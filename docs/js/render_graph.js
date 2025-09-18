@@ -1,43 +1,30 @@
-// SUMMARY: Renders Cytoscape graph with type-based filtering, uses initial org view(filter on for organisations),
-// a fixed layout for isolated nodes, incl free-text search filter (via #textSearch)
-// that intersects with type filter using a computed per-node search_blob(generated from yml elements).
-// Added: debounced typing, context-mode (keeps neighbours visible for matched nodes),
-// simple query operators (tag: & type:), URL state persistence, legend counts, and batched updates.
 
-// revised version with node lock for unconnected
-//
+// SUMMARY: Large-graph friendly renderer (v2 fixes).
+// Fixes:
+// 1) Seed now also pulls in incident edges and counterpart nodes (so you see edges immediately).
+// 2) Status shows "visible / loaded / total" counts (even if only a subset is in the viewport graph).
+// 3) Debounced layout after chunk adds to avoid node pile-up at (0,0).
+// 4) Minor guards and small polish.
+
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("Script loaded and DOM ready");
+  const cyContainer  = document.getElementById("cy");
+  const typeFilter   = document.getElementById("typeFilter");
+  const resetBtn     = document.getElementById("resetView");
+  const textSearch   = document.getElementById("textSearch");
+  const contextToggle= document.getElementById("contextModeToggle");
 
-  const cyContainer = document.getElementById("cy");
-  const typeFilter = document.getElementById("typeFilter");
-  const resetBtn = document.getElementById("resetView");
-  const textSearch = document.getElementById("textSearch"); // free-text search input
-  const contextToggle = document.getElementById("contextModeToggle"); // Context mode: context toggle switch
+  if (!cyContainer) return console.error("No #cy");
 
-  if (!cyContainer) {
-    console.error("No element with id 'cy' found.");
-    return;
-  }
-
+  // Use your existing graph path; SITE_BASE used to build links
   const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.json", window.location.origin);
-  // Site base for building correct links on GitHub Pages (e.g. "/csc-map-of-the-world/")
-  const SITE_BASE = graphDataURL.pathname.replace(/data\/graph_data\.json$/, "");
-
+  const SITE_BASE    = graphDataURL.pathname.replace(/data\/graph_data\.json$/, "");
 
   const staticTypeColorMap = {
-    "organization": "#007acc",
-    "event": "#ff9800",
-    "person": "#4caf50",
-    "collection": "#9c27b0",
-    "plan": "#e91e63",
-    "rule": "#00bcd4",
-    "resource": "#8bc34a",
-    "service": "#ffc107",
-    "other": "#999999"
+    organization:"#007acc", event:"#ff9800", person:"#4caf50", collection:"#9c27b0",
+    plan:"#e91e63", rule:"#00bcd4", resource:"#8bc34a", service:"#ffc107", other:"#999999"
   };
 
-  // --- ensure Choices.js is available (nice multi-select UI) ---
+  // --- Choices loader ---
   function ensureChoices(cb) {
     if (typeof Choices === "function") { cb(); return; }
     const css = document.createElement("link");
@@ -50,636 +37,439 @@ document.addEventListener("DOMContentLoaded", function () {
     document.head.appendChild(s);
   }
 
-  // --- text search / query funcs ---
-  function debounce(fn, ms = 150) {
-    let t;
-    return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
-  }
-
-  function normalizeTypeToken(t) {
-    const m = (t || "").toLowerCase();
-    if (m === "org" || m === "organisation" || m === "organization") return "org";
-    return m;
-  }
-
-  function parseQuery(q) {
-    const out = { text: [], tag: [], type: [] };
-    (q || "").split(/\s+/).forEach(tok => {
-      if (!tok) return;
-      if (tok.startsWith("tag:")) out.tag.push(tok.slice(4).toLowerCase());
-      else if (tok.startsWith("type:")) out.type.push(normalizeTypeToken(tok.slice(5)));
+  // --- Helpers ---
+  function debounce(fn, ms = 150){ let t; return (...a)=>{clearTimeout(t); t=setTimeout(()=>fn(...a),ms);} }
+  const esc = (s)=> s==null ? "" : String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+  const normalizeTypeToken = (t)=>{ const m=(t||"").toLowerCase(); return (m==="org"||m==="organisation"||m==="organization")?"org":m; };
+  function parseQuery(q){
+    const out={text:[],tag:[],type:[]};
+    (q||"").split(/\s+/).forEach(tok=>{
+      if(!tok) return;
+      if(tok.startsWith("tag:")) out.tag.push(tok.slice(4).toLowerCase());
+      else if(tok.startsWith("type:")) out.type.push(normalizeTypeToken(tok.slice(5)));
       else out.text.push(tok.toLowerCase());
     });
     return out;
   }
-
-  function readStateFromHash() {
-    const params = new URLSearchParams((location.hash || "").replace(/^#/, ""));
-    const types = (params.get("types") || "").split(",").map(s => s.trim()).filter(Boolean);
-    const q = params.get("q") || params.get("query") || "";
-    return { types, q };
+  function readStateFromHash(){
+    const p=new URLSearchParams((location.hash||"").replace(/^#/,""));
+    const types=(p.get("types")||"").split(",").map(s=>s.trim()).filter(Boolean);
+    const q=p.get("q")||p.get("query")||"";
+    return {types,q};
+  }
+  function updateHash(types,q){
+    const params=new URLSearchParams();
+    if(types&&types.length) params.set("types", types.join(","));
+    if(q) params.set("q", q);
+    const str=params.toString();
+    if(str) location.hash=str; else history.replaceState(null,"",location.pathname+location.search);
   }
 
-  function updateHash(types, q) {
-    const params = new URLSearchParams();
-    if (types && types.length) params.set("types", types.join(","));
-    if (q) params.set("q", q);
-    const str = params.toString();
-    if (str) location.hash = str; else history.replaceState(null, "", location.pathname + location.search);
+  // --- Edge tooltip ---
+  const edgeTip = document.createElement("div");
+  edgeTip.id = "edgeTip";
+  Object.assign(edgeTip.style, {
+    position:"fixed", zIndex: 9999, display:"none",
+    padding:"4px 6px", background:"rgba(30,30,30,.85)", color:"#fff",
+    borderRadius:"4px", fontSize:"12px", pointerEvents:"none"
+  });
+  document.body.appendChild(edgeTip);
+  function moveTip(evt){
+    const e = evt.originalEvent;
+    const x = (e && e.clientX) || 0;
+    const y = (e && e.clientY) || 0;
+    edgeTip.style.left = (x+12)+"px";
+    edgeTip.style.top  = (y+12)+"px";
   }
 
-  // Load graph
-  fetch(graphDataURL)
-    .then((response) => {
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      return response.json();
-    })
-    .then((data) => {
-      // Remove self-loops
-      data.elements = data.elements.filter(el => {
-        if (el.group === "edges" && el.data.source === el.data.target) {
-          console.warn("Removing self-loop:", el.data);
-          return false;
-        }
-        return true;
+  // --- State buckets for lazy loading ---
+  let allNodes = [];   // lite-normalized
+  let allEdges = [];   // lite-normalized
+  let nodeById = new Map();
+  const loadedTypes = new Set(); // which type classes have been added to cy
+  const byType = {};   // { org: [nodeObj,...], plan: [...], ... }
+  const addedIds = new Set(); // node ids already in cy
+
+  // Load graph JSON (old or lite)
+  fetch(graphDataURL).then(r=>{
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    return r.json();
+  }).then(raw=>{
+    // --- Normalize to "lite" shape in-memory ---
+    if (Array.isArray(raw?.elements)) {
+      // Old shape -> lite arrays
+      const nodes = raw.elements.filter(e=>e.group==="nodes").map(e=>{
+        const d = e.data||{};
+        const cls = (e.classes||"").trim() || ((d.type||"").toLowerCase()==="organization"?"org":(d.type||"").toLowerCase());
+        const pos = e.position || undefined;
+        return { id:d.id, l:d.label, t: cls==="organization"?"org":cls, s:d.slug||d.page_url||"", x:pos?.x, y:pos?.y, sb:(d.search_blob||"") };
       });
-
-      // Assign lowercase class names
-      data.elements.forEach(el => {
-        if (el.group === "nodes") {
-          const type = (el.data?.type || "other").toLowerCase();
-          el.classes = type === "organization" ? "org" : type;
-        }
+      const edges = raw.elements.filter(e=>e.group==="edges").map(e=>{
+        const d=e.data||{};
+        return [d.source, d.target, d.label||""];
       });
+      raw = { nodes, edges };
+    }
 
-      // Node color styling
-      const dynamicNodeStyles = Object.entries(staticTypeColorMap).map(([cls, color]) => ({
-        selector: `.${cls === "organization" ? "org" : cls}`,
-        style: {
-          "background-color": color,
-          "background-opacity": 1
-        }
-      }));
+    allNodes = (raw.nodes||[]).map(n=>{
+      const t = (n.t==="organization"?"org":n.t)||"other";
+      const obj = { id:n.id, l:n.l, t, s:n.s||"", x:n.x, y:n.y, sb:n.sb||"" };
+      nodeById.set(obj.id, obj);
+      if(!byType[t]) byType[t]=[];
+      byType[t].push(obj);
+      return obj;
+    });
+    allEdges = (raw.edges||[]).map(e=>({ source:e[0], target:e[1], label:e[2]||"" }));
 
-      const cy = cytoscape({
-        container: cyContainer,
-        elements: data.elements,
-        layout: { name: "preset" },  // We'll call layout manually after positioning isolateds
-        style: [
-          {
-            selector: "node",
-            style: {
-              label: "data(label)",
-              "text-valign": "center",
-              "color": "#000",
-              "font-size": 12,
-              "text-outline-width": 0,
-            }
-          },
-          ...dynamicNodeStyles,
-          {
-            selector: "edge",
-            style: {
-              "label": "data(label)",
-              "font-size": 9,
-              "text-rotation": "autorotate",
-              "text-margin-y": -5,
-              "color": "#444",
-              "width": 2,
-              "line-color": "#aaa",
-              "target-arrow-color": "#aaa",
-              "target-arrow-shape": "triangle",
-              "curve-style": "bezier",
-            }
-          },
-          // highlight nodes that match the text query
-          {
-            selector: "node.match",
-            style: {
-              "border-width": 3,
-              "border-color": "#333",
-              "shadow-blur": 12,
-              "shadow-opacity": 0.4,
-              "shadow-offset-x": 0,
-              "shadow-offset-y": 0
-            }
-          }
-        ]
-      });
-
-      // Load related_nodes.json if present (non-blocking)
-      const relatedURL = new URL("csc-map-of-the-world/data/related_nodes.json", window.location.origin);
-      fetch(relatedURL)
-        .then(r => r.ok ? r.json() : {})
-        .then(obj => { window.__relatedIndex = obj || {}; })
-        .catch(() => { window.__relatedIndex = {}; });
-
-      // Ensure the details panel exists even if the page forgot to include it
-      let panel = document.getElementById("nodePanel");
-      if (!panel) {
-        panel = document.createElement("aside");
-        panel.id = "nodePanel";
-        panel.className = "node-panel";
-        document.body.appendChild(panel);
+    // ---- Cytoscape init (empty, we add seed later) ----
+    const dynamicNodeStyles = Object.entries(staticTypeColorMap).map(([cls,color])=>({
+      selector: `.${cls==="organization"?"org":cls}`,
+      style: { "background-color": color, "background-opacity": 1 }
+    }));
+    const cy = cytoscape({
+      container: cyContainer,
+      elements: [], // start empty (seed load later)
+      layout: { name:"preset" },
+      style: [
+        { selector:"node", style:{
+          label:"data(label)",
+          "text-valign":"center","color":"#000","font-size":12,"text-outline-width":0,
+          "min-zoomed-font-size": 10
+        }},
+        ...dynamicNodeStyles,
+        { selector:"edge", style:{
+          "width": 2, "line-color":"#aaa","target-arrow-color":"#aaa",
+          "target-arrow-shape":"triangle","curve-style":"bezier"
+        }},
+        { selector:"node.match", style:{
+          "border-width": 3,"border-color":"#333",
+          "shadow-blur": 12,"shadow-opacity": .4,"shadow-offset-x":0,"shadow-offset-y":0
+        }}
+      ],
+      renderer: {
+        pixelRatio: 1,
+        hideEdgesOnViewport: true,
+        hideLabelsOnViewport: true,
+        textureOnViewport: true,
+        motionBlur: true
       }
+    });
 
-      // --- Side panel (V2) ---
-      function openNodePanel(node) {
-        if (!panel) return;
-        try {
-          const esc = (s) =>
-            s == null
-              ? ""
-              : String(s).replace(/[&<>"']/g, (c) => ({
-                  "&": "&amp;",
-                  "<": "&lt;",
-                  ">": "&gt;",
-                  '"': "&quot;",
-                  "'": "&#39;",
-                })[c]);
+    // Edge tooltips
+    cy.on("mouseover","edge", (evt)=>{
+      const lbl = evt.target.data("label");
+      if (lbl) { edgeTip.textContent = lbl; edgeTip.style.display="block"; moveTip(evt); }
+    });
+    cy.on("mousemove","edge", moveTip);
+    cy.on("mouseout","edge", ()=>{ edgeTip.style.display="none"; });
 
-          const d = node.data();
-          const tagsHtml  = (d.tags || []).map(t => `<span>#${esc(t)}</span>`).join("");
+    // Side panel (unchanged from your working version)
+    const relatedURL = new URL("csc-map-of-the-world/data/related_nodes.json", window.location.origin);
+    fetch(relatedURL).then(r=>r.ok?r.json():{}).then(obj=>{ window.__relatedIndex=obj||{}; })
+                     .catch(()=>{ window.__relatedIndex={}; });
 
-          const pageUrl = d.page_url
-            ? `${SITE_BASE}${String(d.page_url).replace(/^\/+/, "")}`
-            : (d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/, "")}/` : "");
+    let panel = document.getElementById("nodePanel");
+    if (!panel) { panel = document.createElement("aside"); panel.id="nodePanel"; panel.className="node-panel"; document.body.appendChild(panel); }
+    function openNodePanel(node){
+      if(!panel) return;
+      const d = node.data();
+      const tagsHtml  = (d.tags || []).map(t=>`<span>#${esc(t)}</span>`).join("");
+      const pageUrl = d.page_url ? `${SITE_BASE}${String(d.page_url).replace(/^\/+/, "")}` :
+                        (d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/, "")}/` : "");
+      const base = (s)=> (s? String(s).split("/").filter(Boolean).pop() : "");
+      const queryTerm = (d.label && d.label.trim()) || base(d.slug||d.page_url) || (d.id||"");
+      const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(queryTerm)}`;
+      const hasRelated = window.__relatedIndex && d.slug && window.__relatedIndex[d.slug];
 
+      const websiteRow = d.website ? `
+        <div class="row"><div class="subhead"><strong>Website</strong></div>
+        <div><a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div></div>` : "";
 
-          // whole path in the info panel search query
-          // const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(d.slug || d.label || d.id || "")}`;
-          
-          // only node name in query (better enables direct search from info panel)
-          // helper to strip "folder/node label" -> "node label"
-          const base = (s) => (s ? String(s).split("/").filter(Boolean).pop() : "");
+      const projectsRow = (Array.isArray(d.projects) && d.projects.length) ? `
+        <div class="row"><div class="subhead"><strong>Projects</strong></div>
+        <ul style="margin:6px 0 0 18px; padding:0;">${d.projects.map(p=>`<li>${esc(p).replace(/[_-]/g," ")}</li>`).join("")}</ul></div>` : "";
 
-          // pick clean query term 
-          const queryTerm =
-            (d.label && d.label.trim()) ||
-            base(d.slug || d.page_url) ||
-            (d.id || "");
-          // final search URL
-          const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(queryTerm)}`;
+      const personsRow = (Array.isArray(d.persons) && d.persons.length) ? `
+        <div class="row"><div class="subhead"><strong>People</strong></div>
+        <ul style="margin:6px 0 0 18px; padding:0;">
+          ${d.persons.map(p=>{
+            const name=esc(p.name||""); const role=p.role?` — ${esc(p.role)}`:"";
+            const frm=p.from?` <span style="color:#666;">(${esc(p.from)})</span>`:"";
+            return `<li>${name}${role}${frm}</li>`;
+          }).join("")}
+        </ul></div>` : "";
 
-          const hasRelated = window.__relatedIndex && d.slug && window.__relatedIndex[d.slug];
+      const orgMetaRow = (d.organisation_type || d.region) ? `
+        <div class="row"><div class="subhead"><strong>Organisation</strong></div>
+        <div>${d.organisation_type?`<div>Type: ${esc(d.organisation_type)}</div>`:""}${d.region?`<div>Region: ${esc(d.region)}</div>`:""}</div></div>` : "";
 
-          const websiteRow = d.website ? `
-            <div class="row">
-              <div class="subhead"><strong>Website</strong></div>
-              <div><a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>
-            </div>` : "";
+      const notesRow = d.notes ? `<div class="row"><div class="subhead"><strong>Notes</strong></div><div>${esc(d.notes)}</div></div>` : "";
 
-          const projectsRow = (Array.isArray(d.projects) && d.projects.length) ? `
-            <div class="row">
-              <div class="subhead"><strong>Projects</strong></div>
-              <ul style="margin:6px 0 0 18px; padding:0;">
-                ${d.projects.map(p => `<li>${esc(p).replace(/[_-]/g," ")}</li>`).join("")}
-              </ul>
-            </div>` : "";
-
-          const personsRow = (Array.isArray(d.persons) && d.persons.length) ? `
-            <div class="row">
-              <div class="subhead"><strong>People</strong></div>
-              <ul style="margin:6px 0 0 18px; padding:0;">
-                ${d.persons.map(p => {
-                  const name = esc(p.name || "");
-                  const role = p.role ? ` — ${esc(p.role)}` : "";
-                  const frm  = p.from ? ` <span style="color:#666;">(${esc(p.from)})</span>` : "";
-                  return `<li>${name}${role}${frm}</li>`;
-                }).join("")}
-              </ul>
-            </div>` : "";
-
-          const orgMetaRow = (d.organisation_type || d.region) ? `
-            <div class="row">
-              <div class="subhead"><strong>Organisation</strong></div>
-              <div>
-                ${d.organisation_type ? `<div>Type: ${esc(d.organisation_type)}</div>` : ""}
-                ${d.region ? `<div>Region: ${esc(d.region)}</div>` : ""}
-              </div>
-            </div>` : "";
-
-          const notesRow = d.notes ? `
-            <div class="row">
-              <div class="subhead"><strong>Notes</strong></div>
-              <div>${esc(d.notes)}</div>
-            </div>` : "";
-
-          panel.innerHTML = `
-            <div class="row" style="display:flex; justify-content: space-between; align-items:center;">
-              <h3>${esc(d.label || d.slug || d.id || "(untitled)")}</h3>
-              <button id="panelClose">✕</button>
-            </div>
-            <div class="meta">${esc((d.type||"").toLowerCase())}</div>
-
-            <div class="row">${esc((d.summary || "")).slice(0, 800)}</div>
-            <div class="row tags">${tagsHtml}</div>
-
-            ${websiteRow}
-            ${projectsRow}
-            ${personsRow}
-            ${orgMetaRow}
-            ${notesRow}
-
-            <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
-              <a href="${esc(searchUrl)}">Search [IN DEV]</a>
-              ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details [IN DEV]</a>` : ""}
-              ${hasRelated ? `<button data-related-slug="${esc(d.slug)}">Show related</button>` : ""}
-            </div>
-          `;
-          panel.classList.add("open");
-
-          // force visible
-          panel.style.transform = "translateX(0)";
-          panel.style.display = "block";
-          // // Fallback in case CSS class isn’t present:
-          // if (getComputedStyle(panel).transform === "matrix(1, 0, 0, 1, 0, 0)" ||
-          //     getComputedStyle(panel).transform === "none") {
-          //   panel.style.transform = "translateX(0)";  // ensure visible
-          // }
-
-        } catch (err) {
-          console.error("openNodePanel failed:", err);
-        }
+      panel.innerHTML = `
+        <div class="row" style="display:flex; justify-content: space-between; align-items:center;">
+          <h3>${esc(d.label || d.slug || d.id || "(untitled)")}</h3>
+          <button id="panelClose">✕</button>
+        </div>
+        <div class="meta">${esc((d.type||"").toLowerCase())}</div>
+        <div class="row">${esc((d.summary||"")).slice(0,800)}</div>
+        <div class="row tags">${tagsHtml}</div>
+        ${websiteRow}${projectsRow}${personsRow}${orgMetaRow}${notesRow}
+        <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
+          <a href="${esc(searchUrl)}">Search</a>
+          ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details</a>` : ""}
+          ${hasRelated ? `<button data-related-slug="${esc(d.slug)}">Show related</button>` : ""}
+        </div>
+      `;
+      panel.classList.add("open");
+      panel.style.transform = "translateX(0)";
+      panel.style.display = "block";
+    }
+    function closeNodePanel(){ if(!panel) return; panel.classList.remove("open"); panel.style.transform="translateX(110%)"; panel.style.display=""; }
+    document.addEventListener("click",(ev)=>{
+      if (ev.target.id==="panelClose" || ev.target.closest("#panelClose")) { ev.preventDefault(); closeNodePanel(); return; }
+      const btn = ev.target.closest("button[data-related-slug]");
+      if (btn && window.__relatedIndex) {
+        const slug = btn.getAttribute("data-related-slug");
+        const rel = (window.__relatedIndex[slug]||[]).map(r=>r.slug);
+        filterToRelated(rel);
       }
+    });
+    cy.on("tap","node",(e)=>openNodePanel(e.target));
 
-      // Fallback styles if the CSS block isn't present or overridden
-      function applyPanelBaseStyles(p) {
-        const cs = window.getComputedStyle(p);
-        const needsFix =
-          cs.position !== "fixed" ||
-          cs.transform === "none" ||
-          parseInt(cs.zIndex || "0", 10) < 1000;
+    // --- Conversion helpers ---
+    function toCyNode(n){
+      const data = { id:n.id, label:n.l, type:n.t, slug:n.s||"", search_blob:n.sb||"" };
+      if (n.x!=null && n.y!=null) return { data, classes: (n.t==="organization"?"org":n.t), position:{x:n.x,y:n.y} };
+      return { data, classes: (n.t==="organization"?"org":n.t) };
+    }
+    function toCyEdge(e){ return { data:{ source:e.source, target:e.target, label:e.label||"" } }; }
 
-        if (needsFix) {
-          // Minimal but robust defaults
-          Object.assign(p.style, {
-            position: "fixed",
-            top: "96px",
-            right: "16px",
-            width: "min(380px, 95vw)",
-            maxHeight: "70vh",
-            overflow: "auto",
-            background: "#fff",
-            border: "1px solid #ddd",
-            borderRadius: "8px",
-            boxShadow: "0 10px 24px rgba(0,0,0,0.12)",
-            padding: "12px 14px",
-            zIndex: "9999",         // higher than graph
-            transform: "translateX(110%)",
-            transition: "transform 160ms ease-in-out",
-          });
-        }
-      }
-      applyPanelBaseStyles(panel);
+    function addInChunks(elems, chunk=1200, afterAll){
+      let i = 0;
+      (function step(){
+        const slice = elems.slice(i, i+chunk);
+        if (!slice.length) { if (afterAll) afterAll(); return; }
+        cy.batch(()=> cy.add(slice));
+        i += chunk;
+        requestAnimationFrame(step);
+      })();
+    }
 
-
-      function closeNodePanel() {
-        if (!panel) return;
-
-          panel.classList.remove("open");
-          panel.style.transform = "translateX(110%)"; // fallback close
-          panel.style.display = ""; // clear any inline
-        }
-
-      // Open on node tap
-      cy.on("tap", "node", (e) => openNodePanel(e.target));
-
-      // // Close on tapping empty background of the graph
-      // cy.on("tap", (e) => {
-      //   if (e.target === cy) closeNodePanel();
-      // });
-
-      // Close on X button and handle "Show related"
-      document.addEventListener("click", (ev) => {
-        const closeHit = ev.target.id === "panelClose" || ev.target.closest("#panelClose");
-        if (closeHit) {
-          ev.preventDefault();
-          ev.stopPropagation();
-          closeNodePanel();
-          return;
-        }
-
-        const btn = ev.target.closest("button[data-related-slug]");
-        if (btn) {
-          const slug = btn.getAttribute("data-related-slug");
-          if (slug && window.__relatedIndex) {
-            const rel = window.__relatedIndex[slug] || [];
-            filterToRelated(rel.map(r => r.slug));
-            // optionally: closeNodePanel();
-          }
-          return;
-        }
-      });
-      // --- end side panel ---
-
-      // === Isolated node layout logic ===
-      // to reduce unpredicable/messy layout, force unconnected nodes into fixed rows on lowest frame edge
-      const connected = cy.nodes().filter(n => n.connectedEdges().length > 0);
-      const isolated = cy.nodes().filter(n => n.connectedEdges().length === 0);
-
-      const padding = 50;
-      const xSpacing = 120; // split spacing away from const spacing = 120; so we have some flex
-      const ySpacing = 40; // row(s) distance vertical
-      const nodesPerRow = Math.max(3, Math.ceil(Math.sqrt(isolated.length))); // ensure static nodes fit row
-      isolated.forEach((node, i) => {
-        const row = Math.floor(i / nodesPerRow);
-        const col = i % nodesPerRow;
-        node.position({
-          x: padding + col * xSpacing,
-          y: cyContainer.clientHeight - padding - row * ySpacing
-        });
-        node.lock();
-      });
-
-      // Apply cose layout only to connected nodes
-      connected.unlock(); // Unlock in case locked
+    // Debounced layout to avoid pile-up at origin
+    const runLayout = debounce(()=>{
       cy.layout({
         name: "cose",
         animate: true,
         padding: 50,
         boundingBox: { x1: 0, y1: 0, x2: cyContainer.clientWidth, y2: cyContainer.clientHeight - 200 },
-        fit: true,
+        fit: false,
         nodeDimensionsIncludeLabels: true
       }).run();
+    }, 50);
 
-      // === Resize nodes by degree
-      cy.nodes().forEach((node) => {
-        const deg = node.degree();
-        const size = Math.min(60, 20 + deg * 4);
-        node.style({ width: size, height: size });
-      });
+    // NEW: include incident edges and counterpart nodes when loading a type
+    function ensureTypeLoaded(typeCls){
+      if (loadedTypes.has(typeCls)) return;
+      const newNodes = (byType[typeCls]||[]).filter(n=>!addedIds.has(n.id));
 
-      // build legend block (keep reference rows for live counts)
-      const legendBlock = document.createElement("details");
-      legendBlock.id = "static-legend";
-      legendBlock.open = false;
-      legendBlock.style = "margin-top: 1em; padding: 0.5em; border: 1px solid #ccc; background: #fafafa; border-radius: 4px;";
+      // Start with nodes of this type
+      const toAddNodesMap = new Map();
+      newNodes.forEach(n=>toAddNodesMap.set(n.id, n));
 
-      const summary = document.createElement("summary");
-      summary.textContent = "Show Graph Legend";
-      legendBlock.appendChild(summary);
-
-      const legendList = document.createElement("div");
-      // legendList.style = "margin-top: 0.5em;";
-      legendList.style = "margin-top: 0.5em; font-size: 0.9em;"; // make body txt smaller
-
-      Object.entries(staticTypeColorMap).forEach(([type, color]) => {
-        const row = document.createElement("div");
-        row.style = "display: flex; align-items: center; margin: 4px 0;";
-        const cls = type === "organization" ? "org" : type;
-        row.dataset.type = cls;
-        row.innerHTML = `
-          <span style="width: 14px; height: 14px; background: ${color}; display: inline-block; margin-right: 6px; border-radius: 3px;"></span> ${type.charAt(0).toUpperCase() + type.slice(1)}
-        `;
-        legendList.appendChild(row);
-      });
-      legendBlock.appendChild(legendList);
-      cyContainer.parentElement.appendChild(legendBlock);
-
-      // === Filter logic ===
-      function updateStatus(visible, total) {
-        const status = document.getElementById("graph-status");
-        if (status) status.textContent = `Showing ${visible} of ${total} nodes`;
-      }
-
-      function getSelectedClasses() {
-        if (!choicesInstance) return [];
-        return choicesInstance.getValue(true);
-      }
-
-      function filterToRelated(slugs) {
-        if (!Array.isArray(slugs) || !slugs.length) return;
-        cy.batch(() => {
-          cy.nodes().forEach(n => {
-            const s = n.data("slug");
-            const show = !!(s && slugs.includes(s));
-            n.style("display", show ? "element" : "none");
-          });
-          cy.edges().forEach(e => {
-            const show = e.source().style("display") !== "none" && e.target().style("display") !== "none";
-            e.style("display", show ? "element" : "none");
-          });
-          if (contextModeEnabled) {
-            const visible = cy.nodes(":visible");
-            const neigh = visible.closedNeighborhood();
-            neigh.style("display","element");
+      // Pull in incident edges + counterpart nodes so edges render
+      const incidentEdges = [];
+      for (const e of allEdges) {
+        const srcIn = toAddNodesMap.has(e.source);
+        const tgtIn = toAddNodesMap.has(e.target);
+        if (srcIn || tgtIn) {
+          incidentEdges.push(e);
+          // Ensure both endpoints exist
+          if (!toAddNodesMap.has(e.source)) {
+            const nn = nodeById.get(e.source);
+            if (nn && !addedIds.has(nn.id)) toAddNodesMap.set(nn.id, nn);
           }
-        });
-      }
-
-      // free-text query state + matcher (+ simple operators)
-      let currentQuery = "";
-      function nodeMatchesQuery(node, q) {
-        if (!q) return true;
-        const qobj = parseQuery(q);
-        const nodeTypeClass = (node.classes()[0] || "").toLowerCase();
-        const nodeTypeData = (node.data("type") || "").toLowerCase();
-        const nodeTags = (node.data("tags") || []).map(String).map(s => s.toLowerCase());
-        const blob = (node.data("search_blob") || node.data("label") || "").toLowerCase();
-
-        // operator: type:
-        if (qobj.type.length) {
-          const matchesType = qobj.type.some(t => {
-            if (t === "org") return nodeTypeClass === "org" || nodeTypeData === "organization";
-            return nodeTypeClass === t || nodeTypeData === t;
-          });
-          if (!matchesType) return false;
-        }
-
-        // operator: tag:
-        if (qobj.tag.length) {
-          const hasAnyTag = qobj.tag.some(t => nodeTags.includes(t));
-          if (!hasAnyTag) return false;
-        }
-
-        // remaining text tokens must all be found
-        return qobj.text.every(t => blob.includes(t));
-      }
-
-      function applyFilter() {
-        const selected = getSelectedClasses();
-        const q = (currentQuery || "").trim().toLowerCase();
-
-        cy.batch(() => {
-          if (!selected.length && !q) {
-            cy.elements().style("display", "element");
-            cy.nodes().removeClass("match");
-            updateStatus(cy.nodes().length, cy.nodes().length);
-            updateHash([], "");
-            // update legend counts
-            Object.keys(staticTypeColorMap).forEach(type => {
-              const cls = type === "organization" ? "org" : type;
-              const count = cy.nodes(`.${cls}:visible`).length;
-              const row = document.querySelector(`#static-legend [data-type="${cls}"]`);
-              if (row) {
-                const nice = type.charAt(0).toUpperCase() + type.slice(1);
-                row.innerHTML = `
-                  <span style="width: 14px; height: 14px; background: ${staticTypeColorMap[type]}; display: inline-block; margin-right: 6px; border-radius: 3px;"></span> ${nice} (${count})
-                `;
-              }
-            });
-            return;
+          if (!toAddNodesMap.has(e.target)) {
+            const nn = nodeById.get(e.target);
+            if (nn && !addedIds.has(nn.id)) toAddNodesMap.set(nn.id, nn);
           }
+        }
+      }
 
-          cy.nodes().forEach(node => {
+      const toAddNodes = Array.from(toAddNodesMap.values());
+      toAddNodes.forEach(n=>addedIds.add(n.id));
+      loadedTypes.add(typeCls);
+      addInChunks([...toAddNodes.map(toCyNode), ...incidentEdges.map(toCyEdge)], 1200, runLayout);
+    }
+
+    // Seed: orgs
+    const SEED_CLASS = "org";
+    ensureTypeLoaded(SEED_CLASS);
+
+    // --- Legend + status ---
+    const legendBlock = document.createElement("details");
+    legendBlock.id="static-legend";
+    legendBlock.open = false;
+    legendBlock.style = "margin-top:1em; padding:.5em; border:1px solid #ccc; background:#fafafa; border-radius:4px;";
+    const sm = document.createElement("summary"); sm.textContent="Show Graph Legend";
+    legendBlock.appendChild(sm);
+    const legendList = document.createElement("div");
+    legendList.style = "margin-top:.5em; font-size:.9em;";
+    const legendRowByClass = {};
+    Object.entries(staticTypeColorMap).forEach(([type,color])=>{
+      const cls = (type==="organization"?"org":type);
+      const row = document.createElement("div");
+      row.style="display:flex; align-items:center; margin:4px 0;";
+      row.dataset.type = cls;
+      row.innerHTML = `<span style="width:14px;height:14px;background:${color};display:inline-block;margin-right:6px;border-radius:3px;"></span> ${type[0].toUpperCase()+type.slice(1)} (0)`;
+      legendList.appendChild(row);
+      legendRowByClass[cls]=row;
+    });
+    legendBlock.appendChild(legendList);
+    cyContainer.parentElement.appendChild(legendBlock);
+
+    const statusDisplay = document.createElement("p");
+    statusDisplay.id="graph-status"; statusDisplay.style.fontSize=".75em"; statusDisplay.style.margin=".5em 0";
+    cyContainer.parentElement.insertBefore(statusDisplay, cyContainer);
+
+    function updateLegendCounts(countByClass){
+      for (const [cls,row] of Object.entries(legendRowByClass)){
+        const type = cls==="org" ? "Organization" :
+          cls[0].toUpperCase()+cls.slice(1);
+        const color = staticTypeColorMap[cls==="org"?"organization":cls];
+        const n = countByClass[cls]||0;
+        row.innerHTML = `<span style="width:14px;height:14px;background:${color};display:inline-block;margin-right:6px;border-radius:3px;"></span> ${type} (${n})`;
+      }
+    }
+
+    // --- Filtering ---
+    let choicesInstance=null;
+    ensureChoices(()=>{
+      if (typeFilter) {
+        choicesInstance = new Choices(typeFilter, { removeItemButton:true, searchEnabled:false, shouldSort:false, placeholderValue:"Filter by type..." });
+        choicesInstance.setChoiceByValue("org");
+        typeFilter.addEventListener("change", applyFilter);
+      }
+    });
+
+    function getSelectedClasses(){
+      if (!choicesInstance) return [];
+      return choicesInstance.getValue(true);
+    }
+
+    let currentQuery = "";
+    let contextModeEnabled = contextToggle ? contextToggle.checked : true;
+    if (contextToggle) {
+      contextToggle.addEventListener("change", ()=>{ contextModeEnabled = contextToggle.checked; applyFilter(); });
+    }
+
+    function nodeMatchesQuery(node, q){
+      if (!q) return true;
+      const qobj = parseQuery(q);
+      const nodeTypeClass = (node.classes()[0] || "").toLowerCase();
+      const nodeTypeData  = (node.data("type") || "").toLowerCase();
+      const nodeTags = (node.data("tags") || []).map(String).map(s=>s.toLowerCase());
+      const blob = (node.data("search_blob") || node.data("label") || "").toLowerCase();
+
+      if (qobj.type.length){
+        const matchesType = qobj.type.some(t => (t==="org" ? (nodeTypeClass==="org"||nodeTypeData==="organization") : (nodeTypeClass===t || nodeTypeData===t)));
+        if (!matchesType) return false;
+      }
+      if (qobj.tag.length){
+        const hasAnyTag = qobj.tag.some(t => nodeTags.includes(t));
+        if (!hasAnyTag) return false;
+      }
+      return qobj.text.every(t => blob.includes(t));
+    }
+
+    function ensureTypesForSelection(selected){
+      (selected||[]).forEach(cls => ensureTypeLoaded(cls));
+    }
+
+    function applyFilter(){
+      const selected = getSelectedClasses();
+      const q = (currentQuery||"").trim().toLowerCase();
+
+      ensureTypesForSelection(selected);
+
+      const countByClass = {};
+      let visibleCount = 0;
+
+      cy.batch(()=>{
+        if (!selected.length && !q) {
+          cy.nodes().forEach(n=>{
+            n.style("display","element");
+            const cls = (n.classes()[0]||"other");
+            countByClass[cls] = (countByClass[cls]||0) + 1;
+          });
+          cy.edges().style("display","element");
+        } else {
+          cy.nodes().forEach(node=>{
             const nodeCls = node.classes()[0];
             const typeOk = !selected.length || selected.includes(nodeCls);
             const textOk = nodeMatchesQuery(node, q);
             const show = typeOk && textOk;
             node.style("display", show ? "element" : "none");
             if (q) node.toggleClass("match", show); else node.removeClass("match");
+            if (show) {
+              visibleCount++;
+              countByClass[nodeCls] = (countByClass[nodeCls]||0) + 1;
+            }
           });
-
-          cy.edges().forEach(edge => {
-            const show = edge.source().style("display") !== "none" &&
-                         edge.target().style("display") !== "none";
+          cy.edges().forEach(edge=>{
+            const show = edge.source().style("display")!=="none" && edge.target().style("display")!=="none";
             edge.style("display", show ? "element" : "none");
           });
 
           if (contextModeEnabled && q) {
             const matched = cy.nodes(".match");
-            if (matched.length) {
-              const neighbors = matched.closedNeighborhood(); // nodes + incident edges
-              neighbors.style("display", "element");
-            }
+            if (matched.length) matched.closedNeighborhood().style("display","element");
           }
-
-          const visible = cy.nodes().filter(n => n.style("display") !== "none").length;
-          updateStatus(visible, cy.nodes().length);
-
-          // update legend counts
-          Object.keys(staticTypeColorMap).forEach(type => {
-            const cls = type === "organization" ? "org" : type;
-            const count = cy.nodes(`.${cls}:visible`).length;
-            const row = document.querySelector(`#static-legend [data-type="${cls}"]`);
-            if (row) {
-              const nice = type.charAt(0).toUpperCase() + type.slice(1);
-              row.innerHTML = `
-                <span style="width: 14px; height: 14px; background: ${staticTypeColorMap[type]}; display: inline-block; margin-right: 6px; border-radius: 3px;"></span> ${nice} (${count})
-              `;
-            }
-          });
-
-          updateHash(selected, q);
-        });
-      }
-
-      // Set up Choices after DOM + data (ensures CSS/JS are present)
-      let choicesInstance = null;
-      if (typeFilter) {
-        ensureChoices(() => {
-          choicesInstance = new Choices(typeFilter, {
-            removeItemButton: true,
-            searchEnabled: false,
-            shouldSort: false,
-            placeholderValue: "Filter by type...",
-          });
-          choicesInstance.setChoiceByValue("org");
-          typeFilter.addEventListener("change", applyFilter);
-        });
-      }
-
-      // Context toggle (bind AFTER applyFilter exists)
-      let contextModeEnabled = contextToggle ? contextToggle.checked : true;
-      if (contextToggle) {
-        contextToggle.addEventListener("change", () => {
-          contextModeEnabled = contextToggle.checked;
-          applyFilter();
-        });
-      }
-
-      // Debounced input binding
-      if (textSearch) {
-        textSearch.addEventListener("input", debounce((e) => {
-          currentQuery = e.target.value || "";
-          applyFilter();
-        }, 150));
-      }
-
-      // Reset
-      resetBtn.addEventListener("click", () => {
-        cy.batch(() => {
-          cy.elements().style("display", "element");
-          if (choicesInstance) choicesInstance.removeActiveItems();
-          if (textSearch) textSearch.value = "";
-          cy.nodes().removeClass("match");
-          currentQuery = "";
-          updateStatus(cy.nodes().length, cy.nodes().length);
-          updateHash([], "");
-          cy.fit();
-          // refresh legend counts
-          Object.keys(staticTypeColorMap).forEach(type => {
-            const cls = type === "organization" ? "org" : type;
-            const count = cy.nodes(`.${cls}:visible`).length;
-            const row = document.querySelector(`#static-legend [data-type="${cls}"]`);
-            if (row) {
-              const nice = type.charAt(0).toUpperCase() + type.slice(1);
-              row.innerHTML = `
-                <span style="width: 14px; height: 14px; background: ${staticTypeColorMap[type]}; display: inline-block; margin-right: 6px; border-radius: 3px;"></span> ${nice} (${count})
-              `;
-            }
-          });
-        });
+        }
       });
 
-      // Status counter
-      const statusDisplay = document.createElement("p");
-      statusDisplay.id = "graph-status";
-      statusDisplay.style.fontSize = "0.75em";
-      statusDisplay.style.margin = "0.5em 0";
-      cyContainer.parentElement.insertBefore(statusDisplay, cyContainer);
+      const totalLoaded = addedIds.size;
+      const totalAll = allNodes.length;
+      const shown = visibleCount || cy.nodes().filter(n=>n.style("display")!=="none").length || 0;
+      statusDisplay.textContent = `Showing ${shown} of ${totalLoaded} loaded (of ${totalAll} total)`;
+      updateLegendCounts(countByClass);
+      updateHash(selected, q);
+    }
 
-      // === Initial org filter or state from URL
-      const initialClass = "org";
-      const { types: hashTypes, q: hashQ } = readStateFromHash();
-      const hasInitialState = (hashTypes && hashTypes.length) || (hashQ && hashQ.length);
+    if (textSearch) {
+      textSearch.addEventListener("input", debounce(e=>{ currentQuery=e.target.value||""; applyFilter(); },150));
+    }
 
-      if (hasInitialState) {
-        if (choicesInstance) {
-          choicesInstance.removeActiveItems();
-          hashTypes.forEach(t => choicesInstance.setChoiceByValue(normalizeTypeToken(t)));
-        } else if (typeFilter && hashTypes && hashTypes.length) {
-          // fallback: set raw select values until Choices initializes
-          Array.from(typeFilter.options).forEach(opt => {
-            opt.selected = hashTypes.includes(opt.value);
-          });
-        }
-        if (textSearch) {
-          textSearch.value = hashQ || "";
-          currentQuery = hashQ || "";
-        }
-        applyFilter();
-      }
-
-      setTimeout(() => {
-        if (hasInitialState) return; // respect URL-provided state
-        cy.nodes().forEach((node) => {
-          const show = node.hasClass(initialClass);
-          node.style("display", show ? "element" : "none");
-        });
-        cy.edges().forEach((edge) => {
-          const srcVisible = edge.source().style("display") !== "none";
-          const tgtVisible = edge.target().style("display") !== "none";
-          edge.style("display", srcVisible && tgtVisible ? "element" : "none");
-        });
-        updateStatus(cy.nodes().filter(n => n.style("display") !== "none").length, cy.nodes().length);
-        // initialize legend counts
-        Object.keys(staticTypeColorMap).forEach(type => {
-          const cls = type === "organization" ? "org" : type;
-          const count = cy.nodes(`.${cls}:visible`).length;
-          const row = document.querySelector(`#static-legend [data-type="${cls}"]`);
-          if (row) {
-            const nice = type.charAt(0).toUpperCase() + type.slice(1);
-            row.innerHTML = `
-              <span style="width: 14px; height: 14px; background: ${staticTypeColorMap[type]}; display: inline-block; margin-right: 6px; border-radius: 3px;"></span> ${nice} (${count})
-            `;
-          }
-        });
-      }, 200);
-    })
-    .catch(err => {
-      console.error("Failed to load graph data:", err);
-      cyContainer.innerHTML = "<p style='color:red;'>Could not load graph data.</p>";
+    resetBtn.addEventListener("click", ()=>{
+      cy.batch(()=>{
+        cy.elements().style("display","element");
+        if (choicesInstance) choicesInstance.removeActiveItems();
+        if (textSearch) textSearch.value="";
+        cy.nodes().removeClass("match");
+        currentQuery="";
+      });
+      updateLegendCounts({});
+      updateHash([], "");
+      cy.fit();
     });
+
+    // Initial state
+    const { types: hashTypes, q: hashQ } = readStateFromHash();
+    const hasInitialState = (hashTypes && hashTypes.length) || (hashQ && hashQ.length);
+    if (hasInitialState) {
+      if (choicesInstance) {
+        choicesInstance.removeActiveItems();
+        hashTypes.forEach(t => choicesInstance.setChoiceByValue(normalizeTypeToken(t)));
+      } else if (typeFilter && hashTypes && hashTypes.length) {
+        Array.from(typeFilter.options).forEach(opt => { opt.selected = hashTypes.includes(opt.value); });
+      }
+      if (textSearch) { textSearch.value = hashQ || ""; currentQuery = hashQ || ""; }
+      ensureTypesForSelection(hashTypes || []);
+      applyFilter();
+    } else {
+      applyFilter();
+    }
+  }).catch(err=>{
+    console.error("Failed to load graph data:", err);
+    cyContainer.innerHTML = "<p style='color:red;'>Could not load graph data.</p>";
+  });
 });

@@ -1,0 +1,7 @@
+'@type': RELATIONSHIP
+name: test2885 | test2886 collaboratesWith
+source: test2885
+target: test2886
+relationship_type: collaboratesWith
+tags:
+  - scaling
