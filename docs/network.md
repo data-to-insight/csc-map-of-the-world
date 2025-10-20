@@ -15,7 +15,8 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
   <input id="textSearch" type="text" placeholder="[IN DEV] name, tag, keyword…" style="width: 320px; margin-left: 0.5em;">
   <label style="margin-left: 0.75em; user-select: none;">
     <!-- Context toggle - keep neighbours visible in search or not -->
-    <input type="checkbox" id="contextModeToggle" checked>
+    <!-- <input type="checkbox" id="contextModeToggle" checked> --> <!-- default load ON -->
+    <input type="checkbox" id="contextModeToggle"> <!-- default load OFF -->
     <strong>Keep neighbours (context)</strong>
   </label>
 </div>

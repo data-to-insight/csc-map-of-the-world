@@ -1,6 +1,6 @@
 # CSC Knowledge Base Network
 
-A structured, extensible open-source data-eco-system map and 'knowledge base' for the **Children’s Social Care (CSC)** sector. This project collates and creates an overview of key sector documentation, project relationships, data services, sector tools, rules, plans and events using a flexible YAML-based data model aligned with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards data interoperability.
+A structured, extensible open-source data-eco-system map and 'knowledge base' for the **Children’s Social Care (CSC)** sector. This project collates and creates an overview of key sector documentation, project relationships, data services, sector tools, rules, plans and events using a flexible YAML-based data model aiming to align with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards data interoperability.
 
 Alongside the (filtered)graph-based relations visualisation, it aims to support key-term search and YAML schema validation across the structured/human readable `.yml` structured records. Development is scaffolded/designed to be extensible, transparent, and Git-native.
 
@@ -61,7 +61,7 @@ We see this as **a collaborative mapping tool**, developed potentially with inpu
 
 ## How is this structured?
 
-Records in this tool are aligned with the **Smart City Concept Model (SCCM)**, an open framework for describing public service ecosystems. Every entity towards the documented network(diagram) is represented as a YAML file, defined at the top level via [SCCM concept types](http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10) :
+The aim was to align records in this tool with the **Smart City Concept Model (SCCM)**, an open framework for describing public service ecosystems. Every entity towards the documented network(diagram) is represented as a YAML file, defined at the top level via [SCCM concept types](http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10). Note: This does mean that for LA colleagues some language/grammer use might appear disconnected, incl. minor such as ORGANZATION vs ORGANISATION :
 
 e.g.
 - `@type: AGENT` – people, teams, or organisations
@@ -148,3 +148,29 @@ We hope it supports your work, and welcome your feedback as we continue to impro
 | [Sector Tools](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=166) | [PATCH](https://www.datatoinsight.org/patch), ChAT                                                                      |
 | [Services](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=169)     |                                                                                                                         |
                                                                                                         |
+
+<link rel="prefetch" href="data/search_index.json" as="fetch" crossorigin>
+<link rel="prefetch" href="data/lite_index.json" as="fetch" crossorigin>
+<link rel="prefetch" href="data/adjacency.json" as="fetch" crossorigin>
+
+// PRe-load the network graph data
+<script>
+(function(){
+  try {
+    const GRAPH_VER = "2025-03-05-01"; // keep in sync with render_graph.js
+    const url = new URL("csc-map-of-the-world/data/graph_data.lite.json", window.location.origin);
+    url.searchParams.set("v", GRAPH_VER);
+
+    // Use <link rel="prefetch"> to hint the browser
+    const l = document.createElement('link');
+    l.rel = 'prefetch';
+    l.as = 'fetch';
+    l.href = url.toString();
+    l.crossOrigin = 'anonymous';
+    document.head.appendChild(l);
+
+    // Optional: fetch now and stash in memory for this session
+    // window.__graphLitePromise = fetch(url, {cache:'force-cache'}).then(r=>r.json()).catch(()=>null);
+  } catch(e) {}
+})();
+</script>

@@ -1,10 +1,10 @@
-// SUMMARY: Large-graph friendly renderer.
+// SUMMARY: Large-graph friendly renderer
 // - Seed load (org only), lazy add by type in chunks
 // - LOD: no edge labels; show as tooltip on hover; min-zoom label; pixelRatio=1
 // - Avoid full ':visible' scans (count while filtering)
 // - Accepts BOTH old shape ({elements:[...]}) and new "lite" shape
 //   ({"nodes":[{id,l,t,s?,x?,y?,sb?},...],"edges":[[src,tgt,?label],...]})
-// - Side panel + context mode preserved.
+// - Side panel + context mode preserved
 
 document.addEventListener("DOMContentLoaded", function () {
   const cyContainer  = document.getElementById("cy");
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!cyContainer) return console.error("No #cy");
 
-  // Use your existing graph path; SITE_BASE used to build links
+  // existing graph path; SITE_BASE to build links
   const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.lite.json", window.location.origin);
   const SITE_BASE    = graphDataURL.pathname.replace(/data\/graph_data\.lite\.json$/, "");
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     plan:"#e91e63", rule:"#00bcd4", resource:"#8bc34a", service:"#ffc107", other:"#999999"
   };
 
-  // --- Choices loader (unchanged) ---
+  // --- Choices loader ---
   function ensureChoices(cb) {
     if (typeof Choices === "function") { cb(); return; }
     const css = document.createElement("link");
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if(str) location.hash=str; else history.replaceState(null,"",location.pathname+location.search);
   }
 
-  // --- Edge tooltip (NEW) ---
+  // --- Edge tooltip ---
   const edgeTip = document.createElement("div");
   edgeTip.id = "edgeTip";
   Object.assign(edgeTip.style, {
@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
     edgeTip.style.top  = (y+12)+"px";
   }
 
-  // --- State buckets for lazy loading (NEW) ---
-  let allNodes = [];   // lite-normalized
-  let allEdges = [];   // lite-normalized
+  // --- State buckets for lazy loading ---
+  let allNodes = [];   // lite-normalised
+  let allEdges = [];   // lite-normalised
   const loadedTypes = new Set(); // which type classes have been added to cy
   const byType = {};   // { org: [nodeObj,...], plan: [...], ... }
   const addedIds = new Set(); // node ids already in cy
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if(!r.ok) throw new Error("HTTP "+r.status);
     return r.json();
   }).then(raw=>{
-    // --- Normalize to "lite" shape in-memory (NEW) ---
+    // --- Normalise to "lite" shape in-memory ---
     if (Array.isArray(raw?.elements)) {
       // Old shape -> lite arrays
       const nodes = raw.elements.filter(e=>e.group==="nodes").map(e=>{
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return { source:e[0], target:e[1], label:e[2]||"" };
     });
 
-    // ---- Cytoscape init (empty, we add seed later) ----
+    // ---- Cytoscape init (empty, add seed later) ----
     const dynamicNodeStyles = Object.entries(staticTypeColorMap).map(([cls,color])=>({
       selector: `.${cls==="organization"?"org":cls}`,
       style: { "background-color": color, "background-opacity": 1 }
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { selector:"node", style:{
           label:"data(label)",
           "text-valign":"center","color":"#000","font-size":12,"text-outline-width":0,
-          "min-zoomed-font-size": 10   // NEW: hide labels when zoomed out
+          "min-zoomed-font-size": 10   // performance gain: hide labels when zoomed out
         }},
         ...dynamicNodeStyles,
         { selector:"edge", style:{
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "shadow-blur": 12,"shadow-opacity": .4,"shadow-offset-x":0,"shadow-offset-y":0
         }}
       ],
-      renderer: { // NEW: cheaper renderer
+      renderer: { // cheaper renderer
         pixelRatio: 1,
         hideEdgesOnViewport: true,
         hideLabelsOnViewport: true,
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Edge tooltips (NEW)
+    // Edge tooltips
     cy.on("mouseover","edge", (evt)=>{
       const lbl = evt.target.data("label");
       if (lbl) { edgeTip.textContent = lbl; edgeTip.style.display="block"; moveTip(evt); }
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cy.on("mousemove","edge", moveTip);
     cy.on("mouseout","edge", ()=>{ edgeTip.style.display="none"; });
 
-    // Side panel (your latest version, compacted)
+    // Side panel (compacted)
     const relatedURL = new URL("csc-map-of-the-world/data/related_nodes.json", window.location.origin);
     fetch(relatedURL).then(r=>r.ok?r.json():{}).then(obj=>{ window.__relatedIndex=obj||{}; })
                      .catch(()=>{ window.__relatedIndex={}; });
@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cy.on("tap","node",(e)=>openNodePanel(e.target));
 
-    // --- Seed subset load (NEW): only org on start ---
+    // --- Seed subset load only org on start ---
     const SEED_CLASS = "org";
     function toCyNode(n){
       const data = { id:n.id, label:n.l, type:n.t, slug:n.s||"", search_blob:n.sb||"" };
@@ -366,7 +366,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function ensureTypesForSelection(selected){
-      // NEW: if user selects types not yet loaded, add them first
+      // if user selects types not yet loaded, add them first
       (selected||[]).forEach(cls => ensureTypeLoaded(cls));
     }
 
@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const selected = getSelectedClasses();
       const q = (currentQuery||"").trim().toLowerCase();
 
-      ensureTypesForSelection(selected); // NEW: lazy-load first
+      ensureTypesForSelection(selected); // lazy-load first
 
       const countByClass = {}; // NEW: avoid global ':visible' scans
       let visibleCount = 0;
@@ -446,7 +446,7 @@ document.addEventListener("DOMContentLoaded", function () {
         Array.from(typeFilter.options).forEach(opt => { opt.selected = hashTypes.includes(opt.value); });
       }
       if (textSearch) { textSearch.value = hashQ || ""; currentQuery = hashQ || ""; }
-      // ensure those types are loaded before first filter
+      // ensure those types loaded before first filter
       ensureTypesForSelection(hashTypes || []);
       applyFilter();
     } else {

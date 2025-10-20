@@ -1,5 +1,5 @@
 
-# Reusing the “Map of the World” corpus locally
+# Reusing -Map of the World- corpus locally
 _A short guide for local authority colleagues_
 
 This note explains how you can start from the shared corpus and **add your own documents** without rebuilding everything. It also lists the files the notebook creates and where they live.
@@ -56,13 +56,13 @@ We identify each document by the first 16 hex characters of its SHA-256 hash. Th
 
 ## Two main ways to run
 
-### 1) Fresh build
+### 1.Fresh build
 Use when you are starting from scratch or want a clean rebuild.
 
 - The notebook scans `data_published/`, extracts text, chunks it, embeds it, writes per-document Parquet, and builds a fresh FAISS index.  
 - It writes a new `state.json` so future runs are incremental.
 
-### 2) Append your new files
+### 2.Append your new files
 Use when you are starting from the shared pack and want to add your own documents.
 
 - Put your documents into `data_published/`.  

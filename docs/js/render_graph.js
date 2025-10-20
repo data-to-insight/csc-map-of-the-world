@@ -1,10 +1,18 @@
 
-// SUMMARY: Large-graph friendly renderer (v2 fixes).
-// Fixes:
-// 1) Seed now also pulls in incident edges and counterpart nodes (so you see edges immediately).
-// 2) Status shows "visible / loaded / total" counts (even if only a subset is in the viewport graph).
-// 3) Debounced layout after chunk adds to avoid node pile-up at (0,0).
-// 4) Minor guards and small polish.
+// SUMMARY: Large-graph friendly renderer (v2 fixes + org-only boot).
+// Changes in this drop:
+// - applyFilter(selectedOverride) so we can force "org" on first paint
+// - Initial render calls applyFilter(["org"]) (true org-only start)
+// - SITE_BASE regex supports graph_data.lite.json
+// - Context (keep neighbours) default OFF
+
+// If this is the Explorer page, bail early so we don't collide with explorer.js
+const explorerUi = document.getElementById("explorer-ui");
+if (explorerUi) {
+  console.warn("render_graph.js: skipping on Explorer page.");
+  return;
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const cyContainer  = document.getElementById("cy");
@@ -15,9 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!cyContainer) return console.error("No #cy");
 
-  // Use your existing graph path; SITE_BASE used to build links
-  const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.json", window.location.origin);
-  const SITE_BASE    = graphDataURL.pathname.replace(/data\/graph_data\.json$/, "");
+  // Bump to bust caches on deploys
+  const GRAPH_VER = "2025-03-05-02";
+  const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.lite.json", window.location.origin);
+  graphDataURL.searchParams.set("v", GRAPH_VER);
+
+  // Support both graph_data.json and graph_data.lite.json
+  const SITE_BASE = graphDataURL.pathname.replace(/data\/graph_data(?:\.lite)?\.json$/, "");
 
   const staticTypeColorMap = {
     organization:"#007acc", event:"#ff9800", person:"#4caf50", collection:"#9c27b0",
@@ -143,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }},
         { selector:"node.match", style:{
           "border-width": 3,"border-color":"#333",
-          "shadow-blur": 12,"shadow-opacity": .4,"shadow-offset-x":0,"shadow-offset-y":0
+          //"shadow-blur": 12,"shadow-opacity": .4,"shadow-offset-x":0,"shadow-offset-y":0
         }}
       ],
       renderer: {
@@ -267,23 +279,20 @@ document.addEventListener("DOMContentLoaded", function () {
       }).run();
     }, 50);
 
-    // NEW: include incident edges and counterpart nodes when loading a type
+    // Include incident edges + counterpart nodes so edges render immediately
     function ensureTypeLoaded(typeCls){
       if (loadedTypes.has(typeCls)) return;
       const newNodes = (byType[typeCls]||[]).filter(n=>!addedIds.has(n.id));
 
-      // Start with nodes of this type
       const toAddNodesMap = new Map();
       newNodes.forEach(n=>toAddNodesMap.set(n.id, n));
 
-      // Pull in incident edges + counterpart nodes so edges render
       const incidentEdges = [];
       for (const e of allEdges) {
         const srcIn = toAddNodesMap.has(e.source);
         const tgtIn = toAddNodesMap.has(e.target);
         if (srcIn || tgtIn) {
           incidentEdges.push(e);
-          // Ensure both endpoints exist
           if (!toAddNodesMap.has(e.source)) {
             const nn = nodeById.get(e.source);
             if (nn && !addedIds.has(nn.id)) toAddNodesMap.set(nn.id, nn);
@@ -347,7 +356,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (typeFilter) {
         choicesInstance = new Choices(typeFilter, { removeItemButton:true, searchEnabled:false, shouldSort:false, placeholderValue:"Filter by type..." });
         choicesInstance.setChoiceByValue("org");
-        typeFilter.addEventListener("change", applyFilter);
+        typeFilter.addEventListener("change", ()=>applyFilter());
       }
     });
 
@@ -357,7 +366,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     let currentQuery = "";
-    let contextModeEnabled = contextToggle ? contextToggle.checked : true;
+    // default OFF (keep neighbours)
+    let contextModeEnabled = contextToggle ? contextToggle.checked : false;
+    if (contextToggle) contextToggle.checked = false;
     if (contextToggle) {
       contextToggle.addEventListener("change", ()=>{ contextModeEnabled = contextToggle.checked; applyFilter(); });
     }
@@ -385,10 +396,12 @@ document.addEventListener("DOMContentLoaded", function () {
       (selected||[]).forEach(cls => ensureTypeLoaded(cls));
     }
 
-    function applyFilter(){
-      const selected = getSelectedClasses();
+    // NOTE: accepts optional override for selected types
+    function applyFilter(selectedOverride){
+      const selected = Array.isArray(selectedOverride) ? selectedOverride : getSelectedClasses();
       const q = (currentQuery||"").trim().toLowerCase();
 
+      // lazy-load any missing types *before* filtering
       ensureTypesForSelection(selected);
 
       const countByClass = {};
@@ -427,10 +440,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      const totalLoaded = addedIds.size;
-      const totalAll = allNodes.length;
-      const shown = visibleCount || cy.nodes().filter(n=>n.style("display")!=="none").length || 0;
+      const totalAll    = allNodes.length;
+      const totalLoaded = cy.nodes().length;
+      const shown       = visibleCount || totalLoaded;
       statusDisplay.textContent = `Showing ${shown} of ${totalLoaded} loaded (of ${totalAll} total)`;
+
       updateLegendCounts(countByClass);
       updateHash(selected, q);
     }
@@ -452,21 +466,23 @@ document.addEventListener("DOMContentLoaded", function () {
       cy.fit();
     });
 
-    // Initial state
+    // Initial state (ORG-ONLY first paint)
     const { types: hashTypes, q: hashQ } = readStateFromHash();
     const hasInitialState = (hashTypes && hashTypes.length) || (hashQ && hashQ.length);
+
+    // Raw select fallback (before Choices mounts)
+    if (typeFilter && !hasInitialState) {
+      Array.from(typeFilter.options).forEach(opt => { opt.selected = (opt.value === "org"); });
+    }
+
     if (hasInitialState) {
-      if (choicesInstance) {
-        choicesInstance.removeActiveItems();
-        hashTypes.forEach(t => choicesInstance.setChoiceByValue(normalizeTypeToken(t)));
-      } else if (typeFilter && hashTypes && hashTypes.length) {
-        Array.from(typeFilter.options).forEach(opt => { opt.selected = hashTypes.includes(opt.value); });
-      }
-      if (textSearch) { textSearch.value = hashQ || ""; currentQuery = hashQ || ""; }
+      // Honour URL, but ensure types are loaded first
       ensureTypesForSelection(hashTypes || []);
-      applyFilter();
+      if (textSearch) { textSearch.value = hashQ || ""; currentQuery = hashQ || ""; }
+      applyFilter(hashTypes);
     } else {
-      applyFilter();
+      // Force org-only on first render
+      applyFilter(["org"]);
     }
   }).catch(err=>{
     console.error("Failed to load graph data:", err);
