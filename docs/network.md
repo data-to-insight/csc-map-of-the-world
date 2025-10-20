@@ -9,6 +9,8 @@ This interactive graph is a work in progress mapping of key organisations, plans
 
 This is a large scale mapping with many interconnected (moving)parts; currently a work-in-progress MVP. Data & relations are currently being added, graph layout and naming conventions for nodes in particular, is an ongoing discussion as we progress possible use-cases and standardise yml object structure.
 
+
+
 <!-- Content search filter (in dev) -->
 <div style="margin-bottom: 0.5em;">
   <label for="textSearch"><strong>Search:</strong></label>
@@ -107,3 +109,11 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
 
 <!-- Submit suggested map [corrections](mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-CORRECTION&body=I%20suggest%20that%20the%20following%20needs%20correcting:) or data [additions](mailto:datatoinsight.enquiries@gmail.com?subject=CSC-MapOfTheWorld-DATA&body=I%20suggest%20that%20the%20Map%20should%20have%20the%20following%20added:)
  -->
+
+
+
+<!-- Cytoscape -->
+<script src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
+
+<!-- Explorer logic DEBUG this might not be relevant here.... choices.js a missing file atm -->
+<script defer src="../js/render_graph.js"></script>

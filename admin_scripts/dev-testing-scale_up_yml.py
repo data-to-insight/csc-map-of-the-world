@@ -12,16 +12,16 @@ Defaults:
 
 Usage examples:
   # Create 10 orgs and 5 pairwise relationships (1↔2, 3↔4, …)
-  python scripts/gen_test_orgs.py -n 10 --make-relationships
+  python admin_scripts/gen_test_orgs.py -n 10 --make-relationships
 
   # Clean both org + rel test files first, then create 200
-  python scripts/gen_test_orgs.py -n 200 --clean-first --make-relationships
+  python admin_scripts/dev-testing-scale_up_yml.py -n 5000 --clean-first --make-relationships
 
   # Use different prefixes and start index
-  python scripts/gen_test_orgs.py -n 50 -s 101 -p tmporg_ --rel-prefix tmprel_ --make-relationships
+  python admin_scripts/dev-testing-scale_up_yml.py -n 50 -s 101 -p tmporg_ --rel-prefix tmprel_ --make-relationships
 
   # Use file stems as identifiers in relationships instead of slugs (rarely needed)
-  python scripts/gen_test_orgs.py -n 10 --make-relationships --id-strategy filestem
+  python admin_scripts/dev-testing-scale_up_yml.py -n 10 --make-relationships --id-strategy filestem
 """
 
 import argparse

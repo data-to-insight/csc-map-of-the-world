@@ -8,6 +8,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Explore: explore.md
   - CSC Network: network.md
   - CSC Network Relations: sccm_relation_types.md
   - CSC Search: search.md
@@ -20,7 +21,7 @@ nav:
 extra_javascript:
   - https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js
   - https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js
-  - js/render_graph.js
+  # - js/render_graph.js
   - js/search_tool.js  
 
 
