@@ -104,6 +104,98 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
 }
 
 </style>
+<!-- add colouring to the standard renderer, default by type, switch with ?color=degree -->
+<script>
+(function () {
+  // read mode from URL, e.g. ?color=degree
+  const params = new URLSearchParams(location.search);
+  const COLOR_MODE = (params.get('color') || 'type').toLowerCase(); // 'type' or 'degree'
+
+  // wait for cy from render_graph_standard.js
+  function whenCyReady(cb) {
+    if (window.cy) {
+      return window.cy.ready(() => cb(window.cy));
+    }
+    const start = Date.now();
+    const timer = setInterval(() => {
+      if (window.cy) { clearInterval(timer); window.cy.ready(() => cb(window.cy)); }
+      if (Date.now() - start > 4000) { clearInterval(timer); console.warn('Cytoscape not found'); }
+    }, 50);
+  }
+
+  // compute degrees in-browser if degree.json is missing
+  function computeDegreesInBrowser(cy) {
+    const deg = {};
+    cy.nodes().forEach(n => deg[n.id()] = 0);
+    cy.edges().forEach(e => {
+      const s = e.data('source'), t = e.data('target');
+      if (deg[s] !== undefined) deg[s] += 1;
+      if (deg[t] !== undefined) deg[t] += 1;
+    });
+    return deg;
+  }
+
+  // apply colouring by node type, palette matches explorer style
+  function applyTypeColors(cy) {
+    const typePalette = {
+      organization: '#4c78a8',  // also used if you emit "organization"
+      org:          '#4c78a8',  // legacy short form
+      service:      '#f58518',
+      dataset:      '#54a24b',
+      tool:         '#e45756',
+      event:        '#72b7b2',
+      plan:         '#ff9da6',
+      person:       '#b279a2',
+      rule:         '#eeca3b',
+      default:      '#b8b8b8'
+    };
+    cy.style().fromJson([
+      { selector: 'node', style: { 'background-color': typePalette.default } },
+      { selector: 'node[t = "organization"], node[t = "org"]', style: { 'background-color': typePalette.organization } },
+      { selector: 'node[t = "service"]',   style: { 'background-color': typePalette.service } },
+      { selector: 'node[t = "dataset"]',   style: { 'background-color': typePalette.dataset } },
+      { selector: 'node[t = "tool"]',      style: { 'background-color': typePalette.tool } },
+      { selector: 'node[t = "event"]',     style: { 'background-color': typePalette.event } },
+      { selector: 'node[t = "plan"]',      style: { 'background-color': typePalette.plan } },
+      { selector: 'node[t = "person"]',    style: { 'background-color': typePalette.person } },
+      { selector: 'node[t = "rule"]',      style: { 'background-color': typePalette.rule } }
+    ]).update();
+  }
+
+  // apply colouring by degree using a data mapped gradient
+  async function applyDegreeColors(cy) {
+    let degrees = {};
+    // network.md is at docs root, so data is 'data/...'
+    const degreeUrl = new URL('data/degree.json', window.location.href).toString();
+    try {
+      const r = await fetch(degreeUrl);
+      if (!r.ok) throw new Error('missing');
+      degrees = await r.json();
+    } catch {
+      console.warn('degree.json not found, computing degrees in browser');
+      degrees = computeDegreesInBrowser(cy);
+    }
+
+    // attach deg to node data for mapData
+    cy.batch(() => {
+      cy.nodes().forEach(n => n.data('deg', degrees[n.id()] ?? 0));
+    });
+
+    const maxDeg = Math.max(1, ...Object.values(degrees));
+    cy.style().fromJson([
+      { selector: 'node', style: { 'background-color': `mapData(deg, 0, ${maxDeg}, #e0f3ff, #08519c)` } }
+    ]).update();
+  }
+
+  whenCyReady(async (cy) => {
+    if (COLOR_MODE === 'degree') {
+      await applyDegreeColors(cy);
+    } else {
+      applyTypeColors(cy);
+    }
+  });
+})();
+</script>
 
 
 

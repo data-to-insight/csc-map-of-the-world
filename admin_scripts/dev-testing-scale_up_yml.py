@@ -20,8 +20,12 @@ Usage examples:
   # Use different prefixes and start index
   python admin_scripts/dev-testing-scale_up_yml.py -n 50 -s 101 -p tmporg_ --rel-prefix tmprel_ --make-relationships
 
-  # Use slugs instead of file stems if you really want slugs
-  python admin_scripts/dev-testing-scale_up_yml.py -n 10 --make-relationships --id-strategy slug
+  # Use slugs instead of file stems if you really want slugs (changed to filestem from slug)
+  python admin_scripts/dev-testing-scale_up_yml.py -n 10 --make-relationships --id-strategy filestem
+
+  e.g.
+  python admin_scripts/dev-testing-scale_up_yml.py -n 10 --clean-first --make-relationships --id-strategy filestem
+  python admin_scripts/dev-testing-scale_up_yml.py -n 5000 --clean-first --make-relationships --id-strategy filestem
 """
 
 import argparse

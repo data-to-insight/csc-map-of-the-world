@@ -16,7 +16,7 @@
 
   const DATA = {
     liteIndexUrl: new URL(SITE_BASE + "data/lite_index.json", window.location.origin),
-    searchUrl:    new URL(SITE_BASE + "data/search_index.json", window.location.origin),
+    searchUrl:    new URL(SITE_BASE + "data/graph_search_index.json", window.location.origin),
     adjUrl:       new URL(SITE_BASE + "data/adjacency.json", window.location.origin)
   };
 
