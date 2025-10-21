@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # admin_scripts/admin-rebuild_all_assets.py
+
 """
 Rebuild graph assets, then ingest external search and vector artifacts.
 
