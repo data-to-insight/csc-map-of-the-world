@@ -112,8 +112,9 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
 
 
 
-<!-- Cytoscape -->
+<!-- Choices.js (CSS + JS) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 <script src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
 
-<!-- Explorer logic DEBUG this might not be relevant here.... choices.js a missing file atm -->
-<script defer src="../js/render_graph.js"></script>
+<!-- standard renderer -->
+<script defer src="../js/render_graph_standard.js"></script>

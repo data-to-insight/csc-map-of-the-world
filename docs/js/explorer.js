@@ -1,6 +1,5 @@
 // docs/js/explorer.js
-
-// Search-first Explorer: load small ego subgraphs on demand (faster, static)
+// Search-first Explorer: load small ego subgraphs on demand (blank start)
 
 (function () {
   const cyContainer   = document.getElementById("cy");
@@ -9,33 +8,17 @@
   const clearBtn      = document.getElementById("clearGraph");
   const contextToggle = document.getElementById("contextModeToggle");
 
-  if (!cyContainer) {
-    console.error("Explorer: no #cy container found.");
-    return;
-  }
+  if (!cyContainer) { console.error("Explorer: no #cy container found."); return; }
 
+  // Paths: handle GitHub Pages subpath vs local mkdocs
+  const GH_BASE  = "/csc-map-of-the-world/";
+  const SITE_BASE = window.location.pathname.startsWith(GH_BASE) ? GH_BASE : "/";
 
-  // base path: repo subpath if present (GitHub Pages), else root (MkDocs serve)
-    const GH_BASE = "/csc-map-of-the-world/";
-    const SITE_BASE = window.location.pathname.startsWith(GH_BASE) ? GH_BASE : "/";
-
-    const DATA = {
+  const DATA = {
     liteIndexUrl: new URL(SITE_BASE + "data/lite_index.json", window.location.origin),
     searchUrl:    new URL(SITE_BASE + "data/search_index.json", window.location.origin),
     adjUrl:       new URL(SITE_BASE + "data/adjacency.json", window.location.origin)
-    };
-
-
-//   // Compute SITE_BASE robustly using known data path
-//   const probe = new URL("csc-map-of-the-world/data/graph_data.lite.json", window.location.origin);
-//   const SITE_BASE = probe.pathname.replace(/data\/graph_data(?:\.lite)?\.json$/, "");
-
-//   const DATA = {
-//     liteIndexUrl: new URL(SITE_BASE + "data/lite_index.json", window.location.origin),
-//     searchUrl:    new URL(SITE_BASE + "data/search_index.json", window.location.origin),
-//     adjUrl:       new URL(SITE_BASE + "data/adjacency.json", window.location.origin)
-//   };
-
+  };
 
   const staticTypeColorMap = {
     organization:"#007acc", event:"#ff9800", person:"#4caf50", collection:"#9c27b0",
@@ -44,14 +27,14 @@
 
   // helpers
   const debounce = (fn, ms=200) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; };
-  const esc = s => s==null ? "" : String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+  const esc = s => s==null ? "" : String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;","&gt;":">&gt;","\"":"&quot;","'":"&#39;"}[c]));
 
-  // Data caches
-  let LITE = {};            // {id:{id,l,t,s,x,y,sb?}}
-  let SEARCH = [];          // [{id,l,t,s}]
-  let ADJ = {};             // {id:[neighbors...]}
+  // Small in-memory stores
+  let LITE = {};   // {id:{id,l,t,s,x,y,sb?}}
+  let SEARCH = []; // [{id,l,t,s}]
+  let ADJ = {};    // {id:[neighbourIds...]}
 
-  // Cytoscape (empty start)
+  // Cytoscape (blank start)
   const styles = [
     { selector:"node", style:{
       label:"data(label)",
@@ -66,15 +49,13 @@
       "width": 2, "line-color":"#aaa","target-arrow-color":"#aaa",
       "target-arrow-shape":"triangle","curve-style":"bezier"
     }},
-    { selector:"node.match", style:{
-      "border-width": 3,"border-color":"#333"
-    }}
+    { selector:"node.match", style:{ "border-width": 3, "border-color":"#333" } }
   ];
 
   const cy = cytoscape({
     container: cyContainer,
     elements: [],
-    layout: { name:"preset" }, // set positions from LITE if present
+    layout: { name:"preset" }, // honour precomputed positions if present
     style: styles,
     renderer: {
       pixelRatio: 1,
@@ -85,7 +66,7 @@
     }
   });
 
-  // sm edge tooltip
+  // Edge tooltip (labels are heavy; show on hover)
   const edgeTip = document.createElement("div");
   Object.assign(edgeTip.style, {
     position:"fixed", zIndex:9999, display:"none",
@@ -102,10 +83,9 @@
   cy.on("mousemove","edge", moveTip);
   cy.on("mouseout","edge", ()=> edgeTip.style.display="none");
 
-  // Info panel 
+  // Info panel (compact)
   let panel = document.getElementById("nodePanel");
   if (!panel) { panel = document.createElement("aside"); panel.id="nodePanel"; panel.className="node-panel"; document.body.appendChild(panel); }
-
   function openNodePanel(node){
     const d = node.data();
     const base = s => (s? String(s).split("/").filter(Boolean).pop() : "");
@@ -128,13 +108,12 @@
     panel.classList.add("open");
   }
   function closeNodePanel(){ panel.classList.remove("open"); }
-
   document.addEventListener("click",(ev)=>{
     if (ev.target.id==="panelClose" || ev.target.closest("#panelClose")) { ev.preventDefault(); closeNodePanel(); }
   });
   cy.on("tap","node",(e)=> openNodePanel(e.target));
 
-  // Convert helpers
+  // Converters
   function toCyNode(id){
     const n = LITE[id];
     if (!n) return null;
@@ -146,12 +125,11 @@
   }
   function toCyEdge(a,b,label=""){ return { data:{ source:a, target:b, label } }; }
 
-  // Add ego graph for node (1 hop by default)
-  const added = new Set(); // node ids already in CY
+  // Add ego graph for node (k hops)
+  const added = new Set(); // node ids already in cy
   function addEgo(rootId, hops=1){
     if (!LITE[rootId]) return;
 
-    // BFS up to k hops
     const queue = [[rootId,0]];
     const seen  = new Set([rootId]);
     const nodesToAdd = new Set([rootId]);
@@ -165,10 +143,7 @@
         if (!LITE[nb]) continue;
         nodesToAdd.add(nb);
         edgesToAdd.push([id, nb]);
-        if (!seen.has(nb)) {
-          seen.add(nb);
-          queue.push([nb, depth+1]);
-        }
+        if (!seen.has(nb)) { seen.add(nb); queue.push([nb, depth+1]); }
       }
     }
 
@@ -184,7 +159,7 @@
 
     if (cyNodes.length || cyEdges.length) {
       cy.batch(()=> cy.add([...cyNodes, ...cyEdges]));
-      // cheap layout: do nothing if positions exist; otherwise do small cose on new bits
+      // If any new nodes have no preset position, run a small layout on just-added elements
       if (!cyNodes.every(n=>n.position)) {
         cy.layout({ name:"cose", animate:false, nodeDimensionsIncludeLabels:true }).run();
       }
@@ -192,30 +167,39 @@
     }
   }
 
+  // Append/replace behaviour (Keep neighbours toggle)
+  let appendMode = !!(contextToggle && contextToggle.checked);
+  if (contextToggle) {
+    contextToggle.checked = false; // default OFF
+    appendMode = false;
+    contextToggle.addEventListener("change", ()=> { appendMode = contextToggle.checked; });
+  }
+
   // Clear button
   clearBtn?.addEventListener("click", ()=>{
     cy.elements().remove();
     added.clear();
     resultsEl.style.display = "none";
-    searchInput.value = "";
+    if (searchInput) searchInput.value = "";
     closeNodePanel();
   });
 
-  // Context toggle only used when later decide to keep neighbours on match,
-  // here we’re selecting specific nodes, so default it off but wired for later:
-  if (contextToggle) contextToggle.checked = false;
-
-  // Search UI (substring match on label; add button per result)
+  // Search UI
   function renderResults(items){
     resultsEl.innerHTML = "";
     if (!items.length) { resultsEl.style.display = "none"; return; }
     for (const it of items.slice(0, 30)) {
       const row = document.createElement("div");
       row.className = "result-item";
+      row.style.display = "flex";
+      row.style.justifyContent = "space-between";
+      row.style.alignItems = "center";
+      row.style.padding = ".25rem .5rem";
+      row.style.borderTop = "1px solid #eee";
       row.innerHTML = `
         <div>
           <strong>${esc(it.l)}</strong>
-          <span class="badge">${esc(it.t)}</span>
+          <span class="badge" style="margin-left:.25rem; font-size:12px; color:#555;">${esc(it.t)}</span>
           <div style="font-size:12px;color:#666;">${esc(it.id)}</div>
         </div>
         <div>
@@ -230,6 +214,11 @@
 
   function doSearch(q){
     q = (q||"").trim().toLowerCase();
+
+    // Reset any lingering type operators for clean search-first
+    // remove tokens "type:org" or "type:plan"
+    q = q.split(/\s+/).filter(tok => !/^type:/i.test(tok)).join(" ");
+
     if (!q) { resultsEl.style.display="none"; return; }
     const hits = SEARCH.filter(d =>
       (d.l && d.l.toLowerCase().includes(q)) ||
@@ -239,31 +228,41 @@
     renderResults(hits);
   }
 
+  // Click handlers: honour appendMode
   resultsEl.addEventListener("click",(ev)=>{
     const add   = ev.target.getAttribute("data-add");
     const add1h = ev.target.getAttribute("data-add1h");
-    if (add)   { addEgo(add, 0); }     // just node (0-hop means node itself)
-    if (add1h) { addEgo(add1h, 1); }   // include neighbours
+    const willAppend = appendMode; // when OFF, we replace
+    if (add || add1h) {
+      if (!willAppend) { cy.elements().remove(); added.clear(); closeNodePanel(); }
+      if (add)   { addEgo(add, 0); }     // node only
+      if (add1h) { addEgo(add1h, 1); }   // + 1 hop
+    }
+  });
+
+  // Enter key = add first result (0-hop if OFF, 1-hop if ON)
+  searchInput?.addEventListener("keydown", (e)=>{
+    if (e.key !== "Enter") return;
+    const first = resultsEl.querySelector(".result-item button[data-add]") || null;
+    const firstId = first?.getAttribute("data-add");
+    if (firstId) {
+      if (!appendMode) { cy.elements().remove(); added.clear(); closeNodePanel(); }
+      addEgo(firstId, appendMode ? 1 : 0);
+    }
   });
 
   searchInput?.addEventListener("input", debounce(e=> doSearch(e.target.value), 150));
 
-  // Load all three small(er) files
+  // Load assets
   Promise.all([
     fetch(DATA.liteIndexUrl).then(r=>r.json()),
     fetch(DATA.searchUrl).then(r=>r.json()),
     fetch(DATA.adjUrl).then(r=>r.json())
   ]).then(([lite, idx, adj])=>{
-    LITE = lite;
-    SEARCH = idx;
-    ADJ = adj;
-
-    // starter: focus orgs only label "DfE" etc if user types;
-    // otherwise do nothing on load (blank canvas)
-    console.log("Explorer assets loaded:", {
-      nodes: Object.keys(LITE).length,
-      search_docs: SEARCH.length
-    });
+    LITE = lite || {};
+    SEARCH = Array.isArray(idx) ? idx : [];
+    ADJ = adj || {};
+    console.log("Explorer assets:", { nodes:Object.keys(LITE).length, search_docs:SEARCH.length });
   }).catch(err=>{
     console.error("Failed to load explorer assets:", err);
     cyContainer.innerHTML = "<p style='color:red;'>Could not load explorer assets.</p>";

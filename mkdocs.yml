@@ -9,6 +9,9 @@ theme:
 nav:
   - Home: index.md
   - Explore: explore.md
+
+  - Network, full screen: network_fullscreen.md # TESTING
+
   - CSC Network: network.md
   - CSC Network Relations: sccm_relation_types.md
   - CSC Search: search.md

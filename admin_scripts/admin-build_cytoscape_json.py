@@ -1,5 +1,16 @@
 # scripts/build_cytoscape_json.py
 
+
+# full builder
+# Purpose: build complete graph payload for analysis, debugging, richer UI features
+# Data shape: verbose nodes and edges, plus a crosswalk, anything site or tools might need. prefers id then file stem, and it resolves relationship endpoints through the crosswalk.
+# Typical outputs: docs/data/graph_data.json [full], docs/data/crosswalk.json [lookup], other side files wired in main builder.
+# Use: local dev, QA checks, search indexing, data audits, exporting for notebooks, anything where needed all fields and maximum fidelity.
+    
+# example output
+# Graph JSON written: /workspaces/csc-map-of-the-world/docs/data/graph_data.json (minified, 149646 bytes)
+# Crosswalk written:  /workspaces/csc-map-of-the-world/docs/data/crosswalk.json (minified, 41078 bytes)
+
 import os
 import re
 import json
@@ -20,7 +31,7 @@ CROSSWALK = {}
 
 # ---------------- helpers ----------------
 def write_json(path: Path, payload, *, minify: bool = True):
-    """Write JSON either minified (default) or pretty, ensuring parent dir exists."""
+    """Write JSON either minified (default) or pretty, ensure parent dir exist"""
     opts = {"ensure_ascii": False}
     if minify:
         opts.update(separators=(",", ":"))
@@ -38,7 +49,7 @@ def kebab(s: str) -> str:
     return re.sub(r"-{2,}", "-", s)
 
 def slug_from_path(path: Path, base: Path) -> str:
-    """Derive a stable slug from file path relative to data_yml/ (no extension)."""
+    """Derive stable slug from file path relative to data_yml/ (no extension)"""
     rel = path.relative_to(base).with_suffix("")
     segs = [kebab(p) for p in rel.parts]
     return "/".join(segs)
@@ -75,16 +86,37 @@ def get_entities():
             if file.name.lower().startswith("template") or file.name.startswith("0_template"):
                 continue
 
-            node_id = file.stem
-            if node_id in seen_nodes:
-                continue
-
             with open(file, encoding="utf-8") as f:
+
+
                 try:
+
+
                     data = yaml.safe_load(f) or {}
+
+
                 except yaml.YAMLError as e:
+
+
                     print(f"YAML error in {file}: {e}")
+
+
                     continue
+
+
+            
+
+
+            # prefer explicit id field, else file stem
+
+
+            node_id = (data.get("id") or file.stem)
+
+
+            if node_id in seen_nodes:
+
+
+                continue
 
             label = data.get("name") or node_id
             if not isinstance(label, str) or not label.strip():
@@ -203,8 +235,44 @@ def get_relationships(seen_nodes):
                 print(f"YAML error in {file}: {e}")
                 continue
 
-        source = data.get("source")
-        target = data.get("target")
+        def resolve_id(x):
+
+
+            if not x:
+
+
+                return x
+
+
+            if x in seen_nodes:
+
+
+                return x
+
+
+            # try slug lookup from CROSSWALK keys, which are slugs
+
+
+            cw = CROSSWALK.get(x)
+
+
+            if cw and cw.get("id"):
+
+
+                return cw["id"]
+
+
+            return x
+
+
+        
+
+
+        source = resolve_id(data.get("source"))
+
+
+        target = resolve_id(data.get("target"))
+
         if not source or not target:
             print(f"Incomplete edge in {file}: missing source or target")
             continue

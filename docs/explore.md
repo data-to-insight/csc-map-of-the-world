@@ -1,17 +1,28 @@
 # Network Explorer (search-first)
 
-<div id="explorer-ui" style="margin-bottom:1rem;">
-  <input id="exploreSearch" type="text" placeholder="Search nodes by name…" style="width:320px;">
-  <button id="clearGraph" style="margin-left:.5rem;">Clear</button>
-  <label style="margin-left:1rem; user-select:none;">
-    <input type="checkbox" id="contextModeToggle"> Keep neighbours (context)
+<!-- Explorer controls -->
+<div style="margin-bottom: 0.75rem;">
+  <label for="exploreSearch"><strong>Search:</strong></label>
+  <input id="exploreSearch" type="text" placeholder="Search by name / id / slug…" style="width: 360px; margin-left: .5em;" />
+  <label style="margin-left: 0.75em; user-select: none;">
+    <input type="checkbox" id="contextModeToggle" />
+    <strong>Keep neighbours (append)</strong>
   </label>
-  <div id="results" style="margin-top:.5rem; max-height:220px; overflow:auto; border:1px solid #ddd; border-radius:6px; padding:.5rem; display:none;"></div>
+  <button id="clearGraph" style="margin-left: .75em;">Clear all</button>
 </div>
 
-<div id="cy" style="width:100%; height:600px; border:1px solid #ccc;"></div>
+<!-- Search results list -->
+<div id="results" style="display:none; margin: .5rem 0; border:1px solid #ddd; border-radius:6px; padding:.5rem;"></div>
 
-<!-- Optional: panel base CSS (keeps things decent if site CSS is missing) -->
+<!-- Graph -->
+<div id="cy" style="width:100%; height:70vh; border:1px solid #ddd; border-radius:6px;"></div>
+
+<!-- Cytoscape then explorer (order matters) -->
+<script src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
+<script defer src="../js/explorer.js"></script>
+
+
+<!-- panel base CSS (keep things decent if site CSS missing) -->
 <style>
   .result-item { padding:4px 6px; border-radius:4px; display:flex; justify-content:space-between; align-items:center; }
   .result-item:hover { background:#f5f5f5; }
@@ -24,13 +35,3 @@
   .node-panel .row { margin:.5rem 0; }
   .node-panel .meta { font-size:.85em; color:#666; margin-top:-4px; margin-bottom:6px; }
 </style>
-
-<!-- Cytoscape -->
-<script src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
-
-<!-- Explorer logic 
-while running explore.md within /docs/network/ need to repeat nest-->
-<script type="module" src="../js/explorer.js"></script> <!-- note double ../../ jump-->
-
-
-

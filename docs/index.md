@@ -149,15 +149,21 @@ We hope it supports your work, and welcome your feedback as we continue to impro
 | [Services](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=169)     |                                                                                                                         |
                                                                                                         |
 
+
+
+<link rel="prefetch" href="/csc-map-of-the-world/data/graph_data.lite.json" as="fetch" crossorigin>
+
 <link rel="prefetch" href="data/search_index.json" as="fetch" crossorigin>
 <link rel="prefetch" href="data/lite_index.json" as="fetch" crossorigin>
 <link rel="prefetch" href="data/adjacency.json" as="fetch" crossorigin>
 
-// PRe-load the network graph data
-<script>
+
+<!-- cache-buster -->
+<!-- <script>
+  // PRe-load the network graph data
 (function(){
   try {
-    const GRAPH_VER = "2025-03-05-01"; // keep in sync with render_graph.js
+    const GRAPH_VER = "2025-03-05-01"; // sync with render_graph.js
     const url = new URL("csc-map-of-the-world/data/graph_data.lite.json", window.location.origin);
     url.searchParams.set("v", GRAPH_VER);
 
@@ -169,8 +175,8 @@ We hope it supports your work, and welcome your feedback as we continue to impro
     l.crossOrigin = 'anonymous';
     document.head.appendChild(l);
 
-    // Optional: fetch now and stash in memory for this session
+    // fetch and stash in memory for this session
     // window.__graphLitePromise = fetch(url, {cache:'force-cache'}).then(r=>r.json()).catch(()=>null);
   } catch(e) {}
 })();
-</script>
+</script> -->

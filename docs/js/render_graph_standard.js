@@ -1,10 +1,8 @@
-// SUMMARY: Large-graph friendly renderer.
-// - Seed load (org only), lazy add by type in chunks
-// - LOD: no edge labels; show as tooltip on hover; min-zoom label; pixelRatio=1
-// - Avoid full ':visible' scans (count while filtering)
-// - Accepts BOTH old shape ({elements:[...]}) and new "lite" shape
-//   ({"nodes":[{id,l,t,s?,x?,y?,sb?},...],"edges":[[src,tgt,?label],...]})
-// - Side panel + context mode preserved.
+// SUMMARY: Large-graph friendly renderer (standard JSON shape) — FIXED
+// - Fix: allEdges now populated (edges render + layouts have structure)
+// - Fix: single addInChunks() with afterAll callback; runLayout called after chunking
+// - Fix: runLayout triggered reliably after seed load (no piling at 0,0)
+// - Minor: keeps LOD + tooltips; org-only seed; choices.js auto-loader
 
 document.addEventListener("DOMContentLoaded", function () {
   const cyContainer  = document.getElementById("cy");
@@ -15,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!cyContainer) return console.error("No #cy");
 
-  // Use your existing graph path; SITE_BASE used to build links
+  // SITE_BASE to build links
   const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.json", window.location.origin);
   const SITE_BASE    = graphDataURL.pathname.replace(/data\/graph_data\.json$/, "");
 
@@ -24,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     plan:"#e91e63", rule:"#00bcd4", resource:"#8bc34a", service:"#ffc107", other:"#999999"
   };
 
-  // --- Choices loader (unchanged) ---
+  // --- Choices loader ---
   function ensureChoices(cb) {
     if (typeof Choices === "function") { cb(); return; }
     const css = document.createElement("link");
@@ -39,14 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // --- Helpers ---
   function debounce(fn, ms = 150){ let t; return (...a)=>{clearTimeout(t); t=setTimeout(()=>fn(...a),ms);} }
-  const esc = (s)=> s==null ? "" : String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-  const normalizeTypeToken = (t)=>{ const m=(t||"").toLowerCase(); return (m==="org"||m==="organisation"||m==="organization")?"org":m; };
+  const esc = (s)=> s==null ? "" : String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;","&gt;":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+  const normaliseTypeToken = (t)=>{ const m=(t||"").toLowerCase(); return (m==="org"||m==="organisation"||m==="organization")?"org":m; };
   function parseQuery(q){
     const out={text:[],tag:[],type:[]};
     (q||"").split(/\s+/).forEach(tok=>{
       if(!tok) return;
       if(tok.startsWith("tag:")) out.tag.push(tok.slice(4).toLowerCase());
-      else if(tok.startsWith("type:")) out.type.push(normalizeTypeToken(tok.slice(5)));
+      else if(tok.startsWith("type:")) out.type.push(normaliseTypeToken(tok.slice(5)));
       else out.text.push(tok.toLowerCase());
     });
     return out;
@@ -65,7 +63,31 @@ document.addEventListener("DOMContentLoaded", function () {
     if(str) location.hash=str; else history.replaceState(null,"",location.pathname+location.search);
   }
 
-  // --- Edge tooltip (NEW) ---
+  // --- ONE addInChunks (uses afterAll) ---
+  function addInChunks(elems, chunk = 1200, afterAll) {
+    let i = 0;
+    (function step() {
+      const slice = elems.slice(i, i + chunk);
+      if (!slice.length) { if (afterAll) afterAll(); return; }
+      cy.batch(() => cy.add(slice));
+      i += chunk;
+      requestAnimationFrame(step);
+    })();
+  }
+
+  // Debounced layout avoids thrash during chunking
+  const runLayout = debounce(() => {
+    cy.layout({
+      name: "cose",            // swap to "fcose" if include plugin
+      animate: true,
+      padding: 50,
+      fit: true,
+      nodeDimensionsIncludeLabels: true,
+      boundingBox: { x1: 0, y1: 0, x2: cyContainer.clientWidth, y2: cyContainer.clientHeight - 0 }
+    }).run();
+  }, 60);
+
+  // --- Edge tooltip ---
   const edgeTip = document.createElement("div");
   edgeTip.id = "edgeTip";
   Object.assign(edgeTip.style, {
@@ -82,89 +104,181 @@ document.addEventListener("DOMContentLoaded", function () {
     edgeTip.style.top  = (y+12)+"px";
   }
 
-  // --- State buckets for lazy loading (NEW) ---
-  let allNodes = [];   // lite-normalized
-  let allEdges = [];   // lite-normalized
-  const loadedTypes = new Set(); // which type classes have been added to cy
+  // --- State buckets for lazy loading ---
+  let allNodes = [];   // lite-normalised (from 'standard' JSON)
+  let allEdges = [];   // lite-normalised
+  const loadedTypes = new Set(); // which type classes added to cy
   const byType = {};   // { org: [nodeObj,...], plan: [...], ... }
   const addedIds = new Set(); // node ids already in cy
+  let nodeById = new Map();
 
-  // Load graph JSON (old or lite)
+  // ---- Cytoscape init (empty; we add seed later) ----
+  const dynamicNodeStyles = Object.entries(staticTypeColorMap).map(([cls,color])=>({
+    selector: `.${cls==="organization"?"org":cls}`,
+    style: { "background-color": color, "background-opacity": 1 }
+  }));
+  const cy = cytoscape({
+    container: cyContainer,
+    elements: [], // start empty (seed load later)
+    layout: { name:"preset" },
+    style: [
+      { selector:"node", style:{
+        label:"data(label)",
+        "text-valign":"center","color":"#000","font-size":12,"text-outline-width":0,
+        "min-zoomed-font-size": 10   // performance: hide labels when zoomed out
+      }},
+      ...dynamicNodeStyles,
+      { selector:"edge", style:{
+        // label removed (tooltip instead)
+        "width": 2, "line-color":"#aaa","target-arrow-color":"#aaa",
+        "target-arrow-shape":"triangle","curve-style":"bezier"
+      }},
+      { selector:"node.match", style:{
+        "border-width": 3,
+        "border-color": "#333",
+        "background-opacity": 1
+      }}
+    ],
+    renderer: { // cheap(er) renderer
+      pixelRatio: 1,
+      hideEdgesOnViewport: true,
+      hideLabelsOnViewport: true,
+      textureOnViewport: true,
+      motionBlur: true
+    }
+  });
+
+  // --- Side info panel ----------------------------------------------
+  (function setupNodePanel(){
+    // create or reuse
+    let panel = document.getElementById("nodePanel");
+    if (!panel) {
+      panel = document.createElement("aside");
+      panel.id = "nodePanel";
+      panel.className = "node-panel";
+      document.body.appendChild(panel);
+    }
+
+    // safe base CSS in case site styles are missing/overridden
+    const cs = getComputedStyle(panel);
+    const needsFix = cs.position !== "fixed" || cs.transform === "none" || (parseInt(cs.zIndex || "0", 10) < 1000);
+    if (needsFix) {
+      Object.assign(panel.style, {
+        position: "fixed",
+        top: "96px",
+        right: "16px",
+        width: "min(380px, 95vw)",
+        maxHeight: "70vh",
+        overflow: "auto",
+        background: "#fff",
+        border: "1px solid #ddd",
+        borderRadius: "8px",
+        boxShadow: "0 10px 24px rgba(0,0,0,0.12)",
+        padding: "12px 14px",
+        zIndex: "9999",
+        transform: "translateX(110%)",
+        transition: "transform 160ms ease-in-out"
+      });
+    }
+
+    const esc = (s) => s == null ? "" : String(s).replace(/[&<>"']/g, c => (
+      {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]
+    ));
+    const base = (s)=> (s ? String(s).split("/").filter(Boolean).pop() : "");
+
+    function openNodePanel(node){
+      const d = node.data() || {};
+      // fields might not be in .lite
+      const label = d.label || d.slug || d.id || "(untitled)";
+      const type  = (d.type || "").toLowerCase();
+      const tags  = Array.isArray(d.tags) ? d.tags : [];
+      const tagsHtml = tags.map(t => `<span>#${esc(t)}</span>`).join("");
+
+      // // SITE_BASE or derive conservative root fallback
+      // const SITE_BASE = (window.__SITE_BASE__) || (location.pathname.replace(/[^/]+$/, ""));
+
+      const pageUrl = d.page_url
+        ? `${SITE_BASE}${String(d.page_url).replace(/^\/+/, "")}`
+        : (d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/, "")}/` : "");
+
+      const queryTerm = (d.label && d.label.trim()) || base(d.slug || d.page_url) || (d.id || "");
+      const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(queryTerm)}`;
+
+      const websiteRow = d.website ? `
+        <div class="row">
+          <div class="subhead"><strong>Website</strong></div>
+          <div><a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>
+        </div>` : "";
+
+      const notesRow = d.notes ? `
+        <div class="row"><div class="subhead"><strong>Notes</strong></div><div>${esc(d.notes)}</div></div>` : "";
+
+      panel.innerHTML = `
+        <div class="row" style="display:flex; justify-content: space-between; align-items:center;">
+          <h3>${esc(label)}</h3>
+          <button id="panelClose">✕</button>
+        </div>
+        <div class="meta">${esc(type)}</div>
+        <div class="row">${esc((d.summary || "")).slice(0, 800)}</div>
+        <div class="row tags">${tagsHtml}</div>
+        ${websiteRow}
+        ${notesRow}
+        <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
+          <a href="${esc(searchUrl)}">Search</a>
+          ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details</a>` : ""}
+        </div>
+      `;
+      panel.classList.add("open");
+      panel.style.transform = "translateX(0)";
+      panel.style.display = "block";
+    }
+
+    function closeNodePanel(){
+      panel.classList.remove("open");
+      panel.style.transform = "translateX(110%)";
+      panel.style.display = "";
+    }
+
+    cy.on("tap","node",(e)=> openNodePanel(e.target));
+    document.addEventListener("click",(ev)=>{
+      if (ev.target.id === "panelClose" || ev.target.closest("#panelClose")) {
+        ev.preventDefault();
+        closeNodePanel();
+      }
+    });
+  })();
+
+
+  // Load graph JSON (standard shape) and normalise to lite arrays
   fetch(graphDataURL).then(r=>{
     if(!r.ok) throw new Error("HTTP "+r.status);
     return r.json();
   }).then(raw=>{
-    // --- Normalize to "lite" shape in-memory (NEW) ---
-    if (Array.isArray(raw?.elements)) {
-      // Old shape -> lite arrays
-      const nodes = raw.elements.filter(e=>e.group==="nodes").map(e=>{
-        const d = e.data||{};
-        const cls = (e.classes||"").trim() || ((d.type||"").toLowerCase()==="organization"?"org":(d.type||"").toLowerCase());
-        const pos = e.position || undefined;
-        return { id:d.id, l:d.label, t: cls==="organization"?"org":cls, s:d.slug||d.page_url||"", x:pos?.x, y:pos?.y, sb:(d.search_blob||"") };
-      });
-      const edges = raw.elements.filter(e=>e.group==="edges").map(e=>{
-        const d=e.data||{};
-        return [d.source, d.target, d.label||""];
-      });
-      raw = { nodes, edges };
-    }
+    if (!Array.isArray(raw?.elements)) throw new Error("Expected {elements:[...]} shape for standard renderer");
 
-    allNodes = (raw.nodes||[]).map(n=>{
-      const classes = (n.t==="organization"?"org":n.t)||"other";
-      if(!byType[classes]) byType[classes]=[];
-      byType[classes].push(n);
-      return n;
+    const nodes = raw.elements.filter(e=>e.group==="nodes").map(e=>{
+      const d = e.data||{};
+      const cls = (e.classes||"").trim() || ((d.type||"").toLowerCase()==="organization"?"org":(d.type||"").toLowerCase());
+      const pos = e.position || undefined;
+      return { id:d.id, l:d.label, t: cls==="organization"?"org":cls, s:d.slug||d.page_url||"", x:pos?.x, y:pos?.y, sb:(d.search_blob||"") };
     });
-    allEdges = (raw.edges||[]).map(e=>{
-      return { source:e[0], target:e[1], label:e[2]||"" };
+    const edges = raw.elements.filter(e=>e.group==="edges").map(e=>{
+      const d=e.data||{};
+      return [d.source, d.target, d.label||""];
     });
 
-    // ---- Cytoscape init (empty, we add seed later) ----
-    const dynamicNodeStyles = Object.entries(staticTypeColorMap).map(([cls,color])=>({
-      selector: `.${cls==="organization"?"org":cls}`,
-      style: { "background-color": color, "background-opacity": 1 }
-    }));
-    const cy = cytoscape({
-      container: cyContainer,
-      elements: [], // start empty (seed load later)
-      layout: { name:"preset" },
-      style: [
-        { selector:"node", style:{
-          label:"data(label)",
-          "text-valign":"center","color":"#000","font-size":12,"text-outline-width":0,
-          "min-zoomed-font-size": 10   // NEW: hide labels when zoomed out
-        }},
-        ...dynamicNodeStyles,
-        { selector:"edge", style:{
-          // label removed (tooltip instead)
-          "width": 2, "line-color":"#aaa","target-arrow-color":"#aaa",
-          "target-arrow-shape":"triangle","curve-style":"bezier"
-        }},
-        { selector:"node.match", style:{
-          "border-width": 3,"border-color":"#333",
-          "shadow-blur": 12,"shadow-opacity": .4,"shadow-offset-x":0,"shadow-offset-y":0
-        }}
-      ],
-      renderer: { // NEW: cheaper renderer
-        pixelRatio: 1,
-        hideEdgesOnViewport: true,
-        hideLabelsOnViewport: true,
-        textureOnViewport: true,
-        motionBlur: true
-      }
+    // Populate state
+    allNodes = nodes.map(n=>{
+      const t = (n.t==="organization"?"org":n.t)||"other";
+      const obj = { id:n.id, l:n.l, t, s:n.s||"", x:n.x, y:n.y, sb:n.sb||"" };
+      nodeById.set(obj.id, obj);
+      if(!byType[t]) byType[t]=[];
+      byType[t].push(obj);
+      return obj;
     });
+    allEdges = (edges||[]).map(e=>({ source:e[0], target:e[1], label:e[2]||"" }));
 
-    // Edge tooltips (NEW)
-    cy.on("mouseover","edge", (evt)=>{
-      const lbl = evt.target.data("label");
-      if (lbl) { edgeTip.textContent = lbl; edgeTip.style.display="block"; moveTip(evt); }
-    });
-    cy.on("mousemove","edge", moveTip);
-    cy.on("mouseout","edge", ()=>{ edgeTip.style.display="none"; });
-
-    // Side panel (your latest version, unmodified except compact bits)
-    // ----------------------------------------------------------------
+    // --- Side panel ---
     const relatedURL = new URL("csc-map-of-the-world/data/related_nodes.json", window.location.origin);
     fetch(relatedURL).then(r=>r.ok?r.json():{}).then(obj=>{ window.__relatedIndex=obj||{}; })
                      .catch(()=>{ window.__relatedIndex={}; });
@@ -242,7 +356,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cy.on("tap","node",(e)=>openNodePanel(e.target));
 
-    // --- Seed subset load (NEW): only org on start ---
+    // --- Seed subset load: only org on start ---
     const SEED_CLASS = "org";
     function toCyNode(n){
       const data = { id:n.id, label:n.l, type:n.t, slug:n.s||"", search_blob:n.sb||"" };
@@ -251,28 +365,44 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function toCyEdge(e){ return { data:{ source:e.source, target:e.target, label:e.label||"" } }; }
 
-    function addInChunks(elems, chunk=1200){
-      let i = 0;
-      (function step(){
-        const slice = elems.slice(i, i+chunk);
-        if (!slice.length) return;
-        cy.batch(()=> cy.add(slice));
-        i += chunk;
-        requestAnimationFrame(step);
-      })();
-    }
-
-    function ensureTypeLoaded(typeCls){
+    function ensureTypeLoaded(typeCls) {
       if (loadedTypes.has(typeCls)) return;
-      const nodes = (byType[typeCls]||[]).filter(n=>!addedIds.has(n.id));
-      const ids   = new Set(nodes.map(n=>n.id));
-      const edges = allEdges.filter(e => ids.has(e.source) && ids.has(e.target));
-      nodes.forEach(n=>addedIds.add(n.id));
+
+      // Start with nodes of this type that aren't already in graph
+      const newNodes = (byType[typeCls] || []).filter(n => !addedIds.has(n.id));
+      const toAddNodesMap = new Map();
+      newNodes.forEach(n => toAddNodesMap.set(n.id, n));
+
+      // Pull in incident edges and opposite endpoints so edges render immediately
+      const incidentEdges = [];
+      for (const e of allEdges) {
+        const srcIn = toAddNodesMap.has(e.source);
+        const tgtIn = toAddNodesMap.has(e.target);
+        if (srcIn || tgtIn) {
+          incidentEdges.push(e);
+          if (!toAddNodesMap.has(e.source)) {
+            const nn = nodeById.get(e.source);
+            if (nn && !addedIds.has(nn.id)) toAddNodesMap.set(nn.id, nn);
+          }
+          if (!toAddNodesMap.has(e.target)) {
+            const nn = nodeById.get(e.target);
+            if (nn && !addedIds.has(nn.id)) toAddNodesMap.set(nn.id, nn);
+          }
+        }
+      }
+
+      const toAddNodes = Array.from(toAddNodesMap.values());
+      toAddNodes.forEach(n => addedIds.add(n.id));
       loadedTypes.add(typeCls);
-      addInChunks([...nodes.map(toCyNode), ...edges.map(toCyEdge)]);
+
+      // Add in chunks, then run layout once at end to avoid pile-up at (0,0)
+      addInChunks([
+        ...toAddNodes.map(toCyNode),
+        ...incidentEdges.map(toCyEdge)
+      ], 1200, runLayout);
     }
 
-    // seed orgs
+    // seed orgs (and run a layout once chunking finishes)
     ensureTypeLoaded(SEED_CLASS);
 
     // --- Legend + status (avoid global scans; compute in-filter) ---
@@ -303,7 +433,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateLegendCounts(countByClass){
       for (const [cls,row] of Object.entries(legendRowByClass)){
-        const baseName = cls==="org"?"Organization":""
         const type = cls==="org" ? "Organization" :
           cls[0].toUpperCase()+cls.slice(1);
         const color = staticTypeColorMap[cls==="org"?"organization":cls];
@@ -353,7 +482,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function ensureTypesForSelection(selected){
-      // NEW: if user selects types not yet loaded, add them first
       (selected||[]).forEach(cls => ensureTypeLoaded(cls));
     }
 
@@ -361,9 +489,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const selected = getSelectedClasses();
       const q = (currentQuery||"").trim().toLowerCase();
 
-      ensureTypesForSelection(selected); // NEW: lazy-load first
+      ensureTypesForSelection(selected);
 
-      const countByClass = {}; // NEW: avoid global ':visible' scans
+      const countByClass = {};
       let visibleCount = 0;
 
       cy.batch(()=>{
@@ -392,11 +520,12 @@ document.addEventListener("DOMContentLoaded", function () {
             edge.style("display", show ? "element" : "none");
           });
 
-          // Context neighbours (already scoped to matches -> cheap)
-          if (contextModeEnabled && q) {
-            const matched = cy.nodes(".match");
-            if (matched.length) matched.closedNeighborhood().style("display","element");
-          }
+        // Reveal neighbours when toggle is ON and either a text query OR a type filter is active
+        if (contextModeEnabled && (q || selected.length)) {
+          // if there's a text query, use matches; otherwise use currently visible nodes from type filter
+          const base = q ? cy.nodes(".match") : cy.nodes(":visible");
+          if (base.length) base.closedNeighborhood().style("display", "element");
+        }
         }
       });
 
@@ -428,16 +557,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (hasInitialState) {
       if (choicesInstance) {
         choicesInstance.removeActiveItems();
-        hashTypes.forEach(t => choicesInstance.setChoiceByValue(normalizeTypeToken(t)));
+        hashTypes.forEach(t => choicesInstance.setChoiceByValue(normaliseTypeToken(t)));
       } else if (typeFilter && hashTypes && hashTypes.length) {
         Array.from(typeFilter.options).forEach(opt => { opt.selected = hashTypes.includes(opt.value); });
       }
       if (textSearch) { textSearch.value = hashQ || ""; currentQuery = hashQ || ""; }
-      // ensure those types are loaded before first filter
       ensureTypesForSelection(hashTypes || []);
       applyFilter();
     } else {
-      // show orgs only by default
       applyFilter();
     }
   }).catch(err=>{

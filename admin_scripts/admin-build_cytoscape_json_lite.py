@@ -1,4 +1,14 @@
-# scripts/build_graph_outputs.py
+# admin_scripts/admin-build_cytoscape_json_lite.py
+
+# The lite builder
+# Purpose: produce small payload for fast page loads on GitHub Pages, mobile, and low bandwidth users.
+# Data shape: tiny node objects with short keys [id, l, t, s, sb], edges as [src, tgt, rel], and one separate rich file for side panels. prefers id then file stem, and resolves relationship endpoints via a crosswalk, same as full builder.
+
+# Outputs:
+# docs/data/graph_data.lite.json [just what Cytoscape needs to render]
+# docs/data/node_details.json [lazy loaded for the side panel]
+# Use: production site build, simpler cache logic on the front end.
+
 import os, json, yaml
 from pathlib import Path
 
@@ -37,108 +47,141 @@ def _to_json_safe(obj):
 
 # Helper: compact join, safe types
 def _coalesce(*vals):
-  for v in vals:
-    if isinstance(v, str) and v.strip():
-      return v.strip()
-  return ""
+    for v in vals:
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return ""
 
 def _slug_from(file: Path):
-  return file.stem  # keep it simple and stable
+    return file.stem  # keep it simple and stable
 
 def _type_class(t: str, category: str):
-  t = (t or category or "other").lower()
-  if t == "organization": return "org"
-  return t
+    t = (t or category or "other").lower()
+    if t == "organization": 
+        return "org"
+    return t
 
 def _search_blob(label, tags, desc, limit=240):
-  base = " ".join([label or "", " ".join(tags or []), (desc or "")]).strip()
-  base = " ".join(base.split())  # collapse whitespace
-  return base[:limit]
+    base = " ".join([label or "", " ".join(tags or []), (desc or "")]).strip()
+    base = " ".join(base.split())  # collapse whitespace
+    return base[:limit]
 
 def _position_from_yaml(data: dict):
-  # OPTIONAL: support precomputed positions if present in YAML, e.g.:
-  # position: { x: 120, y: 480 }
-  pos = data.get("position") or {}
-  try:
-    x = float(pos.get("x")); y = float(pos.get("y"))
-    return {"x": x, "y": y}
-  except Exception:
-    return None
+    # OPTIONAL: support precomputed positions if present in YAML, e.g.:
+    # position: { x: 120, y: 480 }
+    pos = data.get("position") or {}
+    try:
+        x = float(pos.get("x")); y = float(pos.get("y"))
+        return {"x": x, "y": y}
+    except Exception:
+        return None
 
 def collect_nodes_and_details():
-  lite_nodes = []
-  details = {}
-  seen = set()
+    lite_nodes = []
+    details = {}
+    seen = set()
+    crosswalk = {}  # map of alternate identifiers to canonical node id
 
-  for category in DATA_DIR.iterdir():
-    if not category.is_dir() or category.name == "relationships":
-      continue
+    for category in DATA_DIR.iterdir():
+        if not category.is_dir() or category.name == "relationships":
+            continue
 
-    for file in category.glob("*.yaml"):
-      if file.name.lower().startswith("template") or file.name.startswith("0_template"):
-        continue
+        for file in category.glob("*.yaml"):
+            if file.name.lower().startswith("template") or file.name.startswith("0_template"):
+                continue
 
-      node_id = file.stem
-      if node_id in seen: 
-        continue
+            # Load YAML first
+            try:
+                with open(file, encoding="utf-8") as f:
+                    data = yaml.safe_load(f) or {}
+            except yaml.YAMLError as e:
+                print(f"YAML error in {file}: {e}")
+                continue
 
-      with open(file, encoding="utf-8") as f:
-        try:
-          data = yaml.safe_load(f) or {}
-        except yaml.YAMLError as e:
-          print(f"YAML error in {file}: {e}")
-          continue
+            # Prefer explicit id in YAML, else file stem
+            node_id = (data.get("id") or file.stem)
+            if node_id in seen:
+                continue
 
-      label   = _coalesce(data.get("name"), node_id)
-      ntype   = data.get("@type", category.name)
-      cls     = _type_class(ntype, category.name)
-      slug    = data.get("slug") or _slug_from(file)
-      tags    = data.get("tags") or []
-      desc    = data.get("description") or data.get("summary") or ""
-      pos     = _position_from_yaml(data)  # optional
+            label   = _coalesce(data.get("name"), node_id)
+            ntype   = data.get("@type", category.name)
+            cls     = _type_class(ntype, category.name)
+            slug    = data.get("slug") or _slug_from(file)
+            tags    = data.get("tags") or []
+            desc    = data.get("description") or data.get("summary") or ""
+            pos     = _position_from_yaml(data)  # optional
 
-      # LITE node (small!)
-      n = {"id": node_id, "l": label, "t": cls, "s": slug, "sb": _search_blob(label, tags, desc)}
-      if pos: 
-        n["x"] = pos["x"]; n["y"] = pos["y"]
-      lite_nodes.append(n)
+            # LITE node (small)
+            n = {"id": node_id, "l": label, "t": cls, "s": slug, "sb": _search_blob(label, tags, desc)}
+            if pos: 
+                n["x"] = pos["x"]; n["y"] = pos["y"]
+            lite_nodes.append(n)
 
-      # DETAILS node (for side panel, richer)
-      org_fields = (data.get("organization_fields") or {})
-      details[node_id] = {
-        "label": label,
-        "slug": slug,
-        "type": ntype,
-        "summary": desc,
-        "tags": tags,
-        "website": data.get("website"),
-        "projects": (org_fields.get("projects") or []),
-        "persons": (org_fields.get("persons") or []),
-        "organisation_type": org_fields.get("organisation_type"),
-        "region": org_fields.get("region"),
-        "notes": data.get("notes"),
-        # page_url optional, if you later add a docs page per node
-        "page_url": data.get("page_url")
-      }
+            # DETAILS node (for side panel, richer)
+            org_fields = (data.get("organization_fields") or {})
+            details[node_id] = {
+                "label": label,
+                "slug": slug,
+                "type": ntype,
+                "summary": desc,
+                "tags": tags,
+                "website": data.get("website"),
+                "projects": (org_fields.get("projects") or []),
+                "persons": (org_fields.get("persons") or []),
+                "organisation_type": org_fields.get("organisation_type"),
+                "region": org_fields.get("region"),
+                "notes": data.get("notes"),
+                # page_url optional, if you later add a docs page per node
+                "page_url": data.get("page_url")
+            }
 
-      seen.add(node_id)
+            # Populate crosswalk with helpful keys that might appear in relationships
+            if slug:
+                crosswalk[slug] = node_id
+            name_val = data.get("name")
+            if isinstance(name_val, str) and name_val:
+                crosswalk[name_val] = node_id
+                crosswalk[name_val.lower()] = node_id
 
-  return lite_nodes, details, seen
+            # Also allow file stem as a key, which may equal slug anyway
+            crosswalk[file.stem] = node_id
 
-def collect_edges(seen_nodes):
+            seen.add(node_id)
+
+    return lite_nodes, details, seen, crosswalk
+
+def _resolve_id(x, seen_nodes, crosswalk):
+    if not x:
+        return x
+    if x in seen_nodes:
+        return x
+    # try crosswalk
+    hit = crosswalk.get(x)
+    if hit:
+        return hit
+    # try case-insensitive match for names or slugs
+    hit = crosswalk.get(str(x).lower())
+    if hit:
+        return hit
+    return x
+
+def collect_edges(seen_nodes, crosswalk):
     edges = []
     skipped = 0
     MAX_LOG = 20  # show up to 20 examples
     for file in REL_DIR.glob("*.yaml"):
         if file.name.startswith("0_template"):
             continue
-        with open(file, encoding="utf-8") as f:
-            try:
+        try:
+            with open(file, encoding="utf-8") as f:
                 data = yaml.safe_load(f) or {}
-            except yaml.YAMLError as e:
-                print(f"YAML error in {file}: {e}")
-                continue
-        src = data.get("source"); tgt = data.get("target")
+        except yaml.YAMLError as e:
+            print(f"YAML error in {file}: {e}")
+            continue
+
+        src = _resolve_id(data.get("source"), seen_nodes, crosswalk)
+        tgt = _resolve_id(data.get("target"), seen_nodes, crosswalk)
+
         if not src or not tgt:
             if skipped < MAX_LOG:
                 print(f"Incomplete edge in {file}: missing source or target")
@@ -164,14 +207,11 @@ def write_json(path: Path, obj):
 
 
 if __name__ == "__main__":
-    print("Building lite graph + details...")
-    nodes, details, seen = collect_nodes_and_details()
-    edges = collect_edges(seen)
+    print("Building lite graph and details")
+    nodes, details, seen, crosswalk = collect_nodes_and_details()
+    edges = collect_edges(seen, crosswalk)
 
     print(f"Nodes: {len(nodes)}  |  Edges: {len(edges)}  |  Unique IDs: {len(seen)}")
-
-    write_json(LITE_PATH, {"nodes": nodes, "edges": edges})
-    write_json(DETAILS_PATH, details)
 
     # LITE payload (tiny)
     write_json(LITE_PATH, {"nodes": nodes, "edges": edges})
