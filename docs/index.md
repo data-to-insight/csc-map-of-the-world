@@ -91,7 +91,7 @@ To contribute or get involved, please contact the [Data to Insight](https://gith
 
 ## Foundations and Inspiration
 
-This tool builds on the thinking behind platforms like the [Children’s Services Network](https://www.childrensservices.network/network.html) and grounded in open modelling approaches like the already mentioned [Smart City Concept Model](http://www.smartcityconceptmodel.com/).
+This PoC forms part of the work towards a [Centre of Excellence](https://www.datatoinsight.org/coe), building on the thinking behind platforms like the [Children’s Services Network](https://www.childrensservices.network/network.html) and grounded in open modelling approaches like the already mentioned [Smart City Concept Model](http://www.smartcityconceptmodel.com/).
 
 It is designed to be lightweight, transparent, and **openly extensible** — enabling others to adopt or adapt it for their own contexts.
 
