@@ -1,5 +1,8 @@
+# admin_scripts/admin-build_cytoscape_utils.py
+
+
 """
-Shared helpers for Cytoscape JSON builders, used by both full and lite variants
+Shared helpers for Cytoscape JSON builders, used by both full and lite scripts 
 """
 
 import json
