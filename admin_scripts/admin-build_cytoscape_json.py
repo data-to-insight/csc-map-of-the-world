@@ -15,6 +15,7 @@ import os
 import re
 import json
 import yaml
+from datetime import date, datetime
 from pathlib import Path
 from admin_scripts.admin_build_cytoscape_utils import (
     load_yaml,
@@ -42,9 +43,24 @@ CROSSWALK_PATH = OUT_DIR / "crosswalk.json"
 CROSSWALK = {}
 
 # ---------------- helpers ----------------
+
+def _json_default(o):
+    """help datetime.date or datetime.datetime in graph structure to serialise, in case 
+    any non-str dates in yml org etc files"""
+    if isinstance(o, (date, datetime)):
+        # "2025-12-02" style, JSON friendly
+        return o.isoformat()
+    # Fallback so dont crash on other odd types
+    return str(o)
+
+
+# ---------------- helpers ----------------
 def write_json(path: Path, payload, *, minify: bool = True):
     """Write JSON either minified (default) or pretty, ensure parent dir exist"""
-    opts = {"ensure_ascii": False}
+    opts = {
+        "ensure_ascii": False,
+        "default": _json_default,
+    }
     if minify:
         opts.update(separators=(",", ":"))
     else:
@@ -52,6 +68,7 @@ def write_json(path: Path, payload, *, minify: bool = True):
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(payload, f, **opts)
+
 
 def kebab(s: str) -> str:
     if s is None:
@@ -73,10 +90,20 @@ def as_list(v):
         return [str(x) for x in v if x is not None]
     return [str(v)]
 
-def pick_summary(d: dict) -> str:
-    for k in ("summary", "description"):
-        if d.get(k):
-            return str(d[k])
+def pick_summary(data: dict, limit: int | None = 260) -> str:
+    """
+    Choose short summary for the details/info panel
+
+    Prefer 'summary', fall back == 'description' -->  'notes'.
+    Normalise whitespace, optional truncate if limit is not None
+    """
+    for key in ("summary", "description", "notes"):
+        val = data.get(key)
+        if val:
+            text = " ".join(str(val).split())
+            if limit is not None:
+                return text[:limit]
+            return text
     return ""
 
 def singularize(s: str) -> str:

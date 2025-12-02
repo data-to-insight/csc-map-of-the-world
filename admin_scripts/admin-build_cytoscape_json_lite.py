@@ -11,7 +11,8 @@
 
 import os, json, yaml
 from pathlib import Path
-from admin_scripts.admin_build_cytoscape_utils import extract_type_fields
+from admin_build_cytoscape_utils import extract_type_fields
+
 
 ROOT     = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data_yml"
@@ -26,10 +27,27 @@ DETAILS_PATH = OUT_DIR / "node_details.json"
 
 from datetime import date, datetime
 from decimal import Decimal
-from pathlib import Path as _Path  # alias to avoid clashing with your Path
+from pathlib import Path as _Path  # alias to avoid clashing with given Path
+
+def pick_summary(data: dict, limit: int | None = 260) -> str:
+    """
+    Choose short summary for the details/info panel
+
+    Prefer 'summary', fall back == 'description' -->  'notes'.
+    Normalise whitespace, optional truncate if limit is not None
+    """
+    for key in ("summary", "description", "notes"):
+        val = data.get(key)
+        if val:
+            text = " ".join(str(val).split())
+            if limit is not None:
+                return text[:limit]
+            return text
+    return ""
+
 
 def _to_json_safe(obj):
-    # Recursively convert objects not supported by JSON
+    # Recursively convert objs not supported by JSON
     if isinstance(obj, (date, datetime)):
         return obj.isoformat()
     if isinstance(obj, Decimal):
@@ -46,7 +64,7 @@ def _to_json_safe(obj):
         return { str(k): _to_json_safe(v) for k, v in obj.items() }
     return obj
 
-# Helper: compact join, safe types
+# compact join, safe types
 def _coalesce(*vals):
     for v in vals:
         if isinstance(v, str) and v.strip():
