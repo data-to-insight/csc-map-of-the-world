@@ -618,10 +618,10 @@ E.g. Same hood, zoom out slightly
           cy.resize();
           cy.fit(hood, FIT_PAD);
           setLabels(hood.nodes ? hood.nodes() : hood, true);
-          setStatus('Expanding full network...please wait, page may appear stalled but it is still loading [Approx wait time 1min]');
+          setStatus('Expanding full network...please wait, page may appear stalled during loading [Approx wait time 1min]');
         } else {
           firstFit(cy, { havePreset: true });
-          setStatus('Expanding full network...please wait, page may appear stalled but it is still loading [Approx wait time 1min]');
+          setStatus('Expanding full network...please wait, page may appear stalled during loading [Approx wait time 1min]');
         }
 
         // stage 2, add the rest, then animate to natural layout
