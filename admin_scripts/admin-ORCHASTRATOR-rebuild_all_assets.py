@@ -37,6 +37,7 @@ ARTI_DIR  = DOCS_DATA / "csc_artifacts"
 
 # Scripts
 # This is what we're going to run here, order (for some) is important
+# note that all scripts should be prefixed with admin- for consistency/visibility
 S_FULL   = ROOT / "admin_scripts" / "admin-build_cytoscape_json.py"
 S_LITE   = ROOT / "admin_scripts" / "admin-build_cytoscape_json_lite.py"
 S_EXPL   = ROOT / "admin_scripts" / "admin-build_explorer_assets.py"
