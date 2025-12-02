@@ -8,9 +8,9 @@ theme:
 
 nav:
   - Home: index.md
-  - Explore: explore.md
+  - Network Search First: explore.md
 
-  - Full Network: network_fullscreen.md             # TESTING
+  - Network Full: network_fullscreen.md             # TESTING
 
   - CSC Network: network.md
   - CSC Network Relations: sccm_relation_types.md   
@@ -18,7 +18,7 @@ nav:
   - CSC Search Strategy: search_pipeline.md
   - CSC Search Sources: sources.md
 
-  - Submit Entry: form/index.html
+  - Submit CSC Map Entry: form/index.html
 
 
 extra_javascript:
