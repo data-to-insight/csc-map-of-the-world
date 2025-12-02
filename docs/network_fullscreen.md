@@ -1,5 +1,5 @@
 ---
-title: Full Network (IN DEV)
+title: CSC Network Full (Pre-Alpha)
 hide:
   - navigation
   - toc
