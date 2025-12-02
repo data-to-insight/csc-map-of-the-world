@@ -3,7 +3,7 @@ super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept:      # optional sub-role
 name: ADCS
 description: >
-  -
+  Description, summary text to come
 
 # --- ORGANIZATION-specific fields ---
 organization_fields:

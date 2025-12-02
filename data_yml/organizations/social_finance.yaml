@@ -3,14 +3,16 @@ super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept:      # optional sub-role
 name: Social Finance
 description: >
-  Short summary of the entity or activity
+  Social Finance is a national impact finance and advisory nonprofit. We work with the public, private, and social sectors to build innovative partnerships
 
 # --- Shared metadata (optional) ---
 tags:
-  - example_tag        # lowercase, snake_case if multi-word
+  - advisory        # lowercase, snake_case if multi-word
   - data_tools
+  - nonprofit
+  - partnerships
 version: 2025.07
-date_published: 2025-07-21
+date_published: 2025-12-02
 website: https://www.socialfinance.org.uk/
 notes: >
   Optional notes for further detail, sources or internal use

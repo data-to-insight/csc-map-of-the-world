@@ -3,7 +3,7 @@ super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept:      # optional sub-role
 name: Research in Practice (RiP)
 description: >
-  Short summary of the entity or activity
+  Description, summary text to come
 
 # --- Shared metadata (optional) ---
 tags:
