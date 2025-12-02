@@ -63,6 +63,8 @@ REPORT_FILES = [
 ]
 
 SEARCH_INDEX_FILE = "search_index.json"
+
+# Those that have been uploaded to repo after external (py/jupyter) pre-processing
 EXTERNAL_ARTIFACT_FILES = [
     "motw_index.faiss",
     "motw_chunks.parquet",
@@ -70,12 +72,34 @@ EXTERNAL_ARTIFACT_FILES = [
     "state.json",  
 ]
 
+# def run_py(script: Path, env: dict | None = None, name: str | None = None) -> None:
+#     if not script.exists():
+#         print(f"[skip] {name or script.name}, not found at {script}")
+#         return
+#     print(f"[run]  {name or script.name}")
+#     proc = subprocess.run([sys.executable, str(script)], cwd=ROOT, env=env or os.environ.copy())
+#     if proc.returncode != 0:
+#         raise SystemExit(f"Step failed, {script} returned {proc.returncode}")
 def run_py(script: Path, env: dict | None = None, name: str | None = None) -> None:
     if not script.exists():
         print(f"[skip] {name or script.name}, not found at {script}")
         return
+
     print(f"[run]  {name or script.name}")
-    proc = subprocess.run([sys.executable, str(script)], cwd=ROOT, env=env or os.environ.copy())
+
+    # prepends repo root to PYTHONPATH for child scripts that orchestrator runs 'import admin_scripts'
+    env = env or os.environ.copy()
+    existing = env.get("PYTHONPATH", "")
+    if existing:
+        env["PYTHONPATH"] = f"{ROOT}{os.pathsep}{existing}"
+    else:
+        env["PYTHONPATH"] = str(ROOT)
+
+    proc = subprocess.run(
+        [sys.executable, str(script)],
+        cwd=ROOT,
+        env=env,
+    )
     if proc.returncode != 0:
         raise SystemExit(f"Step failed, {script} returned {proc.returncode}")
 
