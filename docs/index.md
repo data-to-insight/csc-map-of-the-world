@@ -86,6 +86,7 @@ If you think that this tool might be useful within the sector and want to pass t
 <link rel="prefetch" href="data/search_index.json" as="fetch" crossorigin>
 <link rel="prefetch" href="data/lite_index.json" as="fetch" crossorigin>
 <link rel="prefetch" href="data/adjacency.json" as="fetch" crossorigin>
+This PoC forms part of the work towards a [Centre of Excellence](https://www.datatoinsight.org/coe), building on the thinking behind platforms like the [Children’s Services Network](https://www.childrensservices.network/network.html) and grounded in open modelling approaches like the already mentioned [Smart City Concept Model](http://www.smartcityconceptmodel.com/).
 
 <!-- help CDN connection for cytoscape -->
 <link rel="preconnect" href="https://unpkg.com">
@@ -171,3 +172,54 @@ If you think that this tool might be useful within the sector and want to pass t
   }
 })();
 </script>
+## Soft Systems Conceptual Mapping
+
+**System of Interest**  
+> Shared|public data platform and ecosystem used within Children’s Social Care to connect people|LA colleagues, data, tools, and services
+
+**Purpose**  
+> To enable shared sector understanding, validation, discovery, and collaboration between local authorities, tool development, projects and other initiatives in CSC
+
+**Worldview (Weltanschauung)**  
+> Fragmented data landscapes transformed into a collaborative, open ecosystem using lightweight, transparent structures like SCCM, JSON, YAML + MkDocs
+
+**Owner(s)**  
+> Likely data platform stewards: D2I, local authority data teams, ecosystem developers
+
+**Environment (External Constraints)**  
+> GitHub Pages (no backend), data security and ethics, evolving standards, distributed maintenance, changing ecosystem, frameworks and statuatory guidance, browser-only deployments
+
+
+---
+
+## What’s next?
+
+- Ongoing expansion of linked tools, rules, and frameworks
+- Live|scheduled scrapes from key web resources or published docs/framesworks
+- Search and filter interface (in beta, but aiming to implement network diagram filters)
+- Option for local teams to submit structured entries or link live repositories
+- Export options for integration into other data tools
+
+---
+
+**Thanks for the interest in CSC Knowledge Base Network**  
+We hope it supports your work, and welcome your feedback as we continue to improve and expand it.
+
+
+--- 
+
+## Possible SCCM Mapping to CSC Eco-System
+
+| SCCM Concept (Category)                                                                 | Suggested example(s) (in progress)                                                                                     | 
+|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| [Community](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=161)   | South East fostering cluster                                                                                            |
+| [Documentation](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=183) | [CSC Independent Review](https://assets.publishing.service.gov.uk/media/640a17f28fa8f5560820da4b/Independent_review_of_children_s_social_care_-_Final_report.pdf) |
+| [Events](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=164)        | *Children’s Social Care Review*, *ILACS Inspections*, *Public Inquiries*                                                |
+| [Organization](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=160) | [Data to Insight](https://www.datatoinsight.org/), [LIIA](https://www.liia.london/)                                     |
+| [Persons](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=159)      | Organisational/sector tools linked where consent given or public record                                                 |
+| [Plans](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=177)        | *Kinship Care Strategy*, *Children’s Social Care National Framework*                                                    |
+| [Relationships](http://www.smartcityconceptmodel.com/index.php?Action=ShowModel&Id=10)   | LA-1 ↔ Supports ↔ SSD Tests, DfE ↔ Pilots ↔ API Data Flows                                                               |
+| [Rules](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=175)        | Statutory Guidance, *Keeping Children Safe in Education 2025*                                                           |
+| [Sector Tools](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=166) | [PATCH](https://www.datatoinsight.org/patch), ChAT                                                                      |
+| [Services](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=169)     |                                                                                                                         |
+                                                                                                        |
