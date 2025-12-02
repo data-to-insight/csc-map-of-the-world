@@ -28,7 +28,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
 </div>
 
 
-<!-- Enhanced multi-select filter with Choices.js -->
+<!-- Enhanced multi-select filter(on SCCM type labels only) with Choices.js -->
 <div style="margin-bottom: 1em;">
   <label for="typeFilter"><strong>Filter by node type(s):</strong></label>
   <select id="typeFilter" multiple>
@@ -182,7 +182,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
     })();
   }
 
-  // --- colouring helpers you already use ---
+  // --- colouring helpers ---
   function computeDegreesInBrowser(cy) {
     const deg = {}; cy.nodes().forEach(n => deg[n.id()] = 0);
     cy.edges().forEach(e => { const s=e.data('source'), t=e.data('target'); if (deg[s]!==undefined) deg[s]++; if (deg[t]!==undefined) deg[t]++; });
@@ -218,7 +218,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
   function getSelectedTypesFromDOM() {
     const sel = document.getElementById('typeFilter');
     if (!sel) return null;
-    // Works whether Choices.js is enhancing or not, because the underlying <select> still reflects selection.
+    // Works whether Choices.js is enhancing or not, because the underlying <select> still reflects selection
     const vals = Array.from(sel.selectedOptions || []).map(o => String(o.value).toLowerCase());
     return new Set(vals);
   }
@@ -227,7 +227,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
 
   // --- scoped display logic (performance & correctness) ---
   function applyScopedView(cy) {
-    // Prefer the live dropdown; fall back to URL ?types param
+    // Prefer live dropdown; fall back to URL ?types param
     const domTypes = getSelectedTypesFromDOM();
     const allowed  = (domTypes && domTypes.size) ? domTypes : new Set(TYPES_PARAM);
 
@@ -295,7 +295,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
     layout.run();
   }
 
-  // wire the checkbox if present so the scope updates live
+  // wire checkbox if availale so the scope updates live
   function wireScopeUI(cy) {
     if (HAS_STANDARD_SCOPER) return; // <-- force early running
     const ctxToggle = document.getElementById('contextModeToggle');
@@ -325,7 +325,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
     }
 
 
-    // if everything is at {0,0} (no preset), run a quick local layout on the visible subgraph
+    // if everything is at {0,0} (no preset), run a quick local layout on visible subgraph
     quickLayoutIfStacked(cy);
 
     // color after initial view is set, to keep first paint quick
@@ -349,7 +349,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
       let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
     }
 
-    // normalise a type token to our concise type keys
+    // normalise type token to our concise type keys
     function normType(s){
       s = String(s || '').toLowerCase();
       if (s === 'organisation' || s === 'organization' || s === 'orgs') return 'org';
@@ -389,7 +389,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
         const d = n.data() || {};
         const t = String(d.t || '').toLowerCase();
 
-        // types from search are an *extra* constraint (independent of UI type filter)
+        // types from search are *extra* constraint (independent of UI type filter)
         if (wantTypes.length && !wantTypes.includes(t)) return false;
 
         const tags = Array.isArray(d.tags) ? d.tags.map(s => String(s).toLowerCase())
