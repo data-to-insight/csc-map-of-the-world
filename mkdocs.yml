@@ -10,10 +10,10 @@ nav:
   - Home: index.md
   - Explore: explore.md
 
-  - Network, full screen: network_fullscreen.md # TESTING
+  - Full Network: network_fullscreen.md             # TESTING
 
   - CSC Network: network.md
-  - CSC Network Relations: sccm_relation_types.md
+  - CSC Network Relations: sccm_relation_types.md   
   - CSC Search: search.md
   - CSC Search Strategy: search_pipeline.md
   - CSC Search Sources: sources.md
