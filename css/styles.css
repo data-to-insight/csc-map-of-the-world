@@ -73,7 +73,7 @@ input.disabled {
 /* END Explorer result buttons (hops display options) */
 
 
-/* Node info panel layout */
+/* Node info panel layout, shared by explorer and fullscreen */
 .node-panel {
   position: fixed;
   top: 72px;
@@ -81,35 +81,49 @@ input.disabled {
   width: 340px;
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 96px);
-  padding: 0.75rem;
+  padding: 12px;
   background: var(--md-default-bg-color, #fff);
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   border-radius: 6px;
   overflow-y: auto;
   overflow-x: hidden;
-  font-size: 0.8rem;              /* roughly 8-9pt */
   z-index: 2000;
+
+  /* absolute base size, same on all pages */
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .node-panel-inner {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.8rem;
+  gap: 6px;
 }
 
+/* title */
 .node-panel h3 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 14px;
 }
+
+/* General row and meta styling */
+.node-panel .row { margin: 6px 0; }
 
 .node-panel .meta {
-  font-size: 0.75rem;
   color: #666;
+  font-size: 12px;
+  margin-top: -2px;
 }
 
+.node-panel .subhead {
+  color: #444;
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+/* Summary and detail text */
 .node-panel .node-summary {
-  font-size: 0.8rem;
+  font-size: 13px;
   line-height: 1.4;
   white-space: pre-line;
 }
@@ -118,21 +132,42 @@ input.disabled {
 .node-panel .node-website,
 .node-panel .node-projects,
 .node-panel .node-persons {
-  font-size: 0.78rem;
+  font-size: 12px;
 }
 
+/* Links */
+.node-panel a {
+  color: #2b4a9e;
+  text-decoration: underline;
+}
+
+.node-panel a:hover {
+  text-decoration: none;
+}
+
+/* Lists in panel */
+.node-panel ul {
+  margin: 4px 0 0 16px;
+  padding: 0;
+}
+
+.node-panel li {
+  margin: 2px 0;
+}
+
+/* Meta table */
 .node-panel table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: 0.75rem;
+  font-size: 12px;
 }
 
 .node-panel td {
   vertical-align: top;
   padding: 2px 4px;
   border-top: 1px solid #eee;
-  word-break: break-word;       /* avoid horiz scroll */
+  word-break: break-word;
 }
 
 .node-panel td:first-child {
@@ -144,19 +179,40 @@ input.disabled {
 .node-panel button#panelClose {
   border: none;
   background: transparent;
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
 }
 
-/* Toolbar links */
+/* Toolbar */
 .node-panel .toolbar {
   display: flex;
   gap: 8px;
   margin-top: 4px;
-  font-size: 0.78rem;
+  font-size: 12px;
 }
 
-/* better on narrow screen */
+/* Tag chips */
+.node-panel .tags span {
+  display: inline-block;
+  background: #eef3ff;
+  border: 1px solid #dbe3ff;
+  color: #2b4a9e;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin: 2px 6px 0 0;
+  font-size: 12px;
+}
+
+/* coerce children follow info panel's base font size instead of MkDocs defaults */
+.node-panel p,
+.node-panel div,
+.node-panel span,
+.node-panel td,
+.node-panel li {
+  font-size: inherit;
+}
+
+/* Better on narrow screens */
 @media (max-width: 768px) {
   .node-panel {
     top: 56px;
@@ -166,4 +222,7 @@ input.disabled {
     max-width: none;
   }
 }
+
 /* END Node info panel layout */
+
+

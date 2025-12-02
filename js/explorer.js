@@ -98,8 +98,9 @@
   function openNodePanel(node) {
     const d = node.data();
     const id = d.id;
-    const det = (id && DETAILS[id]) || {};
-    const lite = (id && LITE[id]) || {};
+
+    const det  = (id && DETAILS && DETAILS[id]) || {};
+    const lite = (id && LITE && LITE[id]) || {};
 
     const label =
       det.label ||
@@ -110,15 +111,15 @@
       lite.title ||
       id;
 
-    const typeVal =
-      (det.type || d.type || lite.t || "").toString().toLowerCase();
-
     const slugVal =
       det.slug ||
       d.slug ||
       lite.slug ||
       lite.s ||
       "";
+
+    const typeVal =
+      (det.type || d.type || lite.t || "").toString().toUpperCase();
 
     const summary =
       det.summary ||
@@ -134,11 +135,13 @@
       : (Array.isArray(lite.tags) ? lite.tags : []);
 
     const website = det.website || lite.website || "";
+
     const projects = Array.isArray(det.projects) ? det.projects : [];
     const persons  = Array.isArray(det.persons)  ? det.persons  : [];
 
-    const orgType = det.organisation_type || det.organization_type || "";
-    const region  = det.region || "";
+    const orgType   = det.organisation_type || det.organization_type || "";
+    const region    = det.region || "";
+    const published = det.published || det.date_published || det.date || "";
 
     const pageUrl = det.page_url || "";
     const hasPage = typeof pageUrl === "string" && pageUrl.trim() !== "";
@@ -147,110 +150,111 @@
     const queryTerm = (label && label.trim()) || base(slugVal) || id;
     const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(queryTerm)}`;
 
-    const metaRows = [];
-    if (id)      metaRows.push(["Id", id]);
-    if (typeVal) metaRows.push(["Type", typeVal]);
-    if (slugVal) metaRows.push(["Slug", slugVal]);
-    if (orgType) metaRows.push(["Organisation type", orgType]);
-    if (region)  metaRows.push(["Region", region]);
-
     panel.innerHTML = `
       <div class="node-panel-inner">
         <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
-          <h3>${esc(label || id)}</h3>
+          <div>
+            <h3>${esc(label || id)}</h3>
+            ${slugVal ? `<div class="meta">${esc(slugVal)}</div>` : ""}
+          </div>
           <button id="panelClose">✕</button>
         </div>
 
-        ${typeVal ? `<div class="meta">${esc(typeVal)}</div>` : ""}
+        ${summary
+          ? `<div class="row">
+               <div class="subhead"><strong>Summary</strong></div>
+               <div class="node-summary">${esc(summary)}</div>
+             </div>`
+          : ""}
 
-        ${
-          summary
-            ? `<div class="row node-summary">
-                 ${esc(summary)}
-               </div>`
-            : ""
-        }
+        <div class="row">
+          <table>
+            <tbody>
+              ${typeVal ? `
+                <tr>
+                  <td>Type</td>
+                  <td>${esc(typeVal)}</td>
+                </tr>` : ""}
+              ${slugVal ? `
+                <tr>
+                  <td>Slug</td>
+                  <td>${esc(slugVal)}</td>
+                </tr>` : ""}
+              ${website ? `
+                <tr>
+                  <td>Website</td>
+                  <td>
+                    <a href="${esc(website)}" target="_blank" rel="noopener">
+                      ${esc(website)}
+                    </a>
+                  </td>
+                </tr>` : ""}
+              ${published ? `
+                <tr>
+                  <td>Published</td>
+                  <td>${esc(published)}</td>
+                </tr>` : ""}
+              ${region ? `
+                <tr>
+                  <td>Region</td>
+                  <td>${esc(region)}</td>
+                </tr>` : ""}
+              ${orgType ? `
+                <tr>
+                  <td>Organisation type</td>
+                  <td>${esc(orgType)}</td>
+                </tr>` : ""}
+              <tr>
+                <td>Id</td>
+                <td>${esc(id)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-        ${
-          tags && tags.length
-            ? `<div class="row node-tags">
-                 <strong>Tags</strong>: ${tags.map(esc).join(", ")}
-               </div>`
-            : ""
-        }
+        ${tags && tags.length
+          ? `<div class="row tags">
+               <div class="subhead"><strong>Tags</strong></div>
+               ${tags
+                 .map(t => t ? `<span>${esc(t)}</span>` : "")
+                 .join("")}
+             </div>`
+          : ""}
 
-        ${
-          website
-            ? `<div class="row node-website">
-                 <strong>Website</strong>:
-                 <a href="${esc(website)}" target="_blank" rel="noopener">
-                   ${esc(website)}
-                 </a>
-               </div>`
-            : ""
-        }
+        ${projects && projects.length
+          ? `<div class="row node-projects">
+               <div class="subhead"><strong>Projects</strong></div>
+               <div>${projects.map(p => esc(p || "")).filter(Boolean).join(", ")}</div>
+             </div>`
+          : ""}
 
-        ${
-          projects && projects.length
-            ? `<div class="row node-projects">
-                 <strong>Projects</strong>:
-                 ${projects.map(p => esc(p || "")).filter(Boolean).join(", ")}
-               </div>`
-            : ""
-        }
-
-        ${
-          persons && persons.length
-            ? `<div class="row node-persons">
-                 <strong>Persons</strong>:
-                 <ul style="margin:0.25rem 0 0 1rem;padding:0;">
-                   ${persons.map(p => {
-                     const name = p.name || "";
-                     const role = p.role || "";
-                     const from = p.from || "";
-                     const bits = [
-                       name ? esc(name) : "",
-                       role ? ` (${esc(role)})` : "",
-                       from ? ` since ${esc(from)}` : ""
-                     ].join("");
-                     return bits ? `<li>${bits}</li>` : "";
-                   }).join("")}
-                 </ul>
-               </div>`
-            : ""
-        }
-
-        ${
-          metaRows.length
-            ? `<div class="row">
-                 <table>
-                   <tbody>
-                     ${metaRows.map(([k, v]) => `
-                       <tr>
-                         <td>${esc(k)}</td>
-                         <td>${esc(v)}</td>
-                       </tr>
-                     `).join("")}
-                   </tbody>
-                 </table>
-               </div>`
-            : ""
-        }
+        ${persons && persons.length
+          ? `<div class="row node-persons">
+               <div class="subhead"><strong>People</strong></div>
+               <ul>
+                 ${persons.map(p => {
+                   const name = p.name || "";
+                   const role = p.role || "";
+                   const from = p.from || "";
+                   const bits = [
+                     name ? esc(name) : "",
+                     role ? ` (${esc(role)})` : "",
+                     from ? ` ${esc(from)}` : ""
+                   ].join("");
+                   return bits ? `<li>${bits}</li>` : "";
+                 }).join("")}
+               </ul>
+             </div>`
+          : ""}
 
         <div class="row toolbar">
           <a href="${esc(searchUrl)}">Search</a>
-          ${
-            hasPage
-              ? `<span>|</span>
-                 <a href="${esc(pageUrl)}">Open details</a>`
-              : ""
-          }
+          ${hasPage ? `<span>|</span><a href="${esc(pageUrl)}">Details</a>` : ""}
         </div>
       </div>
     `;
     panel.classList.add("open");
   }
-
 
   function closeNodePanel(){ panel.classList.remove("open"); }
   document.addEventListener("click",(ev)=>{
