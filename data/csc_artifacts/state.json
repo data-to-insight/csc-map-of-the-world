@@ -203,6 +203,2406 @@
       "chunks": 27,
       "bytes": 1201097,
       "last_built": "2025-09-16T09:41:29Z"
+    },
+    "01653d5182711614": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-statistics-children-in-care__Children_looked-after_by_LAs_in_England_2024-25_Guide_Version_1_3.pdf",
+      "source_name": "data-and-statistics-children-in-care__Children_looked-after_by_LAs_in_England_2024-25_Guide_Version_1_3.pdf",
+      "sha256": "01653d5182711614ebea18bae299f01b75074c5ab6c14ecfaaa45bbbe0aced34",
+      "chunks": 185,
+      "bytes": 835665,
+      "last_built": "2025-10-23T19:57:45Z"
+    },
+    "01f99ace99805984": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__1883-CV-What-Makes-Life-Good-Report-final.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__1883-CV-What-Makes-Life-Good-Report-final.pdf",
+      "sha256": "01f99ace99805984c77b79cddb85d3fc722965b189e583fd5dfe94ab37560819",
+      "chunks": 130,
+      "bytes": 6146902,
+      "last_built": "2025-10-23T19:57:45Z"
+    },
+    "034526436cf99521": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase_8_Full_Report_FINAL.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase_8_Full_Report_FINAL.pdf",
+      "sha256": "034526436cf99521a06e5aff18c85b5c98166103c659ae211803b2fdb63c158d",
+      "chunks": 183,
+      "bytes": 4835640,
+      "last_built": "2025-10-23T19:57:46Z"
+    },
+    "03659d1315a3b8de": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers__National-Care-Leavers-Week-NCLWFINAL.pdf",
+      "source_name": "care-leavers__National-Care-Leavers-Week-NCLWFINAL.pdf",
+      "sha256": "03659d1315a3b8de0c81ad11de5c3dc1e35758ede90a7bd3c19c05b460f328bf",
+      "chunks": 15,
+      "bytes": 4518617,
+      "last_built": "2025-10-23T19:57:46Z"
+    },
+    "03d51ec59e4af372": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__action-research-improveme-7c9.pdf",
+      "source_name": "lga-sector-policy-and-finance__action-research-improveme-7c9.pdf",
+      "sha256": "03d51ec59e4af372919d2ed6dd77b82bac758feac44a2503dd5b38c5d808c903",
+      "chunks": 19,
+      "bytes": 1393115,
+      "last_built": "2025-10-23T19:57:46Z"
+    },
+    "04ba51e88e87b1c4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__understanding-variation-in-support-for-kinship-carers-report-1.pdf",
+      "source_name": "kinship-care__understanding-variation-in-support-for-kinship-carers-report-1.pdf",
+      "sha256": "04ba51e88e87b1c437d42c2f7a1119f4eeb6b34d4bf70e96bd064eae9646cc66",
+      "chunks": 66,
+      "bytes": 1652533,
+      "last_built": "2025-10-23T19:57:46Z"
+    },
+    "051966e9b304b768": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\multi-agency-working-and-mash__evaluation-of-multi-agency-safeguarding-hubs.pdf",
+      "source_name": "multi-agency-working-and-mash__evaluation-of-multi-agency-safeguarding-hubs.pdf",
+      "sha256": "051966e9b304b768202fdf21337cc899451190016aaeb40b8ac119e3dfb812fa",
+      "chunks": 173,
+      "bytes": 4399142,
+      "last_built": "2025-10-23T19:57:46Z"
+    },
+    "02dd8ecceb3f278e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__fhcp-supporting-legal-literacy-across-social-care-and-housing-pt-web.pdf",
+      "source_name": "adoption-and-fostering-practice__fhcp-supporting-legal-literacy-across-social-care-and-housing-pt-web.pdf",
+      "sha256": "02dd8ecceb3f278ecafcb6c2e0e9f015c1c4346d44715d0b33ad05a7d9f1fc50",
+      "chunks": 57,
+      "bytes": 1597609,
+      "last_built": "2025-10-23T20:15:33Z"
+    },
+    "067cd27a47c21fa9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Supporting_adoptive_families_the_views_of_adoptive_parents_in_4_regional_adoption_agencies_.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Supporting_adoptive_families_the_views_of_adoptive_parents_in_4_regional_adoption_agencies_.pdf",
+      "sha256": "067cd27a47c21fa92ba803af46749bc378a18825d8fdf53cf4866f33249fd506",
+      "chunks": 47,
+      "bytes": 403711,
+      "last_built": "2025-10-23T20:15:33Z"
+    },
+    "0750afe709564b84": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__practice-guide-supporting-face-to-face-meetings-between-adoptive-families-and-birth-families-web.pdf",
+      "source_name": "adoption-and-fostering-practice__practice-guide-supporting-face-to-face-meetings-between-adoptive-families-and-birth-families-web.pdf",
+      "sha256": "0750afe709564b84fd33e2af10c9c01d14424adeb708cb67d0e74436cea9186d",
+      "chunks": 10,
+      "bytes": 235754,
+      "last_built": "2025-10-23T20:15:33Z"
+    },
+    "0a01258efead7ea8": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__cco-characteristics-of-children-entering-care-for-the-first-time-as-teenagers.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__cco-characteristics-of-children-entering-care-for-the-first-time-as-teenagers.pdf",
+      "sha256": "0a01258efead7ea888b47c0ea53a7b397b5ced263e3192ab9d6d185dc8448952",
+      "chunks": 48,
+      "bytes": 1034376,
+      "last_built": "2025-10-23T20:15:33Z"
+    },
+    "0ae6bbfa67c097b8": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Evaluating-innovation-in-childrens-social-care.pdf",
+      "source_name": "nao-audits-and-evaluations__Evaluating-innovation-in-childrens-social-care.pdf",
+      "sha256": "0ae6bbfa67c097b8ba75907834c230cfe0b362c5ea17f2fc46cf7345721d3a48",
+      "chunks": 49,
+      "bytes": 384808,
+      "last_built": "2025-10-23T20:15:33Z"
+    },
+    "0b3b806df50a729c": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__Matching_in_foster_care.pdf",
+      "source_name": "central-government-publications__Matching_in_foster_care.pdf",
+      "sha256": "0b3b806df50a729cd32cc997198cee285857a607bebd185e939eef862c5ed855",
+      "chunks": 45,
+      "bytes": 400075,
+      "last_built": "2025-10-23T20:15:33Z"
+    },
+    "0ba6ae10bb7e1231": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\ofsted-inspection-and-research__ofsted-big-listen-research-with-the-public-parents-carers-NatCen-Research.pdf",
+      "source_name": "ofsted-inspection-and-research__ofsted-big-listen-research-with-the-public-parents-carers-NatCen-Research.pdf",
+      "sha256": "0ba6ae10bb7e1231f4030b2a94d4f8ee568160c776a8ebdc693488444cd17cbe",
+      "chunks": 70,
+      "bytes": 535069,
+      "last_built": "2025-10-23T20:15:33Z"
+    },
+    "0c4618085605f51f": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase7_FINAL.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase7_FINAL.pdf",
+      "sha256": "0c4618085605f51fc8d8db78188ee7ac65df3ae9a0d40b11c47bbe856c7a65be",
+      "chunks": 173,
+      "bytes": 4773772,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "0d03e7761d1486e4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Guide_to_Children_s_Home_Standards_inc_quality_standards_Version__1.17_FINAL.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Guide_to_Children_s_Home_Standards_inc_quality_standards_Version__1.17_FINAL.pdf",
+      "sha256": "0d03e7761d1486e44834444838ace97acd0e17af5bd88d0eac009f9824c20537",
+      "chunks": 118,
+      "bytes": 873631,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "0d19f09bfadf6aa0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\policy-and-reform-wellbeing__GCR 2024 Policy briefing document.pdf",
+      "source_name": "policy-and-reform-wellbeing__GCR 2024 Policy briefing document.pdf",
+      "sha256": "0d19f09bfadf6aa0f16a1f863187dbf9496bc53765a79bd88797557ecfbd8d89",
+      "chunks": 17,
+      "bytes": 2940000,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "0f39879d91000b95": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__SLI diagnostic overall report 2018_1.pdf",
+      "source_name": "lga-sector-policy-and-finance__SLI diagnostic overall report 2018_1.pdf",
+      "sha256": "0f39879d91000b950f66fde0170347c9b3a3e966bec347f240c59b097ed2ab99",
+      "chunks": 28,
+      "bytes": 1037846,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "0fca828f1456de93": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Keeping_children_safe_in_education_from_1_September_2025.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Keeping_children_safe_in_education_from_1_September_2025.pdf",
+      "sha256": "0fca828f1456de93e4a0a32878239cf45de9311330bdeadc4afca58fd0bafeca",
+      "chunks": 258,
+      "bytes": 1509447,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "1109f1b34e16258e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\fostering__sotn24-full-report.pdf",
+      "source_name": "fostering__sotn24-full-report.pdf",
+      "sha256": "1109f1b34e16258e6acbe67fcdc81e218a740a52891421e39b1b53212952f55a",
+      "chunks": 86,
+      "bytes": 2913912,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "1120363f5a97ae52": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\children-in-care-outcomes__Outcomes of CSC provision_Full Report_Final January 2024.pdf",
+      "source_name": "children-in-care-outcomes__Outcomes of CSC provision_Full Report_Final January 2024.pdf",
+      "sha256": "1120363f5a97ae52d7b0a3adefd2c3ed144a26bd74db7e270fb0caf0b7b67100",
+      "chunks": 197,
+      "bytes": 2971615,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "1184127c3f5efe02": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\social-worker-retention-and-workforce__strengthening-the-workforce-retention-in-social-work-sb-web.pdf",
+      "source_name": "social-worker-retention-and-workforce__strengthening-the-workforce-retention-in-social-work-sb-web.pdf",
+      "sha256": "1184127c3f5efe021bb72064e6ac6e791d557d85f750fcde41aca376e3ca55bb",
+      "chunks": 35,
+      "bytes": 1027055,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "119aa3081a2ccd16": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\policy-and-statutory-guidance__An_Illustrated_Guide_to_the_Children_s_Social_Care_National_Framework.pdf",
+      "source_name": "policy-and-statutory-guidance__An_Illustrated_Guide_to_the_Children_s_Social_Care_National_Framework.pdf",
+      "sha256": "119aa3081a2ccd16896d3452c920702aba5aba37de31eb73447792ad5dcc17e0",
+      "chunks": 10,
+      "bytes": 1554627,
+      "last_built": "2025-10-23T20:15:34Z"
+    },
+    "11c18748156f2e8b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__trauma-informed-approaches-within-childrens-social-care.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__trauma-informed-approaches-within-childrens-social-care.pdf",
+      "sha256": "11c18748156f2e8b709b55963fb6715badb091294452b4abd34883c75dad5de7",
+      "chunks": 87,
+      "bytes": 1313156,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "12ef1ca2837dc61a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\health-integration-childrens-social-care-data__HPIG ICS executive summary - 31.01.2024.pdf",
+      "source_name": "health-integration-childrens-social-care-data__HPIG ICS executive summary - 31.01.2024.pdf",
+      "sha256": "12ef1ca2837dc61a400ad36d6c93b2750aaa605e2ac85a8016738e1861ca2b49",
+      "chunks": 10,
+      "bytes": 9793006,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "156050aeaa8af6ea": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__IOW-Easing-the-transition-to-leaving-care.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__IOW-Easing-the-transition-to-leaving-care.pdf",
+      "sha256": "156050aeaa8af6eaa244fbcc12d80e9d4367ec1e3154414d0103f1d0295f78f9",
+      "chunks": 2,
+      "bytes": 680809,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "16534adb4ccc0a11": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\independent-and-national-reviews__Independent_review_of_children_s_social_care_-_Final_report.pdf",
+      "source_name": "independent-and-national-reviews__Independent_review_of_children_s_social_care_-_Final_report.pdf",
+      "sha256": "16534adb4ccc0a11bb0a2d262dbd2c619432a504c2254232c3ed6b7f17854237",
+      "chunks": 461,
+      "bytes": 2080128,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "183ef1ba95227b09": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__practice-guide-staying-in-touch-with-foster-carers-after-adoption-web.pdf",
+      "source_name": "adoption-and-fostering-practice__practice-guide-staying-in-touch-with-foster-carers-after-adoption-web.pdf",
+      "sha256": "183ef1ba95227b0913fa14fd8a7d73cfa3e0dee50691e49a9a53ff7650827958",
+      "chunks": 6,
+      "bytes": 160805,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "19106c1174f0da43": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__BiC-Full-report-201118.pdf",
+      "source_name": "nuffield-fjo-family-justice__BiC-Full-report-201118.pdf",
+      "sha256": "19106c1174f0da43e362dfaacc9c963d74c28747a04a5043a3cb608406121481",
+      "chunks": 59,
+      "bytes": 1534664,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "1b94923862676c36": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\independent-and-national-reviews__Munro-Review.pdf",
+      "source_name": "independent-and-national-reviews__Munro-Review.pdf",
+      "sha256": "1b94923862676c3674eb34a661fc81dcb5cf190f49968ddb4d1e3dce2525fb6a",
+      "chunks": 293,
+      "bytes": 1808922,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "1de450013dd6e05b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-practice-tools__Assessment for Adoption Support form.pdf",
+      "source_name": "adoption-practice-tools__Assessment for Adoption Support form.pdf",
+      "sha256": "1de450013dd6e05bdb0299e2d96a81d4923d333b4c9e5a1f5f657bc69683d1a5",
+      "chunks": 12,
+      "bytes": 2634293,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "1e0bfa69732906a9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__tbcp_pilot_evaluation_wwcsc_dec_2022_accessible.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__tbcp_pilot_evaluation_wwcsc_dec_2022_accessible.pdf",
+      "sha256": "1e0bfa69732906a9206fc7af962bfec35c2f61374fba6b9230ef81b9c9a6101f",
+      "chunks": 110,
+      "bytes": 1696251,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "1e14135f40d250c0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__BI NCC-UEA Final Report-14 .pdf",
+      "source_name": "lga-sector-policy-and-finance__BI NCC-UEA Final Report-14 .pdf",
+      "sha256": "1e14135f40d250c0b9e7dbc39cc90302a0308e6fcd043d99a580fa25ca3f6fd5",
+      "chunks": 17,
+      "bytes": 419993,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "1e24896cf4dbe78e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\early-years-family-hubs__NCB Early Years Startegy Overview - May 2025_0.pdf",
+      "source_name": "early-years-family-hubs__NCB Early Years Startegy Overview - May 2025_0.pdf",
+      "sha256": "1e24896cf4dbe78e37a497b8a62f3808f7eaf239cd5dce7df791034177c8b4cf",
+      "chunks": 6,
+      "bytes": 318488,
+      "last_built": "2025-10-23T20:15:35Z"
+    },
+    "1ff4cfbb29d75d41": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__edm_part_4_web.pdf",
+      "source_name": "adoption-and-fostering-practice__edm_part_4_web.pdf",
+      "sha256": "1ff4cfbb29d75d41cf2c769b50664fd405159a0b06ae7b01c84777f0d7e9184c",
+      "chunks": 41,
+      "bytes": 3743497,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "203bffe5fb621616": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__short_break_carers_supplementary_guidance_for_managers_supervisors_and_trainers.pdf",
+      "source_name": "central-government-publications__short_break_carers_supplementary_guidance_for_managers_supervisors_and_trainers.pdf",
+      "sha256": "203bffe5fb621616d8d9aa13d1d1341b338b6a08a976aeb054ba77a1eec4e91a",
+      "chunks": 18,
+      "bytes": 535700,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "21c138cd80c088b9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__CVAA_Strategic_Report_2024_2027_FINAL-Shaping-the-future-of-adoption-services.pdf",
+      "source_name": "cvaa-adoption-and-permanency__CVAA_Strategic_Report_2024_2027_FINAL-Shaping-the-future-of-adoption-services.pdf",
+      "sha256": "21c138cd80c088b93682d03f3945ca0e29b9f3c715392ff00526950c0795ed19",
+      "chunks": 28,
+      "bytes": 2131017,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "24d002ca98e27d5d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__transitional-safeguarding_health_knowledge_briefing_final.pdf",
+      "source_name": "adoption-and-fostering-practice__transitional-safeguarding_health_knowledge_briefing_final.pdf",
+      "sha256": "24d002ca98e27d5dbcf71abe28120c1da4c9460209c7ccb9187e2ad593d0cc0a",
+      "chunks": 49,
+      "bytes": 1840001,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "25bd3ccc13259c42": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__TSD_20standards_20supplementary_20guidance_20for_20family_20and_20friends_20carers.pdf",
+      "source_name": "central-government-publications__TSD_20standards_20supplementary_20guidance_20for_20family_20and_20friends_20carers.pdf",
+      "sha256": "25bd3ccc13259c42214b83239f6f4309a88da836d273a87ca5de872171472e6a",
+      "chunks": 9,
+      "bytes": 253691,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "2610201d849e6829": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__out-of-order-2024.pdf",
+      "source_name": "kinship-care__out-of-order-2024.pdf",
+      "sha256": "2610201d849e68296edd179da79e48992d6dd82c8d37fe99a3119edffc0e5787",
+      "chunks": 59,
+      "bytes": 591935,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "2611184fbb3d2bd3": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__WWCSC_SFPC_Family_Safeguarding_Pilot_Evaluation_Report_June21-v2-Feb-2024.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__WWCSC_SFPC_Family_Safeguarding_Pilot_Evaluation_Report_June21-v2-Feb-2024.pdf",
+      "sha256": "2611184fbb3d2bd37e6ef73faec86e07e3ad79a46125499afb7a64d7c35b51a9",
+      "chunks": 100,
+      "bytes": 2782185,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "265fa0b2929fff7f": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__Research-Into-Action-The-Story-of-the-New-Belongings-Programme.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__Research-Into-Action-The-Story-of-the-New-Belongings-Programme.pdf",
+      "sha256": "265fa0b2929fff7feba2af1bf06388c61fcf2e26f67c013a0734f8cb489392b0",
+      "chunks": 13,
+      "bytes": 2879558,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "26e7f4670b3d5953": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__ADCS_SAFEGUARDING_PRESSURES_PHASE_6_FINAL.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__ADCS_SAFEGUARDING_PRESSURES_PHASE_6_FINAL.pdf",
+      "sha256": "26e7f4670b3d59531d564ae8e8136b325452fed184a92643d66f58bcb1a693cb",
+      "chunks": 169,
+      "bytes": 5189074,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "27c3abc0a0fe6dd1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__Adoption-Assessment-Report.pdf",
+      "source_name": "cvaa-adoption-and-permanency__Adoption-Assessment-Report.pdf",
+      "sha256": "27c3abc0a0fe6dd121083709e7b7f009bee422f9d383c90f897baeecece762b3",
+      "chunks": 2,
+      "bytes": 68455,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "29c3f2fc68ec6195": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\fostering__out-of-pocket-fairer-fees-for-foster-carers-report.pdf",
+      "source_name": "fostering__out-of-pocket-fairer-fees-for-foster-carers-report.pdf",
+      "sha256": "29c3f2fc68ec6195f4fee3cf7d552a45369e3748132d747230593137195bcd27",
+      "chunks": 25,
+      "bytes": 507980,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "2ab93902c50d5b4c": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Children-in-need-of-help-protection.pdf",
+      "source_name": "nao-audits-and-evaluations__Children-in-need-of-help-protection.pdf",
+      "sha256": "2ab93902c50d5b4cfc9f112b71f77046985ecfec3442deb8948b06cf5f86f31e",
+      "chunks": 69,
+      "bytes": 570298,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "2d75d8fcf15c2c0a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__support-for-children-and-young-people-with-special-educational-needs.pdf",
+      "source_name": "nao-audits-and-evaluations__support-for-children-and-young-people-with-special-educational-needs.pdf",
+      "sha256": "2d75d8fcf15c2c0ad0c0e2d7461063d77c13c2d5eed89cc06bf68934f0c51be9",
+      "chunks": 77,
+      "bytes": 662387,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "2def519f8153a79d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-statistics-safeguarding__Crime in England and Wales year ending June 2025.pdf",
+      "source_name": "data-and-statistics-safeguarding__Crime in England and Wales year ending June 2025.pdf",
+      "sha256": "2def519f8153a79dbea3bb0bcdde609fcf28d794ebcb4a078f95badbe79874e3",
+      "chunks": 30,
+      "bytes": 995208,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "31b2be7398842ffc": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__CVAA-Briefing-21st-Century-Adoption.pdf",
+      "source_name": "cvaa-adoption-and-permanency__CVAA-Briefing-21st-Century-Adoption.pdf",
+      "sha256": "31b2be7398842ffcf05c3b5c51ec7cc4de16333934826bbbd6c03952e61915de",
+      "chunks": 10,
+      "bytes": 249996,
+      "last_built": "2025-10-23T20:15:36Z"
+    },
+    "3230de7f3fd56983": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Guide_to_the_children_s_homes_regulations.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Guide_to_the_children_s_homes_regulations.pdf",
+      "sha256": "3230de7f3fd56983bd5092278c8d0ad605d1fd21e5928f40dc04685dc09fcc03",
+      "chunks": 87,
+      "bytes": 739667,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "324c53c639729f79": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__nfjo_contact_well-being_report.pdf",
+      "source_name": "nuffield-fjo-family-justice__nfjo_contact_well-being_report.pdf",
+      "sha256": "324c53c639729f79cac8aac5f9a310973278f9a992263133c01fed29f02c6769",
+      "chunks": 171,
+      "bytes": 1517120,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "329a0bdc5e613b65": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__respect-and-protect-respe-d97.pdf",
+      "source_name": "lga-sector-policy-and-finance__respect-and-protect-respe-d97.pdf",
+      "sha256": "329a0bdc5e613b65b2fa478eeeaa5f946a4caf0ec49510cfd2df4f0b90c8e296",
+      "chunks": 29,
+      "bytes": 639643,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "339dd036ad8e93ad": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__cc-vision-for-care-leavers.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__cc-vision-for-care-leavers.pdf",
+      "sha256": "339dd036ad8e93ad9e406e1f8fd4fe37ae6bf4d8ddc32d7469d24ef94aa7aac9",
+      "chunks": 17,
+      "bytes": 515057,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "34334e501c62d0da": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-workforce__LG Workforce survey 2024-25 report -final 20250609.pdf",
+      "source_name": "data-and-workforce__LG Workforce survey 2024-25 report -final 20250609.pdf",
+      "sha256": "34334e501c62d0da3f763b82f4c8bdfdaa7d510acffad46548b18836ffba554b",
+      "chunks": 51,
+      "bytes": 775782,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "351c05607fcec46e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__ADCS_Special_Thematic_Report_on_Mental_Health.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__ADCS_Special_Thematic_Report_on_Mental_Health.pdf",
+      "sha256": "351c05607fcec46e84c46c247e947f52abb03f0822c48a814a917f059742d2cb",
+      "chunks": 29,
+      "bytes": 2343618,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "38ef106213a4a4dd": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__adcs-sg-pressures-p3-exec-summary.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__adcs-sg-pressures-p3-exec-summary.pdf",
+      "sha256": "38ef106213a4a4dd2620564ddef2a54d4d71b53aa5733fe0b8a2691aaf10fa56",
+      "chunks": 23,
+      "bytes": 176068,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "39331a382f6a4b4d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__ADCS_SGP9_summary_briefing_FINAL.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__ADCS_SGP9_summary_briefing_FINAL.pdf",
+      "sha256": "39331a382f6a4b4dbfdf24d189cf1228e432598ed1b99f6374858e2668fa423d",
+      "chunks": 8,
+      "bytes": 163301,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "399f51056466c5f0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Children_Act_1989_fostering_services.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Children_Act_1989_fostering_services.pdf",
+      "sha256": "399f51056466c5f0da381d2070c04a4354bc8657ae32f9083fc172ad97b797a2",
+      "chunks": 100,
+      "bytes": 483273,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "3a192b145f0491fb": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__learning_from_the_bright_spots_programme_sb_web.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__learning_from_the_bright_spots_programme_sb_web.pdf",
+      "sha256": "3a192b145f0491fb2ef0281d8c78ecd2e119b9ec225d7b6c86f9fecbd7bac069",
+      "chunks": 29,
+      "bytes": 6675656,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "3a5b62171a2caaf0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__73.6 High cost childcare_FINALAA.pdf",
+      "source_name": "lga-sector-policy-and-finance__73.6 High cost childcare_FINALAA.pdf",
+      "sha256": "3a5b62171a2caaf04146d451744922994e826e0160c8328b8d2a4c5c573d241f",
+      "chunks": 76,
+      "bytes": 625937,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "3f0ba9bbdbe2f4e1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__wwcsc_triple-p_parenting_programmes_emmie_summary_may2020.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__wwcsc_triple-p_parenting_programmes_emmie_summary_may2020.pdf",
+      "sha256": "3f0ba9bbdbe2f4e1e7251b7eb65dec5a6625ca9338f870ec3bedbf63799dfdc7",
+      "chunks": 15,
+      "bytes": 474875,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "3fbf7a69f95c1098": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Working_together_to_safeguard_children_2023_-_statutory_framework.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Working_together_to_safeguard_children_2023_-_statutory_framework.pdf",
+      "sha256": "3fbf7a69f95c109847f33954953dc67a578043eb459ff47f5318abc3df8adc51",
+      "chunks": 18,
+      "bytes": 274557,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "3ff7495a772e8ae6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\family-justice-and-care-proceedings__N_spot_R_Care_17-04-25.pdf",
+      "source_name": "family-justice-and-care-proceedings__N_spot_R_Care_17-04-25.pdf",
+      "sha256": "3ff7495a772e8ae6252d696b805a4a7c4f258cd3dfa3b7a8b7f198c6f145aa7e",
+      "chunks": 22,
+      "bytes": 484684,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "413dbfb7258890fe": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\safeguarding-guidance__CSPRP_Elective_Home_Education_Oct_2024.pdf",
+      "source_name": "safeguarding-guidance__CSPRP_Elective_Home_Education_Oct_2024.pdf",
+      "sha256": "413dbfb7258890fe1b14a9466b18e97aa0c364fdb0802f9eded66efbe6f68212",
+      "chunks": 27,
+      "bytes": 212129,
+      "last_built": "2025-10-23T20:15:37Z"
+    },
+    "41c3f8302d4e6092": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Fostering_better_outcomes_.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Fostering_better_outcomes_.pdf",
+      "sha256": "41c3f8302d4e60927a72af6efc143704928c75f5fb4a50d13bd42927251e3d36",
+      "chunks": 83,
+      "bytes": 601170,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "42d237b344f094a8": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__emmie-summary-23-mental-health-care-interventions-for-children-looked-after.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__emmie-summary-23-mental-health-care-interventions-for-children-looked-after.pdf",
+      "sha256": "42d237b344f094a8fb901c57c7ee6c03f98f741cfd71db0cf91b30e22a8333be",
+      "chunks": 5,
+      "bytes": 2579697,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "42d6cf0486912b3b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\child-sexual-abuse-and-exploitation__inspection-online-sexual-abuse-and-exploitation-of-children.pdf",
+      "source_name": "child-sexual-abuse-and-exploitation__inspection-online-sexual-abuse-and-exploitation-of-children.pdf",
+      "sha256": "42d6cf0486912b3bafc00e7e83e48a37a4599c850b92f44034a1f59d60ef05c2",
+      "chunks": 65,
+      "bytes": 684714,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "444a8be9986ba1f5": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Promoting_the_health_of_looked-after_children_statutory_guidance_consult....pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Promoting_the_health_of_looked-after_children_statutory_guidance_consult....pdf",
+      "sha256": "444a8be9986ba1f54451e1e00532f4e3b9281769f006f2607338f69d83a655cc",
+      "chunks": 38,
+      "bytes": 429345,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "4488e704f5b2b894": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Easy-read-Children-and-young-people-in-care-and-leaving-care.pdf",
+      "source_name": "nao-audits-and-evaluations__Easy-read-Children-and-young-people-in-care-and-leaving-care.pdf",
+      "sha256": "4488e704f5b2b8944dfa0ef20daa41855131f095f54b42b2b240d8db6bb0f8fb",
+      "chunks": 10,
+      "bytes": 5649528,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "448fc86d62426d44": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\safeguarding-reviews-and-learning__nfjo_briefing_DoL_final_20220203.pdf",
+      "source_name": "safeguarding-reviews-and-learning__nfjo_briefing_DoL_final_20220203.pdf",
+      "sha256": "448fc86d62426d441315be3b2b9ba244a5df0e0b3e7c93006539c18fe37e65e6",
+      "chunks": 24,
+      "bytes": 248770,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "4691993665d8cbc0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-statistics-children-in-care__Children_looked_after_data_collection_2024-25_Validation_rules_Version_1_3.pdf",
+      "source_name": "data-and-statistics-children-in-care__Children_looked_after_data_collection_2024-25_Validation_rules_Version_1_3.pdf",
+      "sha256": "4691993665d8cbc0e10f6ee5d5c6352fa58ad704b9621ce7dd485e77e7103ec3",
+      "chunks": 105,
+      "bytes": 695000,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "4796a25e93a41a42": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__family-hubs-planning-framework-engagement-with-children-and-families.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__family-hubs-planning-framework-engagement-with-children-and-families.pdf",
+      "sha256": "4796a25e93a41a4231b08e7abca85de0060ceb292930c2371f449d87dacc12d0",
+      "chunks": 43,
+      "bytes": 919649,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "4875b1f5b10bc214": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__Disability-full-report.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__Disability-full-report.pdf",
+      "sha256": "4875b1f5b10bc214b43771eda89116bba365cd43727030b67e8cf97e1712cab2",
+      "chunks": 116,
+      "bytes": 4573279,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "4917bafabc803428": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__Increasing-Employment-Opportunities-Full-report.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__Increasing-Employment-Opportunities-Full-report.pdf",
+      "sha256": "4917bafabc803428501a776256a5dffdeb6af49f4e76236f9e0646560d52cd02",
+      "chunks": 31,
+      "bytes": 688189,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "499fd37ca7d5b1f9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\education-in-secure-settings__cc-the-educational-journeys-of-children-in-secure-settings.pdf",
+      "source_name": "education-in-secure-settings__cc-the-educational-journeys-of-children-in-secure-settings.pdf",
+      "sha256": "499fd37ca7d5b1f901a71eb73a9cc51b463d19fc932fcd1de88c01a011e7aea8",
+      "chunks": 108,
+      "bytes": 2584168,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "49a7c6c3b473869d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__Childrens-Commissioners-Stability-Index-2017-Overview-Document-1.3.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__Childrens-Commissioners-Stability-Index-2017-Overview-Document-1.3.pdf",
+      "sha256": "49a7c6c3b473869d8c8285d1f068b277828369dad3843e1a4cfaf7bdca9415e8",
+      "chunks": 12,
+      "bytes": 484079,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "49f6248d3ce6bf1b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__Coram-analysis-The-Big-Ask-children-in-care.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__Coram-analysis-The-Big-Ask-children-in-care.pdf",
+      "sha256": "49f6248d3ce6bf1bb6fe0926e7cf03baac3a02b4c3e05f9db03cb85a62eecc22",
+      "chunks": 30,
+      "bytes": 574194,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "4a67192d6e447e9b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\education-of-looked-after-children-and-care-leaver__Rees_TASO-report-launch_060325_v3-002.pdf",
+      "source_name": "education-of-looked-after-children-and-care-leaver__Rees_TASO-report-launch_060325_v3-002.pdf",
+      "sha256": "4a67192d6e447e9ba7a4cce153790e9e413b1d1582458042c0191d8a4c983b92",
+      "chunks": 8,
+      "bytes": 6475171,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "4bfe987cfcc4695f": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__making_special_guardianship_work_briefing_paper.pdf",
+      "source_name": "nuffield-fjo-family-justice__making_special_guardianship_work_briefing_paper.pdf",
+      "sha256": "4bfe987cfcc4695f6cb02e9834dd22b97ffd8e089ccf7c0e7588d7295df3bca6",
+      "chunks": 18,
+      "bytes": 281324,
+      "last_built": "2025-10-23T20:15:38Z"
+    },
+    "4c726a7ecca73b4d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__Family_routes_study_making_decisions_about_their_children_s_care.pdf",
+      "source_name": "central-government-publications__Family_routes_study_making_decisions_about_their_children_s_care.pdf",
+      "sha256": "4c726a7ecca73b4d8822732ccc336627d88ac8a9491b898224f44b43b7dd39b3",
+      "chunks": 80,
+      "bytes": 631234,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "4e76f669cea4ea0b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\children-in-care-health__9a. Appendix 1 - Brent Annual LAC Health Report.pdf",
+      "source_name": "children-in-care-health__9a. Appendix 1 - Brent Annual LAC Health Report.pdf",
+      "sha256": "4e76f669cea4ea0b2e4ec475fd7c2e90a24b2c3877032a30ab0b751815efeac6",
+      "chunks": 28,
+      "bytes": 515565,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "4f696fd0880f1ef6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__cco-stability-index-2020.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__cco-stability-index-2020.pdf",
+      "sha256": "4f696fd0880f1ef6978eab34dbf954d7a9325c46812f569cc903caf9e3298e4f",
+      "chunks": 39,
+      "bytes": 895507,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "4fd8c431296bc30d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__cco-pass-the-parcel-children-posted-around-the-care-system.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__cco-pass-the-parcel-children-posted-around-the-care-system.pdf",
+      "sha256": "4fd8c431296bc30dd7d678a2cb0c0570d21f14982313fd71be44b978cf0e7d80",
+      "chunks": 34,
+      "bytes": 1497920,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "50449130b688270d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__measure-report-child-pdr-v2-Feb-2024.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__measure-report-child-pdr-v2-Feb-2024.pdf",
+      "sha256": "50449130b688270db7f8e7e9177160d61483a7a14e410ee58fee7d450ffb7399",
+      "chunks": 8,
+      "bytes": 207946,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "5217a84e602536ad": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\national-bodies-annual-reports-and-accounts__DfE_RP_02_CWS_Bill_CSC_Financial_Oversight_Scheme_IA_the_House_of_Commons.pdf",
+      "source_name": "national-bodies-annual-reports-and-accounts__DfE_RP_02_CWS_Bill_CSC_Financial_Oversight_Scheme_IA_the_House_of_Commons.pdf",
+      "sha256": "5217a84e602536ad85e09572b381692c3c6340bc4fffed7c3f39eb51b9b43e02",
+      "chunks": 56,
+      "bytes": 419522,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "52c355f758d187b2": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__Adoption-and-Spending-Reviews-FINAL.pdf",
+      "source_name": "cvaa-adoption-and-permanency__Adoption-and-Spending-Reviews-FINAL.pdf",
+      "sha256": "52c355f758d187b26d1a617e5390c3c8a3baedf6a5e15d852962076afb85290e",
+      "chunks": 12,
+      "bytes": 321350,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "533fd1b7a43296d9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__watch-me-play-final-report.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__watch-me-play-final-report.pdf",
+      "sha256": "533fd1b7a43296d9b63ea1d8e177e62296e1434c878220f36474ffd8818b07b8",
+      "chunks": 102,
+      "bytes": 1738480,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "5569bdd4e1902b0b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\social-worker-retention-and-workforce__Reducing_unnecessary_social_worker_workload_through_workload_and_caseload_management.pdf",
+      "source_name": "social-worker-retention-and-workforce__Reducing_unnecessary_social_worker_workload_through_workload_and_caseload_management.pdf",
+      "sha256": "5569bdd4e1902b0b57df9f03d926c4e384583caad3f138c24748ceba296130a3",
+      "chunks": 19,
+      "bytes": 237525,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "56797728e6afe0fa": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers-and-transitions__End-The-Care-Cliff-Support-Every-Step-of-The-Way-Report-2024.pdf",
+      "source_name": "care-leavers-and-transitions__End-The-Care-Cliff-Support-Every-Step-of-The-Way-Report-2024.pdf",
+      "sha256": "56797728e6afe0fab8c7817b2ecfee28ff9043462cc2535eb582f72df05782d6",
+      "chunks": 66,
+      "bytes": 1144951,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "56d7f531a81327bd": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\education-of-looked-after-children-and-care-leaver__CareLeaversLabourMarket.pdf",
+      "source_name": "education-of-looked-after-children-and-care-leaver__CareLeaversLabourMarket.pdf",
+      "sha256": "56d7f531a81327bdcbfcf89dc45f9f406937b0ac1f9f8ae97b8ebb18777532b6",
+      "chunks": 236,
+      "bytes": 2247329,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "57072fac16bce087": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__valuing-kinship-care-in-england-report-2025.pdf",
+      "source_name": "kinship-care__valuing-kinship-care-in-england-report-2025.pdf",
+      "sha256": "57072fac16bce087bd9294e0d4ee4bbfe9160ca2e35bce93a1c402c31af69a84",
+      "chunks": 44,
+      "bytes": 1633312,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "574f09369c325944": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\education-of-looked-after-children-and-care-leaver__Rees-Centre-5-Year-Strategy.pdf",
+      "source_name": "education-of-looked-after-children-and-care-leaver__Rees-Centre-5-Year-Strategy.pdf",
+      "sha256": "574f09369c3259444e95073be9369a685c2366d49718c321ccb937df5dc76cfb",
+      "chunks": 9,
+      "bytes": 234212,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "587fae55828bed7e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__adoption-and-fostering-ex-52d.pdf",
+      "source_name": "lga-sector-policy-and-finance__adoption-and-fostering-ex-52d.pdf",
+      "sha256": "587fae55828bed7e1f80521fc28f8a03d453295aa7cadf58543cf4ba12981913",
+      "chunks": 6,
+      "bytes": 1036609,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "58ee7aba2cd9abbe": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers__National-Care-Leavers-Week-Programe-V1-NCLW-2.pdf",
+      "source_name": "care-leavers__National-Care-Leavers-Week-Programe-V1-NCLW-2.pdf",
+      "sha256": "58ee7aba2cd9abbef0cf0bd580c67163d49384cd8e99c999e348a2c8b51cde67",
+      "chunks": 9,
+      "bytes": 3698714,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "597ab157dce8d525": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\national-bodies-annual-reports-and-accounts__cqc-annual-report-and-accounts-2023-2024.pdf",
+      "source_name": "national-bodies-annual-reports-and-accounts__cqc-annual-report-and-accounts-2023-2024.pdf",
+      "sha256": "597ab157dce8d525b4e059c63b87dd2bb64f45f3f919ecd87848e54cebd8205e",
+      "chunks": 185,
+      "bytes": 1774692,
+      "last_built": "2025-10-23T20:15:39Z"
+    },
+    "5b689206a9e8f700": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__2410-CV-YLYC-2021-Report-Key-FindingsRecs-FINAL-03.11.22.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__2410-CV-YLYC-2021-Report-Key-FindingsRecs-FINAL-03.11.22.pdf",
+      "sha256": "5b689206a9e8f700289ed477b6fe74e2c5507a1cc7817c28b5e147d22d4c5343",
+      "chunks": 21,
+      "bytes": 1776445,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "5bceb8fe6293e70e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Championing_kinship_care_the_national_kinship_care_strategy.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Championing_kinship_care_the_national_kinship_care_strategy.pdf",
+      "sha256": "5bceb8fe6293e70e9c36efe190cf790731f45fd04ac509612d27d53b60f0041b",
+      "chunks": 79,
+      "bytes": 869839,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "5beaaa813db66fed": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__cco-children-in-care-findings-from-the-big-ask.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__cco-children-in-care-findings-from-the-big-ask.pdf",
+      "sha256": "5beaaa813db66fed0b002ecf0b9da16cf8b0b077e7c7f1a47331cf5a1678bb1e",
+      "chunks": 19,
+      "bytes": 381156,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "5c23a5763adb71fb": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__CCo-Coram-report-final.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__CCo-Coram-report-final.pdf",
+      "sha256": "5c23a5763adb71fbed6695840da4a92dc341a0f59e79a5461a0b46c7f775451f",
+      "chunks": 30,
+      "bytes": 609448,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "5c76486ba49c8495": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__CVAA-A-Manifesto-for-Adoption-April-2024.pdf",
+      "source_name": "cvaa-adoption-and-permanency__CVAA-A-Manifesto-for-Adoption-April-2024.pdf",
+      "sha256": "5c76486ba49c84955f0d90cf2deaedcbb6a529f392dde9f2c029f9ce0ffc6a1a",
+      "chunks": 10,
+      "bytes": 336879,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "5c875445352e3ab9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__NLCBF-Annual-Review-2023-24.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__NLCBF-Annual-Review-2023-24.pdf",
+      "sha256": "5c875445352e3ab921dff845e5225aee37240b0b0f51cf906ba332f163bdff84",
+      "chunks": 9,
+      "bytes": 1385437,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "5dcc37933be10645": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\early-help-and-family-support__researching-effective-approaches-for-children-foundations-reach-plan.pdf",
+      "source_name": "early-help-and-family-support__researching-effective-approaches-for-children-foundations-reach-plan.pdf",
+      "sha256": "5dcc37933be1064506baa3143184525afc661afc55548daee9ee60f3d866c819",
+      "chunks": 15,
+      "bytes": 1298263,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "5e557d31eeb0dda9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__Public-attitudes-to-children-in-care-and-care-leavers-Coram.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__Public-attitudes-to-children-in-care-and-care-leavers-Coram.pdf",
+      "sha256": "5e557d31eeb0dda94850f21c416b55b04721d98c07e5a84d4d8d5e6402ca47b9",
+      "chunks": 12,
+      "bytes": 713105,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "5f423dbd864e6466": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__nfjo_summary_babies_pathways_wales_FINAL_eng.pdf",
+      "source_name": "nuffield-fjo-family-justice__nfjo_summary_babies_pathways_wales_FINAL_eng.pdf",
+      "sha256": "5f423dbd864e6466262371e1d4284af0bc9f5bce1bd5357b2acd9d1f6634097c",
+      "chunks": 22,
+      "bytes": 429684,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "617f5237075ff003": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__2789_care_planning_for_children_-final.pdf",
+      "source_name": "adoption-and-fostering-practice__2789_care_planning_for_children_-final.pdf",
+      "sha256": "617f5237075ff0038cd65e6668ef62476dfe737a57c9f81faee21200a6322b0f",
+      "chunks": 38,
+      "bytes": 1145289,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "61d81041a7381389": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__wwcsc_placement_outcomes_of_disabled_children_emmie_summary_feb20.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__wwcsc_placement_outcomes_of_disabled_children_emmie_summary_feb20.pdf",
+      "sha256": "61d81041a7381389decc1685d475bd0e9eb037de1f41048860c7471868b780c6",
+      "chunks": 16,
+      "bytes": 2776207,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "637e954a5e7d9243": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__Raised-By-Relatives-Final-report-March-2025.pdf",
+      "source_name": "kinship-care__Raised-By-Relatives-Final-report-March-2025.pdf",
+      "sha256": "637e954a5e7d924375c9664d3ab9f39fcc7fff505e03efb29b49f7117f063c1d",
+      "chunks": 336,
+      "bytes": 4675715,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "648bb708f9d0dda3": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\serious-youth-violence-safeguarding__inspection-how-well-police-tackle-serious-youth-violence.pdf",
+      "source_name": "serious-youth-violence-safeguarding__inspection-how-well-police-tackle-serious-youth-violence.pdf",
+      "sha256": "648bb708f9d0dda314d193ebf485c9a73eb3dad8b284ca88d1936e42201b6e6d",
+      "chunks": 52,
+      "bytes": 515685,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "64ffe09cefd312d3": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers-and-transitions__Staying-Close-Feasibility-Study-report.pdf",
+      "source_name": "care-leavers-and-transitions__Staying-Close-Feasibility-Study-report.pdf",
+      "sha256": "64ffe09cefd312d34d8864a0c6abaefbb21350e323adc9c1c384131d2986287d",
+      "chunks": 76,
+      "bytes": 705238,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "650e05bc33e9560a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\education-of-looked-after-children-and-care-leaver__Pathways-higher-education-people-experience-children-social-care_TASO_REES.pdf",
+      "source_name": "education-of-looked-after-children-and-care-leaver__Pathways-higher-education-people-experience-children-social-care_TASO_REES.pdf",
+      "sha256": "650e05bc33e9560adb36eb9a19fbade8a3000e3378b22121a28d27c149e72b88",
+      "chunks": 56,
+      "bytes": 1617821,
+      "last_built": "2025-10-23T20:15:40Z"
+    },
+    "6603b1c6b9ac7cdf": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__39.3 Bright_Futures publication_05_web_1 WEB.pdf",
+      "source_name": "lga-sector-policy-and-finance__39.3 Bright_Futures publication_05_web_1 WEB.pdf",
+      "sha256": "6603b1c6b9ac7cdf8c805bd6ec8cb7e7f69a51f15ffd7c4bdf47784e1647d607",
+      "chunks": 20,
+      "bytes": 3264498,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "6612be04a3602f92": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__health_guidance_consultation_response.pdf",
+      "source_name": "central-government-publications__health_guidance_consultation_response.pdf",
+      "sha256": "6612be04a3602f92130118bade0af473745fde7057bb619622c22d5537b60637",
+      "chunks": 17,
+      "bytes": 343627,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "6855cbc5f7068368": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\policy-and-reform__Time-to-show-we-care-manifesto-from-Become-April-2024.pdf",
+      "source_name": "policy-and-reform__Time-to-show-we-care-manifesto-from-Become-April-2024.pdf",
+      "sha256": "6855cbc5f70683685efcfc07d50a69e357c54fc2db845b854eec16774af8c8ba",
+      "chunks": 7,
+      "bytes": 2596306,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "688e4678ee5cbcdf": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__Childrens-Commissioners-2018-Stability-Index-Overview.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__Childrens-Commissioners-2018-Stability-Index-Overview.pdf",
+      "sha256": "688e4678ee5cbcdfd85a99d1b85da13e9725e729c4428851c0b8f13929a65d24",
+      "chunks": 25,
+      "bytes": 1046788,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "6a0bf22a7e429aed": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\social-worker-retention-and-workforce__workforce - social workers publications - Helping social workers, improving social work case studies.pdf",
+      "source_name": "social-worker-retention-and-workforce__workforce - social workers publications - Helping social workers, improving social work case studies.pdf",
+      "sha256": "6a0bf22a7e429aed94e5c23594eaa9650375c9310f27b888ddc3131ef639ea8a",
+      "chunks": 22,
+      "bytes": 4527409,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "6bdd94e843b7408a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase9_FINALv1.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase9_FINALv1.pdf",
+      "sha256": "6bdd94e843b7408a4975f1721212c8363997766511dd98fbec96928a15068ce3",
+      "chunks": 118,
+      "bytes": 1174309,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "6da73176d573e5b1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-voice-participation__NCB_ChildrensVoice_Report_digital.pdf",
+      "source_name": "childrens-voice-participation__NCB_ChildrensVoice_Report_digital.pdf",
+      "sha256": "6da73176d573e5b1d8bf424f8c6a525befafc239c828beedf7db8369b0a423f0",
+      "chunks": 13,
+      "bytes": 7271683,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "6dd18679cc64eec0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\policy-and-reform__The-Childrens-Plan-Vision-for-Care.pdf",
+      "source_name": "policy-and-reform__The-Childrens-Plan-Vision-for-Care.pdf",
+      "sha256": "6dd18679cc64eec0a0f7a13e406049d9beaa69d907b6e017e2ec5e4c04da8451",
+      "chunks": 29,
+      "bytes": 547366,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "6e8a5b2f1b1bc709": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__20130522statutory_guidanceassessment_and_approval_of_foster_carers_final.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__20130522statutory_guidanceassessment_and_approval_of_foster_carers_final.pdf",
+      "sha256": "6e8a5b2f1b1bc7093cb360a0c1afc93edffff9d81752f470e30f08847a4db012",
+      "chunks": 25,
+      "bytes": 153436,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "6f1b614cdd7c68a7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__systematic-review-kinship-care-practice-guide.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__systematic-review-kinship-care-practice-guide.pdf",
+      "sha256": "6f1b614cdd7c68a7efdc341dc06471f3655cdab2dc08072f0a2f3302a3e6c287",
+      "chunks": 178,
+      "bytes": 3187094,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "702d7f84e0bab2b6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__adcs-sg-pressures-p4-exec-summary.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__adcs-sg-pressures-p4-exec-summary.pdf",
+      "sha256": "702d7f84e0bab2b6eef55c0eb5c2bbaeb9ab8818ad45c53cbebc9f4e5a20fce0",
+      "chunks": 16,
+      "bytes": 172072,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "72d6c66c1b165ff1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\advocacy-and-voice__APPG-for-Care-Experienced-CYP-Annual-Report.pdf",
+      "source_name": "advocacy-and-voice__APPG-for-Care-Experienced-CYP-Annual-Report.pdf",
+      "sha256": "72d6c66c1b165ff1043130f26d7338459049382a86b75118fdf854978dca7fcf",
+      "chunks": 4,
+      "bytes": 76105,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "7697223ee449fe06": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\early-help-and-family-support__systematic-review-mentoring-and-befriending-practice-guide.pdf",
+      "source_name": "early-help-and-family-support__systematic-review-mentoring-and-befriending-practice-guide.pdf",
+      "sha256": "7697223ee449fe0696553b77ef941055a2641eef9262e6626964ef43aad51ce6",
+      "chunks": 261,
+      "bytes": 2958637,
+      "last_built": "2025-10-23T20:15:41Z"
+    },
+    "76c60f9515f17443": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__Foster_Care_in_England_Review.pdf",
+      "source_name": "central-government-publications__Foster_Care_in_England_Review.pdf",
+      "sha256": "76c60f9515f17443a9c0714a8d12857ad264b3a36bc93cf0d461792d16024f00",
+      "chunks": 166,
+      "bytes": 1726522,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "7792bdd2e7e52f54": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__Siblings-in-Care-Report-FINAL-13.03.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__Siblings-in-Care-Report-FINAL-13.03.pdf",
+      "sha256": "7792bdd2e7e52f546ed49e00e461a96905fc152fc3b5eb12f887b05085a96c5a",
+      "chunks": 46,
+      "bytes": 1309561,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "7926118cc517744d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Working_together_to_safeguard_children_2023_-_statutory_guidance.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Working_together_to_safeguard_children_2023_-_statutory_guidance.pdf",
+      "sha256": "7926118cc517744de98b36bf6040c9d63aab3c0fe29604b3238638e9e7345c31",
+      "chunks": 224,
+      "bytes": 1238497,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "79970c4b3dba3431": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__Family hubs and Early Help an overview.pdf",
+      "source_name": "lga-sector-policy-and-finance__Family hubs and Early Help an overview.pdf",
+      "sha256": "79970c4b3dba34313ad7ed838264718c406fb261002b0c361909e15c9552f944",
+      "chunks": 13,
+      "bytes": 346950,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "7a19ae28c97e2d46": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__interim-report-pdf-169-pa-723.pdf",
+      "source_name": "lga-sector-policy-and-finance__interim-report-pdf-169-pa-723.pdf",
+      "sha256": "7a19ae28c97e2d46d93bb757e0cde848ebad7a9e227b0b910bcccdecd44b3e81",
+      "chunks": 205,
+      "bytes": 772399,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "7ad37fcb15a70fd2": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__Babies-in-care-proceedings-What-do-we-know-about-parents-with-learning-disabilities-or-difficulties.pdf",
+      "source_name": "nuffield-fjo-family-justice__Babies-in-care-proceedings-What-do-we-know-about-parents-with-learning-disabilities-or-difficulties.pdf",
+      "sha256": "7ad37fcb15a70fd285dfdc7048d48cfc7746cbe291a7db229f49755884dc7eeb",
+      "chunks": 99,
+      "bytes": 677742,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "7b28eb024e9c5795": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__CVAA-response-to-the-Public-Law-Working-Group-Report-FINAL.pdf",
+      "source_name": "cvaa-adoption-and-permanency__CVAA-response-to-the-Public-Law-Working-Group-Report-FINAL.pdf",
+      "sha256": "7b28eb024e9c5795b0eb036591fe4e038a4103d64edaa79aae02dc93b6699db9",
+      "chunks": 45,
+      "bytes": 328741,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "7b4a393052de6109": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\policy-and-reform-funding__Spring Budget 2024 - LGA on- the -day briefing.pdf",
+      "source_name": "policy-and-reform-funding__Spring Budget 2024 - LGA on- the -day briefing.pdf",
+      "sha256": "7b4a393052de610981f36efa6bbdf177d1085125dd9a79372e7d0495f6b82c19",
+      "chunks": 29,
+      "bytes": 459562,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "7b77dae3a079553a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__CYP_summary_of_final_report_-_accessible.pdf",
+      "source_name": "central-government-publications__CYP_summary_of_final_report_-_accessible.pdf",
+      "sha256": "7b77dae3a079553a02fb81704e642b0e09cd8249dafabac0783f64f5bc75be8f",
+      "chunks": 32,
+      "bytes": 284228,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "7e77caa81a612a1e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\early-help-prevention__Meeting Needs or Missing Needs - Final Report.pdf",
+      "source_name": "early-help-prevention__Meeting Needs or Missing Needs - Final Report.pdf",
+      "sha256": "7e77caa81a612a1eb6076a1cc3adf558c9b6a2d687fd2e5da1b186f3d3a522e8",
+      "chunks": 32,
+      "bytes": 5201326,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "80d3e6da30bfcda2": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-statistics-safeguarding__Sources of support and perceptions of safety among children in England and Wales year ending March 2024.pdf",
+      "source_name": "data-and-statistics-safeguarding__Sources of support and perceptions of safety among children in England and Wales year ending March 2024.pdf",
+      "sha256": "80d3e6da30bfcda28b407efa2f887f3490e49d70e8cbebecd08b2a9e3be1621f",
+      "chunks": 5,
+      "bytes": 23287,
+      "last_built": "2025-10-23T20:15:42Z"
+    },
+    "814b19b8e0ba1a63": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__Childrens-Commissioners-2018-Stability-Index-Technical-Report.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__Childrens-Commissioners-2018-Stability-Index-Technical-Report.pdf",
+      "sha256": "814b19b8e0ba1a6311ac3f756a290dd9cf02d874f1b9f7f4a0631d3345c94d1f",
+      "chunks": 96,
+      "bytes": 6209591,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "83cbfb36da486913": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-coram-voice__CoramImpact_2024_DIGITAL_2.pdf",
+      "source_name": "coram-and-coram-voice__CoramImpact_2024_DIGITAL_2.pdf",
+      "sha256": "83cbfb36da486913bb4074356d3c6b5b0e8129a98acef998519c1ac5f87e969d",
+      "chunks": 39,
+      "bytes": 6156345,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "83d59c6fcbb675ad": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Pressures-on-Childrens-Social-Care-Summary.pdf",
+      "source_name": "nao-audits-and-evaluations__Pressures-on-Childrens-Social-Care-Summary.pdf",
+      "sha256": "83d59c6fcbb675ad789766c83675d391f6bcc6d66a440d6ac12c0c9e2ad5c237",
+      "chunks": 15,
+      "bytes": 117833,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "85fb838854830cd4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__Child-Poverty-Taskforce-FINAL.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__Child-Poverty-Taskforce-FINAL.pdf",
+      "sha256": "85fb838854830cd4ec0bff2c7ac64e0584cb17d4f84d6eef39d28f03bc952b37",
+      "chunks": 14,
+      "bytes": 234715,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "86a407d48d36a808": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-permanence__family-routes-children-who-returned-to-care-after-leaving-for-adoption-or-to-live-with-a-special-guardian.pdf",
+      "source_name": "adoption-and-permanence__family-routes-children-who-returned-to-care-after-leaving-for-adoption-or-to-live-with-a-special-guardian.pdf",
+      "sha256": "86a407d48d36a808b4d82d5b4dae66979aa3acf2867d7dfec492dfc1988dff2b",
+      "chunks": 65,
+      "bytes": 797662,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "8908c3b26487f3b0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Adoption_Policy_Paper_30_March_2016.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Adoption_Policy_Paper_30_March_2016.pdf",
+      "sha256": "8908c3b26487f3b0fcdee6a7403f16198c672f67788f9f98592c5ecc89664f4a",
+      "chunks": 49,
+      "bytes": 692605,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "8919938d904d1ae4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\fostering-and-care-leavers__this-is-my-home-nyas-x-tfn-report-english.pdf",
+      "source_name": "fostering-and-care-leavers__this-is-my-home-nyas-x-tfn-report-english.pdf",
+      "sha256": "8919938d904d1ae4e43026a4c5aedfac99c61a90b8b826ad84353c2ec8ce6d2d",
+      "chunks": 26,
+      "bytes": 20764496,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "89543ee18891b070": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\missing-children-partnership-working__peel-spotlight-report-police-performance.pdf",
+      "source_name": "missing-children-partnership-working__peel-spotlight-report-police-performance.pdf",
+      "sha256": "89543ee18891b0700bc05a87f64bf0b6c1d5d1022b8deb60e381329249734185",
+      "chunks": 110,
+      "bytes": 1264365,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "8a78ed99c5d371e3": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__Childrens-Commissioners-Stability-Index-Phase-One-Technical-Report-1.3.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__Childrens-Commissioners-Stability-Index-Phase-One-Technical-Report-1.3.pdf",
+      "sha256": "8a78ed99c5d371e394cd4b0fbb3a98e575c9a024569015da26c708aef42c0aae",
+      "chunks": 62,
+      "bytes": 1170440,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "8a86417ba3fd6477": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\multi-agency-working-and-mash__MASH-implications-for-policy-and-practice.pdf",
+      "source_name": "multi-agency-working-and-mash__MASH-implications-for-policy-and-practice.pdf",
+      "sha256": "8a86417ba3fd6477699d5bc4e68ae9ad59c12ebcc6b08ef49713ed0a160c6e9d",
+      "chunks": 16,
+      "bytes": 272555,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "8bcb465b719a75dc": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\early-help-early-years__moving-towards-tapestries-of-care-and-connection-insights-from-the-second-annual-report-of-the-a-better-start-evaluation-sb-web.pdf",
+      "source_name": "early-help-early-years__moving-towards-tapestries-of-care-and-connection-insights-from-the-second-annual-report-of-the-a-better-start-evaluation-sb-web.pdf",
+      "sha256": "8bcb465b719a75dc688978d0811d537f751f443d51030631f0b18996af2196d1",
+      "chunks": 26,
+      "bytes": 6673863,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "8bd3ba22830d1c0f": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\safeguarding-guidance__CSPRP_guidance_for_safeguarding_partners.pdf",
+      "source_name": "safeguarding-guidance__CSPRP_guidance_for_safeguarding_partners.pdf",
+      "sha256": "8bd3ba22830d1c0ffc8be4736c4cf89482adef7e9472af7984701074f4155571",
+      "chunks": 69,
+      "bytes": 540647,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "8dd81072c5ba9ea9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers-rights-and-entitlements__who_are_care_leavers.pdf",
+      "source_name": "care-leavers-rights-and-entitlements__who_are_care_leavers.pdf",
+      "sha256": "8dd81072c5ba9ea9cd45d9f35cd093de201b31d072213e461bb8958935817836",
+      "chunks": 2,
+      "bytes": 129479,
+      "last_built": "2025-10-23T20:15:43Z"
+    },
+    "8e5c170ad03a58ec": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\disabled-children-law-commission__cdc_pf1_law-comm_final-1.pdf",
+      "source_name": "disabled-children-law-commission__cdc_pf1_law-comm_final-1.pdf",
+      "sha256": "8e5c170ad03a58ec9a9063cd82edbf197c8d8fa1d8f23d4e58eaa70e3378313d",
+      "chunks": 5,
+      "bytes": 323221,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "906ab2b51aae3a8c": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\education-for-children-with-a-social-worker__Evaluation_of_the_Extension_of_Virtual_School_Heads_Duties_to_Children_with_a_Social_Worker.pdf",
+      "source_name": "education-for-children-with-a-social-worker__Evaluation_of_the_Extension_of_Virtual_School_Heads_Duties_to_Children_with_a_Social_Worker.pdf",
+      "sha256": "906ab2b51aae3a8ccf2ab2c3aa0c5e547c4a40790a405d557dffcab132b733fd",
+      "chunks": 294,
+      "bytes": 3120579,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "90dea52e4cff93aa": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers-housing__Executive-summary-End-The-Care-Cliff-report-2024.pdf",
+      "source_name": "care-leavers-housing__Executive-summary-End-The-Care-Cliff-report-2024.pdf",
+      "sha256": "90dea52e4cff93aa148d381051b125a935cc3be7f5ad9918f8e5eb8bcf3a98f1",
+      "chunks": 6,
+      "bytes": 531116,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "937c885db67c9abf": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__good_assessment_practitioners_handbook_secondedition_sept2022_web.pdf",
+      "source_name": "adoption-and-fostering-practice__good_assessment_practitioners_handbook_secondedition_sept2022_web.pdf",
+      "sha256": "937c885db67c9abf5ce0e6fcfb91620a9da3d6ec3a73c6161b2c045a42976254",
+      "chunks": 122,
+      "bytes": 1562905,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "94d4b1954f64e0af": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__contact-six-key-messages-nuffieldfjo.pdf",
+      "source_name": "nuffield-fjo-family-justice__contact-six-key-messages-nuffieldfjo.pdf",
+      "sha256": "94d4b1954f64e0afd140d0bd50b2d4b66e0cf6b6279b5656f4e76c336d15087e",
+      "chunks": 14,
+      "bytes": 187192,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "98666f5ad6415d02": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__contact-making-good-decisions-for-children-in-public-law-frontline-briefing-web.pdf",
+      "source_name": "adoption-and-fostering-practice__contact-making-good-decisions-for-children-in-public-law-frontline-briefing-web.pdf",
+      "sha256": "98666f5ad6415d022c2ecb76cb2a0a4f56b9455833fa25387c4b09ebf2338877",
+      "chunks": 31,
+      "bytes": 2900313,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "987d6d203f202eda": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-practice-tools__Adoption Support Plan Briefing (ASP) England- Briefing session Feb 25.pdf",
+      "source_name": "adoption-practice-tools__Adoption Support Plan Briefing (ASP) England- Briefing session Feb 25.pdf",
+      "sha256": "987d6d203f202eda4d5baa02eb296a14763d02a1581236ef51deda39b52ab873",
+      "chunks": 10,
+      "bytes": 3964779,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "996470fc76a88e38": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__cco-stability-index-2019-technical-report.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__cco-stability-index-2019-technical-report.pdf",
+      "sha256": "996470fc76a88e385f21c5ef2c3a11b4823383dd9456c38b82af1a10a43dfa24",
+      "chunks": 50,
+      "bytes": 1795350,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "9ab05d29e42dafcd": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__why_are_older_children_and_young_people_in_care_proceedings_a_case_file_review_report_0921.pdf",
+      "source_name": "nuffield-fjo-family-justice__why_are_older_children_and_young_people_in_care_proceedings_a_case_file_review_report_0921.pdf",
+      "sha256": "9ab05d29e42dafcd67f3c94f24f1f876ebaeaa5c92a2466c18e57048e14e9d51",
+      "chunks": 31,
+      "bytes": 280384,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "9c2b19d0a6db7e67": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Children_and_young_person_guide_to_working_together_to_safeguard_children.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Children_and_young_person_guide_to_working_together_to_safeguard_children.pdf",
+      "sha256": "9c2b19d0a6db7e67b0133bdc4140ca409e8ef45c77ef4bd54dea035fbb6e709a",
+      "chunks": 32,
+      "bytes": 2633228,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "9ca015718c25e514": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-voice-wellbeing__Good Childhood Report-Summary-Report.pdf",
+      "source_name": "childrens-voice-wellbeing__Good Childhood Report-Summary-Report.pdf",
+      "sha256": "9ca015718c25e5146e17d99c17a9cadfb88cd82450a99c5d110bd2d13a4e07e9",
+      "chunks": 31,
+      "bytes": 5368124,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "9d0146db4a952021": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__Children's social care budget survey FINAL_0.pdf",
+      "source_name": "lga-sector-policy-and-finance__Children's social care budget survey FINAL_0.pdf",
+      "sha256": "9d0146db4a952021fcb84ba97f9d247a2e1b4216ec27a546d50bd9af1a749eb3",
+      "chunks": 27,
+      "bytes": 823483,
+      "last_built": "2025-10-23T20:15:44Z"
+    },
+    "9d1bad7dbd8d7148": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cma-market-study-childrens-social-care__England_summary_.pdf",
+      "source_name": "cma-market-study-childrens-social-care__England_summary_.pdf",
+      "sha256": "9d1bad7dbd8d71480d28614032e0e8d10060dd8b40b523382c819599b3d9424d",
+      "chunks": 30,
+      "bytes": 214231,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "9d2bc1651cf6977e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\policy-and-reform-funding__Autumn Budget 2024 - LGA briefing.pdf",
+      "source_name": "policy-and-reform-funding__Autumn Budget 2024 - LGA briefing.pdf",
+      "sha256": "9d2bc1651cf6977e24bdc1afcb603cf9113f75f1de2fdeaea1f176233170edbc",
+      "chunks": 67,
+      "bytes": 490448,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "9d6c524258092b79": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\social-worker-retention-and-workforce__basw_120907-6_0.pdf",
+      "source_name": "social-worker-retention-and-workforce__basw_120907-6_0.pdf",
+      "sha256": "9d6c524258092b79cf47a54a37492368de18d4b4f13e26371ac3991af1fa91ba",
+      "chunks": 22,
+      "bytes": 1311794,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "9de039fc975a2cb4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__Care-monitor-v12_1.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__Care-monitor-v12_1.pdf",
+      "sha256": "9de039fc975a2cb44d6539a741b873bc98cb711efd2a3f10e56f695d4c23e981",
+      "chunks": 24,
+      "bytes": 4007776,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "9e0be5a595f2e605": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-coram-voice__Private Fostering Survey 2024 landscape (1).pdf",
+      "source_name": "coram-and-coram-voice__Private Fostering Survey 2024 landscape (1).pdf",
+      "sha256": "9e0be5a595f2e6053bb1f4068c878fe526d986d8b0352adfb44f458b24cb82b3",
+      "chunks": 28,
+      "bytes": 12902119,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a00e3b1c015ffdae": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__HAH-Annual-Report-23-4.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__HAH-Annual-Report-23-4.pdf",
+      "sha256": "a00e3b1c015ffdae1fbf211a45ae87de920a73178ee565a77a774772a802c1b9",
+      "chunks": 32,
+      "bytes": 1583524,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a08403a546a64970": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__brothers-and-sisters-in-public-law-proceedings-assessment-placement_fb_web.pdf",
+      "source_name": "adoption-and-fostering-practice__brothers-and-sisters-in-public-law-proceedings-assessment-placement_fb_web.pdf",
+      "sha256": "a08403a546a64970f0ee117cc3c2317ad14bbeb805cfda54eb3dde4f5e6a68fc",
+      "chunks": 29,
+      "bytes": 1066517,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a0cba1dfb4fc0f08": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__The_Children_Act_1989_guidance_and_regulations_Volume_2_care_planning__placement_and_case_review.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__The_Children_Act_1989_guidance_and_regulations_Volume_2_care_planning__placement_and_case_review.pdf",
+      "sha256": "a0cba1dfb4fc0f08ea7cadd1f28e4f1b9ab0a91b3e263f0a6e9b5ab9fe507a61",
+      "chunks": 255,
+      "bytes": 1787938,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a25718304203c639": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Children-in-care-summary.pdf",
+      "source_name": "nao-audits-and-evaluations__Children-in-care-summary.pdf",
+      "sha256": "a25718304203c6394b53b1760f8d71859580201bef307d95067b7ca6aeaf2f13",
+      "chunks": 14,
+      "bytes": 105206,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a3d62325e79996ec": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\child-sexual-abuse-and-exploitation__Child_Exploitation_Disruption_Toolkit_082022.pdf",
+      "source_name": "child-sexual-abuse-and-exploitation__Child_Exploitation_Disruption_Toolkit_082022.pdf",
+      "sha256": "a3d62325e79996ec90cf6fba167232e5d134935c3825264cbb94ced5804c27a9",
+      "chunks": 61,
+      "bytes": 699436,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a422dc94662e699a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\fostering-policy__additional-written-evidence-to-the-education-select-committee-s-inquiry.pdf",
+      "source_name": "fostering-policy__additional-written-evidence-to-the-education-select-committee-s-inquiry.pdf",
+      "sha256": "a422dc94662e699adfaf594da21bde7e397f06adfc8471106f855f4814635729",
+      "chunks": 27,
+      "bytes": 257718,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a52db5fbd864e9ec": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-workforce__Children_s_homes_stage_2_and_3_report.pdf",
+      "source_name": "data-and-workforce__Children_s_homes_stage_2_and_3_report.pdf",
+      "sha256": "a52db5fbd864e9ecf4e7dc955fe69422edf3118bf219a9780ec4ffa1deec62bb",
+      "chunks": 113,
+      "bytes": 1286853,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a6c07e5f8a3f7002": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__Explaining Variation in Spending - Children's Services, Full Report_0.pdf",
+      "source_name": "lga-sector-policy-and-finance__Explaining Variation in Spending - Children's Services, Full Report_0.pdf",
+      "sha256": "a6c07e5f8a3f70027d015311ecfa5a29774fcad9a2e306c94dbf285b46ccf8de",
+      "chunks": 22,
+      "bytes": 1144395,
+      "last_built": "2025-10-23T20:15:45Z"
+    },
+    "a81a5cad2ab15bd7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\independent-and-national-reviews__Child_Safeguarding_Practice_Review_Panel_annual_report_2023_to_2024.pdf",
+      "source_name": "independent-and-national-reviews__Child_Safeguarding_Practice_Review_Panel_annual_report_2023_to_2024.pdf",
+      "sha256": "a81a5cad2ab15bd7baf8090b40cb04bcffe12bf7b86b8d73c90a22faa7efbd81",
+      "chunks": 195,
+      "bytes": 1766019,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "a893cccd05d6e7fa": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Adoption_Statutory_Guidance_2014.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Adoption_Statutory_Guidance_2014.pdf",
+      "sha256": "a893cccd05d6e7fad89e780145405031e77f642b50e3d69074692b17c6c1aa89",
+      "chunks": 243,
+      "bytes": 1127604,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "a978f463f0e1efe9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Working_together_to_safeguard_children_2023_-_summary_of_changes.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Working_together_to_safeguard_children_2023_-_summary_of_changes.pdf",
+      "sha256": "a978f463f0e1efe928fee8b137f1bfa3bbe250a23d6a9c7821cd62f23e78eeaf",
+      "chunks": 5,
+      "bytes": 135517,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "a98aa7a05ef418f0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Managing-childrens-residential-care-summary.pdf",
+      "source_name": "nao-audits-and-evaluations__Managing-childrens-residential-care-summary.pdf",
+      "sha256": "a98aa7a05ef418f08ca6045a467ac9129e8426de0e054dfefe9a10f00a52ca2c",
+      "chunks": 15,
+      "bytes": 203713,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "a9e94f5612ebbed1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\national-bodies-annual-reports-and-accounts__DfE_consolidated_annual_report_and_accounts_2023_to_2024_-_web-optimised_version.pdf",
+      "source_name": "national-bodies-annual-reports-and-accounts__DfE_consolidated_annual_report_and_accounts_2023_to_2024_-_web-optimised_version.pdf",
+      "sha256": "a9e94f5612ebbed1fc49a316cd2820ba86216b9e3cd547b39a3289d54dbbf2ae",
+      "chunks": 389,
+      "bytes": 6597033,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "acdc6b3da4d9d851": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase7_Executive_Summary.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase7_Executive_Summary.pdf",
+      "sha256": "acdc6b3da4d9d851a059e404b52b385a8215875156217679026d99164c18f440",
+      "chunks": 31,
+      "bytes": 1715010,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "ad0aa4ba70bbc757": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\national-bodies-annual-reports-and-accounts__social-work-england-annual-report-and-accounts-2024-to-2025-print-version.pdf",
+      "source_name": "national-bodies-annual-reports-and-accounts__social-work-england-annual-report-and-accounts-2024-to-2025-print-version.pdf",
+      "sha256": "ad0aa4ba70bbc75722d709088f89695f2a523d8d7302ceeb1274a2893dd578ed",
+      "chunks": 108,
+      "bytes": 2553405,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "ae0199f5ec5ce38b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__staying-in-touch-a-planning-tool-for-children-in-permanent-families-web.pdf",
+      "source_name": "adoption-and-fostering-practice__staying-in-touch-a-planning-tool-for-children-in-permanent-families-web.pdf",
+      "sha256": "ae0199f5ec5ce38bd94b49a863c07776fec6397d1fe0beb5af949a7aef98320d",
+      "chunks": 12,
+      "bytes": 480639,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "ae086751c3e17703": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\safeguarding-reviews-and-learning__CSPRP_-_I_wanted_them_all_to_notice.pdf",
+      "source_name": "safeguarding-reviews-and-learning__CSPRP_-_I_wanted_them_all_to_notice.pdf",
+      "sha256": "ae086751c3e1770333bd1df17a3c0c1e111fc3a076038e02a13c51881dca9327",
+      "chunks": 182,
+      "bytes": 1096111,
+      "last_built": "2025-10-23T20:15:46Z"
+    },
+    "aebda06479637ab7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\serious-case-reviews-and-national-reviews__first_serious_case_review_overview_report_relating_to_peter_connelly_dated_november_2008.pdf",
+      "source_name": "serious-case-reviews-and-national-reviews__first_serious_case_review_overview_report_relating_to_peter_connelly_dated_november_2008.pdf",
+      "sha256": "aebda06479637ab7aae64d71c6a081c1ca8cfc5a50398e115912fa02953f0f9d",
+      "chunks": 187,
+      "bytes": 1437450,
+      "last_built": "2025-10-23T20:15:47Z"
+    },
+    "afb6e9fc83cdd7c1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cma-market-study-childrens-social-care__Final_report.pdf",
+      "source_name": "cma-market-study-childrens-social-care__Final_report.pdf",
+      "sha256": "afb6e9fc83cdd7c1a21cfda63c7af8a21827a510a5480e283d80ffd4eea9eb09",
+      "chunks": 200,
+      "bytes": 1323214,
+      "last_built": "2025-10-23T20:15:47Z"
+    },
+    "b017511d87555547": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__systematic-review-interventions-practices-parents-complex-multiple-needs.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__systematic-review-interventions-practices-parents-complex-multiple-needs.pdf",
+      "sha256": "b017511d8755554710789e49996a2a2eb141fa3c481accb6f304ebd7aed2d2d7",
+      "chunks": 231,
+      "bytes": 11119954,
+      "last_built": "2025-10-23T20:15:47Z"
+    },
+    "b337683fdc6d8453": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__3.-In-Their-Own-Words-Communities-of-Support-Report-final.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__3.-In-Their-Own-Words-Communities-of-Support-Report-final.pdf",
+      "sha256": "b337683fdc6d8453ffd4f427a863cefe8a2ac6670a4cc8ddef72d4d6274b13b7",
+      "chunks": 14,
+      "bytes": 1202027,
+      "last_built": "2025-10-23T20:15:47Z"
+    },
+    "b4c17bb7e6b531e6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\ofsted-inspection-and-research__32007_Ofsted_Annual_Report_and_Accounts_2024-25_Accessible.pdf",
+      "source_name": "ofsted-inspection-and-research__32007_Ofsted_Annual_Report_and_Accounts_2024-25_Accessible.pdf",
+      "sha256": "b4c17bb7e6b531e621349ff4e15a2e95daba2d136701e6410edd4c56de336995",
+      "chunks": 151,
+      "bytes": 2594870,
+      "last_built": "2025-10-23T20:15:47Z"
+    },
+    "b4faddd89b711f35": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-coram-voice__CII-Innovation-Collective_2025_FINAL.pdf",
+      "source_name": "coram-and-coram-voice__CII-Innovation-Collective_2025_FINAL.pdf",
+      "sha256": "b4faddd89b711f35ad4dacd223a4ed4dfc05a4cce6151df9926efda8b8fed1af",
+      "chunks": 172,
+      "bytes": 10103123,
+      "last_built": "2025-10-23T20:15:47Z"
+    },
+    "b5446085fea995c6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__practice-guide-supporting-contact-between-brothers-and-sisters-web.pdf",
+      "source_name": "adoption-and-fostering-practice__practice-guide-supporting-contact-between-brothers-and-sisters-web.pdf",
+      "sha256": "b5446085fea995c66f81e6826a98d1955c228c67570c164cd10eb190d918b701",
+      "chunks": 9,
+      "bytes": 165712,
+      "last_built": "2025-10-23T20:15:47Z"
+    },
+    "b5b95f611cb53116": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-practice-updates__Panel Chairs summary - 08.03.24 SUM W.pdf",
+      "source_name": "adoption-practice-updates__Panel Chairs summary - 08.03.24 SUM W.pdf",
+      "sha256": "b5b95f611cb531165bcf14882d596a6a9ee47341f85468e9688a471219a8ef01",
+      "chunks": 5,
+      "bytes": 666645,
+      "last_built": "2025-10-23T20:15:47Z"
+    },
+    "b7c4bfd7f654b91f": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__School-non-attendance-children-with-a-social-worker-in-the-UK.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__School-non-attendance-children-with-a-social-worker-in-the-UK.pdf",
+      "sha256": "b7c4bfd7f654b91fdb709f2aadf1013ae20566cb2245539732af6867c9139b1e",
+      "chunks": 82,
+      "bytes": 561751,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "b942fa9646080769": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__1.-In-Their-Own-Words-Cost-of-living-Report-final.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__1.-In-Their-Own-Words-Cost-of-living-Report-final.pdf",
+      "sha256": "b942fa9646080769bfabf01892c7f22fe7ec304172a2d8fe4e926df51a765a0e",
+      "chunks": 13,
+      "bytes": 1454337,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "b9dc09607043503c": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__CVAA-statement-on-independent-care-review-Jan-2023.pdf",
+      "source_name": "cvaa-adoption-and-permanency__CVAA-statement-on-independent-care-review-Jan-2023.pdf",
+      "sha256": "b9dc09607043503ca089f99bc3b9da2857b0cea449ed576d79b8e723b2ac1f13",
+      "chunks": 12,
+      "bytes": 269178,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "ba0c10322bdd2402": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers-homelessness__Homelessness-stats_Oct-24.pdf",
+      "source_name": "care-leavers-homelessness__Homelessness-stats_Oct-24.pdf",
+      "sha256": "ba0c10322bdd24024fde1fea7e4480b2e2166210ee0e80dc6f1442281fb8ad79",
+      "chunks": 4,
+      "bytes": 115371,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "baf17501fcfe8cc1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__achieving-positive-outcom-d5b.pdf",
+      "source_name": "lga-sector-policy-and-finance__achieving-positive-outcom-d5b.pdf",
+      "sha256": "baf17501fcfe8cc1d4fa2f2febfca951e01702f4f95becd70d0e9e15b5684648",
+      "chunks": 15,
+      "bytes": 4034070,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "bbd492ad588ad4a2": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Adoption_consultation_document.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Adoption_consultation_document.pdf",
+      "sha256": "bbd492ad588ad4a2f9e02c87b5698881c7634d768040ab04ea6a3c054b72a486",
+      "chunks": 29,
+      "bytes": 464636,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "bd086893be7e73b8": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\serious-case-reviews-and-national-reviews__Triennial_Analysis_of_SCRs_2011-2014_-__Pathways_to_harm_and_protection.pdf",
+      "source_name": "serious-case-reviews-and-national-reviews__Triennial_Analysis_of_SCRs_2011-2014_-__Pathways_to_harm_and_protection.pdf",
+      "sha256": "bd086893be7e73b84a5b72e081d60319c850889621129544ec512e2cc690aa5a",
+      "chunks": 394,
+      "bytes": 6804082,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "bd0fc3f36c3015a0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-fostering__Adoption & Fostering journal #11  Vol.pdf",
+      "source_name": "adoption-fostering__Adoption & Fostering journal #11  Vol.pdf",
+      "sha256": "bd0fc3f36c3015a0af4050627c298c62839eaeb0330aae633b7576271bedd182",
+      "chunks": 14,
+      "bytes": 253834,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "bd1361d16a2c5318": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__Rachael-Wardell-Presidential-reception-speech-Final.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__Rachael-Wardell-Presidential-reception-speech-Final.pdf",
+      "sha256": "bd1361d16a2c5318ad21069ce57e14a66f9dc50253888f661a4f98521c618751",
+      "chunks": 12,
+      "bytes": 165970,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "bf16c39aac05ebd2": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__foster_care_tsd_standards_guidance.pdf",
+      "source_name": "central-government-publications__foster_care_tsd_standards_guidance.pdf",
+      "sha256": "bf16c39aac05ebd20ec00bdf1e9713a7c17dd122c0c1e11494987f77a39f40c9",
+      "chunks": 55,
+      "bytes": 510114,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "bf2efe4da83f0819": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\health-integration-childrens-social-care-data__HPIG ICS report - 31.01.2024.pdf",
+      "source_name": "health-integration-childrens-social-care-data__HPIG ICS report - 31.01.2024.pdf",
+      "sha256": "bf2efe4da83f0819d061ddea7309c181ba08478c6a3dd56280aa9144bb084625",
+      "chunks": 52,
+      "bytes": 16850806,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "c006393de67e0846": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__CCO_NCB_RIP_CYP-voices-review.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__CCO_NCB_RIP_CYP-voices-review.pdf",
+      "sha256": "c006393de67e0846dbe949c3be1936ddd4cbff18cab0aa1316c294d6ba97cfbe",
+      "chunks": 74,
+      "bytes": 1154631,
+      "last_built": "2025-10-23T20:15:48Z"
+    },
+    "c1ec31eff0a22cc7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__Making-work-pay-for-kinship-carers.pdf",
+      "source_name": "kinship-care__Making-work-pay-for-kinship-carers.pdf",
+      "sha256": "c1ec31eff0a22cc7a5f6e4ab8e0a42ac62ba932e571f3326935a12648d9744db",
+      "chunks": 27,
+      "bytes": 416686,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c2c01f48cf4d2d3c": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers-impact-report__BECO_2025-Impact-Report-AW-for-screen.pdf",
+      "source_name": "care-leavers-impact-report__BECO_2025-Impact-Report-AW-for-screen.pdf",
+      "sha256": "c2c01f48cf4d2d3c8112b962169a3a017b71d55698b36a88d1141d676160a438",
+      "chunks": 13,
+      "bytes": 3313637,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c4036565a5d88515": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__handle-with-care-report.pdf",
+      "source_name": "kinship-care__handle-with-care-report.pdf",
+      "sha256": "c4036565a5d88515feb63148cb211533e8067bb2af16052c60de3d2f87cc81e7",
+      "chunks": 57,
+      "bytes": 2005458,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c4a0b9183b6e2347": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__cp-1-schradermcmillanbarlow-v2-Feb-2024.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__cp-1-schradermcmillanbarlow-v2-Feb-2024.pdf",
+      "sha256": "c4a0b9183b6e2347800add7e92862421a42403a60fec1e26cd23193434f230d7",
+      "chunks": 240,
+      "bytes": 1523767,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c52718ea2ccc507c": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\child-sexual-abuse-and-exploitation__inspection-police-law-enforcement-response-group-based-child-sexual-exploitation-2.pdf",
+      "source_name": "child-sexual-abuse-and-exploitation__inspection-police-law-enforcement-response-group-based-child-sexual-exploitation-2.pdf",
+      "sha256": "c52718ea2ccc507cb7b7a04100c30f3f1dfe60e5e0237e5add402d9c28a536a3",
+      "chunks": 66,
+      "bytes": 808554,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c671815b3f3a6e11": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__wh-debate-kinship-placements-20-may.pdf",
+      "source_name": "kinship-care__wh-debate-kinship-placements-20-may.pdf",
+      "sha256": "c671815b3f3a6e1176d647ce00a167fadf9ca9ad3376c4303ed3fed29aeb4731",
+      "chunks": 10,
+      "bytes": 212368,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c67c5369f029d8a7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__5.-In-Their-Own-Words-Support-after-21-25-years-report-final.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__5.-In-Their-Own-Words-Support-after-21-25-years-report-final.pdf",
+      "sha256": "c67c5369f029d8a7633c81e6ce4380c45a14fa947e99912b214191227eed409c",
+      "chunks": 12,
+      "bytes": 1594357,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c68460f15907b2dd": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__LGA Briefing - Children's social care-FINAL.pdf",
+      "source_name": "lga-sector-policy-and-finance__LGA Briefing - Children's social care-FINAL.pdf",
+      "sha256": "c68460f15907b2dde1eef0330a4b2d15217db17d7f5ad76d8f568552cea0a277",
+      "chunks": 8,
+      "bytes": 322783,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c6861653044760e2": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__impactreport2020-21.pdf",
+      "source_name": "cvaa-adoption-and-permanency__impactreport2020-21.pdf",
+      "sha256": "c6861653044760e2fb892f6507c6ad3ac4520bf8bded3c404d221150ccd24f86",
+      "chunks": 5,
+      "bytes": 1855062,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c6ae02aa01c43403": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__CV-at-50.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__CV-at-50.pdf",
+      "sha256": "c6ae02aa01c4340394679d54a7484ccc492727766dbb67cc8e10e1a8df9353ab",
+      "chunks": 10,
+      "bytes": 2514612,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c7759d4f3aa2c115": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\disabled-children-law-and-guidance__cdc_pf4_u_p_d_e_final.pdf",
+      "source_name": "disabled-children-law-and-guidance__cdc_pf4_u_p_d_e_final.pdf",
+      "sha256": "c7759d4f3aa2c115bebfd6fc91616503b201348884d0f2f43464b4536b4c3ced",
+      "chunks": 6,
+      "bytes": 328623,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "c7b4711a0429d365": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers-and-transitions__Staying_Close_Fair_Ways.pdf",
+      "source_name": "care-leavers-and-transitions__Staying_Close_Fair_Ways.pdf",
+      "sha256": "c7b4711a0429d36518c0d31b0ea192e8e5418b53a48057ef9aef0437eb97bc35",
+      "chunks": 64,
+      "bytes": 3001932,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "cc4ed36d81c979a8": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__make-or-break-report-2024.pdf",
+      "source_name": "kinship-care__make-or-break-report-2024.pdf",
+      "sha256": "cc4ed36d81c979a88daa348d9e41bdeea73463de978a459e0a0ad74de88332ac",
+      "chunks": 52,
+      "bytes": 1158645,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "ccb1654e90d34229": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\disabled-children-family-experience__cdc_pf2-fam-exp_final.pdf",
+      "source_name": "disabled-children-family-experience__cdc_pf2-fam-exp_final.pdf",
+      "sha256": "ccb1654e90d34229c3886fce3ae4ee8afaad904d4b3a5c50cce9ca287c2b6919",
+      "chunks": 7,
+      "bytes": 332176,
+      "last_built": "2025-10-23T20:15:49Z"
+    },
+    "ce4d7a4ba9828c61": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\independent-and-national-reviews__ALH_SH_National_Review_26-5-22.pdf",
+      "source_name": "independent-and-national-reviews__ALH_SH_National_Review_26-5-22.pdf",
+      "sha256": "ce4d7a4ba9828c610eb11213d241337ce8783f53f42c6fd4181e2aec95d6d01e",
+      "chunks": 192,
+      "bytes": 1431350,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "cee7ebd0f05eeea7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__NMS_Fostering_Services.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__NMS_Fostering_Services.pdf",
+      "sha256": "cee7ebd0f05eeea712a12bf916b12cd2f96973daec3f73b73a64a4b65a638dcf",
+      "chunks": 58,
+      "bytes": 347406,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d0dcc63435cd1116": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\national-bodies-annual-reports-and-accounts__DfE_consolidated_annual_report_and_accounts_2024_to_2025__web-optimised_version_.pdf",
+      "source_name": "national-bodies-annual-reports-and-accounts__DfE_consolidated_annual_report_and_accounts_2024_to_2025__web-optimised_version_.pdf",
+      "sha256": "d0dcc63435cd111618024d64a06fbb1862e81141a29b10be6e7f32fc475573bf",
+      "chunks": 363,
+      "bytes": 6516530,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d0fdf1b4e3d15bc0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__older_children_and_young_people_in_care_proceedings_in_england_wales_report_1021..pdf",
+      "source_name": "nuffield-fjo-family-justice__older_children_and_young_people_in_care_proceedings_in_england_wales_report_1021..pdf",
+      "sha256": "d0fdf1b4e3d15bc0adad0ac38f98ae53541ecdab79ee6b8af506a6468244e35b",
+      "chunks": 63,
+      "bytes": 2651443,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d22420c3a33b087b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Special_guardianship_statutory_guidance.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Special_guardianship_statutory_guidance.pdf",
+      "sha256": "d22420c3a33b087b4205a0eb9d3fcb544faef5a335f8c2ccb823b916dbdd4487",
+      "chunks": 37,
+      "bytes": 271029,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d246c0018e6bdc10": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__nfjo_teenagers_experiences-_report_20220401_final.pdf",
+      "source_name": "nuffield-fjo-family-justice__nfjo_teenagers_experiences-_report_20220401_final.pdf",
+      "sha256": "d246c0018e6bdc105f3cb3e3252a6122ab8a73c3f46cd38cfd59bc898c13f18d",
+      "chunks": 73,
+      "bytes": 340821,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d251b45dcbea3c23": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance__Statutory_Guidance_-_Missing_from_care__3_.pdf",
+      "source_name": "statutory-guidance__Statutory_Guidance_-_Missing_from_care__3_.pdf",
+      "sha256": "d251b45dcbea3c23baf95bf290983574c6d6e7c3064c2184d3fce054328c0891",
+      "chunks": 33,
+      "bytes": 356104,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d39b8533721eb2df": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\family-justice-and-care-proceedings__Data_trends_22-08-25.pdf",
+      "source_name": "family-justice-and-care-proceedings__Data_trends_22-08-25.pdf",
+      "sha256": "d39b8533721eb2df4044f672e3dcb9b8f540c0d2fa9841161106271fca512280",
+      "chunks": 25,
+      "bytes": 603661,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d425eca642a15576": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__nfjo_contact_lockdown_rapid_research_main_report_20200521.pdf",
+      "source_name": "nuffield-fjo-family-justice__nfjo_contact_lockdown_rapid_research_main_report_20200521.pdf",
+      "sha256": "d425eca642a155764994c9579a027d55044b5cb3cb791cd7e146b275ca6b13c4",
+      "chunks": 104,
+      "bytes": 1106653,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d565044bde268012": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\children-in-care-local-authority-annual-report__Appendix 1.pdf",
+      "source_name": "children-in-care-local-authority-annual-report__Appendix 1.pdf",
+      "sha256": "d565044bde268012756c10330fd214ba994fcd7de65794f2b5c08591d7433770",
+      "chunks": 40,
+      "bytes": 3184552,
+      "last_built": "2025-10-23T20:15:50Z"
+    },
+    "d5ed97d21a9e744b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__CVAA-My-People-April-25th-2024.pdf",
+      "source_name": "cvaa-adoption-and-permanency__CVAA-My-People-April-25th-2024.pdf",
+      "sha256": "d5ed97d21a9e744b3738f34060a6075171193047a18047a6da509970cc29ca02",
+      "chunks": 51,
+      "bytes": 604581,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "d6425ea67d70e46f": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Select_Committee_on_Adoption_Legislation_2nd_report_government_response.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Select_Committee_on_Adoption_Legislation_2nd_report_government_response.pdf",
+      "sha256": "d6425ea67d70e46f4b33e20917269fb5da5a554ea471bed29e24eb570aa8eded",
+      "chunks": 76,
+      "bytes": 384257,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "d7a18bf29244e1cc": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\improvement-childrens-services__Workshop J Children’s services – developments, challenges and improvement .pdf",
+      "source_name": "improvement-childrens-services__Workshop J Children’s services – developments, challenges and improvement .pdf",
+      "sha256": "d7a18bf29244e1cccaa835c7a76b83bb30bb7067dc4760e1ced84fcfee1e9cf6",
+      "chunks": 3,
+      "bytes": 391377,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "d7e2008a50b00f60": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\social-worker-retention-and-workforce__Theory_of_change_report_final.pdf",
+      "source_name": "social-worker-retention-and-workforce__Theory_of_change_report_final.pdf",
+      "sha256": "d7e2008a50b00f6064469f464958e9f71c56ef20fa55c229f29f7f5779675548",
+      "chunks": 94,
+      "bytes": 998282,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "d86d00ac349f3045": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\ofsted-inspection-and-research__Ofsted_Annual_Report_23-24_WEB.pdf",
+      "source_name": "ofsted-inspection-and-research__Ofsted_Annual_Report_23-24_WEB.pdf",
+      "sha256": "d86d00ac349f30452bd84d284be21333b21e92a1c4b97fdd24b11e6468b2d7b3",
+      "chunks": 54,
+      "bytes": 1078940,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "da1ea678bf7e5469": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-workforce__Children_s_homes_workforce_census__-_stage_1_findings.pdf",
+      "source_name": "data-and-workforce__Children_s_homes_workforce_census__-_stage_1_findings.pdf",
+      "sha256": "da1ea678bf7e54694f18abae0844550b3f4349e957a94b12fd57a75a39feeaa8",
+      "chunks": 75,
+      "bytes": 1324710,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "dae0e7779c5ba529": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-coram-voice__Family-Harmony-Evaluation-report.pdf",
+      "source_name": "coram-and-coram-voice__Family-Harmony-Evaluation-report.pdf",
+      "sha256": "dae0e7779c5ba529c41c2c31d6b2f27f704c31484cdc7f3956a498a4c73cd760",
+      "chunks": 76,
+      "bytes": 9159716,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "dae843708664b1f6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\children-in-care-evidence-to-parliament__Survey-Findings-for-Education-Select-Committee.pdf",
+      "source_name": "children-in-care-evidence-to-parliament__Survey-Findings-for-Education-Select-Committee.pdf",
+      "sha256": "dae843708664b1f603e4eecf6e65ddf60869b3812387463545d86739bef54fff",
+      "chunks": 15,
+      "bytes": 912624,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "db7520cf8bf4f10b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__TSD_standards_guidance_for_supervisors.pdf",
+      "source_name": "central-government-publications__TSD_standards_guidance_for_supervisors.pdf",
+      "sha256": "db7520cf8bf4f10b1c22ea3866d734c9d839796ae933780f4f13e0abde94d317",
+      "chunks": 16,
+      "bytes": 340304,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "dcac9a4027c28801": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__promoting_health_of_looked_after_children.pdf",
+      "source_name": "central-government-publications__promoting_health_of_looked_after_children.pdf",
+      "sha256": "dcac9a4027c28801de5bf2a020f34eced541d609794a3dc164c92e700db1ecf0",
+      "chunks": 123,
+      "bytes": 894768,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "dd0a5414a7c076c4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__Nuffield-FJO_Special-guardianship_international-kinship-care_final.pdf",
+      "source_name": "nuffield-fjo-family-justice__Nuffield-FJO_Special-guardianship_international-kinship-care_final.pdf",
+      "sha256": "dd0a5414a7c076c453159830e49800584aae3014ab6b12b741575f445a9012cc",
+      "chunks": 54,
+      "bytes": 495070,
+      "last_built": "2025-10-23T20:15:51Z"
+    },
+    "dd93096a7f0ceed9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\cvaa-adoption-and-permanency__CVAA-The-value-of-adoption-report-final-Nov-22.pdf",
+      "source_name": "cvaa-adoption-and-permanency__CVAA-The-value-of-adoption-report-final-Nov-22.pdf",
+      "sha256": "dd93096a7f0ceed9f355235a7260f1118fe2c114ffe87ecb7d3e41af5592b3ce",
+      "chunks": 174,
+      "bytes": 7162641,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "de03390961f3a50a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__healthy-futures-supportin-9cf.pdf",
+      "source_name": "lga-sector-policy-and-finance__healthy-futures-supportin-9cf.pdf",
+      "sha256": "de03390961f3a50ab82b36d51ac244d6282d5833b07f847e476ed14da33230e1",
+      "chunks": 32,
+      "bytes": 234998,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "df0f93760ba1a981": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-coram-voice__Social-worker-catalogue-2025_print.pdf",
+      "source_name": "coram-and-coram-voice__Social-worker-catalogue-2025_print.pdf",
+      "sha256": "df0f93760ba1a981533033e31916885586b9be90c0e79325e0ac184ee63cd9de",
+      "chunks": 39,
+      "bytes": 9692785,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "e03ca11461b46173": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\finance-funding-and-market-shaping__Autumn Budget Survey of Chief Executives - Report - Final - 20241021.pdf",
+      "source_name": "finance-funding-and-market-shaping__Autumn Budget Survey of Chief Executives - Report - Final - 20241021.pdf",
+      "sha256": "e03ca11461b46173b3e2ccdff4d9c94983e52fe227bc9842d209025374c5b146",
+      "chunks": 16,
+      "bytes": 513252,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "e18bb3bde6341f74": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\safeguarding-reviews-and-learning__Race_Racism_Safeguarding_March_2025.pdf",
+      "source_name": "safeguarding-reviews-and-learning__Race_Racism_Safeguarding_March_2025.pdf",
+      "sha256": "e18bb3bde6341f745601aaf073a54aa79ec7a21b7ffd3f8068f6e465fde303f4",
+      "chunks": 100,
+      "bytes": 791747,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "e2c1bfabf3a7a577": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\foundations-and-what-works-csc-evidence-and-evalua__Care-leavers-experiences-of-emotional-wellbeing-support-while-leaving-care.pdf",
+      "source_name": "foundations-and-what-works-csc-evidence-and-evalua__Care-leavers-experiences-of-emotional-wellbeing-support-while-leaving-care.pdf",
+      "sha256": "e2c1bfabf3a7a5775ec48c882bbb562e9e03f3f73d253f062cfe1595f1b967a9",
+      "chunks": 41,
+      "bytes": 477582,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "e312f80c2d60344c": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__adcs-sg-pressures-p3-report-final.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__adcs-sg-pressures-p3-report-final.pdf",
+      "sha256": "e312f80c2d60344c10636fccc3b1ba40fe0f02a9b6352b78fca049d4b1fac1d3",
+      "chunks": 106,
+      "bytes": 2701395,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "e398d8a666dce2e7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__Impact_of_the_Family_Justice_Reforms__Exploring_variation_across_LAs_-_f....pdf",
+      "source_name": "central-government-publications__Impact_of_the_Family_Justice_Reforms__Exploring_variation_across_LAs_-_f....pdf",
+      "sha256": "e398d8a666dce2e7caf18ba271c3ad870e0798e8f677fc9d341f53eb9f92a608",
+      "chunks": 136,
+      "bytes": 1056189,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "e4eba769c9851934": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption__Exploring permanency outcomes - literature review summary.pdf",
+      "source_name": "adoption__Exploring permanency outcomes - literature review summary.pdf",
+      "sha256": "e4eba769c9851934bc8fda9329a7a95ffc1277e54ceec5eeef55e6d9ec3c843e",
+      "chunks": 15,
+      "bytes": 7169114,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "e6d661ee26283506": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\ofsted-inspection-and-research__31795_Ofsted_Annual_Report_and_Accounts_2023-24_-_Accessible.pdf",
+      "source_name": "ofsted-inspection-and-research__31795_Ofsted_Annual_Report_and_Accounts_2023-24_-_Accessible.pdf",
+      "sha256": "e6d661ee26283506bb046a81d5e85fabdf95fbb665a358d0e8083d871976cc05",
+      "chunks": 148,
+      "bytes": 2359250,
+      "last_built": "2025-10-23T20:15:52Z"
+    },
+    "e745312ef00a0610": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__cco-stability-index-2019.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__cco-stability-index-2019.pdf",
+      "sha256": "e745312ef00a06102c09a4b967b4dc11fe49915adc3a000c95fd05beab2b8e8d",
+      "chunks": 39,
+      "bytes": 715344,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "e7c72e17de6bcd60": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__Item 5 - Children’s Social Care formula update.pdf",
+      "source_name": "lga-sector-policy-and-finance__Item 5 - Children’s Social Care formula update.pdf",
+      "sha256": "e7c72e17de6bcd60fc1c16c368221637394ecdcca0169d211aabf5efbe0b77e4",
+      "chunks": 12,
+      "bytes": 570135,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "e879d78d6f26cc4f": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\child-sexual-abuse-and-exploitation__Tackling_Child_Sexual_Abuse_-_Progress_Update_-_FINAL_FOR_PUBLICATION.pdf",
+      "source_name": "child-sexual-abuse-and-exploitation__Tackling_Child_Sexual_Abuse_-_Progress_Update_-_FINAL_FOR_PUBLICATION.pdf",
+      "sha256": "e879d78d6f26cc4fcf397f52796c2f256f18ee546c045caf073ac93853e1d92d",
+      "chunks": 39,
+      "bytes": 301100,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "e941a7d3cf013e42": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\social-worker-retention-and-workforce__the-social-work-workforce.pdf",
+      "source_name": "social-worker-retention-and-workforce__the-social-work-workforce.pdf",
+      "sha256": "e941a7d3cf013e4219690a1f30383c8f315823c4747bd39d584227dc9972008f",
+      "chunks": 58,
+      "bytes": 1968236,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "e97e2e5c1356c0f9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\coram-and-leaving-care-participation-and-outcomes__4.-In-Their-Own-Words-Safe-and-Affordable-Homes-Report-Final.pdf",
+      "source_name": "coram-and-leaving-care-participation-and-outcomes__4.-In-Their-Own-Words-Safe-and-Affordable-Homes-Report-Final.pdf",
+      "sha256": "e97e2e5c1356c0f9135e042c12b6e7a6eab397b7457615a619387cf76c7d1ee7",
+      "chunks": 14,
+      "bytes": 1146341,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "eaaa36507654e5c7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__iro_statutory_guidance_iros_and_las_march_2010_tagged.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__iro_statutory_guidance_iros_and_las_march_2010_tagged.pdf",
+      "sha256": "eaaa36507654e5c7c426ddc27302181bbb275add918e24bccac2bc154bcc2edc",
+      "chunks": 94,
+      "bytes": 576144,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "ebdfbeef4b29b3d8": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__NuffieldFJO-Special-Guardianship-190731-WEB-final.pdf",
+      "source_name": "nuffield-fjo-family-justice__NuffieldFJO-Special-Guardianship-190731-WEB-final.pdf",
+      "sha256": "ebdfbeef4b29b3d8347d4c0d55311997e2e0876599227644dd7dce418f1729b9",
+      "chunks": 29,
+      "bytes": 265479,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "ec833171c1bd380a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adoption-and-fostering-practice__practice-guide-planning-contact-with-brothers-and-sisters-web.pdf",
+      "source_name": "adoption-and-fostering-practice__practice-guide-planning-contact-with-brothers-and-sisters-web.pdf",
+      "sha256": "ec833171c1bd380ac386c60483817f0fb95c5b0f77a81153d147de1a024e9e17",
+      "chunks": 7,
+      "bytes": 153414,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "ecb27916d2316bb3": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\family-justice-and-care-proceedings__N_spot_learning_23-01-25v2.pdf",
+      "source_name": "family-justice-and-care-proceedings__N_spot_learning_23-01-25v2.pdf",
+      "sha256": "ecb27916d2316bb3788437869cbd6a0791df103bbde4ceb62e7e34ca840b2c66",
+      "chunks": 23,
+      "bytes": 697551,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "edede444ce4a7f7b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-statistics-safeguarding__Crime in England and Wales year ending March 2025.pdf",
+      "source_name": "data-and-statistics-safeguarding__Crime in England and Wales year ending March 2025.pdf",
+      "sha256": "edede444ce4a7f7bcd92ff2ea6145c39431474df23d42a5549a42f18de43bfb9",
+      "chunks": 31,
+      "bytes": 903871,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "ee1cb6df1468bdf0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\serious-case-reviews-and-national-reviews__SCR-Daniel-Pelka-2013.pdf",
+      "source_name": "serious-case-reviews-and-national-reviews__SCR-Daniel-Pelka-2013.pdf",
+      "sha256": "ee1cb6df1468bdf09800060192cb57d1c090c0196e0d449f20031ddc87215cf5",
+      "chunks": 160,
+      "bytes": 1420986,
+      "last_built": "2025-10-23T20:15:53Z"
+    },
+    "efe9be10b53413e9": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\care-leavers-and-transitions__evidence-synthesis-protocol-interventions-to-support-reunification-and-associated-outcomes.pdf",
+      "source_name": "care-leavers-and-transitions__evidence-synthesis-protocol-interventions-to-support-reunification-and-associated-outcomes.pdf",
+      "sha256": "efe9be10b53413e9f7a4a890c1a8b038430cdc9c6daf0524fbab29bd15600a25",
+      "chunks": 50,
+      "bytes": 583940,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f170f977008969eb": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\disabled-children-law-and-guidance__cdc_pf6_elig_crit_final.pdf",
+      "source_name": "disabled-children-law-and-guidance__cdc_pf6_elig_crit_final.pdf",
+      "sha256": "f170f977008969ebfb5914cca9f8620534e2d0a105f170355a0ed15ef682fab2",
+      "chunks": 7,
+      "bytes": 330979,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f23b76c22cabf179": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\early-help-mental-health__action-before-crisis-booklet.pdf",
+      "source_name": "early-help-mental-health__action-before-crisis-booklet.pdf",
+      "sha256": "f23b76c22cabf1795a95f01f18965b2a9fc84771684405287076b80aedc972d7",
+      "chunks": 18,
+      "bytes": 5468110,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f3ee41d720f0a48a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nuffield-fjo-family-justice__Kinship-care-presentation-C-Lynch.pdf",
+      "source_name": "nuffield-fjo-family-justice__Kinship-care-presentation-C-Lynch.pdf",
+      "sha256": "f3ee41d720f0a48a07dd22cb6102598f5f11c48ed73779580a30af6e7c0eb5c7",
+      "chunks": 2,
+      "bytes": 1331639,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f4abe1e5a0c92305": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\central-government-publications__Keeping_Children_Safe__Helping_Families_Thrive_.pdf",
+      "source_name": "central-government-publications__Keeping_Children_Safe__Helping_Families_Thrive_.pdf",
+      "sha256": "f4abe1e5a0c92305ebc8e488a56b012ef78117f326f457a62c9a85b610f05cee",
+      "chunks": 83,
+      "bytes": 859295,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f500e2c6510c65cb": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\social-worker-retention-and-workforce__Overview and Scrutiny Task Group Report.pdf",
+      "source_name": "social-worker-retention-and-workforce__Overview and Scrutiny Task Group Report.pdf",
+      "sha256": "f500e2c6510c65cb272edba423fdddb518e9ddb503eca9326877bc8e0176f712",
+      "chunks": 19,
+      "bytes": 349539,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f56c05f3f02f107a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Kinship_Care_-_statutory_guidance_for_local_authorities__October_2024.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Kinship_Care_-_statutory_guidance_for_local_authorities__October_2024.pdf",
+      "sha256": "f56c05f3f02f107a2c80f51ba2a72045d13ffaae928aa34956a8b93ef2271116",
+      "chunks": 78,
+      "bytes": 370088,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f622042055eb4f3e": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\serious-case-reviews-and-national-reviews__The_myth_of_invisible_men_safeguarding_children_under_1_from_non-accidental_injury_caused_by_male_carers.pdf",
+      "source_name": "serious-case-reviews-and-national-reviews__The_myth_of_invisible_men_safeguarding_children_under_1_from_non-accidental_injury_caused_by_male_carers.pdf",
+      "sha256": "f622042055eb4f3e911e1d8e37fd8b2aea81abc10b10a6e3b35e607a159b44e4",
+      "chunks": 88,
+      "bytes": 873421,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f656ca3fb15b34a6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase_8_Executive_Summary_FINAL_Dec_2022.pdf",
+      "source_name": "adcs-safeguarding-pressures-and-sector-positions__ADCS_Safeguarding_Pressures_Phase_8_Executive_Summary_FINAL_Dec_2022.pdf",
+      "sha256": "f656ca3fb15b34a6e0588e688dfc1c26042ee1d0ce1338bd325c18e2461ce305",
+      "chunks": 13,
+      "bytes": 2160379,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f7964694cd567d44": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Evaluating-innovation-in-childrens-social-care-Summary.pdf",
+      "source_name": "nao-audits-and-evaluations__Evaluating-innovation-in-childrens-social-care-Summary.pdf",
+      "sha256": "f7964694cd567d442fa924ebf13ebc2356c14757ace2dea958f78a4db9520b0c",
+      "chunks": 14,
+      "bytes": 154927,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f7cad448fd4ee7f8": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-commissioner-research-and-reporting__cc-siblings-in-care.pdf",
+      "source_name": "childrens-commissioner-research-and-reporting__cc-siblings-in-care.pdf",
+      "sha256": "f7cad448fd4ee7f8c13f2a17b24e8b0923de716097c38f412150d1de9687f243",
+      "chunks": 46,
+      "bytes": 2016031,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "f7df43216d9212e4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\statutory-guidance-and-frameworks-dfe-and-cross-go__Withdrawn-statutory_guidance-delegation_of_authority.pdf",
+      "source_name": "statutory-guidance-and-frameworks-dfe-and-cross-go__Withdrawn-statutory_guidance-delegation_of_authority.pdf",
+      "sha256": "f7df43216d9212e4dde2f16d056828bef871932eb6c13b2801f3aaeda0712a1d",
+      "chunks": 13,
+      "bytes": 773731,
+      "last_built": "2025-10-23T20:15:54Z"
+    },
+    "fb370aea4687fb7f": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\safeguarding-reviews-and-learning__Child_Safeguarding_Practice_Review_Panel_Learning_Support_and_Capability_Project.pdf",
+      "source_name": "safeguarding-reviews-and-learning__Child_Safeguarding_Practice_Review_Panel_Learning_Support_and_Capability_Project.pdf",
+      "sha256": "fb370aea4687fb7f759930edaf030944516330c1243d847ec173c08400081acb",
+      "chunks": 142,
+      "bytes": 1849244,
+      "last_built": "2025-10-23T20:15:55Z"
+    },
+    "fb56fbb6cdc4c0cb": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\lga-sector-policy-and-finance__Design in Social Care - Birmingham - final report WEB.pdf",
+      "source_name": "lga-sector-policy-and-finance__Design in Social Care - Birmingham - final report WEB.pdf",
+      "sha256": "fb56fbb6cdc4c0cb1a9f63229f4422f2f1080f20f54de59e3fe13ecf8c6458b3",
+      "chunks": 3,
+      "bytes": 232852,
+      "last_built": "2025-10-23T20:15:55Z"
+    },
+    "fbc407c8b75615c0": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Children-in-need-of-help-or-protection-Summary.pdf",
+      "source_name": "nao-audits-and-evaluations__Children-in-need-of-help-or-protection-Summary.pdf",
+      "sha256": "fbc407c8b75615c0f21de454cde9f76128d3a16a55780058b94d17e21a0ab0ff",
+      "chunks": 11,
+      "bytes": 94319,
+      "last_built": "2025-10-23T20:15:55Z"
+    },
+    "fbe9114387e38576": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\data-and-workforce__Improving-lives-–-the-power-of-better-data-in-the-family-justice-system-V3.3-accessible.pdf",
+      "source_name": "data-and-workforce__Improving-lives-–-the-power-of-better-data-in-the-family-justice-system-V3.3-accessible.pdf",
+      "sha256": "fbe9114387e3857613c3a31e58b77150b847b9237d4d9f5850bd8c13b3c49bb0",
+      "chunks": 35,
+      "bytes": 390598,
+      "last_built": "2025-10-23T20:15:55Z"
+    },
+    "ff0775673dec0f4d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\nao-audits-and-evaluations__Managing-childrens-residential-care.pdf",
+      "source_name": "nao-audits-and-evaluations__Managing-childrens-residential-care.pdf",
+      "sha256": "ff0775673dec0f4d00753ebc48c0d81b5a25a293d8d5ba6e4d5c99053b2c6fd5",
+      "chunks": 69,
+      "bytes": 845289,
+      "last_built": "2025-10-23T20:15:55Z"
+    },
+    "ff471e6a9a7709e1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\kinship-care__evidence-annex-kinship-practice-guide.pdf",
+      "source_name": "kinship-care__evidence-annex-kinship-practice-guide.pdf",
+      "sha256": "ff471e6a9a7709e1a7fa9a8822e6b9b582bbc81cd6f55c1d360be255360aa916",
+      "chunks": 21,
+      "bytes": 513386,
+      "last_built": "2025-10-23T20:15:55Z"
+    },
+    "ff6298f316cff8f7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\childrens-voice-wellbeing__Good Childhood Report-Main-Report.pdf",
+      "source_name": "childrens-voice-wellbeing__Good Childhood Report-Main-Report.pdf",
+      "sha256": "ff6298f316cff8f790cd89a82e745850c34d03526a006f7ccc75257c60d90501",
+      "chunks": 115,
+      "bytes": 25779848,
+      "last_built": "2025-10-23T20:15:55Z"
+    },
+    "e49a9cb3a741ca62": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\building-bridges-how-integration-between-childrens-social-care-childrens-mental-health-servi-ua876d7.pdf",
+      "source_name": "building-bridges-how-integration-between-childrens-social-care-childrens-mental-health-servi-ua876d7.pdf",
+      "sha256": "e49a9cb3a741ca626fc5f8a1ceb933298c1bd6a08f78345443d7abd2a98f7c79",
+      "chunks": 3,
+      "bytes": 1027352,
+      "last_built": "2025-10-23T21:46:01Z"
+    },
+    "ee14a6a36277aad4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\uk-social-work-practice-in-safeguarding-disabled-children-young-people-post-reviewer-wwcsc-a-uf40743.pdf",
+      "source_name": "uk-social-work-practice-in-safeguarding-disabled-children-young-people-post-reviewer-wwcsc-a-uf40743.pdf",
+      "sha256": "ee14a6a36277aad4dc864f7bfd11a736910eaceebc08a69b062239e5e9c3535a",
+      "chunks": 359,
+      "bytes": 9937678,
+      "last_built": "2025-10-23T21:46:01Z"
+    },
+    "ff0fa29ec0b8fafb": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\what-is-relationship-between-being-in-care-educational-outcomes-children-an-international-sy-u21895b.pdf",
+      "source_name": "what-is-relationship-between-being-in-care-educational-outcomes-children-an-international-sy-u21895b.pdf",
+      "sha256": "ff0fa29ec0b8fafb5229db44bec0d38edd0516527f2974f3337fce435fc2fddf",
+      "chunks": 56,
+      "bytes": 980389,
+      "last_built": "2025-10-23T21:46:01Z"
+    },
+    "014a54a85f24e073": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\ASG-Q1-2025-2026-Headline-Measures.pdf",
+      "source_name": "ASG-Q1-2025-2026-Headline-Measures.pdf",
+      "sha256": "014a54a85f24e073b74085948b6945582f14514dd7c1e54faa8f4f314a8e76a5",
+      "chunks": 8,
+      "bytes": 1204397,
+      "last_built": "2025-12-02T11:34:12Z"
+    },
+    "0aad36b2f76548e1": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\2025_CSWW_COLLECT_Report_Specifications_v1.0.pdf",
+      "source_name": "2025_CSWW_COLLECT_Report_Specifications_v1.0.pdf",
+      "sha256": "0aad36b2f76548e1e549bb42f9fbe090d234d14b8c2a8356560f07b23a9db516",
+      "chunks": 19,
+      "bytes": 1561836,
+      "last_built": "2025-12-02T11:34:12Z"
+    },
+    "1567d82685c70aa8": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Children_in_need_census_2026_to_2027_guide_V1.pdf",
+      "source_name": "Children_in_need_census_2026_to_2027_guide_V1.pdf",
+      "sha256": "1567d82685c70aa8eb230641cffe6f5e70b94144ddee0b2755a59ce7e940d308",
+      "chunks": 91,
+      "bytes": 1047051,
+      "last_built": "2025-12-02T11:34:13Z"
+    },
+    "2e5e74c0b4fcd36c": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\CLA_SSDA903_2026-27_Technical_specification_Version_1_0.pdf",
+      "source_name": "CLA_SSDA903_2026-27_Technical_specification_Version_1_0.pdf",
+      "sha256": "2e5e74c0b4fcd36ca2543294576ed343ebcff89b97661d1229b06d0dded1c00b",
+      "chunks": 31,
+      "bytes": 1120008,
+      "last_built": "2025-12-02T11:34:13Z"
+    },
+    "36b4f982a36ebc23": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\CLA_SSDA903_2026-27_Guide_Version_1_0.pdf",
+      "source_name": "CLA_SSDA903_2026-27_Guide_Version_1_0.pdf",
+      "sha256": "36b4f982a36ebc236f553d717080851ececa9294672642bb1fff3055f3c3777c",
+      "chunks": 181,
+      "bytes": 1385781,
+      "last_built": "2025-12-02T11:34:13Z"
+    },
+    "39a747e8123591a7": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Children_in_need_census_2025_to_2026_collect_report_specifications_v1.0.pdf",
+      "source_name": "Children_in_need_census_2025_to_2026_collect_report_specifications_v1.0.pdf",
+      "sha256": "39a747e8123591a7a1e4784253032180ae3ade305b05f96be0217372532135ec",
+      "chunks": 38,
+      "bytes": 377826,
+      "last_built": "2025-12-02T11:34:13Z"
+    },
+    "489d9dd1f5660f1b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Recommendation_annexes_-accessible.pdf",
+      "source_name": "Recommendation_annexes_-accessible.pdf",
+      "sha256": "489d9dd1f5660f1bc63b349a94e480f14a3e00c7676ba252f18c1986982e7c1c",
+      "chunks": 332,
+      "bytes": 2282877,
+      "last_built": "2025-12-02T11:34:14Z"
+    },
+    "56383a146339f6b6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\2026_to_2027_CIN_Census_Specification_v1.pdf",
+      "source_name": "2026_to_2027_CIN_Census_Specification_v1.pdf",
+      "sha256": "56383a146339f6b6f3b1a1e184db05977b89975008d3bbdf072b1691004f4d37",
+      "chunks": 30,
+      "bytes": 705709,
+      "last_built": "2025-12-02T11:34:14Z"
+    },
+    "7e17246202a4fbf2": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Children_looked-after_return_2025_to_2026_-_guide.pdf",
+      "source_name": "Children_looked-after_return_2025_to_2026_-_guide.pdf",
+      "sha256": "7e17246202a4fbf267bd7b3f208cf59a852b937bef5bc8fc918fdf620b849755",
+      "chunks": 180,
+      "bytes": 943729,
+      "last_built": "2025-12-02T11:34:14Z"
+    },
+    "7e8ce3cd49860c5b": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\661139_7fb419844cef4a148a6463f12705b7de.pdf",
+      "source_name": "661139_7fb419844cef4a148a6463f12705b7de.pdf",
+      "sha256": "7e8ce3cd49860c5bb2db074896340e8dfff3e682d44600e3fc391865c11d9c89",
+      "chunks": 62,
+      "bytes": 2218663,
+      "last_built": "2025-12-02T11:34:14Z"
+    },
+    "8639fe7f418acc9a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Children_in_need_census_2025_to_2026_guide.pdf",
+      "source_name": "Children_in_need_census_2025_to_2026_guide.pdf",
+      "sha256": "8639fe7f418acc9a8cdf67b81396379f147b534348d1e7e2a992e4cd3bf5ce0a",
+      "chunks": 84,
+      "bytes": 758145,
+      "last_built": "2025-12-02T11:34:15Z"
+    },
+    "89ea60eff269941a": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Children_s_social_work_workforce_census__year_ending_30_September_2025.pdf",
+      "source_name": "Children_s_social_work_workforce_census__year_ending_30_September_2025.pdf",
+      "sha256": "89ea60eff269941ae1dd832ec5722b83339e6d1c1512ef63d80d5485f03999dc",
+      "chunks": 32,
+      "bytes": 505560,
+      "last_built": "2025-12-02T11:34:15Z"
+    },
+    "8f05d6fa21cad6ba": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Ending-Racial-Disparity-in-Adoption.pdf",
+      "source_name": "Ending-Racial-Disparity-in-Adoption.pdf",
+      "sha256": "8f05d6fa21cad6bab9e7141ba9bb576a78767242a4be3ed67e3d0efe2d36a3da",
+      "chunks": 10,
+      "bytes": 2733249,
+      "last_built": "2025-12-02T11:34:15Z"
+    },
+    "bd408a1428fc40e6": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\ASG-Q4-2024-2025-Headline-Measures.pdf",
+      "source_name": "ASG-Q4-2024-2025-Headline-Measures.pdf",
+      "sha256": "bd408a1428fc40e6780000965bf8f341e8f9fe428989140196d8fb6f65e01259",
+      "chunks": 11,
+      "bytes": 1249164,
+      "last_built": "2025-12-02T11:34:15Z"
+    },
+    "bf213539576d785d": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\2025_to_2026_CIN_Census_Specification_v1-0.pdf",
+      "source_name": "2025_to_2026_CIN_Census_Specification_v1-0.pdf",
+      "sha256": "bf213539576d785dc9eb370d7698e72750397fe9288f26b804e7ea6f9ec68660",
+      "chunks": 25,
+      "bytes": 462077,
+      "last_built": "2025-12-02T11:34:15Z"
+    },
+    "c195fa2c566e22ff": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Collect_guide_for_LAs_July-2019.pdf",
+      "source_name": "Collect_guide_for_LAs_July-2019.pdf",
+      "sha256": "c195fa2c566e22ff34279bf8f078f37786355d8fc23297e40d8bd72fa20468d1",
+      "chunks": 18,
+      "bytes": 3154773,
+      "last_built": "2025-12-02T11:34:15Z"
+    },
+    "db76037a3ef8a4eb": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\The_families_first_partnership_programme_guide.pdf",
+      "source_name": "The_families_first_partnership_programme_guide.pdf",
+      "sha256": "db76037a3ef8a4eb0a3b52c7e62e43e83ac7b2d0734da6557f6804e48b7795f3",
+      "chunks": 76,
+      "bytes": 766152,
+      "last_built": "2025-12-02T11:34:15Z"
+    },
+    "e2843353f08ff0b5": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Children_looked_after_return_2023_to_2024_technical_specifications_version_1.0.pdf",
+      "source_name": "Children_looked_after_return_2023_to_2024_technical_specifications_version_1.0.pdf",
+      "sha256": "e2843353f08ff0b5321759de320a9b9a64eed21891051c23f19d64067a5eeaaf",
+      "chunks": 31,
+      "bytes": 946570,
+      "last_built": "2025-12-02T11:34:15Z"
+    },
+    "f5dad5afaa427bc4": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\COLLECT_Matching_and_reconciliation_guidance_for_local_authorities_2023.pdf",
+      "source_name": "COLLECT_Matching_and_reconciliation_guidance_for_local_authorities_2023.pdf",
+      "sha256": "f5dad5afaa427bc49eb6950a63718e0132ef9a0766930b5f30ecbc32be999f02",
+      "chunks": 12,
+      "bytes": 1938958,
+      "last_built": "2025-12-02T11:34:16Z"
+    },
+    "feb34435eba9c185": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\Background_information_for_Working_Together_to_Safeguard_Children_and_the_Children_s_Social_Care_National_Frameworks.pdf",
+      "source_name": "Background_information_for_Working_Together_to_Safeguard_Children_and_the_Children_s_Social_Care_National_Frameworks.pdf",
+      "sha256": "feb34435eba9c185c4b607ed8f193fe72efc823ad79166408e1fa7be62a8b2fd",
+      "chunks": 7,
+      "bytes": 208027,
+      "last_built": "2025-12-02T11:34:16Z"
+    },
+    "ff8dd99902416c96": {
+      "path": "Childrens_social_care_published_data_scrape\\data_published\\ASGSF_Complaint_Procedure.pdf",
+      "source_name": "ASGSF_Complaint_Procedure.pdf",
+      "sha256": "ff8dd99902416c96821697db12086a56ac1d5d3913ec094c7de5398ccb97f275",
+      "chunks": 5,
+      "bytes": 258031,
+      "last_built": "2025-12-02T11:34:16Z"
     }
   }
 }

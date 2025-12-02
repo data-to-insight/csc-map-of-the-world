@@ -233,6 +233,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../explore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explore
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network_fullscreen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network, full screen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../network/" class="md-nav__link">
         
   
@@ -413,6 +467,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2025-12-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-12-02
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#2025-08-06-review-the-savvi-model-concepts-agin" class="md-nav__link">
@@ -642,6 +707,21 @@
 
 
 <h1 id="development-log-mapoftheworld">Development Log — MapOfTheWorld</h1>
+<h2 id="2025-12-02">2025-12-02</h2>
+<ul>
+<li>Quite a gap since last working on this... although tbh lots of entries missing since last update here. </li>
+<li>Fix a number of minor problems that i left hanging last time, namely:</li>
+<li>explorer search was not doing anything, </li>
+<li>explorer search kept showing the full results list even after selecting one, wasnt ideal. Now the rest disappear   </li>
+<li>explorer info panel, this was only showing minimum data, not the fuller data from node_Details.json   </li>
+<li>explorer was duplicating edges when multi-press add 1 hop... (we needed to store bi-directional edge indexes)  </li>
+<li>Added 2 hops option and made buttons more visible instead of just text (bit more css)  </li>
+<li>Alison joins us and re-worked the intro page text, and nice infographic  </li>
+<li>did some work on data_source_optimisation.md content  </li>
+<li>Finding it really difficult to recall all the needed back-end processing and the process flow for all this now... maybe need to both tone down some of the docs, or just do my own idiots guide to refresh/remind myself how to work this. In particular
+Need to re-check how to externally process and which files come up(search_index.json, state.json, + other /csc_artifacts or into docs/data/ ? - when i ran the external notebook.... it only updated some files and not the large parquet/fais files? )</li>
+<li>Timed the graph load on network_fullscreen.md, so i could add 'it's gonna take Xminutes to load, grab a drink :)' (was ~50secs in off-peak time)</li>
+</ul>
 <h2 id="2025-08-06-review-the-savvi-model-concepts-agin">2025-08-06 - Review the SAVVI model concepts agin</h2>
 <ul>
 <li>Landed back on the SAVVI model, wondering if that was perhaps a better fit for htis project. Decided against. </li>
@@ -816,8 +896,6 @@ This was a significant architectural shift, but it unlocked better search integr
         <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-      
-        <script src="../js/render_graph.js"></script>
       
         <script src="../js/search_tool.js"></script>
       

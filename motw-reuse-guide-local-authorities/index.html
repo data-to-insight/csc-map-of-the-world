@@ -21,7 +21,7 @@
     
     
       
-        <title>Reusing the “Map of the World” corpus locally - CSC Map of the World</title>
+        <title>Reusing -Map of the World- corpus locally - CSC Map of the World</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#reusing-the-map-of-the-world-corpus-locally" class="md-skip">
+        <a href="#reusing-map-of-the-world-corpus-locally" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Reusing the “Map of the World” corpus locally
+              Reusing -Map of the World- corpus locally
             
           </span>
         </div>
@@ -214,6 +214,60 @@
     
   
     Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explore
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network_fullscreen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network, full screen
   
 
     
@@ -460,10 +514,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-fresh-build" class="md-nav__link">
+  <a href="#1fresh-build" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1) Fresh build
+        1.Fresh build
       
     </span>
   </a>
@@ -471,10 +525,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-append-your-new-files" class="md-nav__link">
+  <a href="#2append-your-new-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2) Append your new files
+        2.Append your new files
       
     </span>
   </a>
@@ -547,7 +601,7 @@
 
 
 
-<h1 id="reusing-the-map-of-the-world-corpus-locally">Reusing the “Map of the World” corpus locally</h1>
+<h1 id="reusing-map-of-the-world-corpus-locally">Reusing -Map of the World- corpus locally</h1>
 <p><em>A short guide for local authority colleagues</em></p>
 <p>This note explains how you can start from the shared corpus and <strong>add your own documents</strong> without rebuilding everything. It also lists the files the notebook creates and where they live.</p>
 <hr />
@@ -589,13 +643,13 @@
 <p>We identify each document by the first 16 hex characters of its SHA-256 hash. This keeps the build <strong>incremental</strong> and avoids duplicates.</p>
 <hr />
 <h2 id="two-main-ways-to-run">Two main ways to run</h2>
-<h3 id="1-fresh-build">1) Fresh build</h3>
+<h3 id="1fresh-build">1.Fresh build</h3>
 <p>Use when you are starting from scratch or want a clean rebuild.</p>
 <ul>
 <li>The notebook scans <code>data_published/</code>, extracts text, chunks it, embeds it, writes per-document Parquet, and builds a fresh FAISS index.  </li>
 <li>It writes a new <code>state.json</code> so future runs are incremental.</li>
 </ul>
-<h3 id="2-append-your-new-files">2) Append your new files</h3>
+<h3 id="2append-your-new-files">2.Append your new files</h3>
 <p>Use when you are starting from the shared pack and want to add your own documents.</p>
 <ul>
 <li>Put your documents into <code>data_published/</code>.  </li>
@@ -694,8 +748,6 @@ Done.
         <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-      
-        <script src="../js/render_graph.js"></script>
       
         <script src="../js/search_tool.js"></script>
       

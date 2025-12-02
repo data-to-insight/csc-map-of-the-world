@@ -233,6 +233,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../explore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Explore
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network_fullscreen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network, full screen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../network/" class="md-nav__link">
         
   
@@ -448,15 +502,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-tiny-recall-loss-means-plain-english-first" class="md-nav__link">
+  <a href="#what-tiny-recall-loss-means-plain-english" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What “tiny recall loss” means (plain English first)
+        What “tiny recall loss” means (plain English)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What “tiny recall loss” means (plain English first)">
+    <nav class="md-nav" aria-label="What “tiny recall loss” means (plain English)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -476,10 +530,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-pipeline-what-we-do-and-why" class="md-nav__link">
+  <a href="#the-pipeline-what-and-why" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The pipeline (what we do and why)
+        The pipeline (what and why)
       
     </span>
   </a>
@@ -498,10 +552,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#realworld-impact-for-engineers" class="md-nav__link">
+  <a href="#realworld-impact-for-devsengineersplatform" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Real‑world impact for engineers
+        Real‑world impact for devs/engineers/platform
       
     </span>
   </a>
@@ -537,10 +591,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#keyword-index-whats-in-the-tiny-json" class="md-nav__link">
+  <a href="#keyword-index-whats-in-tiny-json" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Keyword index (what’s in the tiny JSON)
+        Keyword index (what’s in tiny JSON)
       
     </span>
   </a>
@@ -573,7 +627,7 @@
   <a href="#frequently-asked-but-will-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Frequently asked “but will it…?”
+        Frequently asked "but will it…?"
       
     </span>
   </a>
@@ -623,13 +677,13 @@
 <p><strong>From PDFs to compact, fast, portable indexes</strong></p>
 <hr />
 <h2 id="why-this-matters-for-childrens-social-care-data">Why this matters for children’s social care data</h2>
-<p>Children’s social care information is <strong>extensive and often spread very wide</strong> across government and partner websites, (long)PDFs, and research portals. Our approach (in-part)focuses on making that material <strong>accessible and searchable</strong> without moving heavy files around or duplicating storage.</p>
+<p>Children’s social care information is <strong>extensive and often spread very wide</strong> across government and partner websites, (long)PDFs, and research portals. Our approach focuses(in-part) on making that material <strong>accessible and searchable</strong> without moving heavy files around or duplicating storage.</p>
 <ul>
-<li><strong>Fast, lightweight search:</strong> we extract text once and publish a very small index, so people can jump straight to <strong>relevant paragraphs</strong> instead of paging through 120-page PDFs.</li>
-<li><strong>Clarity and provenance:</strong> chunk-level search surfaces the <strong>exact clauses</strong> (for example thresholds, Section 47, kinship care) with links back to the authoritative source and licence.</li>
-<li><strong>Low overhead, high resilience:</strong> compact Parquet/FAISS artefacts are inexpensive to store (for example in R2), simple to mirror, and easy to reuse locally by partners.</li>
-<li><strong>Keeps pace with change:</strong> incremental builds detect updates and only reprocess what changed, so the map stays current as guidance evolves.</li>
-<li><strong>Privacy by design:</strong> data minimisation (no PDFs in the site), licensing metadata, and explicit source tracking align with safeguarding and governance expectations.</li>
+<li><strong>Fast, lightweight search:</strong> we extract text once and create a minimised search index (no PDFs, just raw optimised data)</li>
+<li><strong>Clarity and provenance:</strong> chunk-level search surfaces the <strong>exact clauses</strong> (e.g. thresholds, Section 47, kinship care) with links back to the authoritative source and licence</li>
+<li><strong>Low overhead, high resilience:</strong> compact Parquet/FAISS artefacts are inexpensive to store (e.g. in R2), simple to mirror, and easy to reuse locally by LAs/sector stakeholders</li>
+<li><strong>Keeps pace with change:</strong> incremental builds pick up updates. Reprocessing just what changed, so the map stays current as guidance, published reports or sector research evolves</li>
+<li><strong>Defined scope boundaries:</strong> Defined licensing metadata, and explicit source boundaries ensure ring-fenced sector scope</li>
 </ul>
 <h2 id="who-this-is-for-and-what-youll-get">Who this is for (and what you’ll get)</h2>
 <ul>
@@ -640,23 +694,23 @@
 <hr />
 <h2 id="why-this-approach-works">Why this approach works</h2>
 <ol>
-<li><strong>We do heavy lifting once, locally.</strong> PDFs are slow to parse and (comparitively)large to store especially at scale; we extract the text and never ship the raw files within this site.</li>
-<li><strong>We chunk long documents.</strong> Searching against topically coherent chunks beats whole‑document matching for retrieval quality.</li>
+<li><strong>We do heavy lifting once, locally.</strong> PDFs are slow to parse and (comparitively)large to store especially at scale; we extract the text and avoid shipping raw files within the platform. </li>
+<li><strong>We chunk long documents.</strong> Searching against topically coherent chunks(minimised to the most relevant) beats whole‑document matching for retrieval quality. </li>
 <li><strong>We use sentence embeddings.</strong> Similarity in embedding space approximates “is this about the same thing?”</li>
-<li><strong>We store vectors compactly.</strong> Quantising embeddings to <strong>uint8</strong> shrinks storage ~4× with negligible impact on retrieval quality for our use case.</li>
-<li><strong>We separate UX search from deep search.</strong> The site ships a tiny keyword index for instant results; power workflows can use the vector index offline or via services.</li>
+<li><strong>We store vectors compactly.</strong> Quantising embeddings to <strong>uint8</strong> shrinks storage ~4× with negligible impact on retrieval quality for our use case(s). - Although we are still defining/asking about the sector's possible use-cases. </li>
+<li><strong>We separate UX search from deep search.</strong> The site ships a tiny keyword index for instant(or at least faster) results; we're also aiming for external LA workflows being able to use the vector index offline.</li>
 </ol>
 <hr />
-<h2 id="what-tiny-recall-loss-means-plain-english-first">What “tiny recall loss” means (plain English first)</h2>
-<p>When we save embeddings as <strong>uint8</strong> instead of 32‑bit floats, we’re using a <strong>lossy</strong> compression scheme. That slightly perturbs the numbers. If someone later rebuilds a vector index <strong>from those saved numbers</strong>, the nearest‑neighbour results may differ <em>a little</em> from a float32 baseline.</p>
+<h2 id="what-tiny-recall-loss-means-plain-english">What “tiny recall loss” means (plain English)</h2>
+<p>When we save embeddings as <strong>uint8</strong> instead of 32‑bit floats, we’re using a <strong>lossy</strong> compression scheme. That slightly perturbs numbers. If someone later rebuilds a vector index <strong>from those saved numbers</strong>, the nearest‑neighbour results may differ <em>a bit</em> from a float32 baseline.</p>
 <p>In practice with normalised sentence embeddings:</p>
 <ul>
-<li>Cosine similarity between original and dequantised vectors is usually <strong>≥ 0.995</strong> (often ~0.999).</li>
-<li>End‑to‑end <strong>recall@10</strong> typically changes by <strong>0-2%</strong> on common text corpora.</li>
-<li>Our live FAISS index is built directly from <strong>float32</strong> in memory, so <strong>website retrieval quality is unaffected</strong> by how we store vectors in Parquet.</li>
+<li>Cosine similarity between original and dequantised vectors is usually <strong>≥ 0.995</strong> (to around ~0.999)</li>
+<li>End‑to‑end <strong>recall@10</strong> typically changes by <strong>0-2%</strong> on common text corpora</li>
+<li>Our live FAISS index is built directly from <strong>float32</strong> in memory, so <strong>website retrieval quality is unaffected</strong> by how we store vectors in Parquet</li>
 </ul>
 <h3 id="the-quick-math">The quick math</h3>
-<p>We L2‑normalise each embedding vector <code>x</code> (so values lie roughly in [-1, 1]) and map each component to 8 bits:</p>
+<p>L2‑normalise each embedding vector <code>x</code> (so values lie roughly in [-1, 1]) and map each component to 8 bits:</p>
 <ul>
 <li><strong>Quantise:</strong> <code>q = round((x + 1) * 127.5)</code> -&gt; <code>q ∈ {0,…,255}</code>  </li>
 <li><strong>Dequantise:</strong> <code>x' = (q / 127.5) - 1.0</code>  </li>
@@ -664,53 +718,56 @@
 </ul>
 <p>Because most information in sentence embeddings is in <strong>direction</strong> (not exact magnitudes), cosine similarity is very stable after this process.</p>
 <hr />
-<h2 id="the-pipeline-what-we-do-and-why">The pipeline (what we do and why)</h2>
+<h2 id="the-pipeline-what-and-why">The pipeline (what and why)</h2>
+<p>This a reference for devs and those managing the platform/repo back-end stuff, probably not relevant to most stakeholders. </p>
 <ol>
-<li><strong>Text extraction</strong> (PyMuPDF fast path; pdfminer fallback)  </li>
-<li>Why: PyMuPDF is 2-5× faster on many PDFs; we skip OCR for now.</li>
+<li><strong>Text extraction</strong> (PyMuPDF; pdfminer fallback)  </li>
+<li>Why: PyMuPDF is 2-5× faster on many PDFs  </li>
 <li><strong>Chunking</strong> (default ~1,800 chars with ~150 overlap)  </li>
-<li>Why: balances context and index size; fewer, richer chunks -&gt; faster builds and smaller artefacts.</li>
+<li>Why: balances context and index size; fewer, richer chunks -&gt; faster builds and smaller artefacts  </li>
 <li><strong>Embedding</strong> (<code>all-MiniLM-L6-v2</code>, 384‑dim, normalised)  </li>
-<li>Why: Small, fast, good quality; normalisation makes cosine = inner product and improves quantisation robustness.</li>
+<li>Why: Small, fast, good quality; normalisation makes cosine = inner product and improves quantisation robustness  </li>
 <li><strong>Storage</strong>  </li>
-<li><strong>Per‑doc Parquet</strong> (text + metadata) -&gt; easy incremental updates.  </li>
-<li><strong>Vectors in Parquet as <code>uint8</code></strong> -&gt; ~4× smaller than float32, plus schema metadata describing de/quantisation.  </li>
-<li><strong>Combined Parquet</strong> (optional) for simple downstream consumption.</li>
+<li><strong>Per‑doc Parquet</strong> (text + metadata) -&gt; easy incremental updates  </li>
+<li><strong>Vectors in Parquet as <code>uint8</code></strong> -&gt; ~4× smaller than float32, plus schema metadata describing de/quantisation  </li>
+<li><strong>Combined Parquet</strong> (optional) for simple downstream use if LAs have a use for  </li>
 <li><strong>Indexing</strong> (FAISS)  </li>
-<li><strong>HNSW</strong> default: excellent recall, simple to tune.  </li>
-<li><strong>IVF‑PQ</strong> optional: order‑of‑magnitude smaller index for very large corpora; small recall trade‑off, tunable with <code>nprobe</code>.</li>
+<li><strong>HNSW</strong> default: excellent recall, easier to tune  </li>
+<li><strong>IVF‑PQ</strong> optional: order‑of‑magnitude smaller index for very large corpora; small recall trade‑off, tunable with <code>nprobe</code></li>
 <li><strong>Incremental builds</strong>  </li>
-<li><code>state.json</code> records per‑document SHA‑256; unchanged docs are skipped. Rebuilds are proportional to change, not corpus size.</li>
+<li><code>state.json</code> records per‑document SHA‑256; unchanged docs are skipped. Rebuilds are proportional to change, not corpus size</li>
 <li><strong>Website search index (keyword JSON)</strong>  </li>
-<li>From Parquet, not PDFs. We clean text, remove stop‑words and over‑common terms, derive per‑doc keywords -&gt; a <strong>very small</strong> JSON file for client‑side search.</li>
+<li>From Parquet, not PDFs. Cleaned text, remove stop‑words and over‑common terms, derive per‑doc keywords -&gt; a <strong>very small</strong> JSON file for client‑side search</li>
 </ol>
 <hr />
 <h2 id="realworld-impact-for-users">Real‑world impact for users</h2>
 <ul>
-<li><strong>Fast search:</strong> small on‑site JSON makes type‑ahead and filters instant.  </li>
-<li><strong>Better hits:</strong> chunk‑level indexing surfaces relevant passages from long PDFs.  </li>
-<li><strong>Stable URLs:</strong> search results refer back to authoritative documents and locations.  </li>
-<li><strong>Scales with you:</strong> adding thousands of documents won’t slow the site or bloat the repo.</li>
+<li><strong>Fast search:</strong> small on‑site JSON makes type‑ahead and filters (appear) near-instant  </li>
+<li><strong>Better hits:</strong> chunk‑level indexing can return relevant text blocks from extensive PDFs  </li>
+<li><strong>Stable URLs:</strong> Not yet in use. But would be backlinks within the platform to object specific detail(s)  </li>
+<li><strong>Scales:</strong> adding thousands of documents has less of impact on site response and repo bloat  </li>
 </ul>
 <hr />
-<h2 id="realworld-impact-for-engineers">Real‑world impact for engineers</h2>
+<h2 id="realworld-impact-for-devsengineersplatform">Real‑world impact for devs/engineers/platform</h2>
+<p>This a reference for devs and those managing the platform/repo back-end stuff, probably not relevant to most stakeholders. </p>
 <ul>
-<li><strong>Artefacts, not assets:</strong> Git &amp; Pages store compact Parquet/JSON, not PDFs.  </li>
-<li><strong>Cheap storage:</strong> vectors as <code>uint8</code> and HNSW/IVF‑PQ keep R2 costs low.  </li>
-<li><strong>Reproducible builds:</strong> manifest + hashes = deterministic rebuilds.  </li>
-<li><strong>Interoperability:</strong> Parquet + FAISS are standard; others can reuse the corpus locally.</li>
+<li><strong>Artefacts, not assets:</strong> Git &amp; Pages store compact Parquet/JSON, not PDFs  </li>
+<li><strong>Cheap(er) storage:</strong> vectors as <code>uint8</code> and HNSW/IVF‑PQ keep Git/R2 costs low(er)  </li>
+<li><strong>Reproducible builds:</strong> manifest + hashes = deterministic rebuilds  </li>
+<li><strong>Interoperability:</strong> Parquet + FAISS are standard; others can reuse the corpus locally  </li>
 </ul>
 <hr />
 <h2 id="sizing-scaling-rules-of-thumb">Sizing &amp; scaling (rules of thumb)</h2>
+<p>This a reference for devs and those managing the platform/repo back-end stuff, probably not relevant to most stakeholders. </p>
 <p>Let <strong>C</strong> = number of chunks. With 384‑dim embeddings:</p>
 <ul>
 <li><strong>Float32 vector size (raw):</strong> <code>C × 384 × 4</code> bytes  </li>
 <li><strong>UInt8 vector size (raw):</strong> <code>C × 384 × 1</code> bytes (~4× smaller)  </li>
 <li><strong>HNSW index size:</strong> typically <strong>~1-2 KB per chunk</strong> (depends on <code>M</code>, dataset)  </li>
-<li><strong>Parquet overhead:</strong> +10-30% over raw, but ZSTD helps especially for text.</li>
+<li><strong>Parquet overhead:</strong> +10-30% over raw, but ZSTD helps especially for text  </li>
 </ul>
 <h3 id="example-projections">Example projections</h3>
-<p>Assuming current chunking yields ~<strong>74 chunks/doc</strong> (observed ~1,928 chunks for 26 docs) -&gt; <strong>3,000 docs ~ 222k chunks</strong>.</p>
+<p>Assuming current chunking yields ~<strong>74 chunks/doc</strong> (observed ~1,928 chunks for 26 docs) -&gt; <strong>3,000 docs ~ 222k chunks</strong>  </p>
 <table>
 <thead>
 <tr>
@@ -743,16 +800,16 @@
 </tbody>
 </table>
 <blockquote>
-<p>If the HNSW index starts feeling large to juggle, flip to <strong>IVF‑PQ</strong>: you can expect <strong>tens of MB</strong> with recall@10 often <strong>95-99%</strong>, tunable via <code>nprobe</code>.</p>
+<p>If HNSW index starts feeling large to juggle, flip to <strong>IVF‑PQ</strong>: you can expect <strong>tens of MB</strong> with recall@10 often <strong>95-99%</strong>, tunable via <code>nprobe</code>.</p>
 </blockquote>
 <hr />
-<h2 id="keyword-index-whats-in-the-tiny-json">Keyword index (what’s in the tiny JSON)</h2>
-<p>We derive a compact per‑document keyword list from the Parquet text:</p>
+<h2 id="keyword-index-whats-in-tiny-json">Keyword index (what’s in tiny JSON)</h2>
+<p>A compact, derived per‑document keyword list from the Parquet text:</p>
 <ul>
-<li>Normalise punctuation/quotes and remove boilerplate (e.g., page headers).  </li>
-<li>Lowercase, keep words of 4+ letters.  </li>
-<li>Remove <strong>stop‑words</strong> (scikit‑learn English) and <strong>domain‑common words</strong> (CSC custom list of high freq/low importance words).  </li>
-<li>Filter <strong>too‑common</strong> terms with <code>max_df</code> (e.g., drop tokens appearing in &gt;85% of docs) and <strong>too‑rare</strong> with <code>min_df</code> (e.g., keep tokens in ≥2 docs).</li>
+<li>Normalise punctuation/quotes and remove boilerplate (e.g., page headers)  </li>
+<li>Lowercase, keep words of 4+ letters  </li>
+<li>Remove <strong>stop‑words</strong> (scikit‑learn English) and <strong>domain‑common words</strong> (CSC custom list of high freq/low importance words)  </li>
+<li>Filter <strong>too‑common</strong> terms with <code>max_df</code> (e.g., drop tokens appearing in &gt;85% of docs) and <strong>too‑rare</strong> with <code>min_df</code> (e.g., keep tokens in ≥2 docs)</li>
 </ul>
 <p>This makes <code>docs/search_index.json</code> <strong>tiny</strong> and fast(er) for lookup/searches.</p>
 <hr />
@@ -770,39 +827,39 @@
 <li>The corpus is <strong>self‑describing</strong>: Parquet schema metadata indicates whether embeddings are <code>float32</code> or quantised (<code>uint8</code> with dequant rule).</li>
 </ul>
 <hr />
-<h2 id="frequently-asked-but-will-it">Frequently asked “but will it…?”</h2>
+<h2 id="frequently-asked-but-will-it">Frequently asked "but will it…?"</h2>
 <ul>
 <li>
-<p><strong>…find the right stuff if we've compressed vectors?</strong><br />
+<p><strong>…find the right stuff in compressed vectors?</strong><br />
   Yes-for docs and model, differences are tiny. We've normalised vectors, which preserves cosine structure.</p>
 </li>
 <li>
 <p><strong>…scale to thousands of PDFs?</strong><br />
-  Yes. We already decouple build time from corpus size via incremental hashing, and so work with only compact artefacts.</p>
+  Yes. The heavier corpus build, is seperate and done externally, size via incremental hashing, hence only compact artefacts. </p>
 </li>
 <li>
-<p><strong>…lock me into a specific, or needed paid software?</strong><br />
-  No. We use open formats (Parquet, FAISS) + standard Python libs.</p>
+<p><strong>…lock me into specific, or paid 3rd-party|software?</strong><br />
+  No. We've aimed for an entirely open/Git-centric approach on this + open formats (Parquet, FAISS) + standard Python libs</p>
 </li>
 <li>
 <p><strong>…support OCR/scanned PDFs?</strong><br />
-  Not yet; we can add Tesseract or cloud OCR later if needed but we've not come accross any relevant pdfs that weren't text content based. We'll fix this later if any colleagues are aware of such docs. </p>
+  No. But it could. WE just dont see the immeadiate need for this within the sector. Could later add Tesseract or cloud OCR  if needed. Can add later if any colleagues are aware of such docs. </p>
 </li>
 </ul>
 <hr />
 <h2 id="key-libraries-and-why-we-chose-them">Key libraries and why we chose them</h2>
 <ul>
-<li><strong>PyMuPDF (<code>pymupdf</code>)</strong>: fast, robust PDF text extraction.  </li>
-<li><strong>Sentence‑Transformers</strong>: high‑quality sentence embeddings + easy APIs.  </li>
-<li><strong>FAISS</strong>: full vector search (HNSW, IVF‑PQ) with scalable performance.  </li>
-<li><strong>PyArrow/Parquet</strong>: portable column based storage; perfect for text + vectors + metadata.  </li>
-<li><strong>scikit‑learn</strong>: light‑weight keyword vocab building with stop‑word &amp; frequency filters.</li>
+<li><strong>PyMuPDF (<code>pymupdf</code>)</strong>: fast, robust PDF text extraction  </li>
+<li><strong>Sentence‑Transformers</strong>: high‑quality sentence embeddings + easy APIs  </li>
+<li><strong>FAISS</strong>: full vector search (HNSW, IVF‑PQ) with scalable performance  </li>
+<li><strong>PyArrow/Parquet</strong>: portable column based storage; perfect for text + vectors + metadata  </li>
+<li><strong>scikit‑learn</strong>: light‑weight keyword vocab building with stop‑word &amp; frequency filters</li>
 </ul>
 <hr />
 <h2 id="takeaways">Takeaways</h2>
 <ul>
 <li>By <strong>separating heavy preprocessing</strong> from what's hosted in the main/mkdocs site here, plus by <strong>quantising vectors</strong>, we massively cut the needed storage and bandwidth without compromising colleagues' experience in the search etc</li>
-<li>The site’s search is able to be <strong>near-instant with smaller footprint</strong>, and an underlying corpus remains <strong>portable and reusable</strong> for future or onward data projects.</li>
+<li>The site’s search is able to be <strong>near-instant with smaller footprint</strong>, and an underlying corpus remains <strong>portable and reusable</strong> for future or onward data projects - although we're not yet sure of the use-cases on this.</li>
 </ul>
 <hr />
 <h1 id="faiss-and-parquet-artefacts-structure-and-reference">FAISS and Parquet artefacts: structure and reference</h1>
@@ -876,7 +933,7 @@ motw.embedding.dequant  = &quot;x = (q / 127.5) - 1.0&quot;
 <li>Vectors were normalised during embedding, which keeps cosine behaviour stable after dequantisation.</li>
 </ul>
 <h3 id="combined-parquet-files-optional">Combined Parquet files (optional)</h3>
-<p><code>artifacts/motw_chunks.parquet</code> and <code>artifacts/motw_vectors.parquet</code> have the same schemas as above, but hold all docs together. They are convenient for one-shot analysis and for users/colleagues that do not want to iterate per-doc files.</p>
+<p><code>artifacts/motw_chunks.parquet</code> and <code>artifacts/motw_vectors.parquet</code> have the same schemas as above, but hold all docs together. They are convenient for one-shot analysis and for users/LA colleagues that do not want to iterate per-doc files.</p>
 <hr />
 <h2 id="faiss-index-files">FAISS index files</h2>
 <p>The pipeline can build either:</p>
@@ -890,11 +947,11 @@ motw.embedding.dequant  = &quot;x = (q / 127.5) - 1.0&quot;
 <li><code>M</code> -&gt; graph degree used at build time (for example 32)</li>
 <li><code>efConstruction</code> -&gt; build breadth (for example 80)</li>
 <li>Query-time parameter you set after loading:</li>
-<li><code>efSearch</code> -&gt; search breadth (for example 64 or 128). Higher -&gt; better recall, slower.</li>
+<li><code>efSearch</code> -&gt; search breadth (for example 64 or 128). Higher -&gt; better recall, slower</li>
 </ul>
 <p>Notes:
-- Excellent recall and speed up to a few hundred thousand vectors on a single machine.
-- File size typically ~1-2 KB per vector, depending on <code>M</code> and data.</p>
+- Excellent recall and speed up to a few hundred thousand vectors<br />
+- File size typically ~1-2 KB per vector, depending on <code>M</code> and data</p>
 <h3 id="ivf-pq-index-optional-artifactsmotw_index_ivfpqfaiss">IVF-PQ index (optional) - <code>artifacts/motw_index_ivfpq.faiss</code></h3>
 <p>Stored properties:</p>
 <ul>
@@ -910,7 +967,7 @@ motw.embedding.dequant  = &quot;x = (q / 127.5) - 1.0&quot;
 <li><code>nprobe</code> -&gt; how many coarse lists to search (for example 16, 32, 64). Higher -&gt; better recall, slower.</li>
 </ul>
 <p>Notes:
-- Much smaller on disk than HNSW (often tens of MB), with a small recall trade-off that you can tune via <code>nprobe</code>.</p>
+- Much smaller on disk than HNSW (often tens of MB), with a small recall trade-off - tune via <code>nprobe</code>.</p>
 <hr />
 <h2 id="minimal-load-examples-for-ref">Minimal load examples (for ref)</h2>
 <pre><code class="language-python"># Load FAISS index
@@ -1019,8 +1076,6 @@ else:
         <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-      
-        <script src="../js/render_graph.js"></script>
       
         <script src="../js/search_tool.js"></script>
       
