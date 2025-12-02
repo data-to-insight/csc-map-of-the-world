@@ -25,7 +25,7 @@
     
     
       
-        <title>Full Network (IN DEV) - CSC Map of the World</title>
+        <title>CSC Network Full (Pre-Alpha) - CSC Map of the World</title>
       
     
     
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Full Network (IN DEV)
+              CSC Network Full (Pre-Alpha)
             
           </span>
         </div>
@@ -241,7 +241,7 @@
   <span class="md-ellipsis">
     
   
-    Explore
+    Network Search First
   
 
     
@@ -275,7 +275,7 @@
   <span class="md-ellipsis">
     
   
-    Full Network
+    Network Full
   
 
     
@@ -303,7 +303,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Network
+    Network SCCM
   
 
     
@@ -330,7 +330,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Network Relations
+    Network Relations
   
 
     
@@ -357,7 +357,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Search
+    Search
   
 
     
@@ -384,7 +384,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Search Strategy
+    Search Strategy
   
 
     
@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Search Sources
+    Search Sources
   
 
     
@@ -438,7 +438,7 @@
   <span class="md-ellipsis">
     
   
-    Submit Entry
+    Submit CSC Map Entry
   
 
     
@@ -488,7 +488,7 @@
 
 
 
-  <h1>Full Network</h1>
+  <h1>Network Full</h1>
 
 <!-- Note: Page incl .js scripts is self-contained excepting the unpinning data.
      I might separate scripts out into /js later to mirror network.md etc. -->
@@ -1102,10 +1102,10 @@ E.g. Same hood, zoom out slightly
           cy.resize();
           cy.fit(hood, FIT_PAD);
           setLabels(hood.nodes ? hood.nodes() : hood, true);
-          setStatus('Expanding full network...please wait, page may appear stalled but it is still loading [Approx wait time 1min]');
+          setStatus('Expanding full network...please wait, page may appear stalled during loading [Approx wait time 1min]');
         } else {
           firstFit(cy, { havePreset: true });
-          setStatus('Expanding full network...please wait, page may appear stalled but it is still loading [Approx wait time 1min]');
+          setStatus('Expanding full network...please wait, page may appear stalled during loading [Approx wait time 1min]');
         }
 
         // stage 2, add the rest, then animate to natural layout

@@ -25,7 +25,7 @@
     
     
       
-        <title>CSC Search Strategy - CSC Map of the World</title>
+        <title>Search Strategy - CSC Map of the World</title>
       
     
     
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CSC Search Strategy
+              Search Strategy
             
           </span>
         </div>
@@ -244,7 +244,7 @@
   <span class="md-ellipsis">
     
   
-    Explore
+    Network Search First
   
 
     
@@ -271,7 +271,7 @@
   <span class="md-ellipsis">
     
   
-    Full Network
+    Network Full
   
 
     
@@ -298,7 +298,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Network
+    Network SCCM
   
 
     
@@ -325,7 +325,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Network Relations
+    Network Relations
   
 
     
@@ -352,7 +352,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Search
+    Search
   
 
     
@@ -386,7 +386,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Search Strategy
+    Search Strategy
   
 
     
@@ -404,7 +404,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Search Strategy
+    Search Strategy
   
 
     
@@ -461,6 +461,23 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note-ongoing-work-towards-the-above-is-a-core-under-pinning-part-of-the-d2i-backend-work-towards-an-efficient-csc-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Note: Ongoing work towards the above is a core, under-pinning part of the D2I backend work towards an efficient CSC Map.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Note: Ongoing work towards the above is a core, under-pinning part of the D2I backend work towards an efficient CSC Map.">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#optional-archive-parquet" class="md-nav__link">
     <span class="md-ellipsis">
@@ -510,7 +527,7 @@
   <span class="md-ellipsis">
     
   
-    CSC Search Sources
+    Search Sources
   
 
     
@@ -537,7 +554,7 @@
   <span class="md-ellipsis">
     
   
-    Submit Entry
+    Submit CSC Map Entry
   
 
     
@@ -608,6 +625,23 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#note-ongoing-work-towards-the-above-is-a-core-under-pinning-part-of-the-d2i-backend-work-towards-an-efficient-csc-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Note: Ongoing work towards the above is a core, under-pinning part of the D2I backend work towards an efficient CSC Map.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Note: Ongoing work towards the above is a core, under-pinning part of the D2I backend work towards an efficient CSC Map.">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#optional-archive-parquet" class="md-nav__link">
     <span class="md-ellipsis">
@@ -652,46 +686,45 @@
 
 
 
-  <h1>CSC Search Strategy</h1>
+  <h1>Search Strategy</h1>
 
 <h2 id="full-text-search-strategy-optimised-for-static-hosting">Full-Text Search Strategy (Optimised for Static Hosting)</h2>
-<p>To support <strong>search across the contents of hundreds of documents and varied sources</strong> (including PDFs) within our <a href="https://www.mkdocs.org/">MkDocs-based site</a>, we needed an approach that simulates <strong>full-text search</strong> while remaining <strong>scalable, performant, and static-host compatible</strong> (i.e. no backend/db).</p>
+<p>To support <strong>search across the contents of thousands of documents and varied sources</strong> (including PDFs) within our <a href="https://www.mkdocs.org/">MkDocs-based site</a>, we're exploring approaches that can simulate <strong>full-text search</strong> while remaining <strong>scalable, performant, and static-host compatible</strong> (i.e. no backend/db, fully Git contained).</p>
 <h3 id="main-goals">Main Goals</h3>
 <ul>
 <li>Allow users to <strong>search document content</strong> (not just titles)</li>
-<li>Ensure performance remains fast even as <strong>hundreds of documents are added</strong></li>
-<li>Avoid full-text duplication or payload bloat in both the frontend and backend(to avoid hitting Git limits)</li>
+<li>Ensure performance remains fast even as <strong>thousands of documents/sources added</strong></li>
+<li>Avoid full-text duplication or payload bloat in both frontend and backend(to avoid hitting Git/responsiveness limits)</li>
 <li>Keep compatibility with static site hosting (e.g. GitHub Pages, <code>list.js</code>, <code>lunr.js</code>, Mkdocs)</li>
 </ul>
 <hr />
 <h3 id="optimisation-strategy">Optimisation Strategy</h3>
-<p>Rather than store the entire text of every PDF in the search index (which would be slow and bloated), we take the following approach:</p>
+<p>Rather than store the entire text of every PDF in the search index (slower and rapidly bloated), we're exploring approaches based around:</p>
 <ol>
 <li><strong>Extract Text from PDFs</strong>  </li>
-<li>Using <code>pdfplumber</code>, each document’s text is extracted and cleaned</li>
+<li>Using <code>pdfplumber</code>, each document’s text extracted and cleaned</li>
 <li>
 <p>Unicode characters like curly quotes, dashes, ellipses are normalised for consistency</p>
 </li>
 <li>
 <p><strong>Generate Excerpts</strong>  </p>
 </li>
-<li>A short <code>excerpt</code> is created from the first meaningful paragraph (ignoring TOCs and headings)</li>
+<li>Shorter <code>excerpt</code>s are created from (near)first meaningful paragraph (trying to ignore TOCs and headings)</li>
 <li>
-<p>This is used in search results and graph visualisation tooltips</p>
+<p>This then contributes to search results and graph visualisation tooltips</p>
 </li>
 <li>
 <p><strong>Lemmatise and Tokenise Keywords</strong>  </p>
 </li>
 <li>Words are lemmatised (e.g. <em>running</em>, <em>ran</em>, <em>runs</em> → <em>run</em>) using <code>nltk</code></li>
-<li>Common English stopwords are removed</li>
 <li>
-<p>This creates a <strong>compressed keyword representation</strong> of each document</p>
+<p>Thus creating/aiming for a usable <strong>compressed keyword representation</strong> of each document</p>
 </li>
 <li>
 <p><strong>Apply Document Frequency Filtering</strong>  </p>
 </li>
-<li>Using <code>CountVectorizer</code> from <code>scikit-learn</code>, we:<ul>
-<li>Remove overly common terms (appear in &gt;85% of docs)</li>
+<li>Use <code>CountVectorizer</code> from <code>scikit-learn</code>:<ul>
+<li>Remove overly common terms (in progress but approximately: appear in &gt;85% of docs)</li>
 <li>Remove rare noise terms (appear in &lt;2 docs)</li>
 </ul>
 </li>
@@ -701,7 +734,7 @@
 <li>
 <p><strong>Final Search Index Generation</strong>  </p>
 </li>
-<li>Each optimised document (content) is represented in <code>docs/search_index.json</code> with:<ul>
+<li>Each optimised document (content) is then represented in <code>docs/search_index.json</code> with:<ul>
 <li><code>doc_id</code>, <code>name</code>, <code>excerpt</code>, <code>url</code>, <code>tags</code>, and optimised <code>keywords</code></li>
 </ul>
 </li>
@@ -712,9 +745,9 @@
 </ul>
 </li>
 </ol>
-<hr />
+<h2 id="note-ongoing-work-towards-the-above-is-a-core-under-pinning-part-of-the-d2i-backend-work-towards-an-efficient-csc-map">Note: Ongoing work towards the above is a core, under-pinning part of the D2I backend work towards an efficient CSC Map.</h2>
 <h3 id="optional-archive-parquet">Optional Archive (Parquet)</h3>
-<p>For potential archival or later ML processing is needed, a full <code>.parquet</code> file can also be saved  (<code>admin_scripts/docs_index.parquet</code>) with complete text and metadata (disabled by default to keep project lightweight, but a variable flag can bve set in the py index build script).</p>
+<p>For potential archival or later ML processing if needed, a full <code>.parquet</code> file is made available  (<code>admin_scripts/docs_index.parquet</code>) with complete text and metadata (disabled by default to keep project lightweight during development, but a variable flag can bve set in the py index build script to generate this for interested LA colleagues who might be able to further use it).</p>
 <hr />
 <h3 id="key-libraries-used">Key Libraries Used</h3>
 <table>
