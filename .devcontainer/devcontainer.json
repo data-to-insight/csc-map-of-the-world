@@ -1,0 +1,19 @@
+{
+  "name": "d2i-map-of-the-world-mkdocs",
+  
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+
+  // Run setup.sh automatically after container created
+  "postCreateCommand": "bash ./setup.sh",
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Ensure integrated terminal uses bash so ~/.bashrc is applied
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+
+  "features": {}
+}
