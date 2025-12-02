@@ -1,13 +1,13 @@
 
-# CSC Network Graph (IN DEV)
+# CSC Network SCCM Filter
 
 <!-- 1) mkdocs defaults, 2) css styled enlargement(not working), 3) forced full browswer win overlay --> 
 <!-- <div id="cy" style="width: 100%; height: 600px;"></div> -->
 <!-- <div id="cy"></div> --> 
 
-This interactive graph is a work in progress mapping of key organisations, plans, and events and more that form the children’s services data ecosystem. It aims to provide both the simple connections and interelations between related CSC data work, projects, guidance, people and sub layer of detail and meta-data for those connected elements. 
+Conceptual visualisation of related CSC data work, tools, projects, guidance, published reports, relevant Github repos, notable LA and Gov public cloud content and key people, inclusive of a searchable supporting information sub-layer and graph node meta-data. 
 
-This is a large scale mapping with many interconnected (moving)parts; currently a work-in-progress MVP. Data & relations are currently being added, graph layout and naming conventions for nodes in particular, is an ongoing discussion as we progress possible use-cases and standardise yml object structure.
+This map and the supporting data is in developmental pre-alpha build state. Data and structures are part of ongoing development and subject to daily change.
 
 
 <!-- depreciated in favour of dynamic path def after def SITE_ROOT -->

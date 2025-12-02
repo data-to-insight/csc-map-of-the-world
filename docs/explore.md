@@ -1,4 +1,11 @@
-# Network Explorer (search-first)
+# CSC Network Search First
+
+
+Conceptual visualisation of related CSC data work, tools, projects, guidance, published reports, relevant Github repos, notable LA and Gov public cloud content and key people, inclusive of a searchable supporting information sub-layer and graph node meta-data. 
+
+This map and the supporting data is in developmental pre-alpha build state. Data and structures are part of ongoing development and subject to daily change.
+
+
 
 <!-- Explorer controls -->
 <!-- uses docs/js/explorer.js -->
