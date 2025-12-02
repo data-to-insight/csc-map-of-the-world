@@ -62,5 +62,5 @@ add_snippet_to_rc "$HOME/.bashrc"
 add_snippet_to_rc "$HOME/.zshrc"
 
 echo "==> Setup complete"
-echo "Open new terminal, 'mkdocs serve' should now work"
+echo "To preview host the MotW site use : 'mkdocs serve' or see README"
 echo "or run: source ~/.bashrc  or  source ~/.zshrc"
