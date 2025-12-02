@@ -16,6 +16,18 @@ import re
 import json
 import yaml
 from pathlib import Path
+from admin_scripts.admin_build_cytoscape_utils import (
+    load_yaml,
+    type_class,
+    extract_type_fields,
+    pick_summary,
+    as_list,
+    slug_from_path,
+    singularize,
+    coalesce,
+    search_blob,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data_yml"
@@ -78,149 +90,119 @@ def get_entities():
     elements = []
     seen_nodes = set()
 
+    # if you keep a global crosswalk dict elsewhere, do not clear it here
     for category in DATA_DIR.iterdir():
         if not category.is_dir() or category.name == "relationships":
             continue
 
         for file in category.glob("*.yaml"):
-            if file.name.lower().startswith("template") or file.name.startswith("0_template"):
+            name_l = file.name.lower()
+            if name_l.startswith("template") or file.name.startswith("0_template"):
                 continue
 
-            with open(file, encoding="utf-8") as f:
-
-
-                try:
-
-
-                    data = yaml.safe_load(f) or {}
-
-
-                except yaml.YAMLError as e:
-
-
-                    print(f"YAML error in {file}: {e}")
-
-
-                    continue
-
-
-            
-
-
-            # prefer explicit id field, else file stem
-
-
-            node_id = (data.get("id") or file.stem)
-
-
-            if node_id in seen_nodes:
-
-
+            data = load_yaml(file)
+            if not data:
                 continue
 
-            label = data.get("name") or node_id
-            if not isinstance(label, str) or not label.strip():
+            # prefer explicit id, else file stem
+            node_id = data.get("id") or file.stem
+            if not node_id or node_id in seen_nodes:
+                continue
+
+            # label, type, class
+            label = coalesce(data.get("name"), node_id)
+            if not label:
                 print(f"Skipping node with invalid or missing label: {node_id}")
                 continue
 
-            # Normalize type: prefer @type else folder name (singularized)
-            raw_type = (data.get("@type") or category.name).strip().lower()
-            if "@type" not in data:
-                raw_type = singularize(raw_type)
+            raw_type = (data.get("@type") or singularize(category.name)).strip()
+            ntype = raw_type.upper()                  # e.g. ORGANIZATION, EVENT, PLAN
+            cls   = type_class(raw_type, category.name)  # e.g. org, event, plan
 
-            node_class = {
-                "organization": "org", "organisation": "org",
-                "service": "service",
-                "event": "event",
-                "plan": "plan",
-                "rule": "rule",
-                "collection": "collection",
-                "person": "person",
-                "relationship": "relationship",
-                "dataset": "dataset",   # reserved/future
-                "tool": "tool"          # reserved/future
-            }.get(raw_type, "default")
-
-            tags = as_list(data.get("tags"))
-            summary = pick_summary(data)
-            slug = data.get("slug") or slug_from_path(file, DATA_DIR)
-
-            short_summary = (summary or "")[:500]
-            search_blob = " ".join([label, *tags, short_summary, slug, raw_type]).lower()
-
-            source_path = str(file.relative_to(ROOT)).replace("\\", "/")
-            page_url = f"{slug}/"  # front-end prefixes with SITE_BASE
-
-            # Generic extras (optional)
-            website = data.get("website")
-            notes = data.get("notes")
-            version = data.get("version")
+            # basic metadata
+            tags     = as_list(data.get("tags"))
+            summary  = pick_summary(data)
+            slug     = data.get("slug") or slug_from_path(file, DATA_DIR)
+            sblob    = search_blob(label, tags, summary, slug=slug, raw_type=raw_type)
+            source_path    = str(file.relative_to(ROOT)).replace("\\", "/")
+            page_url       = f"{slug}/"   # front-end will prefix SITE_BASE
+            website        = data.get("website")
+            notes          = data.get("notes")
+            version        = data.get("version")
             date_published = data.get("date_published")
-            super_concept = data.get("super_concept")
-            sub_concept = data.get("sub_concept")
+            super_concept  = data.get("super_concept")
+            sub_concept    = data.get("sub_concept")
 
-            # Organization-specific extras (if present)
-            org_fields = (
-                data.get("organization_fields") or
-                data.get("organisation_fields") or
-                {}
-            )
-            organisation_type = org_fields.get("organisation_type") or org_fields.get("organization_type")
-            region = org_fields.get("region")
-            projects = as_list(org_fields.get("projects"))
-            persons = org_fields.get("persons") or []
+            # NEW, generic type-specific block for info panel
+            fields = extract_type_fields(data, ntype)  # e.g. event_fields, plan_fields, etc.
+
+            # convenience pull-throughs for legacy UI bits
+            organisation_type = (fields.get("organisation_type")
+                                 or fields.get("organization_type"))
+            region   = fields.get("region")
+            projects = as_list(fields.get("projects"))
+            persons  = fields.get("persons") or []
             norm_persons = []
             if isinstance(persons, list):
                 for p in persons:
                     if isinstance(p, dict):
+                        # normalise keys to strings
                         norm_persons.append({
                             "name": str(p.get("name", "")),
                             "role": str(p.get("role", "")) if p.get("role") is not None else "",
-                            "from": str(p.get("from", "")) if p.get("from") is not None else ""
+                            "from": str(p.get("from", "")) if p.get("from") is not None else "",
                         })
                     else:
+                        # allow simple string person entries
                         norm_persons.append({"name": str(p), "role": "", "from": ""})
 
             el = {
                 "group": "nodes",
                 "data": {
-                    "id": node_id,
-                    "label": label,
-                    "type": (data.get("@type") or category.name).upper(),
-                    "group": "nodes",
-                    "slug": slug,
-                    "source_path": source_path,
-                    "page_url": page_url,
-                    "tags": tags,
-                    "summary": summary,
-                    "search_blob": search_blob,
-                    "website": website,
-                    "notes": notes,
-                    "version": str(version) if version is not None else None,
+                    "id":            node_id,
+                    "label":         label,
+                    "type":          ntype,          # keep model type with Z spelling for ORGANIZATION
+                    "group":         "nodes",
+                    "slug":          slug,
+                    "source_path":   source_path,
+                    "page_url":      page_url,
+                    "tags":          tags,
+                    "summary":       summary,
+                    "search_blob":   sblob,
+                    "website":       website,
+                    "notes":         notes,
+                    "version":       str(version) if version is not None else None,
                     "date_published": str(date_published) if date_published is not None else None,
-                    "super_concept": super_concept,
-                    "sub_concept": sub_concept,
+                    "super_concept":  super_concept,
+                    "sub_concept":    sub_concept,
+
+                    # expose the type-specific fields in one place for the info panel
+                    "fields":        fields,
+
+                    # convenience legacy keys, especially for orgs
                     "organisation_type": organisation_type,
-                    "region": region,
-                    "projects": projects,
-                    "persons": norm_persons,
+                    "region":            region,
+                    "projects":          projects,
+                    "persons":           norm_persons,
                 },
-                "classes": node_class
+                "classes": cls  # compact style class, e.g. org, event, plan
             }
+
             elements.append(el)
             seen_nodes.add(node_id)
 
-            # Crosswalk entry
+            # keep your existing crosswalk payload if you rely on it elsewhere
             CROSSWALK[slug] = {
-                "id": node_id,
-                "label": label,
-                "type": (data.get("@type") or category.name).upper(),
-                "slug": slug,
+                "id":          node_id,
+                "label":       label,
+                "type":        ntype,
+                "slug":        slug,
                 "source_path": source_path,
-                "page_url": page_url
+                "page_url":    page_url,
             }
 
     return elements, seen_nodes
+
 
 
 def get_relationships(seen_nodes):

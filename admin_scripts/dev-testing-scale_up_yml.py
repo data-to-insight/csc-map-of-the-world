@@ -66,7 +66,61 @@ Usage examples
 #   --knn-k 2 \
 #   --rel-prefix testrel_knn2_
 
+## full rel files clean up with prefixes
+# # remove earlier test sets
+# rm -f data_yml/relationships/testrel_mixed_*.yaml
+# rm -f data_yml/relationships/testrel_star_*.yaml
+# rm -f data_yml/relationships/testrel_ring_*.yaml
 
+# # wipe everything under relationships, then rebuild sparse ring
+# python admin_scripts/dev-testing-scale_up_yml.py -n 500 \
+#   --clean-first --clean-all-rels \
+#   --make-relationships --id-strategy filestem \
+#   --rel-mode ring --rel-prefix testrel_ring_
+
+# # keep current orgs, but delete any previous mixed or star sets
+# python admin_scripts/dev-testing-scale_up_yml.py -n 500 \
+#   --clean-first --clean-rel-glob 'testrel_mixed_*' --clean-rel-glob 'testrel_star10_*' \
+#   --make-relationships --id-strategy filestem \
+#   --rel-mode knn --knn-k 2 --rel-prefix testrel_knn2_
+
+
+## Test running at 21/10/25
+#3 step builds 500 orgs once, 
+# ayers two sparse relationship sets on top
+# First run wipes both orgs and rels, the next run keep just created and add more edges
+# All runs keep --id-strategy filestem, and each layer uses own --rel-prefix so files dont collide
+
+# #sparse, connected backbone, ring
+# python admin_scripts/dev-testing-scale_up_yml.py \
+#   -n 500 \
+#   --clean-first --clean-all-orgs --clean-all-rels \
+#   --make-relationships \
+#   --id-strategy filestem \
+#   --rel-mode ring \
+#   --rel-prefix testrel_ring_
+
+# #add light hub clusters
+# python admin_scripts/dev-testing-scale_up_yml.py \
+#   -n 500 \
+#   --overwrite \
+#   --make-relationships \
+#   --id-strategy filestem \
+#   --rel-mode star \
+#   --star-span 20 \
+#   --rel-prefix testrel_star20_
+
+# #add few random cross links, capped
+# python admin_scripts/dev-testing-scale_up_yml.py \
+#   -n 500 \
+#   --overwrite \
+#   --make-relationships \
+#   --id-strategy filestem \
+#   --rel-mode random \
+#   --random-k 1 \
+#   --seed 42 \
+#   --max-edges 150 \
+#   --rel-prefix testrel_rand1_
 
 import argparse
 from pathlib import Path
@@ -158,17 +212,42 @@ def write_yaml(obj, path: Path, overwrite: bool = False):
         with path.open("w", encoding="utf-8") as f:
             yaml.safe_dump(obj, f, sort_keys=False, allow_unicode=True, default_flow_style=False)
 
-def clean_prefix(outdir: Path, prefix: str) -> int:
-    """Delete files in outdir matching prefix*.yaml. Returns count removed."""
-    pattern = str(outdir / f"{prefix}*.yaml")
+def _leading_literal(glob_pattern: str) -> str:
+    """Return leading literal before any wildcard, used to infer safe delete prefix"""
+    for i, ch in enumerate(glob_pattern):
+        if ch in "*?[":
+            return glob_pattern[:i]
+    return glob_pattern
+
+def _safe_delete(paths, allowed_prefixes) -> int:
+    """Delete only files name starts with allowed prefixes"""
     removed = 0
-    for path in glob.glob(pattern):
-        try:
-            Path(path).unlink()
-            removed += 1
-        except Exception as e:
-            print(f"Warning: could not remove {path}: {e}", file=sys.stderr)
+    for p in map(Path, paths):
+        fname = p.name
+        if any(fname.startswith(pref) for pref in allowed_prefixes):
+            try:
+                p.unlink()
+                removed += 1
+            except Exception as e:
+                print(f"Warning: could not remove {p}: {e}", file=sys.stderr)
+        else:
+            print(f"Skip, protected by prefix guard: {fname}", file=sys.stderr)
     return removed
+
+
+def clean_prefix(outdir: Path, prefix: str) -> int:
+    """Delete files named prefix*.yaml only - leave existing legit files in there"""
+    pattern = str(outdir / f"{prefix}*.yaml")
+    return _safe_delete(glob.glob(pattern), {prefix})
+
+
+def clean_glob(outdir: Path, pattern: str, allowed_prefixes) -> int:
+    """
+    Delete files matching outdir/pattern, but only if names start with allowed_prefixes
+    Eg: clean_glob(dir, 'testrel_mixed_*', {'testrel_', 'testrel_mixed_'})
+    """
+    pat = pattern if pattern.endswith(".yaml") else f"{pattern}.yaml"
+    return _safe_delete(glob.glob(str(outdir / pat)), set(allowed_prefixes))
 
 # ---------- relationship index pair generators ----------
 
@@ -253,6 +332,9 @@ def gen_mixed(n: int, random_k: int, seed: int) -> List[Tuple[int,int]]:
     out.sort()
     return out
 
+
+
+
 # ---------- main ----------
 
 def main():
@@ -284,15 +366,48 @@ def main():
     p.add_argument("--seed", type=int, default=42, help="random seed for repeatable outputs, default 42")
     p.add_argument("--max-edges", type=int, default=None, help="optional cap on the number of relationships written")
 
+    # extended
+    p.add_argument("--clean-rel-glob", default=None,
+                help="Extra glob to clean in relationships dir, for example 'testrel_*' or '*'")
+    p.add_argument("--clean-org-glob", default=None,
+                help="Extra glob to clean in org dir, for example 'test_*' or '*'")
+    p.add_argument("--clean-all-rels", action="store_true",
+                help="Clean all .yaml in relationships dir, use with care")
+    p.add_argument("--clean-all-orgs", action="store_true",
+                help="Clean all .yaml in organizations dir, use with care")
+
     args = p.parse_args()
 
     org_outdir = Path(args.outdir)
     rel_outdir = Path(args.rel_outdir)
 
     if args.clean_first:
+        # Always guard by prefix of files - failsafe to prevent accidental non-test file removal
+        allowed_org_prefixes = {args.prefix, "test_"}
+        allowed_rel_prefixes = {args.rel_prefix, "testrel_", "test_"}  # include test_ just in case
+
         removed_org = clean_prefix(org_outdir, args.prefix)
         removed_rel = clean_prefix(rel_outdir, args.rel_prefix)
+
+        # optional extra cleaning, still guarded
+        if args.clean_all_orgs:
+            # only remove org YAMLs that start with allowed test prefixes
+            removed_org += clean_glob(org_outdir, "*.yaml", allowed_org_prefixes)
+
+        if args.clean_org_glob:
+            # infer a safe prefix from the glob, then add it to the guard set
+            inferred = _leading_literal(args.clean_org_glob)
+            removed_org += clean_glob(org_outdir, args.clean_org_glob, allowed_org_prefixes | {inferred})
+
+        if args.clean_all_rels:
+            removed_rel += clean_glob(rel_outdir, "*.yaml", allowed_rel_prefixes)
+
+        if args.clean_rel_glob:
+            inferred = _leading_literal(args.clean_rel_glob)
+            removed_rel += clean_glob(rel_outdir, args.clean_rel_glob, allowed_rel_prefixes | {inferred})
+
         print(f"Cleaned {removed_org} ORG file(s) and {removed_rel} REL file(s).")
+
 
     # --- Generate ORGs
     created_orgs = 0

@@ -1,422 +1,397 @@
-// SUMMARY: Large-graph friendly renderer (lite) 
-// Key fixes:
-// - Load/enhance Choices.js *before* data fetch (no basic select shows)
-// - Guard against dup initialisation
-// - Keep org-only boot + context toggle default OFF
-// - Works with graph_data.lite.json (+ fall back if old shape)
+/**
+ * Lite renderer (large-graph friendly)
+ * - Loads docs/data/graph_data.lite.json (or window.MOTW.graphLite if preloaded)
+ * - Adds nodes immediately, edges in staged chunks (haystack → bezier on zoom)
+ * - Optional UI: typeFilter (Choices.js), contextModeToggle, resetView, textSearch
+ * - Info panel: enriches from standard graph JSON if available (fields/tags/website/links)
+ */
 
+(function () {
+  const EDGE_FIRST_BATCH = 800;
+  const EDGE_CHUNK_SIZE  = 1500;
+  const EDGE_CHUNK_DELAY = 150;
+  const LABEL_ZOOM = 1.2;
+  const HAYSTACK_TO_BEZIER_ZOOM = 1.1;
 
-document.addEventListener("DOMContentLoaded", function () {
-  // --- DOM hooks ---
-  const cyContainer  = document.getElementById("cy");
-  const typeFilter   = document.getElementById("typeFilter");
-  const resetBtn     = document.getElementById("resetView");
-  const textSearch   = document.getElementById("textSearch");
-  const contextToggle= document.getElementById("contextModeToggle");
-  if (!cyContainer) return console.error("No #cy element found");
-
-  // --- Data URL + SITE_BASE ---
-  const GRAPH_VER = "2025-03-05-03"; // bump to bust caches
-  const graphDataURL = new URL("csc-map-of-the-world/data/graph_data.lite.json", window.location.origin);
-  graphDataURL.searchParams.set("v", GRAPH_VER);
-  // Support .../graph_data.json and .../graph_data.lite.json
-  const SITE_BASE = graphDataURL.pathname.replace(/data\/graph_data(?:\.lite)?\.json$/, "");
-
-  // --- Colours by class ---
-  const staticTypeColorMap = {
-    organization:"#007acc", event:"#ff9800", person:"#4caf50", collection:"#9c27b0",
-    plan:"#e91e63", rule:"#00bcd4", resource:"#8bc34a", service:"#ffc107", other:"#999999"
-  };
-
-  // --- Choices loader (defensive; loads CSS+JS if missing) ---
-  function ensureChoices(cb) {
-    if (typeof Choices === "function") { cb(); return; }
-    const css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = "https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css";
-    document.head.appendChild(css);
-    const s = document.createElement("script");
-    s.src = "https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js";
-    s.onload = cb;
-    document.head.appendChild(s);
+  // -------- status chip
+  function statusChip(container) {
+    let el = document.getElementById('network-status');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'network-status';
+      el.style.cssText =
+        'position:absolute;top:8px;left:8px;z-index:10;background:rgba(255,255,255,.95);' +
+        'border:1px solid #ddd;padding:6px 10px;border-radius:6px;font-size:.9em;color:#333';
+      if (!container.style.position) container.style.position = 'relative';
+      container.appendChild(el);
+    }
+    return {
+      set(msg){ el.textContent = msg; },
+      hide(){ if (el && el.parentNode) el.parentNode.removeChild(el); },
+      showFor(msg, ms=1600){ this.set(msg); setTimeout(()=>this.hide(), ms); }
+    };
   }
 
-  // --- Helpers ---
-  function debounce(fn, ms = 150){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; }
-  const esc = (s)=> s==null ? "" : String(s).replace(/[&<>"']/g, (c)=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-  function normaliseTypeToken(t){ const m=(t||"").toLowerCase(); return (m==="org"||m==="organisation"||m==="organization")?"org":m; }
-  function parseQuery(q){
-    const out={text:[],tag:[],type:[]};
-    (q||"").split(/\s+/).forEach(tok=>{
-      if(!tok) return;
-      if(tok.startsWith("tag:")) out.tag.push(tok.slice(4).toLowerCase());
-      else if(tok.startsWith("type:")) out.type.push(normaliseTypeToken(tok.slice(5)));
-      else out.text.push(tok.toLowerCase());
-    });
-    return out;
+  // -------- data getters (prefer preloaded MOTW)
+  function getGraphLite(url) {
+    if (window.MOTW && window.MOTW.graphLite) return Promise.resolve(window.MOTW.graphLite);
+    return fetch(url).then(r => { if (!r.ok) throw new Error(`HTTP ${r.status} for ${url}`); return r.json(); });
   }
-  function readStateFromHash(){
-    const p=new URLSearchParams((location.hash||"").replace(/^#/,""));
-    const types=(p.get("types")||"").split(",").map(s=>s.trim()).filter(Boolean);
-    const q=p.get("q")||p.get("query")||"";
-    return {types,q};
-  }
-  function updateHash(types,q){
-    const params=new URLSearchParams();
-    if(types&&types.length) params.set("types", types.join(","));
-    if(q) params.set("q", q);
-    const str=params.toString();
-    if(str) location.hash=str; else history.replaceState(null,"",location.pathname+location.search);
+  function getGraphStd(url) {
+    if (window.MOTW && window.MOTW.graphStd) return Promise.resolve(window.MOTW.graphStd);
+    return fetch(url).then(r => { if (!r.ok) throw new Error(`HTTP ${r.status} for ${url}`); return r.json(); });
   }
 
-  // --- Edge tooltip (labels are heavy; show on hover) ---
-  const edgeTip = document.createElement("div");
-  edgeTip.id = "edgeTip";
-  Object.assign(edgeTip.style, {
-    position:"fixed", zIndex: 9999, display:"none",
-    padding:"4px 6px", background:"rgba(30,30,30,.85)", color:"#fff",
-    borderRadius:"4px", fontSize:"12px", pointerEvents:"none"
-  });
-  document.body.appendChild(edgeTip);
-  function moveTip(evt){
-    const e = evt.originalEvent;
-    const x = (e && e.clientX) || 0;
-    const y = (e && e.clientY) || 0;
-    edgeTip.style.left = (x+12)+"px";
-    edgeTip.style.top  = (y+12)+"px";
-  }
-
-  // --- In-memory graph store (lite shape) ---
-  let allNodes = [];         // {id,l,t,s?,x?,y?,sb?}
-  let allEdges = [];         // {source,target,label?}
-  const nodeById = new Map();
-  const byType   = {};       // { org:[...], plan:[...], ... }
-  const loadedTypes = new Set();
-  const addedIds    = new Set();
-
-  // --- Load graph JSON ---
-  fetch(graphDataURL).then(r=>{
-    if(!r.ok) throw new Error("HTTP "+r.status);
-    return r.json();
-  }).then(raw=>{
-    // Normalise to lite arrays if old shape
-    if (Array.isArray(raw?.elements)) {
-      const nodes = raw.elements.filter(e=>e.group==="nodes").map(e=>{
-        const d = e.data||{};
-        const cls = (e.classes||"").trim() || ((d.type||"").toLowerCase()==="organization"?"org":(d.type||"").toLowerCase());
-        const pos = e.position || undefined;
-        return { id:d.id, l:d.label, t: cls==="organization"?"org":cls, s:d.slug||d.page_url||"", x:pos?.x, y:pos?.y, sb:(d.search_blob||"") };
-      });
-      const edges = raw.elements.filter(e=>e.group==="edges").map(e=>{
-        const d=e.data||{};
-        return [d.source, d.target, d.label||""];
-      });
-      raw = { nodes, edges };
-    }
-
-    // Fill indexes
-    allNodes = (raw.nodes||[]).map(n=>{
-      const t = (n.t==="organization"?"org":n.t)||"other";
-      const obj = { id:n.id, l:n.l, t, s:n.s||"", x:n.x, y:n.y, sb:n.sb||"" };
-      nodeById.set(obj.id, obj);
-      if (!byType[t]) byType[t] = [];
-      byType[t].push(obj);
-      return obj;
-    });
-    allEdges = (raw.edges||[]).map(e=>({ source:e[0], target:e[1], label:e[2]||"" }));
-
-    // --- Cytoscape init (empty; we add chunks) ---
-    const dynamicNodeStyles = Object.entries(staticTypeColorMap).map(([cls,color])=>({
-      selector: `.${cls==="organization"?"org":cls}`,
-      style: { "background-color": color, "background-opacity": 1 }
-    }));
-    const cy = cytoscape({
-      container: cyContainer,
-      elements: [],
-      layout: { name:"preset" },
-      style: [
-        { selector:"node", style:{
-          label:"data(label)",
-          "text-valign":"center","color":"#000","font-size":12,"text-outline-width":0,
-          "min-zoomed-font-size": 10
-        }},
-        ...dynamicNodeStyles,
-        { selector:"edge", style:{
-          "width": 2, "line-color":"#aaa","target-arrow-color":"#aaa",
-          "target-arrow-shape":"triangle","curve-style":"bezier"
-        }},
-        { selector:"node.match", style:{
-          "border-width": 3,"border-color":"#333"
-          // (omit shadow-* properties; invalid in Cytoscape)
-        }}
-      ],
-      renderer: { pixelRatio: 1, hideEdgesOnViewport: true, hideLabelsOnViewport: true, textureOnViewport: true, motionBlur: true }
-    });
-
-    // Edge tooltips
-    cy.on("mouseover","edge", (evt)=>{
-      const lbl = evt.target.data("label");
-      if (lbl) { edgeTip.textContent = lbl; edgeTip.style.display="block"; moveTip(evt); }
-    });
-    cy.on("mousemove","edge", moveTip);
-    cy.on("mouseout","edge", ()=>{ edgeTip.style.display="none"; });
-
-    // Side panel (compact, same as standard)
-    const relatedURL = new URL("csc-map-of-the-world/data/related_nodes.json", window.location.origin);
-    fetch(relatedURL).then(r=>r.ok?r.json():{}).then(obj=>{ window.__relatedIndex=obj||{}; })
-                     .catch(()=>{ window.__relatedIndex={}; });
-
-    let panel = document.getElementById("nodePanel");
-    if (!panel) { panel = document.createElement("aside"); panel.id="nodePanel"; panel.className="node-panel"; document.body.appendChild(panel); }
-    function openNodePanel(node){
-      if(!panel) return;
-      const d = node.data();
-      const tagsHtml  = (d.tags || []).map(t=>`<span>#${t}</span>`).join("");
-      const pageUrl = d.page_url ? `${SITE_BASE}${String(d.page_url).replace(/^\/+/, "")}` :
-                        (d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/, "")}/` : "");
-      const base = (s)=> (s? String(s).split("/").filter(Boolean).pop() : "");
-      const queryTerm = (d.label && d.label.trim()) || base(d.slug||d.page_url) || (d.id||"");
-      const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(queryTerm)}`;
-      const hasRelated = window.__relatedIndex && d.slug && window.__relatedIndex[d.slug];
-
-      panel.innerHTML = `
-        <div class="row" style="display:flex; justify-content: space-between; align-items:center;">
-          <h3>${d.label || d.slug || d.id || "(untitled)"}</h3>
-          <button id="panelClose">✕</button>
-        </div>
-        <div class="meta">${(d.type||"").toLowerCase()}</div>
-        <div class="row">${(d.summary||"").slice(0,800)}</div>
-        <div class="row tags">${tagsHtml}</div>
-        <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
-          <a href="${searchUrl}">Search</a>
-          ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${pageUrl}">Open details</a>` : ""}
-          ${hasRelated ? `<button data-related-slug="${d.slug}">Show related</button>` : ""}
-        </div>
-      `;
-      panel.classList.add("open");
-      panel.style.transform = "translateX(0)";
-      panel.style.display = "block";
-    }
-    function closeNodePanel(){ if(!panel) return; panel.classList.remove("open"); panel.style.transform="translateX(110%)"; panel.style.display=""; }
-    document.addEventListener("click",(ev)=>{
-      if (ev.target.id==="panelClose" || ev.target.closest("#panelClose")) { ev.preventDefault(); closeNodePanel(); return; }
-      const btn = ev.target.closest("button[data-related-slug]");
-      if (btn && window.__relatedIndex) {
-        const slug = btn.getAttribute("data-related-slug");
-        const rel = (window.__relatedIndex[slug]||[]).map(r=>r.slug);
-        filterToRelated(rel);
-      }
-    });
-    cy.on("tap","node",(e)=>openNodePanel(e.target));
-
-    // Conversion helpers
-    function toCyNode(n){
-      const data = { id:n.id, label:n.l, type:n.t, slug:n.s||"", search_blob:n.sb||"" };
-      if (n.x!=null && n.y!=null) return { data, classes:(n.t==="organization"?"org":n.t), position:{x:n.x,y:n.y} };
-      return { data, classes:(n.t==="organization"?"org":n.t) };
-    }
-    function toCyEdge(e){ return { data:{ source:e.source, target:e.target, label:e.label||"" } }; }
-
-    // Chunked add + debounced layout to avoid pile-up
-    function addInChunks(elems, chunk=1200, afterAll){
-      let i = 0;
-      (function step(){
-        const slice = elems.slice(i, i+chunk);
-        if (!slice.length) { if (afterAll) afterAll(); return; }
-        cy.batch(()=> cy.add(slice));
-        i += chunk;
-        requestAnimationFrame(step);
-      })();
-    }
-    const runLayout = debounce(()=>{
-      cy.layout({
-        name:"cose", animate:true, padding:50,
-        boundingBox:{ x1:0, y1:0, x2:cyContainer.clientWidth, y2:cyContainer.clientHeight-200 },
-        fit:false, nodeDimensionsIncludeLabels:true
-      }).run();
-    }, 60);
-
-    // Load a class + incident edges + counterpart nodes so edges render
-    function ensureTypeLoaded(typeCls){
-      if (loadedTypes.has(typeCls)) return;
-      const newNodes = (byType[typeCls]||[]).filter(n=>!addedIds.has(n.id));
-
-      const toAddNodesMap = new Map();
-      newNodes.forEach(n=>toAddNodesMap.set(n.id, n));
-
-      const incidentEdges = [];
-      for (const e of allEdges) {
-        const srcIn = toAddNodesMap.has(e.source);
-        const tgtIn = toAddNodesMap.has(e.target);
-        if (srcIn || tgtIn) {
-          incidentEdges.push(e);
-          if (!toAddNodesMap.has(e.source)) {
-            const nn = nodeById.get(e.source);
-            if (nn && !addedIds.has(nn.id)) toAddNodesMap.set(nn.id, nn);
-          }
-          if (!toAddNodesMap.has(e.target)) {
-            const nn = nodeById.get(e.target);
-            if (nn && !addedIds.has(nn.id)) toAddNodesMap.set(nn.id, nn);
-          }
-        }
-      }
-
-      const toAddNodes = Array.from(toAddNodesMap.values());
-      toAddNodes.forEach(n=>addedIds.add(n.id));
-      loadedTypes.add(typeCls);
-      addInChunks([...toAddNodes.map(toCyNode), ...incidentEdges.map(toCyEdge)], 1200, runLayout);
-    }
-
-    // Legend + status (no global :visible scans)
-    const legendBlock = document.createElement("details");
-    legendBlock.id="static-legend";
-    legendBlock.open = false;
-    legendBlock.style = "margin-top:1em; padding:.5em; border:1px solid #ccc; background:#fafafa; border-radius:4px;";
-    const sm = document.createElement("summary"); sm.textContent="Show Graph Legend";
-    legendBlock.appendChild(sm);
-    const legendList = document.createElement("div");
-    legendList.style = "margin-top:.5em; font-size:.9em;";
-    const legendRowByClass = {};
-    Object.entries(staticTypeColorMap).forEach(([type,color])=>{
-      const cls = (type==="organization"?"org":type);
-      const row = document.createElement("div");
-      row.style="display:flex; align-items:center; margin:4px 0;";
-      row.dataset.type = cls;
-      row.innerHTML = `<span style="width:14px;height:14px;background:${color};display:inline-block;margin-right:6px;border-radius:3px;"></span> ${type[0].toUpperCase()+type.slice(1)} (0)`;
-      legendList.appendChild(row);
-      legendRowByClass[cls]=row;
-    });
-    legendBlock.appendChild(legendList);
-    cyContainer.parentElement.appendChild(legendBlock);
-
-    const statusDisplay = document.createElement("p");
-    statusDisplay.id="graph-status"; statusDisplay.style.fontSize=".75em"; statusDisplay.style.margin=".5em 0";
-    cyContainer.parentElement.insertBefore(statusDisplay, cyContainer);
-    function updateLegendCounts(countByClass){
-      for (const [cls,row] of Object.entries(legendRowByClass)){
-        const type = cls==="org" ? "Organization" : cls[0].toUpperCase()+cls.slice(1);
-        const color = staticTypeColorMap[cls==="org"?"organization":cls];
-        const n = countByClass[cls]||0;
-        row.innerHTML = `<span style="width:14px;height:14px;background:${color};display:inline-block;margin-right:6px;border-radius:3px;"></span> ${type} (${n})`;
-      }
-    }
-
-    // Filtering
-    let choicesInstance=null;
-    ensureChoices(()=>{
-      if (typeFilter) {
-        choicesInstance = new Choices(typeFilter, { removeItemButton:true, searchEnabled:false, shouldSort:false, placeholderValue:"Filter by type..." });
-        choicesInstance.setChoiceByValue("org");
-        typeFilter.addEventListener("change", ()=>applyFilter());
-      }
-    });
-    function getSelectedClasses(){ return choicesInstance ? choicesInstance.getValue(true) : []; }
-
-    let currentQuery = "";
-    // default OFF — keep neighbours
-    let contextModeEnabled = contextToggle ? contextToggle.checked : false;
-    if (contextToggle) contextToggle.checked = false;
-    if (contextToggle) contextToggle.addEventListener("change", ()=>{ contextModeEnabled = contextToggle.checked; applyFilter(); });
-
-    function nodeMatchesQuery(node, q){
-      if (!q) return true;
-      const qobj = parseQuery(q);
-      const nodeTypeClass = (node.classes()[0] || "").toLowerCase();
-      const nodeTypeData  = (node.data("type") || "").toLowerCase();
-      const nodeTags = (node.data("tags") || []).map(String).map(s=>s.toLowerCase());
-      const blob = (node.data("search_blob") || node.data("label") || "").toLowerCase();
-      if (qobj.type.length){
-        const matchesType = qobj.type.some(t => (t==="org" ? (nodeTypeClass==="org"||nodeTypeData==="organization") : (nodeTypeClass===t || nodeTypeData===t)));
-        if (!matchesType) return false;
-      }
-      if (qobj.tag.length){
-        const hasAnyTag = qobj.tag.some(t => nodeTags.includes(t));
-        if (!hasAnyTag) return false;
-      }
-      return qobj.text.every(t => blob.includes(t));
-    }
-    function ensureTypesForSelection(selected){ (selected||[]).forEach(cls => ensureTypeLoaded(cls)); }
-
-    // Accepts optional override for selected types
-    function applyFilter(selectedOverride){
-      const selected = Array.isArray(selectedOverride) ? selectedOverride : getSelectedClasses();
-      const q = (currentQuery||"").trim().toLowerCase();
-      ensureTypesForSelection(selected);
-
-      const countByClass = {};
-      let visibleCount = 0;
-
-      cy.batch(()=>{
-        if (!selected.length && !q) {
-          cy.nodes().forEach(n=>{
-            n.style("display","element");
-            const cls = (n.classes()[0]||"other");
-            countByClass[cls] = (countByClass[cls]||0) + 1;
-          });
-          cy.edges().style("display","element");
-        } else {
-          cy.nodes().forEach(node=>{
-            const nodeCls = node.classes()[0];
-            const typeOk = !selected.length || selected.includes(nodeCls);
-            const textOk = nodeMatchesQuery(node, q);
-            const show = typeOk && textOk;
-            node.style("display", show ? "element" : "none");
-            if (q) node.toggleClass("match", show); else node.removeClass("match");
-            if (show) {
-              visibleCount++;
-              countByClass[nodeCls] = (countByClass[nodeCls]||0) + 1;
-            }
-          });
-          cy.edges().forEach(edge=>{
-            const show = edge.source().style("display")!=="none" && edge.target().style("display")!=="none";
-            edge.style("display", show ? "element" : "none");
-          });
-          if (contextModeEnabled && q) {
-            const matched = cy.nodes(".match");
-            if (matched.length) matched.closedNeighborhood().style("display","element");
-          }
-        }
-      });
-
-      const totalAll    = allNodes.length;
-      const totalLoaded = cy.nodes().length;
-      const shown       = visibleCount || totalLoaded;
-      statusDisplay.textContent = `Showing ${shown} of ${totalLoaded} loaded (of ${totalAll} total)`;
-      updateLegendCounts(countByClass);
-      updateHash(selected, q);
-    }
-
-    if (textSearch) textSearch.addEventListener("input", debounce(e=>{ currentQuery=e.target.value||""; applyFilter(); },150));
-
-    if (resetBtn) resetBtn.addEventListener("click", ()=>{
-      cy.batch(()=>{
-        cy.elements().style("display","element");
-        if (choicesInstance) choicesInstance.removeActiveItems();
-        if (textSearch) textSearch.value="";
-        cy.nodes().removeClass("match");
-        currentQuery="";
-      });
-      updateLegendCounts({});
-      updateHash([], "");
-      cy.fit();
-    });
-
-    // Initial state — force org-only first paint unless URL says otherwise
-    const { types: hashTypes, q: hashQ } = readStateFromHash();
-    const hasInitialState = (hashTypes && hashTypes.length) || (hashQ && hashQ.length);
-    // Raw select fallback before Choices mounts
-    if (typeFilter && !hasInitialState) {
-      Array.from(typeFilter.options).forEach(opt => { opt.selected = (opt.value === "org"); });
-    }
-    if (hasInitialState) {
-      ensureTypesForSelection(hashTypes || []);
-      if (textSearch) { textSearch.value = hashQ || ""; currentQuery = hashQ || ""; }
-      applyFilter(hashTypes);
+  // -------- edges: fast/detailed styles + progressive add
+  function setEdgeMode(cy, mode) {
+    const s = cy.style();
+    if (mode === 'fast') {
+      s.selector('edge')
+       .style('curve-style', 'haystack')
+       .style('haystack-radius', 1)
+       .style('line-color', '#aaa')
+       .style('width', 1)
+       .style('opacity', 0.35)
+       .style('target-arrow-shape', 'none');
     } else {
-      applyFilter(["org"]);
+      s.selector('edge')
+       .style('curve-style', 'bezier')
+       .style('line-color', '#a0a0a0')
+       .style('width', 1.2)
+       .style('opacity', 0.9)
+       .style('target-arrow-shape', 'triangle');
     }
-  }).catch(err=>{
-    console.error("Failed to load graph data:", err);
-    cyContainer.innerHTML = "<p style='color:red;'>Could not load graph data.</p>";
-  });
-});
+    s.update();
+  }
+  function addEdgesProgressively(cy, allEdgeEls, first = EDGE_FIRST_BATCH) {
+    let idx = 0;
+    const now = allEdgeEls.slice(0, first);
+    idx = now.length;
+    if (now.length) cy.add(now);
+
+    function pump() {
+      if (idx >= allEdgeEls.length) return;
+      const next = allEdgeEls.slice(idx, Math.min(allEdgeEls.length, idx + EDGE_CHUNK_SIZE));
+      idx += next.length;
+      cy.batch(() => { cy.add(next); });
+      if (idx < allEdgeEls.length) setTimeout(pump, EDGE_CHUNK_DELAY);
+    }
+    setTimeout(pump, EDGE_CHUNK_DELAY);
+  }
+
+  // -------- panel helpers (shared with standard)
+  function esc(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, m =>
+      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+  function buildFieldsHTML(d){
+    const f = d.fields || {};
+    const rows = [];
+
+    const orgType  = f.organisation_type || f.organization_type || d.organisation_type;
+    const region   = f.region || d.region;
+    const projects = Array.isArray(f.projects) ? f.projects
+                   : Array.isArray(d.projects) ? d.projects : [];
+    const persons  = Array.isArray(f.persons) ? f.persons
+                   : Array.isArray(d.persons) ? d.persons : [];
+
+    if (d.type)           rows.push(`<div class="row"><span class="subhead">Type</span><div class="meta">${esc(d.type)}</div></div>`);
+    if (d.slug)           rows.push(`<div class="row"><span class="subhead">Slug</span><div class="meta">${esc(d.slug)}</div></div>`);
+    if (d.website)        rows.push(`<div class="row"><span class="subhead">Website</span> <a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>`);
+    if (d.date_published) rows.push(`<div class="row"><span class="subhead">Published</span><div class="meta">${esc(d.date_published)}</div></div>`);
+    if (Array.isArray(d.tags) && d.tags.length){
+      rows.push(`<div class="row"><div class="subhead">Tags</div><div class="tags">${
+        d.tags.map(t=>`<span>${esc(t)}</span>`).join(" ")
+      }</div></div>`);
+    }
+
+    if (orgType) rows.push(`<div class="row"><span class="subhead">Organisation type</span><div class="meta">${esc(orgType)}</div></div>`);
+    if (region)  rows.push(`<div class="row"><span class="subhead">Region</span><div class="meta">${esc(region)}</div></div>`);
+    if (projects.length){
+      rows.push(`<div class="row"><span class="subhead">Projects</span><ul>${
+        projects.filter(Boolean).map(p=>`<li>${esc(p)}</li>`).join("")
+      }</ul></div>`);
+    }
+    if (persons.length){
+      rows.push(`<div class="row"><span class="subhead">People</span><ul>${
+        persons.map(p=>{
+          if (p && typeof p === "object"){
+            const nm = esc(p.name||""); const rl = esc(p.role||""); const fr = esc(p.from||"");
+            const extra = [rl, fr].filter(Boolean).join(", ");
+            return `<li>${nm}${extra?` <span class="meta">(${extra})</span>`:""}</li>`;
+          }
+          return `<li>${esc(p)}</li>`;
+        }).join("")
+      }</ul></div>`);
+    }
+
+    if (f.lead_organisation) rows.push(`<div class="row"><span class="subhead">Lead organisation</span><div class="meta">${esc(f.lead_organisation)}</div></div>`);
+    if (f.location)          rows.push(`<div class="row"><span class="subhead">Location</span><div class="meta">${esc(f.location)}</div></div>`);
+    if (f.date)              rows.push(`<div class="row"><span class="subhead">Date</span><div class="meta">${esc(f.date)}</div></div>`);
+
+    if (f.status)           rows.push(`<div class="row"><span class="subhead">Status</span><div class="meta">${esc(f.status)}</div></div>`);
+    if (f.linked_framework) rows.push(`<div class="row"><span class="subhead">Linked framework</span><div class="meta">${esc(f.linked_framework)}</div></div>`);
+    if (Array.isArray(f.target_outcomes) && f.target_outcomes.length){
+      rows.push(`<div class="row"><span class="subhead">Target outcomes</span><ul>${
+        f.target_outcomes.map(o=>`<li>${esc(o)}</li>`).join("")
+      }</ul></div>`);
+    }
+    return rows.join("\n");
+  }
+
+  function mount() {
+    const container     = document.getElementById('cy') || document.getElementById('network-app');
+    if (!container) return;
+
+    // Optional UI hooks (exist on some pages)
+    const typeFilter    = document.getElementById('typeFilter');
+    const resetBtn      = document.getElementById('resetView');
+    const textSearch    = document.getElementById('textSearch');
+    const contextToggle = document.getElementById('contextModeToggle');
+
+    // Choices.js guard
+    let choicesInstance = null;
+    if (window.Choices && typeFilter && !typeFilter.dataset.enhanced) {
+      choicesInstance = new Choices(typeFilter, { removeItemButton: true, shouldSort: false });
+      typeFilter.dataset.enhanced = "1";
+    }
+
+    const chip = statusChip(container);
+    chip.set('Loading network...');
+
+    const liteURL = new URL('../data/graph_data.lite.json', location.href).toString();
+    const stdURL  = new URL('../data/graph_data.json',      location.href).toString();
+    const siteBase = stdURL.replace(/data\/graph_data\.json$/, '');
+
+    // Fetch lite graph first for fast paint; fetch standard in the background for panel enrichment
+    Promise.allSettled([getGraphLite(liteURL), getGraphStd(stdURL)]).then(results => {
+      const lite = results[0].status === 'fulfilled' ? results[0].value : { nodes:[], edges:[] };
+      const std  = results[1].status === 'fulfilled' ? results[1].value : null;
+
+      const nodes = lite.nodes || [];
+      const edges = lite.edges || [];
+
+      // Build enrichment map from standard JSON if available
+      const detailsById = new Map();
+      if (std && Array.isArray(std.elements)) {
+        for (const el of std.elements) {
+          if (el.group !== 'nodes') continue;
+          const d = el.data || {};
+          const classes = (el.classes || '').trim();
+          // normalise a compact detail object for the panel
+          detailsById.set(d.id, {
+            id: d.id,
+            label: d.label,
+            type:  d.type || classes || '',
+            slug:  d.slug || '',
+            tags:  Array.isArray(d.tags) ? d.tags : [],
+            summary: d.summary || d.description || '',
+            website: d.website || '',
+            date_published: d.date_published || '',
+            page_url: d.page_url || '',
+            fields: d.fields || {}  // our builder now emits this bag
+          });
+        }
+      }
+
+      // Indexes for filtering
+      const nodeById  = new Map(nodes.map(n => [n.id, n]));
+      const neighbors = new Map(nodes.map(n => [n.id, []]));
+      edges.forEach(([s,t]) => { neighbors.get(s)?.push(t); neighbors.get(t)?.push(s); });
+
+      // Initial visible set (org-only; context off unless checkbox is checked)
+      const allowTypes = new Set(['org']);
+      let visibleIds   = new Set(nodes.filter(n => allowTypes.has(String(n.t||'').toLowerCase())).map(n => n.id));
+      if (contextToggle && contextToggle.checked) {
+        const add = new Set(visibleIds);
+        visibleIds.forEach(id => (neighbors.get(id) || []).forEach(m => add.add(m)));
+        visibleIds = add;
+      }
+
+      // Build initial cy elements
+      const nodeEls = [];
+      visibleIds.forEach(id => {
+        const n = nodeById.get(id);
+        if (!n) return;
+        const pos = (typeof n.x === 'number' && typeof n.y === 'number') ? { x:n.x, y:n.y } : undefined;
+        nodeEls.push({
+          group: 'nodes',
+          data: { id: n.id, label: n.l, t: n.t || 'other', s: n.s || '', sb: n.sb || '' },
+          position: pos
+        });
+      });
+      const edgeEls = edges
+        .filter(([s,t]) => visibleIds.has(s) && visibleIds.has(t))
+        .map(([s,t,rel]) => ({ group: 'edges', data: { source: s, target: t, rel: rel || '' } }));
+
+      // Bring up Cytoscape
+      const cy = window.cy || cytoscape({
+        container,
+        elements: [],
+        pixelRatio: 1,
+        textureOnViewport: true,
+        wheelSensitivity: 0.2,
+        hideEdgesOnViewport: true,
+        motionBlur: true,
+        layout: { name: 'preset', fit: false }
+      });
+      window.cy = cy;
+
+      // Style (type colouring via t attr)
+      cy.style().fromJson([
+        { selector: 'node', style: { 'background-color': '#b8b8b8', 'width': 8, 'height': 8, 'label': '' } },
+        { selector: 'node[t = "org"], node[t = "organization"]', style: { 'background-color': '#4c78a8' } },
+        { selector: 'node[t = "service"]',   style: { 'background-color': '#f58518' } },
+        { selector: 'node[t = "dataset"]',   style: { 'background-color': '#54a24b' } },
+        { selector: 'node[t = "tool"]',      style: { 'background-color': '#e45756' } },
+        { selector: 'node[t = "event"]',     style: { 'background-color': '#72b7b2' } },
+        { selector: 'node[t = "plan"]',      style: { 'background-color': '#ff9da6' } },
+        { selector: 'node[t = "person"]',    style: { 'background-color': '#b279a2' } },
+        { selector: 'node[t = "rule"]',      style: { 'background-color': '#eeca3b' } },
+        { selector: 'edge', style: { 'line-color': '#aaa', 'width': 1 } }
+      ]).update();
+
+      setEdgeMode(cy, 'fast');
+
+      // Add nodes immediately; fit; then feed edges
+      cy.add(nodeEls);
+      const core = cy.nodes().filter(n => n.connectedEdges().length > 0);
+      cy.fit(core.length ? core : cy.nodes(), 16);
+      chip.set('Adding edges…');
+      addEdgesProgressively(cy, edgeEls);
+      cy.once('render', () => setTimeout(() => chip.hide(), 800));
+
+      // Zoom: labels and edge mode switch
+      cy.on('zoom', () => {
+        const z = cy.zoom();
+        const show = z > LABEL_ZOOM;
+        cy.batch(() => cy.nodes().forEach(n => n.style('label', show ? n.data('label') : '')));
+        setEdgeMode(cy, z >= HAYSTACK_TO_BEZIER_ZOOM ? 'detail' : 'fast');
+      });
+
+      // Simple info panel (uses standard details if available; otherwise minimal lite fallback)
+      let panel = document.getElementById('node-panel');
+      if (!panel) {
+        panel = document.createElement('div');
+        panel.id = 'node-panel';
+        panel.className = 'node-panel';
+        panel.style.display = 'none';
+        panel.style.position = 'fixed';
+        panel.style.top = '96px';
+        panel.style.right = '16px';
+        panel.style.width = 'min(360px,95vw)';
+        panel.style.maxHeight = '70vh';
+        panel.style.overflow = 'auto';
+        panel.style.background = '#fff';
+        panel.style.border = '1px solid #ddd';
+        panel.style.borderRadius = '8px';
+        panel.style.boxShadow = '0 10px 24px rgba(0,0,0,.12)';
+        panel.style.padding = '12px 14px';
+        panel.style.zIndex = '9999';
+        document.body.appendChild(panel);
+      }
+      function renderPanelFor(node){
+        // prefer rich standard details if present
+        const rich = detailsById.get(node.id());
+        const base = {
+          label: node.data('label'),
+          type:  node.data('t'),
+          slug:  node.data('s')
+        };
+        const d = rich || base;
+
+        const title   = `<div class="row"><strong>${esc(d.label || node.id())}</strong></div>`;
+        const meta    = `<div class="meta">${esc(d.slug || '')}</div>`;
+        const summary = d.summary ? `<div class="row"><div class="subhead">Summary</div><div>${esc(d.summary)}</div></div>` : '';
+        const fields  = buildFieldsHTML(d);
+        const website = d.website ? `<div class="row"><a href="${esc(d.website)}" target="_blank" rel="noopener">Website</a></div>` : '';
+        const details = d.page_url ? `<div class="row"><a href="${siteBase}${d.page_url}">Details</a></div>` : '';
+
+        panel.innerHTML = `
+          <div class="node-panel-content">
+            ${title}
+            ${meta}
+            ${summary}
+            ${fields}
+            ${website}
+            ${details}
+          </div>`;
+        panel.style.display = 'block';
+      }
+      cy.on('tap', 'node', (e) => renderPanelFor(e.target));
+      cy.on('tap', (e) => { if (e.target === cy) panel.style.display = 'none'; });
+
+      // ------- Optional UI: filtering & search (if elements are present)
+      function applyFilter() {
+        const selectedTypes = new Set(
+          (choicesInstance ? choicesInstance.getValue(true)
+                           : Array.from(typeFilter?.selectedOptions || []).map(o => o.value))
+            .map(s => String(s).toLowerCase())
+        );
+        const ctx = !!(contextToggle && contextToggle.checked);
+
+        let vis = new Set(nodes.filter(n => selectedTypes.has(String(n.t).toLowerCase())).map(n => n.id));
+        if (ctx) {
+          const add = new Set(vis);
+          vis.forEach(id => (neighbors.get(id) || []).forEach(m => add.add(m)));
+          vis = add;
+        }
+
+        cy.batch(() => {
+          cy.nodes().forEach(n => n.style('display', vis.has(n.id()) ? 'element' : 'none'));
+          cy.edges().forEach(e => {
+            const s = e.data('source'), t = e.data('target');
+            e.style('display', (vis.has(s) && vis.has(t)) ? 'element' : 'none');
+          });
+        });
+
+        const coreNow = cy.nodes().filter(n => n.style('display') !== 'none' && n.connectedEdges(':visible').length > 0);
+        if (coreNow.length) cy.fit(coreNow, 16);
+      }
+
+      function applySearch() {
+        const q = (textSearch?.value || '').toLowerCase().trim();
+        if (!q) {
+          cy.nodes().forEach(n => n.style('opacity', 1));
+          cy.edges().forEach(e => e.style('opacity', 1));
+          return;
+        }
+        const match = new Set();
+        nodes.forEach(n => {
+          const blob = String(n.sb || `${n.l} ${n.s} ${n.t}`).toLowerCase();
+          if (blob.includes(q)) match.add(n.id);
+        });
+        cy.batch(() => {
+          cy.nodes().forEach(n => n.style('opacity', match.has(n.id()) ? 1 : 0.15));
+          cy.edges().forEach(e => {
+            const s = e.data('source'), t = e.data('target');
+            e.style('opacity', (match.has(s) || match.has(t)) ? 1 : 0.1);
+          });
+        });
+      }
+
+      typeFilter?.addEventListener('change', applyFilter);
+      contextToggle?.addEventListener('change', applyFilter);
+      resetBtn?.addEventListener('click', () => {
+        if (choicesInstance) { choicesInstance.removeActiveItems(); choicesInstance.setChoiceByValue(['org']); }
+        if (typeFilter && !choicesInstance) {
+          Array.from(typeFilter.options).forEach(o => o.selected = (o.value === 'org'));
+        }
+        if (contextToggle) contextToggle.checked = false;
+        applyFilter();
+      });
+      textSearch?.addEventListener('input', applySearch);
+    }).catch(err => {
+      console.error(err);
+      chip.set('Could not load graph data');
+    });
+  }
+
+  if (window.document$) {
+    document$.subscribe(() => setTimeout(mount, 0));
+  } else if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mount);
+  } else {
+    mount();
+  }
+})();

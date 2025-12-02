@@ -1,5 +1,7 @@
 // docs/js/explorer.js
-// Search-first Explorer: load small ego subgraphs on demand (blank start)
+// Search-first Explorer: load small ego subgraphs on demand (starts blank|empty)
+
+
 
 (function () {
   const cyContainer   = document.getElementById("cy");
@@ -10,15 +12,20 @@
 
   if (!cyContainer) { console.error("Explorer: no #cy container found."); return; }
 
-  // Paths: handle GitHub Pages subpath vs local mkdocs
+  // Paths: handle Git Pages subpath vs local mkdocs
   const GH_BASE  = "/csc-map-of-the-world/";
   const SITE_BASE = window.location.pathname.startsWith(GH_BASE) ? GH_BASE : "/";
 
   const DATA = {
+    // cut down minimal info panel data
     liteIndexUrl: new URL(SITE_BASE + "data/lite_index.json", window.location.origin),
+    // full info panel data 
+    detailsUrl:   new URL(SITE_BASE + "data/node_details.json", window.location.origin),
+
     searchUrl:    new URL(SITE_BASE + "data/graph_search_index.json", window.location.origin),
     adjUrl:       new URL(SITE_BASE + "data/adjacency.json", window.location.origin)
   };
+
 
   const staticTypeColorMap = {
     organization:"#007acc", event:"#ff9800", person:"#4caf50", collection:"#9c27b0",
@@ -30,9 +37,11 @@
   const esc = s => s==null ? "" : String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;","&gt;":">&gt;","\"":"&quot;","'":"&#39;"}[c]));
 
   // Small in-memory stores
-  let LITE = {};   // {id:{id,l,t,s,x,y,sb?}}
+  let LITE = {};   // {id:{id,l,t,s,x,y,sb?}} (info panel mini/lite details)
   let SEARCH = []; // [{id,l,t,s}]
   let ADJ = {};    // {id:[neighbourIds...]}
+    let DETAILS = {};  // {id:{label,slug,type,summary,tags,website,projects,persons,...}} (info panel full details)
+
 
   // Cytoscape (blank start)
   const styles = [
@@ -55,7 +64,7 @@
   const cy = cytoscape({
     container: cyContainer,
     elements: [],
-    layout: { name:"preset" }, // honour precomputed positions if present
+    layout: { name:"preset" }, // honour precomputed positions if available
     style: styles,
     renderer: {
       pixelRatio: 1,
@@ -66,7 +75,7 @@
     }
   });
 
-  // Edge tooltip (labels are heavy; show on hover)
+  // Edge tooltip (labels are heavy; show on hover instead (labels fine at <100 nodes, but not >1000+))
   const edgeTip = document.createElement("div");
   Object.assign(edgeTip.style, {
     position:"fixed", zIndex:9999, display:"none",
@@ -86,27 +95,163 @@
   // Info panel (compact)
   let panel = document.getElementById("nodePanel");
   if (!panel) { panel = document.createElement("aside"); panel.id="nodePanel"; panel.className="node-panel"; document.body.appendChild(panel); }
-  function openNodePanel(node){
+  function openNodePanel(node) {
     const d = node.data();
-    const base = s => (s? String(s).split("/").filter(Boolean).pop() : "");
-    const queryTerm = (d.label && d.label.trim()) || base(d.slug) || d.id;
+    const id = d.id;
+    const det = (id && DETAILS[id]) || {};
+    const lite = (id && LITE[id]) || {};
+
+    const label =
+      det.label ||
+      d.label ||
+      lite.l ||
+      lite.label ||
+      lite.name ||
+      lite.title ||
+      id;
+
+    const typeVal =
+      (det.type || d.type || lite.t || "").toString().toLowerCase();
+
+    const slugVal =
+      det.slug ||
+      d.slug ||
+      lite.slug ||
+      lite.s ||
+      "";
+
+    const summary =
+      det.summary ||
+      det.description ||
+      det.notes ||
+      lite.summary ||
+      lite.desc ||
+      lite.description ||
+      "";
+
+    const tags = Array.isArray(det.tags)
+      ? det.tags
+      : (Array.isArray(lite.tags) ? lite.tags : []);
+
+    const website = det.website || lite.website || "";
+    const projects = Array.isArray(det.projects) ? det.projects : [];
+    const persons  = Array.isArray(det.persons)  ? det.persons  : [];
+
+    const orgType = det.organisation_type || det.organization_type || "";
+    const region  = det.region || "";
+
+    const pageUrl = det.page_url || "";
+    const hasPage = typeof pageUrl === "string" && pageUrl.trim() !== "";
+
+    const base = s => (s ? String(s).split("/").filter(Boolean).pop() : "");
+    const queryTerm = (label && label.trim()) || base(slugVal) || id;
     const searchUrl = `${SITE_BASE}search/?q=${encodeURIComponent(queryTerm)}`;
-    const pageUrl   = d.slug ? `${SITE_BASE}${String(d.slug).replace(/^\/+/,"")}/` : "";
+
+    const metaRows = [];
+    if (id)      metaRows.push(["Id", id]);
+    if (typeVal) metaRows.push(["Type", typeVal]);
+    if (slugVal) metaRows.push(["Slug", slugVal]);
+    if (orgType) metaRows.push(["Organisation type", orgType]);
+    if (region)  metaRows.push(["Region", region]);
 
     panel.innerHTML = `
-      <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
-        <h3>${esc(d.label || d.id)}</h3>
-        <button id="panelClose">✕</button>
-      </div>
-      <div class="meta">${esc((d.type||"").toLowerCase())}</div>
-      <div class="row">${esc((d.summary||"")).slice(0,800)}</div>
-      <div class="row toolbar" style="display:flex; gap:8px; margin-top:10px;">
-        <a href="${esc(searchUrl)}">Search</a>
-        ${pageUrl ? `&nbsp;&nbsp;|&nbsp;&nbsp;<a href="${esc(pageUrl)}">Open details</a>` : ""}
+      <div class="node-panel-inner">
+        <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
+          <h3>${esc(label || id)}</h3>
+          <button id="panelClose">✕</button>
+        </div>
+
+        ${typeVal ? `<div class="meta">${esc(typeVal)}</div>` : ""}
+
+        ${
+          summary
+            ? `<div class="row node-summary">
+                 ${esc(summary)}
+               </div>`
+            : ""
+        }
+
+        ${
+          tags && tags.length
+            ? `<div class="row node-tags">
+                 <strong>Tags</strong>: ${tags.map(esc).join(", ")}
+               </div>`
+            : ""
+        }
+
+        ${
+          website
+            ? `<div class="row node-website">
+                 <strong>Website</strong>:
+                 <a href="${esc(website)}" target="_blank" rel="noopener">
+                   ${esc(website)}
+                 </a>
+               </div>`
+            : ""
+        }
+
+        ${
+          projects && projects.length
+            ? `<div class="row node-projects">
+                 <strong>Projects</strong>:
+                 ${projects.map(p => esc(p || "")).filter(Boolean).join(", ")}
+               </div>`
+            : ""
+        }
+
+        ${
+          persons && persons.length
+            ? `<div class="row node-persons">
+                 <strong>Persons</strong>:
+                 <ul style="margin:0.25rem 0 0 1rem;padding:0;">
+                   ${persons.map(p => {
+                     const name = p.name || "";
+                     const role = p.role || "";
+                     const from = p.from || "";
+                     const bits = [
+                       name ? esc(name) : "",
+                       role ? ` (${esc(role)})` : "",
+                       from ? ` since ${esc(from)}` : ""
+                     ].join("");
+                     return bits ? `<li>${bits}</li>` : "";
+                   }).join("")}
+                 </ul>
+               </div>`
+            : ""
+        }
+
+        ${
+          metaRows.length
+            ? `<div class="row">
+                 <table>
+                   <tbody>
+                     ${metaRows.map(([k, v]) => `
+                       <tr>
+                         <td>${esc(k)}</td>
+                         <td>${esc(v)}</td>
+                       </tr>
+                     `).join("")}
+                   </tbody>
+                 </table>
+               </div>`
+            : ""
+        }
+
+        <div class="row toolbar">
+          <a href="${esc(searchUrl)}">Search</a>
+          ${
+            hasPage
+              ? `<span>|</span>
+                 <a href="${esc(pageUrl)}">Open details</a>`
+              : ""
+          }
+        </div>
       </div>
     `;
     panel.classList.add("open");
   }
+
+
   function closeNodePanel(){ panel.classList.remove("open"); }
   document.addEventListener("click",(ev)=>{
     if (ev.target.id==="panelClose" || ev.target.closest("#panelClose")) { ev.preventDefault(); closeNodePanel(); }
@@ -126,15 +271,21 @@
   function toCyEdge(a,b,label=""){ return { data:{ source:a, target:b, label } }; }
 
   // Add ego graph for node (k hops)
-  const added = new Set(); // node ids already in cy
-  function addEgo(rootId, hops=1){
+
+  const added = new Set();      // node ids already in cy
+  //const addedEdges = new Set(); // undirected edge keys already in cy
+  // addedEdges persists across calls, clicking Add +1 hop multiple times or using Add +2 hops doesnt re create same edge
+
+
+  function addEgo(rootId, hops = 1) {
     if (!LITE[rootId]) return;
 
-    const queue = [[rootId,0]];
-    const seen  = new Set([rootId]);
+    const queue = [[rootId, 0]];
+    const seen = new Set([rootId]);
     const nodesToAdd = new Set([rootId]);
     const edgesToAdd = [];
 
+    // Breadth first search out to given hop depth
     while (queue.length) {
       const [id, depth] = queue.shift();
       if (depth >= hops) continue;
@@ -143,10 +294,14 @@
         if (!LITE[nb]) continue;
         nodesToAdd.add(nb);
         edgesToAdd.push([id, nb]);
-        if (!seen.has(nb)) { seen.add(nb); queue.push([nb, depth+1]); }
+        if (!seen.has(nb)) {
+          seen.add(nb);
+          queue.push([nb, depth + 1]);
+        }
       }
     }
 
+    // Prepare nodes to add, still respecting <added> set
     const cyNodes = [];
     for (const id of nodesToAdd) {
       if (!added.has(id)) {
@@ -155,17 +310,53 @@
         added.add(id);
       }
     }
-    const cyEdges = edgesToAdd.map(([a,b]) => toCyEdge(a,b,""));
+
+    // Build set of existing edge keys from current graph
+    const existingEdgeKeys = new Set();
+    cy.edges().forEach(edge => {
+      const src = edge.data("source");
+      const tgt = edge.data("target");
+      if (src == null || tgt == null) return;
+      const a = String(src);
+      const b = String(tgt);
+      const key = a < b ? `${a}::${b}` : `${b}::${a}`;
+      existingEdgeKeys.add(key);
+    });
+
+    // Deduplicate new edges against already in graph
+    const cyEdges = [];
+    for (const [aRaw, bRaw] of edgesToAdd) {
+      if (aRaw == null || bRaw == null) continue;
+      const a = String(aRaw);
+      const b = String(bRaw);
+      const key = a < b ? `${a}::${b}` : `${b}::${a}`;
+      if (existingEdgeKeys.has(key)) continue;
+      existingEdgeKeys.add(key);
+      cyEdges.push(toCyEdge(aRaw, bRaw, ""));
+    }
 
     if (cyNodes.length || cyEdges.length) {
-      cy.batch(()=> cy.add([...cyNodes, ...cyEdges]));
-      // If any new nodes have no preset position, run a small layout on just-added elements
-      if (!cyNodes.every(n=>n.position)) {
-        cy.layout({ name:"cose", animate:false, nodeDimensionsIncludeLabels:true }).run();
+      cy.batch(() => cy.add([...cyNodes, ...cyEdges]));
+
+      // If any new nodes have no preset position, run small layout on just added elements
+      if (!cyNodes.every(n => n.position)) {
+        cy.layout({
+          name: "cose",
+          animate: false,
+          nodeDimensionsIncludeLabels: true
+        }).run();
       }
+
+      // Important, tell Cytoscape the container size/position may have changed
+      // this stops mouse position being out of alignment with graph node positions
+      cy.resize();
+
+      // fit to content
       cy.fit(cy.elements(), 50);
     }
   }
+
+
 
   // Append/replace behaviour (Keep neighbours toggle)
   let appendMode = !!(contextToggle && contextToggle.checked);
@@ -185,6 +376,7 @@
   });
 
   // Search UI
+  // incls 3 hop options in result-actions
   function renderResults(items){
     resultsEl.innerHTML = "";
     if (!items.length) { resultsEl.style.display = "none"; return; }
@@ -202,9 +394,10 @@
           <span class="badge" style="margin-left:.25rem; font-size:12px; color:#555;">${esc(it.t)}</span>
           <div style="font-size:12px;color:#666;">${esc(it.id)}</div>
         </div>
-        <div>
-          <button data-add="${esc(it.id)}">Add</button>
-          <button data-add1h="${esc(it.id)}" style="margin-left:.25rem;">Add +1 hop</button>
+        <div class="result-actions">
+          <button class="explore-btn" data-add="${esc(it.id)}">Add</button>
+          <button class="explore-btn" data-add1h="${esc(it.id)}">Add +1 hop</button>
+          <button class="explore-btn" data-add2h="${esc(it.id)}">Add +2 hops</button>
         </div>
       `;
       resultsEl.appendChild(row);
@@ -212,10 +405,11 @@
     resultsEl.style.display = "block";
   }
 
+
   function doSearch(q){
     q = (q||"").trim().toLowerCase();
 
-    // Reset any lingering type operators for clean search-first
+    // Reset any left over type operators for clean search-first
     // remove tokens "type:org" or "type:plan"
     q = q.split(/\s+/).filter(tok => !/^type:/i.test(tok)).join(" ");
 
@@ -229,16 +423,38 @@
   }
 
   // Click handlers: honour appendMode
-  resultsEl.addEventListener("click",(ev)=>{
+  // called from renderResults / 3 hop optoins
+  // Click handlers, honour appendMode
+  resultsEl.addEventListener("click", (ev) => {
     const add   = ev.target.getAttribute("data-add");
     const add1h = ev.target.getAttribute("data-add1h");
+    const add2h = ev.target.getAttribute("data-add2h");
+    const chosenId = add || add1h || add2h;
     const willAppend = appendMode; // when OFF, we replace
-    if (add || add1h) {
-      if (!willAppend) { cy.elements().remove(); added.clear(); closeNodePanel(); }
-      if (add)   { addEgo(add, 0); }     // node only
-      if (add1h) { addEgo(add1h, 1); }   // + 1 hop
+
+    if (chosenId) {
+      if (!willAppend) {
+        cy.elements().remove();
+        added.clear();
+        closeNodePanel();
+      }
+
+      if (add)   { addEgo(add, 0); }   // node only
+      if (add1h) { addEgo(add1h, 1); } // root plus 1 hop
+      if (add2h) { addEgo(add2h, 2); } // root plus 2 hops
+
+      // After adding to graph, keep only this row visible
+      // calls renderResults([chosen]) so list collapses down to just select entry
+      const chosen = SEARCH.find(d => d.id === chosenId);
+      if (chosen) {
+        renderResults([chosen]);
+        // resultsEl.style.display = "none" // hide all reseults row once 1 selected/clicked
+      }
     }
   });
+
+
+ 
 
   // Enter key = add first result (0-hop if OFF, 1-hop if ON)
   searchInput?.addEventListener("keydown", (e)=>{
@@ -254,16 +470,25 @@
   searchInput?.addEventListener("input", debounce(e=> doSearch(e.target.value), 150));
 
   // Load assets
+  // explorer still works if richer node_details.json missing, but uses it if found
   Promise.all([
-    fetch(DATA.liteIndexUrl).then(r=>r.json()),
-    fetch(DATA.searchUrl).then(r=>r.json()),
-    fetch(DATA.adjUrl).then(r=>r.json())
-  ]).then(([lite, idx, adj])=>{
+    fetch(DATA.liteIndexUrl).then(r => r.json()),
+    fetch(DATA.searchUrl).then(r => r.json()),
+    fetch(DATA.adjUrl).then(r => r.json()),
+    fetch(DATA.detailsUrl)
+      .then(r => (r.ok ? r.json() : {}))
+      .catch(() => ({})) // tolerate missing details file
+  ]).then(([lite, idx, adj, details]) => {
     LITE = lite || {};
     SEARCH = Array.isArray(idx) ? idx : [];
     ADJ = adj || {};
-    console.log("Explorer assets:", { nodes:Object.keys(LITE).length, search_docs:SEARCH.length });
-  }).catch(err=>{
+    DETAILS = details || {};
+    console.log("Explorer assets:", {
+      nodes: Object.keys(LITE).length,
+      search_docs: SEARCH.length,
+      details: Object.keys(DETAILS).length
+    });
+  }).catch(err => {
     console.error("Failed to load explorer assets:", err);
     cyContainer.innerHTML = "<p style='color:red;'>Could not load explorer assets.</p>";
   });

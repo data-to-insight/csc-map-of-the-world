@@ -44,7 +44,7 @@ E.g. Same hood, zoom out slightly
     const LABEL_ZOOM   = Number(params.get('label_zoom')) || 1.2;  // labels on when zoom above this
     const FOCUS_K      = Number(params.get('k'))      || 5;
     const FIT_PAD      = Number(params.get('pad'))    || 200;
-    const COLOR_MODE   = (params.get('color')  || 'type').toLowerCase();       // 'type' | 'degree'
+    const COLOR_MODE   = (params.get('color')  || 'type').toLowerCase();       // 'type' or 'degree'
     const LAYOUT_AFTER = (params.get('layout') || 'progressive').toLowerCase(); // default progressive
     const ENGINE       = (params.get('engine') || 'fcose').toLowerCase();       // default fcose
     const STAGE_K      = Number(params.get('stage_k')) || 1;                    // initial hops, default 1
@@ -57,7 +57,7 @@ E.g. Same hood, zoom out slightly
     }
     fitContainer();
 
-    // status chip inside container, with fade out helper
+    // status chip inside the container, with fade out helper
     const statusEl = document.createElement('div');
     statusEl.id = 'network-status';
     statusEl.textContent = 'Loading main network...';
@@ -230,10 +230,10 @@ E.g. Same hood, zoom out slightly
         const hood = (()=>{ let coll = focus; for (let i=0;i<STAGE_K;i++){ coll = coll.union(coll.neighborhood().nodes()); } return coll; })();
         cy.resize(); cy.fit(hood, FIT_PAD);
         setLabels(hood.nodes ? hood.nodes() : hood, true);
-        setStatus('Expanding full network[Approx 50s load time]...please wait ');
+        setStatus('Expanding full network...please wait');
       } else {
         firstFit(cy, { havePreset: true });
-        setStatus('Expanding full network[Approx 50s load time]...please wait');
+        setStatus('Expanding full network...please wait');
       }
 
       // stage 2, add the rest, then animate to natural layout

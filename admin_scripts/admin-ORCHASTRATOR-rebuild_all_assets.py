@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-# admin_scripts/admin-rebuild_all_assets.py
+# admin_scripts/admin-ORCHASTRATOR-rebuild_all_assets.py
 
 """
+This is the script to kick-off everything needed when new data is added, refreshed etc. 
+Should just run as-is within the codespace. 
+
 Rebuild graph assets, then ingest external search and vector artifacts.
 
 Pipeline
@@ -33,6 +36,7 @@ EXT_INBOX = ROOT / "data_externally_processed"
 ARTI_DIR  = DOCS_DATA / "csc_artifacts"
 
 # Scripts
+# This is what we're going to run here, order (for some) is important
 S_FULL   = ROOT / "admin_scripts" / "admin-build_cytoscape_json.py"
 S_LITE   = ROOT / "admin_scripts" / "admin-build_cytoscape_json_lite.py"
 S_EXPL   = ROOT / "admin_scripts" / "admin-build_explorer_assets.py"
@@ -42,6 +46,7 @@ S_PAGE   = ROOT / "admin_scripts" / "admin-re-build-sources-page.py"
 if not S_PAGE.exists():
     S_PAGE = ROOT / "admin_scripts" / "admin-re_build-sources-page.py"
 
+# Our back-end data source files, underpinning front-end graphs/search etc. 
 REPORT_FILES = [
     "graph_data.json",
     "crosswalk.json",

@@ -10,9 +10,7 @@ This interactive graph is a work in progress mapping of key organisations, plans
 This is a large scale mapping with many interconnected (moving)parts; currently a work-in-progress MVP. Data & relations are currently being added, graph layout and naming conventions for nodes in particular, is an ongoing discussion as we progress possible use-cases and standardise yml object structure.
 
 
-<!-- depreciated in favour of dynamic path def after def SITE_ROOT -->
-<!-- <link rel="prefetch" href="../data/degree.json" as="fetch" crossorigin> -->
-
+<link rel="prefetch" href="data/degree.json" as="fetch" crossorigin>
 
 
 <!-- Content search filter (in dev) -->
@@ -112,16 +110,13 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
 
 
 
-
-
-
 <!-- Choices.js (CSS + JS) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 
 <!-- libs first -->
 <script defer src="https://unpkg.com/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
 <script defer src="../js/render_graph_standard.js"></script> <!-- note: _standard renderer -->
-<script defer src="../js/search_tool.js"></script>
+
 
 <!-- add colouring + loader + scoped view, default by type, switch with ?color=degree -->
 <script>
@@ -134,24 +129,11 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
   const CTX_PARAM   = params.get('ctx') === '1';       // include neighbours
   const MAX_EDGES   = Number(params.get('maxe') || 800); // cap visible edges after filtering
 
-  // Find site root prefix, e.g. "/csc-map-of-the-world/"
-  const SITE_ROOT = (location.pathname.match(/^(.*?\/csc-map-of-the-world\/)/)?.[1]) || '/';
-
-  // prefetch degree.json with a site-root aware URL
-  (() => {
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.as = 'fetch';
-    link.crossOrigin = 'anonymous';
-    link.href = new URL('data/degree.json', location.origin + SITE_ROOT).toString();
-    document.head.appendChild(link);
-  })();
-
   // status chip inside #cy, with fade
   function makeStatusChip() {
     const cyWrap = document.getElementById('cy');
     if (!cyWrap) return { set: ()=>{}, showFor: ()=>{}, hide: ()=>{} };
-    if (!cyWrap.style.position) cyWrap.style.position = 'relative';
+    cyWrap.style.position = 'relative';
     const el = document.createElement('div');
     el.id = 'network-status';
     el.textContent = 'Loading network...';
@@ -168,18 +150,14 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
   }
   const status = makeStatusChip();
 
-  // If the standard renderer owns scoping, won't attach our own scope handlers if it does
-  const HAS_STANDARD_SCOPER = (window.MOTW_SCOPER === 'standard');
-
   // wait for cy from render_graph_standard.js
-  function whenCyReady(cb){
-    const t0 = Date.now();
-    (function spin(){
-      const cy = window.cy;
-      if (cy && typeof cy.ready === 'function'){ cy.ready(() => cb(cy)); return; }
-      if (Date.now() - t0 > 8000) return; // give up quietly
-      setTimeout(spin, 40);
-    })();
+  function whenCyReady(cb) {
+    if (window.cy) return window.cy.ready(() => cb(window.cy));
+    const start = Date.now();
+    const t = setInterval(() => {
+      if (window.cy) { clearInterval(t); window.cy.ready(() => cb(window.cy)); }
+      if (Date.now() - start > 6000) { clearInterval(t); console.warn('Cytoscape not found'); status.set('Could not initialise graph'); }
+    }, 50);
   }
 
   // --- colouring helpers you already use ---
@@ -205,8 +183,7 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
   async function applyDegreeColors(cy) {
     let degrees = {};
     try {
-      const degreeHref = new URL('data/degree.json', location.origin + SITE_ROOT).toString();
-      const r = await fetch(degreeHref);
+      const r = await fetch(new URL('data/degree.json', window.location.href).toString());
       if (!r.ok) throw new Error();
       degrees = await r.json();
     } catch { degrees = computeDegreesInBrowser(cy); }
@@ -215,26 +192,15 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
     cy.style().fromJson([{ selector: 'node', style: { 'background-color': `mapData(deg, 0, ${maxDeg}, #e0f3ff, #08519c)` } }]).update();
   }
 
-  function getSelectedTypesFromDOM() {
-    const sel = document.getElementById('typeFilter');
-    if (!sel) return null;
-    // Works whether Choices.js is enhancing or not, because the underlying <select> still reflects selection.
-    const vals = Array.from(sel.selectedOptions || []).map(o => String(o.value).toLowerCase());
-    return new Set(vals);
-  }
-
-
-
-  // --- scoped display logic (performance & correctness) ---
+  // --- new: scoped display logic for performance & correctness ---
   function applyScopedView(cy) {
-    // Prefer the live dropdown; fall back to URL ?types param
-    const domTypes = getSelectedTypesFromDOM();
-    const allowed  = (domTypes && domTypes.size) ? domTypes : new Set(TYPES_PARAM);
-
+    // source of truth for context: URL ?ctx=1 or checkbox state if present
     const ctxToggle = document.getElementById('contextModeToggle');
     const includeNeighbours = ctxToggle ? !!ctxToggle.checked : CTX_PARAM;
 
+    const allowed = new Set(TYPES_PARAM); // e.g. {'org'}
     const visible = new Set();
+
     cy.nodes().forEach(n => {
       const t = String(n.data('t') || '').toLowerCase();
       if (allowed.has(t)) {
@@ -245,11 +211,13 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
       }
     });
 
+    // Show only selected nodes and edges connecting them
     cy.batch(() => {
       cy.nodes().forEach(n => n.style('display', visible.has(n.id()) ? 'element' : 'none'));
       cy.edges().forEach(e => {
         const s = e.data('source'), t = e.data('target');
-        e.style('display', (visible.has(s) && visible.has(t)) ? 'element' : 'none');
+        const show = visible.has(s) && visible.has(t);
+        e.style('display', show ? 'element' : 'none');
       });
     });
 
@@ -257,76 +225,38 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
     if (MAX_EDGES > 0) {
       const visEdges = cy.edges().filter(e => e.style('display') !== 'none');
       if (visEdges.length > MAX_EDGES) {
+        // deterministically hide a tail to avoid jank
         const arr = visEdges.toArray();
         for (let i = MAX_EDGES; i < arr.length; i++) arr[i].style('display', 'none');
       }
     }
-  }
 
-  // quick COSE on the currently visible subgraph if everything looks stacked at {0,0}
-  function quickLayoutIfStacked(cy) {
-    const vis = cy.nodes(':visible');
-    if (!vis.length) return;
-
-    const bb = vis.boundingBox(); // {x1,x2,y1,y2,w,h}
-    const w = Math.abs(bb.w || (bb.x2 - bb.x1));
-    const h = Math.abs(bb.h || (bb.y2 - bb.y1));
-    const looksStacked = (w < 20 && h < 20 && vis.length > 2);
-
-    if (!looksStacked) return;
-
-    status.set('Arranging layout...');
-    const subgraph = vis.union(vis.edgesWith(vis));
-    cy.style().selector('edge').style('opacity', 0.25).update();
-    const layout = subgraph.layout({
-      name: 'cose',
-      fit: true,
-      animate: 'end',
-      animationDuration: 600,
-      numIter: 500,
-      nodeRepulsion: 90000,
-      idealEdgeLength: 90,
-      gravity: 2
-    });
-    layout.on('layoutstop', () => {
-      cy.style().selector('edge').style('opacity', 1).update();
-      status.showFor('Zoom in to view node labels', 2000);
-    });
-    layout.run();
+    // fit to currently visible core
+    const core = cy.nodes().filter(n => n.style('display') !== 'none' && n.connectedEdges().length > 0);
+    if (core.length) cy.fit(core, 16);
   }
 
   // wire the checkbox if present so the scope updates live
   function wireScopeUI(cy) {
-    if (HAS_STANDARD_SCOPER) return; // <-- force early running
     const ctxToggle = document.getElementById('contextModeToggle');
     if (ctxToggle) {
-      ctxToggle.addEventListener('change', () => {
-        applyScopedView(cy);
-        quickLayoutIfStacked(cy); // re-run quick layout if user changes scope and nodes pile up
-      }, { passive: true });
+      ctxToggle.addEventListener('change', () => applyScopedView(cy), { passive: true });
     }
   }
 
-  // drive status + apply scope + color after render + run quick stage-1 layout if needed
+  // drive status + apply scope + color after render
   whenCyReady(async (cy) => {
     status.set('Preparing initial view...');
 
-    // first paint status
+    // first paint
     cy.once('render', () => status.set('Arranging layout...'));
-    // fallback hide if no layout events fire
+    // layout may never fire in some setups, hide after a grace period
     const fallbackHide = setTimeout(() => status.showFor('Zoom in to view node labels', 5000), 6000);
     cy.once('layoutstop', () => { clearTimeout(fallbackHide); status.showFor('Zoom in to view node labels', 5000); });
 
     // enforce scoped view by default so non-org do not leak in
-    // dont call inline scoper if standard scoper exists
-    if (!HAS_STANDARD_SCOPER) {
-      applyScopedView(cy);
-      wireScopeUI(cy);
-    }
-
-
-    // if everything is at {0,0} (no preset), run a quick local layout on the visible subgraph
-    quickLayoutIfStacked(cy);
+    applyScopedView(cy);
+    wireScopeUI(cy);
 
     // color after initial view is set, to keep first paint quick
     const doColors = async () => {
@@ -340,107 +270,6 @@ This is a large scale mapping with many interconnected (moving)parts; currently 
     };
     if (window.requestIdleCallback) requestIdleCallback(doColors, { timeout: 800 });
     else setTimeout(doColors, 200);
-
-    // parse input/search query (supporting tag:, type:, free text) and call hook(in _standard renderer)
-    // --- wire free-text search to standard scoper ---
-    const searchInput = document.getElementById('textSearch');
-
-    function debounce(fn, ms = 200){
-      let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
-    }
-
-    // normalise a type token to our concise type keys
-    function normType(s){
-      s = String(s || '').toLowerCase();
-      if (s === 'organisation' || s === 'organization' || s === 'orgs') return 'org';
-      return s;
-    }
-
-    function buildSearchPredicate(query){
-
-      // Ref: filter + input query logic applied
-      // No filter type(s) selected + query --> results appear (plus neighbours if toggle on)
-      // No type(s) + no query --> nothing (blank)
-      // Type(s) selected--> type filter intersects with search
-
-      const q = String(query || '').trim().toLowerCase();
-      if (!q) return () => true;
-
-      // tokens: free text + tag:foo + type:bar
-      const parts = q.split(/\s+/g);
-
-      const wantTags  = [];
-      const wantTypes = [];
-      const terms     = [];
-
-      for (const p of parts){
-        if (p.startsWith('tag:')) {
-          const v = p.slice(4).trim();
-          if (v) wantTags.push(v);
-        } else if (p.startsWith('type:')) {
-          const v = normType(p.slice(5).trim());
-          if (v) wantTypes.push(v);
-        } else {
-          terms.push(p);
-        }
-      }
-
-      return (n) => {
-        const d = n.data() || {};
-        const t = String(d.t || '').toLowerCase();
-
-        // types from search are an *extra* constraint (independent of UI type filter)
-        if (wantTypes.length && !wantTypes.includes(t)) return false;
-
-        const tags = Array.isArray(d.tags) ? d.tags.map(s => String(s).toLowerCase())
-                  : Array.isArray(d.fields?.tags) ? d.fields.tags.map(s => String(s).toLowerCase())
-                  : [];
-
-        // every tag: must be present
-        for (const need of wantTags){
-          if (!tags.includes(need)) return false;
-        }
-
-        // free-text across label, slug, summary, tags (joined)
-        const hay = [
-          d.label, d.slug, d.summary,
-          (tags.length ? tags.join(' ') : '')
-        ].filter(Boolean).join(' ').toLowerCase();
-
-        // all terms must appear
-        for (const term of terms){
-          if (!hay.includes(term)) return false;
-        }
-
-        return true;
-      };
-    }
-
-    if (searchInput && window.cy && typeof window.cy.__setSearchPredicate === 'function'){
-      const apply = debounce(() => {
-      const q = String(searchInput.value || '').trim();
-      const pred = buildSearchPredicate(q);
-      window.cy.__setSearchPredicate(pred, q.length > 0); // <— pass active flag
-
-        // keep query in hash so can share state
-        try {
-          const val = String(searchInput.value || '').trim();
-          
-          if (val) location.hash = '#q=' + encodeURIComponent(val);
-          else if (location.hash.startsWith('#q=')) history.replaceState(null, '', location.pathname + location.search);
-        } catch(_) {}
-      }, 200);
-
-      searchInput.addEventListener('input', apply);
-
-      // If URL hash has initial "#q=" apply it on load
-      if (location.hash.startsWith('#q=')) {
-        const q0 = decodeURIComponent(location.hash.slice(3));
-        searchInput.value = q0;
-        window.cy.__setSearchPredicate(buildSearchPredicate(q0), q0.trim().length > 0);
-      }
-    }
-
   });
 })();
 </script>

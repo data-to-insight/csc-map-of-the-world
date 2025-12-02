@@ -11,6 +11,7 @@
 
 import os, json, yaml
 from pathlib import Path
+from admin_scripts.admin_build_cytoscape_utils import extract_type_fields
 
 ROOT     = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data_yml"
@@ -118,21 +119,20 @@ def collect_nodes_and_details():
             lite_nodes.append(n)
 
             # DETAILS node (for side panel, richer)
-            org_fields = (data.get("organization_fields") or {})
+            ntype  = (data.get("@type") or category.name).upper()
+            fields = extract_type_fields(data, ntype)
             details[node_id] = {
                 "label": label,
                 "slug": slug,
                 "type": ntype,
-                "summary": desc,
-                "tags": tags,
+                "summary": pick_summary(data),
+                "tags": data.get("tags") or [],
                 "website": data.get("website"),
-                "projects": (org_fields.get("projects") or []),
-                "persons": (org_fields.get("persons") or []),
-                "organisation_type": org_fields.get("organisation_type"),
-                "region": org_fields.get("region"),
                 "notes": data.get("notes"),
-                # page_url optional, if you later add a docs page per node
-                "page_url": data.get("page_url")
+                "fields": fields,
+                "organisation_type": fields.get("organisation_type"),
+                "organization_type": fields.get("organization_type"),
+                "region": fields.get("region"),
             }
 
             # Populate crosswalk with helpful keys that might appear in relationships

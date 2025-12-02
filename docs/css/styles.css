@@ -44,3 +44,126 @@ input.disabled {
   background-color: #eee;
   opacity: 0.6;
 }
+
+
+
+/* Explorer result buttons (hops display options) */
+.result-item .explore-btn {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #1976d2;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.result-item .explore-btn + .explore-btn {
+  margin-left: 0.25rem;
+}
+
+.result-item .explore-btn:hover {
+  background: #145ba0;
+  border-color: #999;
+}
+/* END Explorer result buttons (hops display options) */
+
+
+/* Node info panel layout */
+.node-panel {
+  position: fixed;
+  top: 72px;
+  right: 16px;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 96px);
+  padding: 0.75rem;
+  background: var(--md-default-bg-color, #fff);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 0.8rem;              /* roughly 8-9pt */
+  z-index: 2000;
+}
+
+.node-panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.node-panel h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.node-panel .meta {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.node-panel .node-summary {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+.node-panel .node-tags,
+.node-panel .node-website,
+.node-panel .node-projects,
+.node-panel .node-persons {
+  font-size: 0.78rem;
+}
+
+.node-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.75rem;
+}
+
+.node-panel td {
+  vertical-align: top;
+  padding: 2px 4px;
+  border-top: 1px solid #eee;
+  word-break: break-word;       /* avoid horiz scroll */
+}
+
+.node-panel td:first-child {
+  width: 35%;
+  font-weight: bold;
+}
+
+/* Close button */
+.node-panel button#panelClose {
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Toolbar links */
+.node-panel .toolbar {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 0.78rem;
+}
+
+/* better on narrow screen */
+@media (max-width: 768px) {
+  .node-panel {
+    top: 56px;
+    right: 8px;
+    left: 8px;
+    width: auto;
+    max-width: none;
+  }
+}
+/* END Node info panel layout */

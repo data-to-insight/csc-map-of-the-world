@@ -1,7 +1,6 @@
 # Network Explorer (search-first)
 
 <!-- Explorer controls -->
-<!-- uses docs/js/explorer.js -->
 <div style="margin-bottom: 0.75rem;">
   <label for="exploreSearch"><strong>Search:</strong></label>
   <input id="exploreSearch" type="text" placeholder="Search by name / id / slug…" style="width: 360px; margin-left: .5em;" />
