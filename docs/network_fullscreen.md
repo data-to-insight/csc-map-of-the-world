@@ -1,11 +1,13 @@
 ---
-title: Network, full screen
+title: Full Network (IN DEV)
 hide:
   - navigation
   - toc
   - footer
 ---
 
+<!-- Note: Page incl .js scripts is self-contained excepting the unpinning data. This for now, we might seperate those 
+scripts out into /js to improve consistency to such as network.md and other front-end processing -->
 
 <style>
   .md-grid { max-width: initial; }
@@ -30,6 +32,7 @@ or
 E.g. Same hood, zoom out slightly
 ...?k=2&pad=200 
 -->
+<!-- External libs from CDN -->
 <script src="https://unpkg.com/cytoscape@3.28.0/dist/cytoscape.min.js"></script>
 <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
 <script>
@@ -38,6 +41,18 @@ E.g. Same hood, zoom out slightly
     const container = document.getElementById('network-app');
     if (!container) return;
     container.style.position = 'relative';
+
+    // simple HTML escaper
+    const esc = s =>
+      s == null
+        ? ''
+        : String(s).replace(/[&<>"']/g, c => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+          }[c]));
 
     // tunables via URL if wanted, defaults are good
     const params       = new URLSearchParams(location.search);
@@ -93,8 +108,16 @@ E.g. Same hood, zoom out slightly
       }
     });
 
-    const graphUrl  = new URL('../data/graph_data.lite.json', window.location.href).toString();
-    const degreeUrl = new URL('../data/degree.json',          window.location.href).toString();
+
+    const graphUrl   = new URL('../data/graph_data.lite.json', window.location.href).toString();
+    const degreeUrl  = new URL('../data/degree.json',          window.location.href).toString();
+
+    // added towards info panel
+    const detailsUrl = new URL('../data/node_details.json',    window.location.href).toString();
+    // simple in memory store for node_details.json
+    let DETAILS = {};  // { id: { label, slug, type, summary, tags, website, projects, persons, page_url, ... } }
+
+
 
     // helpers
     function setLabels(coll, show) { coll.forEach(n => n.style('label', show ? n.data('label') : '')); }
@@ -168,6 +191,21 @@ E.g. Same hood, zoom out slightly
       // degrees and neighbor map
       let degrees={};
       try { const r=await fetch(degreeUrl); if(!r.ok) throw new Error(); degrees=await r.json(); } catch { degrees=computeDegreeFromEdges(edges); }
+
+
+      // optional node details, nice to have but not required
+      // towards info panel... but with caution give scale of graph
+      try {
+        const rDet = await fetch(detailsUrl);
+        if (rDet.ok) {
+          DETAILS = await rDet.json();
+        } else {
+          DETAILS = {};
+        }
+      } catch (e) {
+        DETAILS = {};
+      }
+
       const neighbors = new Map(); for (const [s,t] of edges){ (neighbors.get(s) || neighbors.set(s,new Set()).get(s)).add(t); (neighbors.get(t) || neighbors.set(t,new Set()).get(t)).add(s); }
 
       // choose top degree id
@@ -215,6 +253,191 @@ E.g. Same hood, zoom out slightly
         { selector: 'node', style: { 'background-color': '#777', 'width': 8, 'height': 8, 'label': '' } },
         { selector: 'edge', style: { 'line-color': '#aaa', 'width': 1 } }
       ]).update();
+
+
+
+      // small node info panel, reuses .node-panel CSS from explorer pg
+      // incl explicit hint when there is no node_details entry for selected node
+      // "No extra details available for this node"
+
+      let panel = document.getElementById('nodePanel');
+      if (!panel) {
+        panel = document.createElement('aside');
+        panel.id = 'nodePanel';
+        panel.className = 'node-panel';
+        document.body.appendChild(panel);
+      }
+
+      function openNodePanel(node) {
+        const d = node.data();
+        const id = d.id;
+        const det = (id && DETAILS[id]) || {};
+
+        const label =
+          det.label ||
+          d.label ||
+          d.l ||
+          id;
+
+        const typeVal = (det.type || d.t || '').toString().toLowerCase();
+        const slugVal = det.slug || d.s || '';
+
+        const summary =
+          det.summary ||
+          det.description ||
+          det.notes ||
+          '';
+
+        const tags = Array.isArray(det.tags) ? det.tags : [];
+        const website = det.website || '';
+        const projects = Array.isArray(det.projects) ? det.projects : [];
+        const persons  = Array.isArray(det.persons)  ? det.persons  : [];
+
+        const orgType = det.organisation_type || det.organization_type || '';
+        const region  = det.region || '';
+
+        const pageUrl = det.page_url || '';
+        const hasPage = typeof pageUrl === 'string' && pageUrl.trim() !== '';
+
+        const base = s => (s ? String(s).split('/').filter(Boolean).pop() : '');
+        const queryTerm = (label && label.trim()) || base(slugVal) || id;
+        const searchUrl = `${location.pathname.replace(/network_fullscreen.*$/, '')}search/?q=${encodeURIComponent(queryTerm)}`;
+
+        const metaRows = [];
+        if (id)      metaRows.push(['Id', id]);
+        if (typeVal) metaRows.push(['Type', typeVal]);
+        if (slugVal) metaRows.push(['Slug', slugVal]);
+        if (orgType) metaRows.push(['Organisation type', orgType]);
+        if (region)  metaRows.push(['Region', region]);
+
+        panel.innerHTML = `
+          <div class="node-panel-inner">
+            <div class="row" style="display:flex;justify-content:space-between;align-items:center;">
+              <h3>${esc(label || id)}</h3>
+              <button id="panelClose">✕</button>
+            </div>
+
+            ${typeVal ? `<div class="meta">${esc(typeVal)}</div>` : ''}
+
+            ${
+              summary
+                ? `<div class="row node-summary">
+                     ${esc(summary)}
+                   </div>`
+                : ''
+            }
+
+            
+            ${
+              !summary && (!tags || !tags.length) && !website && (!projects || !projects.length) && (!persons || !persons.length)
+                ? `<div class="row node-summary">
+                    Limited detail available for this node.
+                  </div>`
+                : ''
+            }
+
+
+            ${
+              tags && tags.length
+                ? `<div class="row node-tags">
+                     <strong>Tags</strong>: ${tags.map(esc).join(', ')}
+                   </div>`
+                : ''
+            }
+
+            ${
+              website
+                ? `<div class="row node-website">
+                     <strong>Website</strong>:
+                     <a href="${esc(website)}" target="_blank" rel="noopener">
+                       ${esc(website)}
+                     </a>
+                   </div>`
+                : ''
+            }
+
+            ${
+              projects && projects.length
+                ? `<div class="row node-projects">
+                     <strong>Projects</strong>:
+                     ${projects.map(p => esc(p || '')).filter(Boolean).join(', ')}
+                   </div>`
+                : ''
+            }
+
+            ${
+              persons && persons.length
+                ? `<div class="row node-persons">
+                     <strong>Persons</strong>:
+                     <ul style="margin:0.25rem 0 0 1rem;padding:0;">
+                       ${persons.map(p => {
+                         const name = p.name || '';
+                         const role = p.role || '';
+                         const from = p.from || '';
+                         const bits = [
+                           name ? esc(name) : '',
+                           role ? ` (${esc(role)})` : '',
+                           from ? ` since ${esc(from)}` : ''
+                         ].join('');
+                         return bits ? `<li>${bits}</li>` : '';
+                       }).join('')}
+                     </ul>
+                   </div>`
+                : ''
+            }
+
+            ${
+              metaRows.length
+                ? `<div class="row">
+                     <table>
+                       <tbody>
+                         ${metaRows.map(([k, v]) => `
+                           <tr>
+                             <td>${esc(k)}</td>
+                             <td>${esc(v)}</td>
+                           </tr>
+                         `).join('')}
+                       </tbody>
+                     </table>
+                   </div>`
+                : ''
+            }
+
+            <div class="row toolbar">
+              <a href="${esc(searchUrl)}">Search</a>
+              ${
+                hasPage
+                  ? `<span>|</span>
+                     <a href="${esc(pageUrl)}">Open details</a>`
+                  : ''
+              }
+            </div>
+          </div>
+        `;
+        panel.classList.add('open');
+      }
+
+      function closeNodePanel() {
+        panel.classList.remove('open');
+      }
+
+      // node click opens panel
+      cy.on('tap', 'node', evt => {
+        openNodePanel(evt.target);
+      });
+
+      // close button
+      document.addEventListener('click', ev => {
+        if (ev.target.id === 'panelClose' || ev.target.closest && ev.target.closest('#panelClose')) {
+          ev.preventDefault();
+          closeNodePanel();
+        }
+      });
+      // end main info panel block 
+
+
+
+
       if (COLOR_MODE !== 'degree') applyTypeColors(cy);
 
       const sizeFor = id => { const d = degrees[id] ?? 0; return Math.max(6, Math.min(24, 4 + Math.sqrt(d) * 2)); };
