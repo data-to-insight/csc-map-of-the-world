@@ -1,10 +1,34 @@
 # scripts/build_cytoscape_json.py
 
+
+# full builder
+# Purpose: build complete graph payload for analysis, debugging, richer UI features
+# Data shape: verbose nodes and edges, plus a crosswalk, anything site or tools might need. prefers id then file stem, and it resolves relationship endpoints through the crosswalk.
+# Typical outputs: docs/data/graph_data.json [full], docs/data/crosswalk.json [lookup], other side files wired in main builder.
+# Use: local dev, QA checks, search indexing, data audits, exporting for notebooks, anything where needed all fields and maximum fidelity.
+    
+# example output
+# Graph JSON written: /workspaces/csc-map-of-the-world/docs/data/graph_data.json (minified, 149646 bytes)
+# Crosswalk written:  /workspaces/csc-map-of-the-world/docs/data/crosswalk.json (minified, 41078 bytes)
+
 import os
 import re
 import json
 import yaml
+from datetime import date, datetime
 from pathlib import Path
+from admin_scripts.admin_build_cytoscape_utils import (
+    load_yaml,
+    type_class,
+    extract_type_fields,
+    pick_summary,
+    as_list,
+    slug_from_path,
+    singularize,
+    coalesce,
+    search_blob,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data_yml"
@@ -19,9 +43,24 @@ CROSSWALK_PATH = OUT_DIR / "crosswalk.json"
 CROSSWALK = {}
 
 # ---------------- helpers ----------------
+
+def _json_default(o):
+    """help datetime.date or datetime.datetime in graph structure to serialise, in case 
+    any non-str dates in yml org etc files"""
+    if isinstance(o, (date, datetime)):
+        # "2025-12-02" style, JSON friendly
+        return o.isoformat()
+    # Fallback so dont crash on other odd types
+    return str(o)
+
+
+# ---------------- helpers ----------------
 def write_json(path: Path, payload, *, minify: bool = True):
-    """Write JSON either minified (default) or pretty, ensuring parent dir exists."""
-    opts = {"ensure_ascii": False}
+    """Write JSON either minified (default) or pretty, ensure parent dir exist"""
+    opts = {
+        "ensure_ascii": False,
+        "default": _json_default,
+    }
     if minify:
         opts.update(separators=(",", ":"))
     else:
@@ -29,6 +68,7 @@ def write_json(path: Path, payload, *, minify: bool = True):
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(payload, f, **opts)
+
 
 def kebab(s: str) -> str:
     if s is None:
@@ -38,7 +78,7 @@ def kebab(s: str) -> str:
     return re.sub(r"-{2,}", "-", s)
 
 def slug_from_path(path: Path, base: Path) -> str:
-    """Derive a stable slug from file path relative to data_yml/ (no extension)."""
+    """Derive stable slug from file path relative to data_yml/ (no extension)"""
     rel = path.relative_to(base).with_suffix("")
     segs = [kebab(p) for p in rel.parts]
     return "/".join(segs)
@@ -50,10 +90,20 @@ def as_list(v):
         return [str(x) for x in v if x is not None]
     return [str(v)]
 
-def pick_summary(d: dict) -> str:
-    for k in ("summary", "description"):
-        if d.get(k):
-            return str(d[k])
+def pick_summary(data: dict, limit: int | None = 260) -> str:
+    """
+    Choose short summary for the details/info panel
+
+    Prefer 'summary', fall back == 'description' -->  'notes'.
+    Normalise whitespace, optional truncate if limit is not None
+    """
+    for key in ("summary", "description", "notes"):
+        val = data.get(key)
+        if val:
+            text = " ".join(str(val).split())
+            if limit is not None:
+                return text[:limit]
+            return text
     return ""
 
 def singularize(s: str) -> str:
@@ -67,128 +117,119 @@ def get_entities():
     elements = []
     seen_nodes = set()
 
+    # if you keep a global crosswalk dict elsewhere, do not clear it here
     for category in DATA_DIR.iterdir():
         if not category.is_dir() or category.name == "relationships":
             continue
 
         for file in category.glob("*.yaml"):
-            if file.name.lower().startswith("template") or file.name.startswith("0_template"):
+            name_l = file.name.lower()
+            if name_l.startswith("template") or file.name.startswith("0_template"):
                 continue
 
-            node_id = file.stem
-            if node_id in seen_nodes:
+            data = load_yaml(file)
+            if not data:
                 continue
 
-            with open(file, encoding="utf-8") as f:
-                try:
-                    data = yaml.safe_load(f) or {}
-                except yaml.YAMLError as e:
-                    print(f"YAML error in {file}: {e}")
-                    continue
+            # prefer explicit id, else file stem
+            node_id = data.get("id") or file.stem
+            if not node_id or node_id in seen_nodes:
+                continue
 
-            label = data.get("name") or node_id
-            if not isinstance(label, str) or not label.strip():
+            # label, type, class
+            label = coalesce(data.get("name"), node_id)
+            if not label:
                 print(f"Skipping node with invalid or missing label: {node_id}")
                 continue
 
-            # Normalize type: prefer @type else folder name (singularized)
-            raw_type = (data.get("@type") or category.name).strip().lower()
-            if "@type" not in data:
-                raw_type = singularize(raw_type)
+            raw_type = (data.get("@type") or singularize(category.name)).strip()
+            ntype = raw_type.upper()                  # e.g. ORGANIZATION, EVENT, PLAN
+            cls   = type_class(raw_type, category.name)  # e.g. org, event, plan
 
-            node_class = {
-                "organization": "org", "organisation": "org",
-                "service": "service",
-                "event": "event",
-                "plan": "plan",
-                "rule": "rule",
-                "collection": "collection",
-                "person": "person",
-                "relationship": "relationship",
-                "dataset": "dataset",   # reserved/future
-                "tool": "tool"          # reserved/future
-            }.get(raw_type, "default")
-
-            tags = as_list(data.get("tags"))
-            summary = pick_summary(data)
-            slug = data.get("slug") or slug_from_path(file, DATA_DIR)
-
-            short_summary = (summary or "")[:500]
-            search_blob = " ".join([label, *tags, short_summary, slug, raw_type]).lower()
-
-            source_path = str(file.relative_to(ROOT)).replace("\\", "/")
-            page_url = f"{slug}/"  # front-end prefixes with SITE_BASE
-
-            # Generic extras (optional)
-            website = data.get("website")
-            notes = data.get("notes")
-            version = data.get("version")
+            # basic metadata
+            tags     = as_list(data.get("tags"))
+            summary  = pick_summary(data)
+            slug     = data.get("slug") or slug_from_path(file, DATA_DIR)
+            sblob    = search_blob(label, tags, summary, slug=slug, raw_type=raw_type)
+            source_path    = str(file.relative_to(ROOT)).replace("\\", "/")
+            page_url       = f"{slug}/"   # front-end will prefix SITE_BASE
+            website        = data.get("website")
+            notes          = data.get("notes")
+            version        = data.get("version")
             date_published = data.get("date_published")
-            super_concept = data.get("super_concept")
-            sub_concept = data.get("sub_concept")
+            super_concept  = data.get("super_concept")
+            sub_concept    = data.get("sub_concept")
 
-            # Organization-specific extras (if present)
-            org_fields = (
-                data.get("organization_fields") or
-                data.get("organisation_fields") or
-                {}
-            )
-            organisation_type = org_fields.get("organisation_type") or org_fields.get("organization_type")
-            region = org_fields.get("region")
-            projects = as_list(org_fields.get("projects"))
-            persons = org_fields.get("persons") or []
+            # NEW, generic type-specific block for info panel
+            fields = extract_type_fields(data, ntype)  # e.g. event_fields, plan_fields, etc.
+
+            # convenience pull-throughs for legacy UI bits
+            organisation_type = (fields.get("organisation_type")
+                                 or fields.get("organization_type"))
+            region   = fields.get("region")
+            projects = as_list(fields.get("projects"))
+            persons  = fields.get("persons") or []
             norm_persons = []
             if isinstance(persons, list):
                 for p in persons:
                     if isinstance(p, dict):
+                        # normalise keys to strings
                         norm_persons.append({
                             "name": str(p.get("name", "")),
                             "role": str(p.get("role", "")) if p.get("role") is not None else "",
-                            "from": str(p.get("from", "")) if p.get("from") is not None else ""
+                            "from": str(p.get("from", "")) if p.get("from") is not None else "",
                         })
                     else:
+                        # allow simple string person entries
                         norm_persons.append({"name": str(p), "role": "", "from": ""})
 
             el = {
                 "group": "nodes",
                 "data": {
-                    "id": node_id,
-                    "label": label,
-                    "type": (data.get("@type") or category.name).upper(),
-                    "group": "nodes",
-                    "slug": slug,
-                    "source_path": source_path,
-                    "page_url": page_url,
-                    "tags": tags,
-                    "summary": summary,
-                    "search_blob": search_blob,
-                    "website": website,
-                    "notes": notes,
-                    "version": str(version) if version is not None else None,
+                    "id":            node_id,
+                    "label":         label,
+                    "type":          ntype,          # keep model type with Z spelling for ORGANIZATION
+                    "group":         "nodes",
+                    "slug":          slug,
+                    "source_path":   source_path,
+                    "page_url":      page_url,
+                    "tags":          tags,
+                    "summary":       summary,
+                    "search_blob":   sblob,
+                    "website":       website,
+                    "notes":         notes,
+                    "version":       str(version) if version is not None else None,
                     "date_published": str(date_published) if date_published is not None else None,
-                    "super_concept": super_concept,
-                    "sub_concept": sub_concept,
+                    "super_concept":  super_concept,
+                    "sub_concept":    sub_concept,
+
+                    # expose the type-specific fields in one place for the info panel
+                    "fields":        fields,
+
+                    # convenience legacy keys, especially for orgs
                     "organisation_type": organisation_type,
-                    "region": region,
-                    "projects": projects,
-                    "persons": norm_persons,
+                    "region":            region,
+                    "projects":          projects,
+                    "persons":           norm_persons,
                 },
-                "classes": node_class
+                "classes": cls  # compact style class, e.g. org, event, plan
             }
+
             elements.append(el)
             seen_nodes.add(node_id)
 
-            # Crosswalk entry
+            # keep your existing crosswalk payload if you rely on it elsewhere
             CROSSWALK[slug] = {
-                "id": node_id,
-                "label": label,
-                "type": (data.get("@type") or category.name).upper(),
-                "slug": slug,
+                "id":          node_id,
+                "label":       label,
+                "type":        ntype,
+                "slug":        slug,
                 "source_path": source_path,
-                "page_url": page_url
+                "page_url":    page_url,
             }
 
     return elements, seen_nodes
+
 
 
 def get_relationships(seen_nodes):
@@ -203,8 +244,44 @@ def get_relationships(seen_nodes):
                 print(f"YAML error in {file}: {e}")
                 continue
 
-        source = data.get("source")
-        target = data.get("target")
+        def resolve_id(x):
+
+
+            if not x:
+
+
+                return x
+
+
+            if x in seen_nodes:
+
+
+                return x
+
+
+            # try slug lookup from CROSSWALK keys, which are slugs
+
+
+            cw = CROSSWALK.get(x)
+
+
+            if cw and cw.get("id"):
+
+
+                return cw["id"]
+
+
+            return x
+
+
+        
+
+
+        source = resolve_id(data.get("source"))
+
+
+        target = resolve_id(data.get("target"))
+
         if not source or not target:
             print(f"Incomplete edge in {file}: missing source or target")
             continue

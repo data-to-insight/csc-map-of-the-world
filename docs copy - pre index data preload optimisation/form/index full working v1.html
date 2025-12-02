@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Map of the World Submission Form</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 2em; max-width: 960px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .long { grid-column: 1 / -1; }
+    textarea { width: 100%; min-height: 80px; resize: vertical; }
+    #yaml-output { width: 100%; height: 300px; margin-top: 2em; font-family: monospace; }
+    .button-row { margin-top: 1em; display: flex; flex-wrap: wrap; gap: 1rem; }
+    label { font-weight: bold; margin-top: 0.5em; }
+    input, select, textarea { width: 100%; box-sizing: border-box; padding: 0.4em; }
+    .section { display: none; margin-top: 1em; }
+    .disabled { background-color: #eee; opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <h2>Submit new entry into CSC Map of the World</h2>
+  <form id="submission-form">
+    <div class="grid">
+      <div>
+        <label for="type">Type</label>
+        <select id="type" required>
+          <option value="">-- Select --</option>
+          <option value="ORGANIZATION">ORGANIZATION</option>
+          <option value="SERVICE">SERVICE</option>
+          <option value="EVENT">EVENT</option>
+          <option value="PLAN">PLAN</option>
+          <option value="COLLECTION">COLLECTION</option>
+          <option value="PERSON">PERSON</option>
+          <option value="RESOURCE">RESOURCE</option>
+          <option value="RELATIONSHIP">RELATIONSHIP</option>
+        </select>
+      </div>
+      <div><label>Super Concept</label><input id="super_concept" disabled class="disabled"></div>
+      <div><label>Sub Concept</label><input id="sub_concept" disabled class="disabled"></div>
+      <div><label>Name</label><input id="name" required></div>
+      <div><label>Tags</label><input id="tags"></div>
+      <div><label>Version</label><input id="version" value="2025.07"></div>
+      <div><label>Date Published</label><input type="date" id="date_published"></div>
+      <div><label>Website</label><input type="url" id="website"></div>
+      <div class="long"><label>Description</label><textarea id="description" required></textarea></div>
+      <div class="long"><label>Notes</label><textarea id="notes"></textarea></div>
+    </div>
+
+    <!-- Type-specific sections -->
+    <div id="ORGANIZATION" class="section grid">
+      <div><label>Organisation Type</label><input id="org_type"></div>
+      <div><label>Region</label><input id="org_region"></div>
+      <div><label>Projects (Comma separated)</label><textarea id="org_projects"></textarea></div>
+      <div><label>Persons (Use format: name|role|datefrom)</label><textarea id="org_persons"></textarea></div>
+    </div>
+
+    <div id="SERVICE" class="section grid">
+      <div><label>Lead Organisation</label><input id="srv_lead"></div>
+      <div><label>Delivery Partners</label><textarea id="srv_partners"></textarea></div>
+      <div><label>Status</label><input id="srv_status"></div>
+      <div class="long"><label>Scope</label><textarea id="srv_scope"></textarea></div>
+    </div>
+
+    <div id="EVENT" class="section grid">
+      <div><label>Lead Organisation</label><input id="evt_lead"></div>
+      <div><label>Collaborators</label><textarea id="evt_collab"></textarea></div>
+      <div><label>Location</label><input id="evt_loc"></div>
+      <div><label>Date</label><input type="date" id="evt_date"></div>
+    </div>
+
+    <div id="PLAN" class="section grid">
+      <div><label>Status</label><input id="plan_status"></div>
+      <div><label>Linked Framework</label><input id="plan_linked"></div>
+      <div><label>Target Outcomes</label><textarea id="plan_outcomes"></textarea></div>
+    </div>
+
+    <div id="COLLECTION" class="section grid">
+      <div><label>Theme</label><input id="col_theme"></div>
+      <div><label>Items (comma-separated)</label><textarea id="col_items"></textarea></div>
+    </div>
+
+    <div id="PERSON" class="section grid">
+      <div><label>Role</label><input id="per_role"></div>
+      <div><label>Employer</label><input id="per_employer"></div>
+      <div><label>From</label><input type="date" id="per_from"></div>
+      <div><label>Area of Focus</label><input id="per_focus"></div>
+      <div><label>Interests</label><textarea id="per_interests"></textarea></div>
+      <div><label>Affiliations</label><textarea id="per_affiliations"></textarea></div>
+      <div><label>Contact</label><input id="per_contact"></div>
+    </div>
+
+    <div id="RESOURCE" class="section grid">
+      <div><label>Resource Type</label><input id="res_type"></div>
+      <div><label>Format</label><input id="res_format"></div>
+      <div><label>Language</label><input id="res_lang"></div>
+      <div><label>Publisher</label><input id="res_pub"></div>
+      <div><label>Date Created</label><input type="date" id="res_created"></div>
+      <div><label>Date Updated</label><input type="date" id="res_updated"></div>
+      <div><label>License</label><input id="res_license"></div>
+      <div><label>Access URL</label><input id="res_url"></div>
+      <div><label>Related Entities</label><textarea id="res_related"></textarea></div>
+    </div>
+
+    <div class="button-row">
+      <button type="submit" id="generate-btn">Generate YAML</button>
+      <button type="button" onclick="downloadYAML()">Download YAML</button>
+      <a id="github-link" href="#" target="_blank">Submit via GitHub PR</a>
+    </div>
+  </form>
+
+  <h3>Generated YAML</h3>
+  <textarea id="yaml-output" readonly></textarea>
+
+  <script>
+    const typeSelector = document.getElementById("type");
+    const superConcept = document.getElementById("super_concept");
+    const subConcept = document.getElementById("sub_concept");
+    const datePublished = document.getElementById("date_published");
+    const output = document.getElementById("yaml-output");
+
+    const TYPE_SUPER_SUB_PRESETS = {
+      ORGANIZATION: { super: "Agent" },
+      RULE: { super: "Abstract" },
+      PERSON: { super: "Agent" },
+      SERVICE: { super: "Abstract" },
+      EVENT: { sub: "Observation" },
+      PLAN: { super: "Abstract" },
+      COMMUNITY: { super: "Item" }
+    };
+
+    function toggleTypeSections() {
+      const currentType = typeSelector.value;
+      document.querySelectorAll(".section").forEach(section => {
+        section.style.display = section.id === currentType ? "grid" : "none";
+      });
+
+      const preset = TYPE_SUPER_SUB_PRESETS[currentType] || {};
+      superConcept.value = preset.super || "";
+      subConcept.value = preset.sub || "";
+      superConcept.disabled = true;
+      subConcept.disabled = true;
+      superConcept.classList.add("disabled");
+      subConcept.classList.add("disabled");
+      const shouldDisableDate = ["ORGANIZATION", "PERSON"].includes(currentType);
+      datePublished.disabled = shouldDisableDate;
+      datePublished.classList.toggle("disabled", shouldDisableDate);
+    }
+
+    typeSelector.addEventListener("change", toggleTypeSections);
+    window.addEventListener("DOMContentLoaded", toggleTypeSections);
+
+    document.getElementById("submission-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const type = typeSelector.value;
+      const base = {
+        "@type": type,
+        name: name.value,
+        description: description.value,
+        tags: tags.value.split(",").map(x => x.trim()).filter(Boolean),
+        version: version.value,
+        date_published: datePublished.value,
+        website: website.value,
+        notes: notes.value,
+        super_concept: superConcept.value,
+        sub_concept: subConcept.value
+      };
+
+      if (type === "ORGANIZATION") {
+        base.organisation_type = document.getElementById("org_type").value;
+        base.region = document.getElementById("org_region").value;
+        base.projects = document.getElementById("org_projects").value.split(",").map(x => x.trim()).filter(Boolean);
+        base.persons = document.getElementById("org_persons").value.split("\n").map(x => x.trim()).filter(Boolean);
+      }
+      if (type === "SERVICE") {
+        base.lead_organisation = document.getElementById("srv_lead").value;
+        base.delivery_partners = document.getElementById("srv_partners").value.split(",").map(x => x.trim()).filter(Boolean);
+        base.status = document.getElementById("srv_status").value;
+        base.scope = document.getElementById("srv_scope").value;
+      }
+      if (type === "EVENT") {
+        base.lead_organisation = document.getElementById("evt_lead").value;
+        base.collaborators = document.getElementById("evt_collab").value.split(",").map(x => x.trim()).filter(Boolean);
+        base.location = document.getElementById("evt_loc").value;
+        base.date = document.getElementById("evt_date").value;
+      }
+      if (type === "PLAN") {
+        base.status = document.getElementById("plan_status").value;
+        base.linked_framework = document.getElementById("plan_linked").value;
+        base.target_outcomes = document.getElementById("plan_outcomes").value.split(",").map(x => x.trim()).filter(Boolean);
+      }
+      if (type === "COLLECTION") {
+        base.theme = document.getElementById("col_theme").value;
+        base.items = document.getElementById("col_items").value.split(",").map(x => x.trim()).filter(Boolean);
+      }
+      if (type === "PERSON") {
+        base.role = document.getElementById("per_role").value;
+        base.employer = document.getElementById("per_employer").value;
+        base.from = document.getElementById("per_from").value;
+        base.area_of_focus = document.getElementById("per_focus").value;
+        base.interests = document.getElementById("per_interests").value.split(",").map(x => x.trim()).filter(Boolean);
+        base.affiliations = document.getElementById("per_affiliations").value.split(",").map(x => x.trim()).filter(Boolean);
+        base.contact = document.getElementById("per_contact").value;
+      }
+      if (type === "RESOURCE") {
+        base.resource_type = document.getElementById("res_type").value;
+        base.format = document.getElementById("res_format").value;
+        base.language = document.getElementById("res_lang").value;
+        base.publisher = document.getElementById("res_pub").value;
+        base.date_created = document.getElementById("res_created").value;
+        base.date_updated = document.getElementById("res_updated").value;
+        base.license = document.getElementById("res_license").value;
+        base.access_url = document.getElementById("res_url").value;
+        base.related_entities = document.getElementById("res_related").value.split(",").map(x => x.trim()).filter(Boolean);
+      }
+
+      output.value = jsyaml.dump(base);
+    });
+
+    function downloadYAML() {
+      const blob = new Blob([output.value], { type: "text/yaml" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "submission.yaml";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+  </script>
+</body>
+</html>

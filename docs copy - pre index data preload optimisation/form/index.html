@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Map of the World Submission Form</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 2em; max-width: 960px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .long { grid-column: 1 / -1; }
+    textarea { width: 100%; min-height: 80px; resize: vertical; }
+    #yaml-output { width: 100%; height: 300px; margin-top: 2em; font-family: monospace; }
+    .button-row { margin-top: 1em; display: flex; flex-wrap: wrap; gap: 1rem; }
+    label { font-weight: bold; margin-top: 0.5em; }
+    input, select, textarea { width: 100%; box-sizing: border-box; padding: 0.4em; }
+    .section { display: none; margin-top: 1em; }
+    .disabled { background-color: #eee; opacity: 0.6; }
+    ::placeholder { color: #aaa; }
+  </style>
+</head>
+<body>
+  <h2>Submit new entry into CSC Map of the World</h2>
+  <!-- Main data entry form -->
+  <form id="submission-form">
+    <div class="grid">
+      <!-- Core|common shared fields -->
+      <div>
+        <label for="type">Type</label>
+        <select id="type" required>
+          <option value="">-- Select --</option>
+          <option value="ORGANIZATION">ORGANIZATION</option>
+          <option value="SERVICE">SERVICE</option>
+          <option value="EVENT">EVENT</option>
+          <option value="PLAN">PLAN</option>
+          <option value="COLLECTION">COLLECTION</option>
+          <option value="PERSON">PERSON</option>
+          <option value="RESOURCE">RESOURCE</option>
+          <option value="RELATIONSHIP">RELATIONSHIP</option>
+        </select>
+      </div>
+      <div><label>Name</label><input id="name" required></div>
+
+      <!-- Super/Sub concepts auto-filled based on known SCCM definitions hence disabled -->
+      <div><label>Super Concept</label><input id="super_concept" disabled class="disabled"></div>
+      <div><label>Sub Concept</label><input id="sub_concept" disabled class="disabled"></div>
+
+      <div><label>Tags</label><input id="tags"></div>
+      <div><label>Version</label><input id="version" value="2025.07"></div>
+      <div><label>Date Published</label><input type="date" id="date_published"></div>
+      <div><label>Website</label><input type="url" id="website"></div>
+      <div class="long"><label>Description</label><textarea id="description" required></textarea></div>
+      <div class="long"><label>Notes</label><textarea id="notes"></textarea></div>
+    </div>
+
+    <!-- Type-specific sections below, only one is shown depending on selected @type -->
+    <!-- (Placeholder with example_value for guidance just in multi-value fields) -->
+    <div id="ORGANIZATION" class="section grid">
+      <div><label>Organisation Type</label><input id="org_type"></div>
+      <div><label>Region</label><input id="org_region"></div>
+      <div><label>Projects</label><textarea id="org_projects" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Persons</label><textarea id="org_persons" placeholder="example_value|example_value|example_value"></textarea></div>
+    </div>
+
+    <div id="SERVICE" class="section grid">
+      <div><label>Lead Organisation</label><input id="srv_lead"></div>
+      <div><label>Delivery Partners</label><textarea id="srv_partners" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Status</label><input id="srv_status"></div>
+      <div class="long"><label>Scope</label><textarea id="srv_scope"></textarea></div>
+    </div>
+
+    <div id="EVENT" class="section grid">
+      <div><label>Lead Organisation</label><input id="evt_lead"></div>
+      <div><label>Collaborators</label><textarea id="evt_collab" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Location</label><input id="evt_loc"></div>
+      <div><label>Date</label><input type="date" id="evt_date"></div>
+    </div>
+
+    <div id="PLAN" class="section grid">
+      <div><label>Status</label><input id="plan_status"></div>
+      <div><label>Linked Framework</label><input id="plan_linked"></div>
+      <div><label>Target Outcomes</label><textarea id="plan_outcomes" placeholder="example_value, example_value"></textarea></div>
+    </div>
+
+    <div id="COLLECTION" class="section grid">
+      <div><label>Theme</label><input id="col_theme"></div>
+      <div><label>Items</label><textarea id="col_items" placeholder="example_value, example_value"></textarea></div>
+    </div>
+
+    <div id="PERSON" class="section grid">
+      <div><label>Role</label><input id="per_role"></div>
+      <div><label>Employer</label><input id="per_employer"></div>
+      <div><label>From</label><input type="date" id="per_from"></div>
+      <div><label>Area of Focus</label><input id="per_focus"></div>
+      <div><label>Interests</label><textarea id="per_interests" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Affiliations</label><textarea id="per_affiliations" placeholder="example_value, example_value"></textarea></div>
+      <div><label>Contact</label><input id="per_contact"></div>
+    </div>
+
+    <div id="RESOURCE" class="section grid">
+      <div><label>Resource Type</label><input id="res_type"></div>
+      <div><label>Format</label><input id="res_format"></div>
+      <div><label>Language</label><input id="res_lang"></div>
+      <div><label>Publisher</label><input id="res_pub"></div>
+      <div><label>Date Created</label><input type="date" id="res_created"></div>
+      <div><label>Date Updated</label><input type="date" id="res_updated"></div>
+      <div><label>License</label><input id="res_license"></div>
+      <div><label>Access URL</label><input id="res_url"></div>
+      <div><label>Related Entities</label><textarea id="res_related" placeholder="example_value, example_value"></textarea></div>
+    </div>
+
+    <!-- <div id="RELATIONSHIP" class="section grid">
+      <div><label>Source</label><input id="rel_source" placeholder="example_value"></div>
+      <div><label>Target</label><input id="rel_target" placeholder="example_value"></div>
+      <div><label>Relationship Type</label><input id="rel_type" placeholder="collaboratesWith, providesServiceFor, etc."></div>
+    </div> -->
+
+    <div id="RELATIONSHIP" class="section grid">
+      <div>
+        <label for="rel_source_type">Source Type (for filtering)</label>
+        <select id="rel_source_type">
+          <option value="">-- Select Source Type --</option>
+          <option value="SERVICE">SERVICE</option>
+          <option value="EVENT">EVENT</option>
+          <option value="PLAN">PLAN</option>
+          <option value="ORGANIZATION">ORGANIZATION</option>
+          <option value="PERSON">PERSON</option>
+          <option value="RULE">RULE</option>
+          <option value="RESOURCE">RESOURCE</option>
+          <option value="COMMUNITY">COMMUNITY</option>
+          <option value="COLLECTION">COLLECTION</option>
+          <option value="AGENT">AGENT</option>
+        </select>
+      </div>
+      <!-- <div> // replacing with populated drop-list see populateSourceOptions()
+        <label for="rel_source">Source</label>
+        <input id="rel_source" placeholder="example_value">
+      </div> -->
+      <div>
+        <label for="rel_source">Source</label>
+        <select id="rel_source">
+          <option value="">-- Select Source --</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="rel_type">Relationship Type</label>
+        <select id="rel_type">
+          <option value="">-- Select Relationship --</option>
+        </select>
+      </div>
+      <div>
+        <label for="rel_target">Target</label>
+        <input id="rel_target" placeholder="example_value">
+      </div>
+    </div>
+
+
+    <div class="button-row">
+      <!-- Button(s) to gen|grab needed yml after form completrion -->
+      <button type="submit" id="generate-btn">Generate YAML</button>
+      <button type="button" onclick="downloadYAML()">Download YAML</button>
+      <a id="github-link" href="#" target="_blank">Submit via GitHub PR</a>
+    </div>
+  </form>
+
+  <h3>Generated YAML</h3>
+    <!-- When Generate yml button pressed, yml appears here -->
+  <textarea id="yaml-output" readonly></textarea>
+
+  <script>
+  // Get refs to key form elements
+  const typeSelector = document.getElementById("type");
+  const name = document.getElementById("name");
+  const superConcept = document.getElementById("super_concept");
+  const subConcept = document.getElementById("sub_concept");
+  const datePublished = document.getElementById("date_published");
+  const output = document.getElementById("yaml-output");
+
+  // Constant to detect unchanged placeholder egs
+  const PLACEHOLDER = "example_value";
+
+  // Predefined super/sub concept values mapped by type
+  // Add to this dict any subsequent sub|sper concept changes from SCCM
+  // These are known from SCCM definitions
+  const TYPE_SUPER_SUB_PRESETS = {
+    ORGANIZATION: { super: "Agent" },
+    RULE: { super: "Abstract" },
+    PERSON: { super: "Agent" },
+    SERVICE: { super: "Abstract" },
+    EVENT: { sub: "Observation" },
+    PLAN: { super: "Abstract" },
+    COMMUNITY: { super: "Item" }
+  };
+
+  // Clean comma-separated lists, rem whitespace and placeholder vals
+  function cleanList(value) {
+    return value.split(",").map(x => x.trim()).filter(x => x && x !== PLACEHOLDER);
+  }
+
+  // Clean newline-separated lists (e.g., for persons), rem placeholder lines
+  function cleanTextList(value) {
+    return value.split("\n").map(x => x.trim()).filter(x => x && x !== PLACEHOLDER);
+  }
+
+  // Called when type dropdown changes
+  function toggleTypeSections() {
+    const currentType = typeSelector.value;
+
+    // Show only relevant type-specific form section
+    // i.e. when PLAN selected, then PLAN related/specific fields show in form
+    document.querySelectorAll(".section").forEach(section => {
+      section.style.display = section.id === currentType ? "grid" : "none";
+    });
+
+    // Clear the YAML output on type change
+    // Otherwise prev yaml text output still shows as as the form is reset
+    output.value = "";
+
+    // Set and lock super/sub concepts based on type presets
+    const preset = TYPE_SUPER_SUB_PRESETS[currentType] || {};
+    superConcept.value = preset.super || "";
+    subConcept.value = preset.sub || "";
+    superConcept.disabled = true;
+    subConcept.disabled = true;
+    superConcept.classList.add("disabled");
+    subConcept.classList.add("disabled");
+
+    // Disable date_published field - for specified types
+    const shouldDisableDate = ["ORGANIZATION", "PERSON", "RELATIONSHIP"].includes(currentType);
+    datePublished.disabled = shouldDisableDate;
+    datePublished.classList.toggle("disabled", shouldDisableDate);
+
+    // Disable website field - for specified types
+    const shouldDisableWebsite = ["RELATIONSHIP", "PERSON"].includes(currentType);
+    website.disabled = shouldDisableWebsite;
+    website.classList.toggle("disabled", shouldDisableWebsite);
+  }
+
+
+  // RELATIONSHIP: Mapping from object source_type to valid relationship types
+  // All following relations taken direct from http://www.smartcityconceptmodel.com/?Action=ShowModel&Id=10
+  const RELATIONSHIP_OPTIONS = {
+    SERVICE: [
+      // i.e. SCCM service type has these relations associated to it
+      "contains", "influencedBy", "providedBy", "responsibilityOf",
+      "serviceImplementsMethod", "usedBy", "subjectOf", "containedIn",
+      "raises", "usesResource", "hasRule"
+    ],
+    EVENT: [
+      "atPlace", "hasOutcome", "containedIn", "hasRoleFrom",
+      "eventPlannedIn"
+    ],
+    PLAN: [
+      "contains", "hasTarget", "influencedBy", "planDerivedFromMethod",
+      "planForEvent", "planForCase", "containedIn", "planOf", "usesResource"
+    ],
+    ORGANIZATION: [
+      "contains", "containedIn", "hasMember"
+    ],
+    PERSON: [
+      "memberOf"
+    ],
+    RULE: [
+      "ruleFor"
+    ],
+    RESOURCE: [
+      "resourceFor", "resourceOf"
+    ],
+    COMMUNITY: [
+      "contains", "containedIn", "uses"
+    ],
+    COLLECTION: [
+      "collectionContains", "collectionDefinedBy"
+    ],
+    AGENT: [
+      "has", "hasAgreement", "hasObjective", "hasPlan", "hasResource",
+      "takesDecision", "uses", "makesAssumption", "definesCollection",
+      "owns", "provides", "responsibleFor"
+    ]
+  };
+
+  // When source type changes, update available relationship types
+  document.getElementById("rel_source_type").addEventListener("change", function () {
+    const selectedType = this.value;
+    const relTypeSelect = document.getElementById("rel_type");
+
+    // Clear current options
+    relTypeSelect.innerHTML = '<option value="">-- Select Relationship --</option>';
+
+    // Populate new options
+    if (RELATIONSHIP_OPTIONS[selectedType]) {
+      RELATIONSHIP_OPTIONS[selectedType].forEach(rel => {
+        const option = document.createElement("option");
+        option.value = rel;
+        option.textContent = rel;
+        relTypeSelect.appendChild(option);
+      });
+    }
+  });
+
+  // Attach toggleTypeSections to page load and dropdown change
+  typeSelector.addEventListener("change", toggleTypeSections);
+  window.addEventListener("DOMContentLoaded", toggleTypeSections);
+
+  // When form is submitted, generate YAML and display it
+  document.getElementById("submission-form").addEventListener("submit", (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    const type = typeSelector.value;
+
+    // Start building base YAML object
+    // i.e. this is the core or common field:value set
+    const base = {
+      "@type": type,
+      name: name.value,
+      description: description.value,
+      tags: cleanList(tags.value),
+      version: version.value,
+      date_published: datePublished.value,
+      website: website.value,
+      notes: notes.value,
+      super_concept: superConcept.value,
+      sub_concept: subConcept.value
+    };
+
+    // submit related
+
+    // Extend YAML object with type-specific fields
+    // These fields specific to each object beyond the core set (& then toggled on/of in form)
+    if (type === "ORGANIZATION") {
+      base.organization_fields = { // rem nest block {} to un-nest
+        organisation_type: org_type.value,             // use base.organisation_type to un-nest
+        region: org_region.value,                      // use base.region to un-nest
+        projects: cleanList(org_projects.value),       // use base.projects to un-nest
+        persons: cleanTextList(org_persons.value)      // use base.persons to un-nest
+      };
+    }
+
+    if (type === "SERVICE") {
+      base.service_fields = { // rem nest block {} to un-nest
+        lead_organisation: srv_lead.value,             // use base.lead_organisation to un-nest
+        delivery_partners: cleanList(srv_partners.value), // use base.delivery_partners to un-nest
+        status: srv_status.value,                      // use base.status to un-nest
+        scope: srv_scope.value                         // use base.scope to un-nest
+      };
+    }
+
+    if (type === "EVENT") {
+      base.event_fields = { // rem nest block {} to un-nest
+        lead_organisation: evt_lead.value,             // use base.lead_organisation to un-nest
+        collaborators: cleanList(evt_collab.value),    // use base.collaborators to un-nest
+        location: evt_loc.value,                       // use base.location to un-nest
+        date: evt_date.value                           // use base.date to un-nest
+      };
+    }
+
+    if (type === "PLAN") {
+      base.plan_fields = { // rem nest block {} to un-nest
+        status: plan_status.value,                     // use base.status to un-nest
+        linked_framework: plan_linked.value,           // use base.linked_framework to un-nest
+        target_outcomes: cleanList(plan_outcomes.value) // use base.target_outcomes to un-nest
+      };
+    }
+
+    if (type === "COLLECTION") {
+      base.collection_fields = { // rem nest block {} to un-nest
+        theme: col_theme.value,                        // use base.theme to un-nest
+        items: cleanList(col_items.value)              // use base.items to un-nest
+      };
+    }
+
+    if (type === "PERSON") {
+      base.person_fields = { // rem nest block {} to un-nest
+        role: per_role.value,                          // use base.role to un-nest
+        employer: per_employer.value,                  // use base.employer to un-nest
+        from: per_from.value,                          // use base.from to un-nest
+        area_of_focus: per_focus.value,                // use base.area_of_focus to un-nest
+        interests: cleanList(per_interests.value),     // use base.interests to un-nest
+        affiliations: cleanList(per_affiliations.value), // use base.affiliations to un-nest
+        contact: per_contact.value                     // use base.contact to un-nest
+      };
+    }
+
+    if (type === "RESOURCE") {
+      base.resource_fields = { // rem nest block {} to un-nest
+        resource_type: res_type.value,                 // use base.resource_type to un-nest
+        format: res_format.value,                      // use base.format to un-nest
+        language: res_lang.value,                      // use base.language to un-nest
+        publisher: res_pub.value,                      // use base.publisher to un-nest
+        date_created: res_created.value,               // use base.date_created to un-nest
+        date_updated: res_updated.value,               // use base.date_updated to un-nest
+        license: res_license.value,                    // use base.license to un-nest
+        access_url: res_url.value,                     // use base.access_url to un-nest
+        related_entities: cleanList(res_related.value) // use base.related_entities to un-nest
+      };
+    }
+
+    if (type === "RELATIONSHIP") {
+      base.relationship_fields = { // rem nest block {} to un-nest
+        source: rel_source.value,                      // use base.source to un-nest
+        target: rel_target.value,                      // use base.target to un-nest
+        relationship_type: rel_type.value              // use base.relationship_type to un-nest
+      };
+    }
+
+
+    // convert object to YAML and display in output box
+    output.value = jsyaml.dump(base);
+  });
+
+
+  // Load --already generated-- valid source nodes into RELATIONSHIP source select box
+  // generated via admin_scripts/admin-extract_relationship_form_sources.py
+ 
+  // depreciated this in favour of aut populating the RELATIONSHIP.Source field from DICT file
+  // async function populateSourceOptions() {
+  //   try {
+  //     const sourceDataURL = new URL("csc-map-of-the-world/data/source_nodes.json", window.location.origin);
+  //     console.log("📦 Fetching source nodes from:", sourceDataURL.href);
+
+  //     const res = await fetch(sourceDataURL);
+
+  //     if (!res.ok) {
+  //       throw new Error(`HTTP error ${res.status}`);
+  //     }
+
+  //     const sourceList = await res.json();
+  //     console.log("✅ Loaded source nodes:", sourceList);
+
+  //     const sourceSelect = document.getElementById("rel_source");
+  //     sourceList.forEach(name => {
+  //       const opt = document.createElement("option");
+  //       opt.value = name;
+  //       opt.textContent = name;
+  //       sourceSelect.appendChild(opt);
+  //     });
+  //   } catch (err) {
+  //     console.error("❌ Failed to load source_nodes.json:", err);
+  //   }
+  // }
+
+  // populating the RELATIONSHIP.Source field from DICT file
+  // Dict with full set of source nodes grouped by source type
+  let sourceNodesByType = {};
+
+  // Fetch and store source nodes by type on page load
+  async function populateSourceOptions() {
+    try {
+      const sourceDataURL = new URL("csc-map-of-the-world/data/source_nodes.json", window.location.origin);
+      const res = await fetch(sourceDataURL);
+      sourceNodesByType = await res.json();
+    } catch (err) {
+      console.error("Failed to load source_nodes.json:", err);
+    }
+  }
+
+  // When source type selected, filter and populate Source dropdown
+  document.getElementById("rel_source_type").addEventListener("change", function () {
+    const selectedType = this.value;
+    const sourceSelect = document.getElementById("rel_source");
+
+    // Clear current Source dropdown
+    sourceSelect.innerHTML = '<option value="">-- Select Source --</option>';
+
+    // Populate with sources matching selected type
+    const matchingSources = sourceNodesByType[selectedType] || [];
+    matchingSources.forEach(name => {
+      const option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+      sourceSelect.appendChild(option);
+    });
+
+    // Also refresh Relationship Type options
+    const relTypeSelect = document.getElementById("rel_type");
+    relTypeSelect.innerHTML = '<option value="">-- Select Relationship --</option>';
+    if (RELATIONSHIP_OPTIONS[selectedType]) {
+      RELATIONSHIP_OPTIONS[selectedType].forEach(rel => {
+        const option = document.createElement("option");
+        option.value = rel;
+        option.textContent = rel;
+        relTypeSelect.appendChild(option);
+      });
+    }
+  });
+
+  // Load source options when DOM is ready to ensure pre-populated for source nodes
+  window.addEventListener("DOMContentLoaded", () => {
+    toggleTypeSections();       // 
+    populateSourceOptions();    // loads full dict, not dropdown (dict:vals restricted by Source_Type selection)
+  });
+
+
+  // Dload YAML file
+  function downloadYAML() {
+    const blob = new Blob([output.value], { type: "text/yaml" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "submission.yaml";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "data-to-insight": [
+    { "slug": "ddsftoolkit", "score": 0.82 },
+    { "slug": "standard_safeguarding_dataset", "score": 0.77 }
+  ],
+  "childrens_social_care_in_england_2025": [
+    { "slug": "childrens_social_care_national_framework", "score": 0.74 },
+    { "slug": "ofsted_ilacs", "score": 0.58 }
+  ],
+  "ofsted_ilacs": [
+    { "slug": "childrens_social_care_national_framework", "score": 0.66 },
+    { "slug": "data-to-insight", "score": 0.41 }
+  ]
+}

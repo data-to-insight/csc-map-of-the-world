@@ -1,5 +1,19 @@
 # Development Log — MapOfTheWorld
 
+## 2025-12-02
+
+- Quite a gap since last working on this... although tbh lots of entries missing since last update here. 
+- Fix a number of minor problems that i left hanging last time, namely:
+- explorer search was not doing anything, 
+- explorer search kept showing the full results list even after selecting one, wasnt ideal. Now the rest disappear   
+- explorer info panel, this was only showing minimum data, not the fuller data from node_Details.json   
+- explorer was duplicating edges when multi-press add 1 hop... (we needed to store bi-directional edge indexes)  
+- Added 2 hops option and made buttons more visible instead of just text (bit more css)  
+- Alison joins us and re-worked the intro page text, and nice infographic  
+- did some work on data_source_optimisation.md content  
+- Finding it really difficult to recall all the needed back-end processing and the process flow for all this now... maybe need to both tone down some of the docs, or just do my own idiots guide to refresh/remind myself how to work this. In particular
+Need to re-check how to externally process and which files come up(search_index.json, state.json, + other /csc_artifacts or into docs/data/ ? - when i ran the external notebook.... it only updated some files and not the large parquet/fais files? )
+- Timed the graph load on network_fullscreen.md, so i could add 'it's gonna take Xminutes to load, grab a drink :)' (was ~50secs in off-peak time)
 
 ## 2025-08-06 - Review the SAVVI model concepts agin
 
