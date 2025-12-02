@@ -46,13 +46,26 @@ We see this as **a collaborative mapping tool**, developed potentially with inpu
 
 ## Project Layout
 
-*Note: Non-UK spelling dictated by some tools.* 
+*Note: Non-UK spelling dictated by some tools.|modelling standards* 
 
 ```
 /workspaces/d2i-map-of-the-world-mkdocs/
-├── admin_scripts/        # Admin scripts(.py) for index building, validation, sync
-│   └──dev/
-├── data_yml/             # Core SCCM-aligned YAML metadata (collections, plans, events...) 
+
+├── admin_scripts/              # Admin scripts(.py) for index building, validation, sync
+├── data_externally_processed/  # Cached/publicly released data reports/published frameworks (.pdfs)
+│   ├── 📄 motw_chunks.parquet
+│   ├── 📄 motw_index.faiss
+│   ├── 📄 motw_vectors.parquet
+│   └── 📄 search_index.json
+├── data_repos/                 # Known Git repos, mainly D2I with relevant source information to pull in
+│   ├── SEND-tool/              # Cloned remote GitHub documentation sources (e.g. README, SCCM.yml)
+│   ├── annex-a-sen-validator-be/
+│   ├── nvest/
+│   ├── ...
+├── data_web/                   # Public scraped data via explicit web urls (relevant LA specific service areas, dfe...) 
+│   ├── 📄 .txt files containing url detail
+│   ├── ...
+├── data_yml/                   # Core SCCM-aligned YAML metadata (collections, plans, events...) 
 │   ├── organizations/
 │   ├── relationships/
 │   ├── services/
@@ -60,20 +73,51 @@ We see this as **a collaborative mapping tool**, developed potentially with inpu
 │   ├── events/
 │   ├── resources/
 │   └── ...
-├── data_published/       # Cached/publicly released data reports/published frameworks (.pdfs)
-├── data_repos/           # Cloned remote GitHub documentation sources (e.g. README, SCCM.yml)
-├── data_web/             # Public scraped data, (e.g. local authority web sites, DfE, Others)
-├── docs/                 # MkDocs content populates public /site after build (HTML, Markdown, PDF, JS, CSS)
-│   ├── js/
+├── docs/               # MkDocs content populates public /site after build (HTML, Markdown, PDF, JS, CSS)
 │   ├── css/
+│   │   └── 📄 styles.css
 │   ├── data/
-│   │   ├── search_index.json # Pre-rendered search data used by search.js
-│   │   └── graph_data.json # Pre-rendered graph data for network diagram used by graph.js
-│   └── *.md # Mkdocs site pages, index.md etc.... 
-├── mkdocs.yml            # Site config MKDOCS
-├── requirements.txt
-├── setup.sh              # Dev setup (codespace or local)
-└── README.md
+│   │   ├── 📄 adjacency.json
+│   │   ├── 📄 crosswalk.json
+│   │   ├── csc_artifacts/
+│   │   │   ├── 📄 motw_chunks.parquet
+│   │   │   ├── 📄 motw_index.faiss
+│   │   │   ├── 📄 motw_vectors.parquet
+│   │   │   └── 📄 state.json
+│   │   ├── 📄 degree.json
+│   │   ├── 📄 graph_data.json              # Pre-rendered graph data for network diagram used by graph.js
+│   │   ├── 📄 graph_data.lite.json
+│   │   ├── 📄 graph_search_index.json
+│   │   ├── 📄 lite_index.json
+│   │   ├── 📄 node_details.json
+│   │   ├── 📄 related_nodes.json
+│   │   ├── 📄 search_index.json            # Pre-rendered search data used by search.js
+│   │   ├── 📄 source_nodes.dict.json
+│   │   ├── 📄 source_nodes.json
+│   │   └── 📄 source_nodes.list.json
+│   ├── 📄 data_source_optimisation.md
+│   ├── 📄 dev_log.md
+│   ├── 📄 explore.md
+│   ├── form/
+│   │   ├── 📄 index full working v1.html
+│   │   └── 📄 index.html
+│   ├── 📄 graph_filtering_guidance.md
+│   ├── imgs/
+│   │   └── 📄 MotW-Infographic.png
+│   ├── 📄 index.md
+│   ├── 📄 index_PREV.md
+│   ├── js/
+│   │   ├── 📄 explorer.js
+│   │   ├── 📄 related_nodes.json
+│   │   ├── 📄 render_graph_lite.js
+│   │   ├── 📄 render_graph_standard.js
+│   │   └── 📄 search_tool.js
+│   └── *.md                        # Mkdocs site pages, index.md etc.... 
+├── 📄 mkdocs.yml                   # Site config MKDOCS
+├── 📄 requirements.txt
+└── 📄 setup.sh                     # Dev setup (codespace or local)
+└── 📄 README.md
+
 ```
 
 ---
