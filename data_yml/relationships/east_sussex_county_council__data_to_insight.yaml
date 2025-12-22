@@ -1,0 +1,14 @@
+'@type': RELATIONSHIP
+name: East Sussex | Data to Insight SSD collaboration
+source: east_sussex_county_council
+target: data_to_insight
+relationship_type: collaboratesWith
+
+description: >
+  Data to Insight is hosted by East Sussex County Council since 2020
+
+tags:
+  - safeguarding
+  - ssd
+  - local-authority
+

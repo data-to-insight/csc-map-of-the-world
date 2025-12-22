@@ -1,0 +1,17 @@
+'@type': RELATIONSHIP
+name: East Sussex Children’s Services delivers SPoA
+
+source: east_sussex_county_council_childrens_services
+target: single_point_of_advice_east_sussex
+relationship_type: deliversService
+
+description: >
+  East Sussex County Council Children’s Services delivers the Single Point of
+  Advice (SPoA) as the primary front door for safeguarding concerns and requests
+  for advice about children and young people.
+
+tags:
+  - childrens_services
+  - safeguarding
+  - spoa
+  - local_authority

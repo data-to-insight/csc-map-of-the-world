@@ -1,0 +1,56 @@
+'@type': SERVICE
+super_concept: Agent
+sub_concept:''
+
+name: Special Educational Needs and Disabilities (SEND) Services – East Sussex
+
+description: >
+  East Sussex SEND Services provide statutory assessment, planning, and support
+  for children and young people aged 0–25 with special educational needs and
+  disabilities. Information and access to SEND support is primarily provided
+  through the East Sussex Local Offer.
+
+tags:
+  - send
+  - special_educational_needs
+  - disabilities
+  - ehcp
+  - childrens_services
+  - education
+  - social_care
+
+version: 2025.07
+date_published: 2025-12-16
+
+website: https://localoffer.eastsussex.gov.uk/
+contact:
+  name: East Sussex Local Offer
+  e-mail: localoffer@eastsussex.gov.uk 
+  name: Children's Services Customer Relations Team
+  phone: "0345 60 80 192"
+  purpose: >
+     Provides general advice, guidance, signposting, and support with feedback
+     and complaints relating to Children's Services and Education East Sussex,
+     including SEND and childcare enquiries.
+
+notes: >
+  The East Sussex Local Offer is the statutory information service for SEND,
+  providing details of education, health and social care support available for
+  children and young people with special educational needs and disabilities.
+  SEND Services work in partnership with families, schools, health providers,
+  and voluntary organisations, including independent advice services such as
+  Amaze SENDIASS.
+
+service_fields:
+  service_type: statutory_support
+  lead_organisation: east_sussex_county_council_childrens_services
+  region: East Sussex
+  age_range: 0-25
+  status: active
+  delivery_partners:
+    - amaze_sendiass
+    - education_east_sussex
+  scope: >
+    Statutory SEND assessment and planning, SEND support services, coordination
+    with education providers, and multi-agency working to support inclusion and
+    positive outcomes for children and young people with SEND.
