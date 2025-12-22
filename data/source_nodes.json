@@ -28,6 +28,7 @@
     "send",
     "send_scrape",
     "single_point_of_advice",
+    "standard_safeguarding_dataset",
     "validator_903",
     "validator_cin",
     "validator_sen",
@@ -84,8 +85,6 @@
     "test_0020"
   ],
   "RESOURCE": [
-    "ddsf1a_standard_safeguarding_dataset",
-    "ddsf2a_social_workers_and_cms_constraints",
-    "standard_safeguarding_dataset"
+    "ddsf2a_social_workers_and_cms_constraints"
   ]
 }
