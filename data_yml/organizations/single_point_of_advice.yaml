@@ -1,0 +1,32 @@
+'@type': SERVICE
+super_concept: Agent
+sub_concept:''
+
+name: Single Point of Advice (SPoA) - East Sussex
+
+description: >
+  The Single Point of Advice (SPoA) provides a single front door for
+  professionals and members of the public to raise concerns about a child
+  or request advice. It triages contacts and directs them to appropriate
+  children’s social care or early help services.
+
+tags:
+  - spoa
+  - safeguarding
+  - referral
+  - childrens_social_care
+
+version: 2025.07
+date_published: 2025-01-01
+
+website: https://www.eastsussex.gov.uk/children-families/report-a-concern-child
+
+service_fields:
+  service_type: safeguarding_referral
+  contact:
+    phone: "01323 464222"
+    email: "0-19spoa@eastsussex.gov.uk"
+  availability:
+    hours: "Mon-Thu 8:30-17:00, Fri 8:30-16:30"
+    out_of_hours_phone: "01273 335905"
+  region: East Sussex

@@ -1,0 +1,50 @@
+'@type': ORGANIZATION
+super_concept: Agent
+sub_concept: ''
+
+name: East Sussex County Council - Children's Services
+
+description: >
+  The local authority responsible for children's social care, safeguarding,
+  early help, and family support services across East Sussex.
+  Delivers statutory and preventative services to support children,
+  young people, and families.
+
+tags:
+  - local_authority
+  - childrens_services
+  - safeguarding
+  - east_sussex
+  - early_help
+  - send
+  - care_leavers
+  - fostering
+  - adoption
+
+version: '2025.07'
+date_published: 2026-12-22
+
+website: https://www.eastsussex.gov.uk/
+contact:
+    phone: "0345 608 0192"
+    email: "help@esccchildrenscomplaints.freshdesk.com"
+availability:
+    hours: "Mon-Fri 10:00-15:00"
+    emergency_duty_service_phone: "01273 335906 or 01273 335905(from 5pm to 8.30am)" 
+
+notes: >
+  Upper-tier local authority in the South East of England with statutory
+  responsibility for children’s social care and family support.
+  Children’s Services includes safeguarding and child protection, early help,
+  support for children in care and care leavers, fostering and adoption,
+  residential care, kinship care, services for children and young people with
+  special educational needs and disabilities (SEND), and targeted support for
+  families facing financial or social hardship.
+  Works in partnership with health, police, education, and the voluntary sector
+  through the East Sussex Safeguarding Children Partnership (ESSCP).
+
+
+organization_fields:
+  organisation_type: local_authority
+  region: East Sussex
+  
