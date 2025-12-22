@@ -1,0 +1,1424 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://data-to-insight.github.io/csc-map-of-the-world/dev-recap_dev_diary/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>MapOfTheWorld development log v4.2 - CSC Map of the World</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/styles.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mapoftheworld-development-log-v42" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CSC Map of the World" class="md-header__button md-logo" aria-label="CSC Map of the World" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CSC Map of the World
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MapOfTheWorld development log v4.2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CSC Map of the World" class="md-nav__button md-logo" aria-label="CSC Map of the World" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CSC Map of the World
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Search First
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network_fullscreen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Full
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network SCCM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sccm_relation_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Relations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search_pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Sources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Submit CSC Map Entry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2025-12-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-12-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-11-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-11-28
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-11-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-11 overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-10-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-10 overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-09-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-09 overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-08-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-08 overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-08-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-08-06
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-08-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-08-05
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-08-05">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-form-logic-with-yaml-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input form logic with YAML export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problems-encountered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems encountered
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-08-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-08-01
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-08-01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mailto-links-devlog-structure-public-dev-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mailto links, devlog structure, public dev log
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07 overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-31
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-31">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cytoscape-class-filters-and-stlite-graph-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cytoscape class filters and stlite graph fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-30
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-30">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#static-legend-and-sources-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static legend and sources listing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-29
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-29">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yaml-errors-and-edge-failures-in-cytoscape-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML errors and edge failures in Cytoscape build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-22-to-2025-07-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-22 to 2025-07-26
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-22 to 2025-07-26">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-data-inclusion-and-web-scraping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External data inclusion and web scraping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-19
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pivot-from-stlite-to-mkdocs-with-custom-js" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pivot from stlite to MkDocs with custom JS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-18
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-18">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-to-stlite-for-browser-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration to stlite for browser hosting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-17
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parquet-removal-and-browser-based-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parquet removal and browser based frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-16
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sccm-node-type-update-for-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SCCM node type update for YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-14
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-14">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixing-schema-to-graph-disconnects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixing schema to graph disconnects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-09
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-09">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-and-navigational-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visual and navigational structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-07-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025-07-03
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025-07-03">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv-and-contact-data-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV and contact data integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-i-tried-that-did-not-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What I tried that did not work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-works-now" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What works now
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-and-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files and purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-pipeline-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build pipeline, local
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lessons learned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="mapoftheworld-development-log-v42">MapOfTheWorld development log v4.2</h1>
+<p>Short notes so others can see journey. Focus on pivots and trade offs. Static GitHub Pages, no server. Graph must load fast.</p>
+<hr />
+<h2 id="2025-12-02">2025-12-02</h2>
+<ul>
+<li>Back on project after long gap, many log entries missing  </li>
+<li>Fixed explorer search not firing  </li>
+<li>Stopped explorer showing full results list after selection, now list hides once node picked  </li>
+<li>Explorer info panel now pulls full data from <code>node_details.json</code>, not just minimal fields  </li>
+<li>Fixed duplicated edges when pressing add 1 hop repeatedly, now track bidirectional edge index  </li>
+<li>Added 2 hops option and made explorer buttons more visible with extra CSS  </li>
+<li>Alison refreshed intro text and infographic for landing page  </li>
+<li>Added content to <code>data_source_optimisation.md</code>  </li>
+<li>Realised back end flow now fuzzy in head, note to write short idiot guide for self, including external notebook, <code>search_index.json</code>, <code>state.json</code>, <code>csc_artifacts</code>, <code>docs/data</code>, parquet and faiss refresh  </li>
+<li>Timed <code>network_fullscreen.md</code> graph load, roughly 50 seconds off peak, plan small warning on page  </li>
+<li>Updated <code>setup.sh</code> and <code>devcontainer.json</code> so Python and <code>mkdocs serve</code> work in Codespaces without manual venv setup  </li>
+</ul>
+<hr />
+<h2 id="2025-11-28">2025-11-28</h2>
+<ul>
+<li>Converted public intro copy for MapOfTheWorld into markdown  </li>
+<li>Added image include for infographic on main project page  </li>
+<li>Committed staged docs changes from feature branch into <code>main</code>  </li>
+</ul>
+<hr />
+<h2 id="2025-11-overview">2025-11 overview</h2>
+<ul>
+<li>Reviewed JSON size and limits, keep only minified JSON in <code>docs/data</code> for deploy  </li>
+<li>Keep pretty JSON locally for debugging and diffs  </li>
+<li>Standardised base URL safe fetch pattern using <code>new URL(relPath, document.baseURI)</code>  </li>
+<li>Documented split JSON contract and local rebuild steps for contributors  </li>
+</ul>
+<hr />
+<h2 id="2025-10-overview">2025-10 overview</h2>
+<ul>
+<li>Reached v4.2, search and graph load feel stable, payload trimmed  </li>
+<li>Removed client side GitHub API calls for feedback, now ship <code>docs/data/feedback-items.json</code>  </li>
+<li>Locked label policy. Edge labels hidden until zoom threshold, above roughly 5k nodes labels at load too risky  </li>
+<li>Added preload hook so demo pages can embed <code>window.MOTW.graphStd</code>, default still fetch from <code>docs/data</code> for caching  </li>
+<li>Tweaked scraper filenames, stripped stopwords from stems, optional <code>-u&lt;hash&gt;</code> for collision control, no double underscores, avoid noisy topic prefixes  </li>
+</ul>
+<hr />
+<h2 id="2025-09-overview">2025-09 overview</h2>
+<ul>
+<li>Adopted split JSON pattern  </li>
+<li><code>docs/data/graph_data.json</code> minimal nodes and edges for Cytoscape  </li>
+<li><code>docs/data/crosswalk.json</code> ids, slugs, page URLs  </li>
+<li><code>docs/data/degree.json</code> for seeded staged load and ordering  </li>
+<li><code>docs/data/related_nodes.json</code> optional suggestions  </li>
+<li><code>docs/data/search_index.json</code> compact index for site search  </li>
+<li>Kept node fields tight, mainly <code>slug</code>, <code>tags</code>, <code>summary</code>, <code>search_blob</code>  </li>
+<li>Added Choices.js type filter and context mode checkbox to keep neighbours visible while filtering  </li>
+<li>Moved heavy processing out of GitHub Actions, now build JSON locally in Python then commit, Pages only serves static files  </li>
+</ul>
+<hr />
+<h2 id="2025-08-overview">2025-08 overview</h2>
+<ul>
+<li>Switched fully to SCCM aligned YAML as source of truth  </li>
+<li>Types include ORGANIZATION, SERVICE, EVENT, PLAN, RULE, RESOURCE, PERSON, RELATIONSHIP  </li>
+<li>Wrote Python builders to emit small artefacts only  </li>
+<li><code>docs/data/graph_data.json</code> for render  </li>
+<li><code>docs/data/crosswalk.json</code> for lookups  </li>
+<li>Pretty versus minified toggle via <code>GRAPH_MINIFY</code>  </li>
+<li>Replaced hover card with side panel version 2, lighter DOM work, clearer field bag  </li>
+<li>Improved search, free text plus <code>tag:</code> and <code>type:</code> operators, debounced input, URL state persisted  </li>
+<li>Edges start in haystack style for speed, switch to bezier when zoomed in  </li>
+<li>Edge labels off by default, show only after useful zoom, labels at load killed frame rate  </li>
+<li>Isolated degree 0 nodes placed in compact grid along bottom, keeps layout stable  </li>
+<li>Staged loader, show high degree organisations first, then stream more nodes and edges in batches, status chip shows progress  </li>
+</ul>
+<hr />
+<h2 id="2025-08-06">2025-08-06</h2>
+<ul>
+<li>Revisited SAVVI model and checked fit against SCCM  </li>
+<li>Decided to stay with SCCM for MapOfTheWorld  </li>
+<li>Scoped dynamic filter for RELATIONSHIP Source field by source type, planned helper script change  </li>
+</ul>
+<hr />
+<h2 id="2025-08-05">2025-08-05</h2>
+<h3 id="input-form-logic-with-yaml-export">Input form logic with YAML export</h3>
+<ul>
+<li>Finalised static HTML form for new MapOfTheWorld entries  </li>
+<li>Form supports <code>@type</code> values from SCCM model, including ORGANIZATION, SERVICE, EVENT, PLAN, COLLECTION, PERSON, RESOURCE, RELATIONSHIP  </li>
+<li>Each type has its own field section, shown or hidden when type changes  </li>
+<li>RELATIONSHIP block includes source type dropdown so <code>relationship_type</code> options filter correctly  </li>
+<li>Added grey placeholder examples for multi value fields, for example collaborators, related entities, interests, delivery partners  </li>
+<li>Placeholders stripped from YAML output if unchanged  </li>
+<li>On <code>@type</code> change, YAML output box cleared so entries do not bleed across  </li>
+</ul>
+<h3 id="implementation-notes">Implementation notes</h3>
+<ul>
+<li>Form uses plain HTML, CSS and vanilla JavaScript plus <code>js-yaml</code> for YAML serialisation  </li>
+<li>Served directly from repo, fully static, no build step, matches GitHub Pages model  </li>
+<li>YAML output fits Git based workflow, contributors can download file or later raise pull request  </li>
+</ul>
+<h3 id="problems-encountered">Problems encountered</h3>
+<ul>
+<li>Type specific sections initially not appearing, only ORGANIZATION and RELATIONSHIP worked, fixed by applying <code>toggleTypeSections()</code> on load and on change  </li>
+<li>Generate YAML button originally acted like form submit and cleared content, fixed by preventing default submit behaviour  </li>
+<li>Some type specific fields missing from YAML, reintroduced full per type mapping when building object  </li>
+<li>Placeholder values leaked into YAML, fixed with <code>cleanList()</code> and <code>cleanTextList()</code> utilities to strip placeholder text  </li>
+</ul>
+<hr />
+<h2 id="2025-08-01">2025-08-01</h2>
+<h3 id="mailto-links-devlog-structure-public-dev-log">Mailto links, devlog structure, public dev log</h3>
+<ul>
+<li>Revised mailto link for suggest improvement or fix, easier for direct feedback  </li>
+<li>Defined structure for this dev log, hybrid of dev log and changelog  </li>
+<li>Skipped tags and automation for now, markdown fast enough to edit by hand  </li>
+</ul>
+<hr />
+<h2 id="2025-07-overview">2025-07 overview</h2>
+<ul>
+<li>Set aim, searchable visual map of people, projects, rules, services, hosted as static site  </li>
+<li>Early build used single large JSON with everything, worked up to roughly two thousand nodes then stalled, memory churn and long time to first paint  </li>
+<li>Chose SCCM aligned YAML for core data, decided against Parquet on Pages, keep Parquet and faiss local only  </li>
+<li>Submission form matured, type specific fields and RELATIONSHIP block with dynamic options  </li>
+</ul>
+<hr />
+<h2 id="2025-07-31">2025-07-31</h2>
+<h3 id="cytoscape-class-filters-and-stlite-graph-fixes">Cytoscape class filters and stlite graph fixes</h3>
+<ul>
+<li>Found bug where class based filters did not apply on page load  </li>
+<li>Root cause, class assignment lagged layout render, simple <code>setTimeout</code> after layout fixed it  </li>
+<li>Fixed mismatch in hard coded colours and class names in legend, ORGANIZATION nodes no longer show grey due to casing drift  </li>
+</ul>
+<hr />
+<h2 id="2025-07-30">2025-07-30</h2>
+<h3 id="static-legend-and-sources-listing">Static legend and sources listing</h3>
+<ul>
+<li>Dynamic legend proved fragile when class names drifted from type names  </li>
+<li>Rebuilt legend as static block with known entity types such as ORGANIZATION, SERVICE, PERSON with fixed colours  </li>
+<li>Filter defaults now apply on load and legend starts collapsed  </li>
+<li>Designed Python script to scan <code>data_yml</code> and other folders and build <code>docs/sources.md</code>, table per source type, ready for later refinement  </li>
+</ul>
+<hr />
+<h2 id="2025-07-29">2025-07-29</h2>
+<h3 id="yaml-errors-and-edge-failures-in-cytoscape-build">YAML errors and edge failures in Cytoscape build</h3>
+<ul>
+<li>Hit YAML error during <code>admin-build_cytoscape_json.py</code>, single malformed file broke whole build  </li>
+<li>Noticed edges skipped because of missing nodes, traced to ID naming mismatches  </li>
+<li>Rebuilt broken relationship YAML from working template, fixed missing edges  </li>
+<li>Reinforced need for stricter YAML validation around relationships  </li>
+</ul>
+<hr />
+<h2 id="2025-07-22-to-2025-07-26">2025-07-22 to 2025-07-26</h2>
+<h3 id="external-data-inclusion-and-web-scraping">External data inclusion and web scraping</h3>
+<ul>
+<li>Decided to include external web content, for example PDFs, guidance, reports  </li>
+<li>Designed approach to store scraped artefacts under <code>data_web/</code> with YAML metadata for indexing  </li>
+<li>Early blockers, inconsistent text extraction from some GOV.UK PDFs and odd header parsing in <code>.txt</code> and <code>.pdf</code> sources  </li>
+</ul>
+<hr />
+<h2 id="2025-07-19">2025-07-19</h2>
+<h3 id="pivot-from-stlite-to-mkdocs-with-custom-js">Pivot from stlite to MkDocs with custom JS</h3>
+<ul>
+<li>Tried several iterations of interactive graphs in stlite, repeated issues with modules and layout timing  </li>
+<li>Cytoscape.js often failed to load or broke quietly because of Pyodide and import limits  </li>
+<li>stlite felt too fragile for graph exploration with filters, tooltips, legend controls  </li>
+<li>Decided to move to MkDocs as primary frontend and embed custom HTML plus JavaScript components instead  </li>
+<li>Static MkDocs base gave better search integration, reusable components and cleaner GitHub Pages hosting  </li>
+</ul>
+<hr />
+<h2 id="2025-07-18">2025-07-18</h2>
+<h3 id="migration-to-stlite-for-browser-hosting">Migration to stlite for browser hosting</h3>
+<ul>
+<li>Earlier step shifted from standard Streamlit to stlite so app could run in browser on GitHub Pages  </li>
+<li>Removed unsupported modules such as <code>pyvis</code>, <code>Path(__file__)</code> usage and Parquet I/O  </li>
+<li>Rebuilt visualisation to use JSON plus embedded Cytoscape.js in HTML  </li>
+</ul>
+<hr />
+<h2 id="2025-07-17">2025-07-17</h2>
+<h3 id="parquet-removal-and-browser-based-frontend">Parquet removal and browser based frontend</h3>
+<ul>
+<li>Adapted original Streamlit app to run fully in browser  </li>
+<li>Dropped Parquet loading because of browser limitations  </li>
+<li>Replaced with pre generated JSON at <code>data/index_data.json</code>, loaded over HTTP  </li>
+<li>Moved from Python based visual tools to Cytoscape.js for performance and portability  </li>
+</ul>
+<hr />
+<h2 id="2025-07-16">2025-07-16</h2>
+<h3 id="sccm-node-type-update-for-yaml">SCCM node type update for YAML</h3>
+<ul>
+<li>Standardised entity types to quoted form such as <code>@type: 'PERSON'</code> to avoid YAML parsing quirks  </li>
+<li>Change rippled through validators and graph builder  </li>
+<li>Highlighted need for stronger YAML schema checks later  </li>
+</ul>
+<hr />
+<h2 id="2025-07-14">2025-07-14</h2>
+<h3 id="fixing-schema-to-graph-disconnects">Fixing schema to graph disconnects</h3>
+<ul>
+<li>Found broken links and dangling edges from mismatched service and organisation IDs  </li>
+<li>Rewrote edge building logic to verify both subject and object exist before creating edge  </li>
+<li>Added clearer error messages when relationships skipped  </li>
+</ul>
+<hr />
+<h2 id="2025-07-09">2025-07-09</h2>
+<h3 id="visual-and-navigational-structure">Visual and navigational structure</h3>
+<ul>
+<li>Reorganised <code>/docs/</code> folder to avoid old MkDocs sprawl  </li>
+<li>Added grouped navigation for tools, scrapes and thematic areas such as Early Help, SEND, Benchmarking  </li>
+<li>Refined script that auto generates <code>mkdocs.yml</code> navigation from folder structure  </li>
+</ul>
+<hr />
+<h2 id="2025-07-03">2025-07-03</h2>
+<h3 id="csv-and-contact-data-integration">CSV and contact data integration</h3>
+<ul>
+<li>Added merge step for contact lists from different sources, for example Wix exports and curated CSVs  </li>
+<li>Normalised email domains and lowercased fields  </li>
+<li>Started mapping people entities for wider ecosystem graph  </li>
+</ul>
+<hr />
+<h2 id="what-i-tried-that-did-not-work">What I tried that did not work</h2>
+<ul>
+<li>Single giant JSON with full metadata, slow parse, slow paint, brittle caching  </li>
+<li>Edge labels enabled at load, browser struggled once graph neared five thousand nodes  </li>
+<li>Hover cards on mouse move, too many DOM changes and jitter on large graphs  </li>
+<li>Live GitHub API calls from client, rate limits and unauth flows, unreliable on Pages  </li>
+<li>Embedding full text for search inside graph JSON, payload size exploded, hurt first paint  </li>
+<li>Parquet on Pages, not supported, kept only as local build artefact  </li>
+<li>Loading all nodes and edges at once, long white screen and no progress signals  </li>
+<li>Bezier edges at initial zoom, layout cost too high when zoomed out  </li>
+</ul>
+<hr />
+<h2 id="what-works-now">What works now</h2>
+<ul>
+<li>Split JSON, only bytes needed for current task  </li>
+<li>Staged loading seeded by degree, fast first paint then gradual reveal  </li>
+<li>Labels off until zoom, bezier edges after zoom, smoother interaction  </li>
+<li>Side panel version 2, type agnostic field bag, fewer re renders  </li>
+<li>Search with operators and URL state, easier sharing of views  </li>
+<li>Context mode keeps neighbours during filtering, supports sense making  </li>
+<li>Local Python pipeline writes minified deploy assets plus optional pretty debug files  </li>
+<li>Static JSON for feedback and lists, no client GitHub API  </li>
+</ul>
+<hr />
+<h2 id="files-and-purpose">Files and purpose</h2>
+<ul>
+<li><code>data_externally_processed/</code> - Precomputed search corpus from PDFs etc, feeds semantic search  </li>
+<li><code>data_externally_processed/motw_chunks.parquet</code> - Text chunks table, one row per chunk, used to reconstruct context windows  </li>
+<li><code>data_externally_processed/motw_index.faiss</code> - Vector index, fast nearest neighbour search over <code>motw_vectors</code>  </li>
+<li><code>data_externally_processed/motw_vectors.parquet</code> - Embeddings table, one row per chunk, mirrors <code>motw_chunks</code> row ids  </li>
+<li>
+<p><code>data_externally_processed/search_index.json</code> - Lightweight search index export, usable by static site or potentialy API tools  </p>
+</li>
+<li>
+<p><code>data_repos/</code> - Upstream Git repos pulled in, extra raw corpora for search and mapping  </p>
+</li>
+<li><code>data_web/</code> - External source configs, reproducible scraping   </li>
+<li><code>data_yml/</code> - Core SCCM metadata, single source of truth for graph nodes and details  </li>
+<li>
+<p><code>docs/data/</code> - Build outputs for front end JavaScript, not hand edited in normal flow </p>
+</li>
+<li>
+<p><code>docs/data/adjacency.json</code> - Node adjacency map, used for neighbour lookups and context mode hints  </p>
+</li>
+<li><code>docs/data/crosswalk.json</code> - Id and slug to page path mapping, joins YAML ids to MkDocs pages and URLs  </li>
+<li><code>docs/data/csc_artifacts/</code> - Packaged semantic search artefacts for public site or LA notebooks  </li>
+<li><code>docs/data/csc_artifacts/motw_chunks.parquet</code> - Deployed chunk table, used by external notebooks or future on device search  </li>
+<li><code>docs/data/csc_artifacts/motw_index.faiss</code> - Deployed ANN index, supports offline or local vector queries  </li>
+<li><code>docs/data/csc_artifacts/motw_vectors.parquet</code> - Deployed embeddings, aligned with chunks, future friendly for new tools  </li>
+<li>
+<p><code>docs/data/csc_artifacts/state.json</code> - Metadata for chunks, vectors and index, shapes, versions, build state  </p>
+</li>
+<li>
+<p><code>docs/data/degree.json</code> - Node degree per id, used for sizing or dimming nodes, supports optimisation and QA  </p>
+</li>
+<li><code>docs/data/graph_data.json</code> - Full node and edge payload for standard graph view, richest graph version  </li>
+<li><code>docs/data/graph_data.lite.json</code> - Reduced graph payload, trimmed fields or nodes for faster load and lighter demos  </li>
+<li><code>docs/data/graph_search_index.json</code> - Search index focused on graph nodes, drives graph explorer search UI  </li>
+<li><code>docs/data/lite_index.json</code> - Tiny index for lite graph, quick lookup of ids, slugs and basic labels  </li>
+<li><code>docs/data/node_details.json</code> - Per node detail blob, side panel reads from here instead of YAML at runtime  </li>
+<li><code>docs/data/related_nodes.json</code> - Precomputed related suggestions, powers show related and context recommendations  </li>
+<li><code>docs/data/search_index.json</code> - Site wide search index, complements MkDocs default, used by custom search tooling  </li>
+<li><code>docs/data/source_nodes.dict.json</code> - Source to nodes mapping in dictionary shape, handy for scripts and analysis  </li>
+<li><code>docs/data/source_nodes.json</code> - Canonical mapping of sources to node lists, used by optimisation and QA views  </li>
+<li>
+<p><code>docs/data/source_nodes.list.json</code> - List shaped variant of source to nodes mapping, easier to scan during dev  </p>
+</li>
+<li>
+<p><code>docs/data/feedback-items.json</code> - Static feedback items for site, replaces live GitHub API calls  </p>
+</li>
+<li>
+<p><code>docs/data/graph_data.json</code> - Renderable graph core, shared across main network views  </p>
+</li>
+<li><code>scripts/*.py</code> - Local build scripts, drive YAML validation, graph build and index generation  </li>
+</ul>
+<hr />
+<h2 id="build-pipeline-local">Build pipeline, local</h2>
+<ol>
+<li>Read YAML sources for all types and validate fields  </li>
+<li>Generate graph structures, compute degree, neighbours and crosswalk  </li>
+<li>Build search index, tokenise, normalise, trim to compact form  </li>
+<li>Write minified JSON to <code>docs/data</code>, optionally write pretty copies for review  </li>
+<li>Run local smoke test, start MkDocs preview, check first paint and zoom behaviour  </li>
+<li>Commit JSON artefacts, scripts and docs, push to GitHub, Pages serves static site  </li>
+</ol>
+<hr />
+<h2 id="performance-notes">Performance notes</h2>
+<ul>
+<li>Aim for first content visible fast, show small seed subgraph before full graph  </li>
+<li>Keep JSON small, strip unused fields, prefer integer ids and short keys  </li>
+<li>Use cache friendly paths under <code>docs/data</code>  </li>
+<li>Avoid heavy synchronous work on client, defer expensive transforms until user zooms in  </li>
+<li>Prefer haystack edges at low zoom, switch to bezier when detail matters  </li>
+<li>Never show thousands of labels at once  </li>
+</ul>
+<hr />
+<h2 id="lessons-learned">Lessons learned</h2>
+<ul>
+<li>Design for static hosting from start, no hidden servers  </li>
+<li>Split concerns, separate files for render, search and lookups  </li>
+<li>Build locally where tools are rich, publish only what browsers need  </li>
+<li>Test with large graphs early, set label thresholds using data  </li>
+<li>Keep UX simple, side panel better than hover flood, context mode helps exploration  </li>
+</ul>
+<hr />
+<h2 id="next">Next</h2>
+<ul>
+<li>Optional worker to pre compute layouts for very large subgraphs  </li>
+<li>Light theming pass for accessibility, including high contrast toggle  </li>
+<li>More examples in docs, plus short how to videos  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+      
+        <script src="../js/search_tool.js"></script>
+      
+    
+  </body>
+</html>
