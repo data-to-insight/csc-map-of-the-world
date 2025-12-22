@@ -2,7 +2,7 @@
 
 _To add transparency to the search in particular, below is the current scope of the input data/sources. Some of the labelling comes direct/dynamically off the sources themselves and may therefore be inconsistent. _
 
-## SCCM-aligned YAML Metadata *(~56 sources)*
+## SCCM-aligned YAML Metadata *(~55 sources)*
 ### events
 | Source | File Type | Word Count | Last Refreshed |
 |--------|-----------|------------|----------------|
@@ -54,7 +54,7 @@ _To add transparency to the search in particular, below is the current scope of 
 | Source | File Type | Word Count | Last Refreshed |
 |--------|-----------|------------|----------------|
 | childrens_social_care_national_framework | .yaml | - | 02/12/2025 |
-| ddsf | .yaml | - | 02/12/2025 |
+| ddsf | .yaml | - | 22/12/2025 |
 | ffp_programme_guide_2025 | .yaml | - | 02/12/2025 |
 | national_kinship_care_strategy | .yaml | - | 02/12/2025 |
 | nvest | .yaml | - | 02/12/2025 |
@@ -62,9 +62,7 @@ _To add transparency to the search in particular, below is the current scope of 
 ### resources
 | Source | File Type | Word Count | Last Refreshed |
 |--------|-----------|------------|----------------|
-| ddsf1a_standard_safeguarding_dataset | .yaml | - | 02/12/2025 |
 | ddsf2a_social_workers_and_cms_constraints | .yaml | - | 02/12/2025 |
-| standard_safeguarding_dataset | .yaml | - | 02/12/2025 |
 
 ### rules
 | Source | File Type | Word Count | Last Refreshed |
@@ -82,6 +80,7 @@ _To add transparency to the search in particular, below is the current scope of 
 | d2i_excel_toolkit_maintenance | .yaml | - | 02/12/2025 |
 | east_sussex_county_council_childrens_services_send | .yaml | - | 22/12/2025 |
 | single_point_of_advice | .yaml | - | 22/12/2025 |
+| standard_safeguarding_dataset | .yaml | - | 22/12/2025 |
 
 ## Public Web Data *(~6 sources)*
 ### data_web
