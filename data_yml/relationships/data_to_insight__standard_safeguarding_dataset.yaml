@@ -1,0 +1,13 @@
+'@type': RELATIONSHIP
+name: Standard Safeguarding Dataset Tools Maintenance
+source: data_to_insight
+target: standard_safeguarding_dataset
+relationship_type: maintains
+description: >
+  D2I provide ongoing maintenance and hold responsibility for the Standard Safeguarding Dataset (SSD)
+tags:
+  - sql
+  - ssd
+  - cms
+  - middleware
+  - maintenance

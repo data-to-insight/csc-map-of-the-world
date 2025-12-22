@@ -1,7 +1,9 @@
-'@type': RESOURCE
+'@type': SERVICE # EVENT, SERVICE, PLAN, RELATIONSHIP, COLLECTION, PERSON, RESOURCE, ORGANIZATION
+super_concept: ABSTRACT  # SCCM root (AGENT, OBJECT, EVENT, etc.) — helpful for graphs, schema logic 
+sub_concept:      # optional sub-role
 name: Standard Safeguarding Dataset (SSD)
 description: >
-  A Department for Education‑funded initiative led by Data to Insight, working with
+  A Department for Education-funded initiative led by Data to Insight, working with
   Hertfordshire CC, Essex CC, Knowsley Council and North West ADCS to create a
   standardised dataset for children’s social care data sharing and outcomes tracking.
   Based on the SSD data model and schema published in the public GitHub repo.
@@ -12,13 +14,24 @@ tags:
   - data_standard
   - safeguarding
   - dfe_funded
+  - ddsf
+  - ddsf1a
+  - systemc
+  - mosaic
+  - tag
+  - azeus
+  - eclipse
+  - olm
+  - sql
+  - python
 version: 2025.07
 date_published: 2023-01-01
 website: https://github.com/data-to-insight/standard-safeguarding-dataset
 notes: >
-  SSD defines a common schema layered on local authority systems. Open‑source schema maintained via public repository
-  and updated through partner feedback and implementation experience.
+  SSD defines a common schema layered on local authority systems. Open-source schema maintained via public repository
+  and updated through partner feedback and implementation experience. 
 
+  access_url: https://www.datatoinsight.org/publications-1/standard-safeguarding-dataset---final-report
 
 # --- RESOURCE-specific fields ---
 service_fields:
@@ -28,6 +41,7 @@ service_fields:
     - essex_county_council
     - knowsley_council
     - north_west_adcs
+    - dfe
   status: active
   scope: >
     To create a nationally consistent dataset for safeguarding data collection and use across local authorities,

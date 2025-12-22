@@ -1,0 +1,13 @@
+'@type': RELATIONSHIP
+name: East Sussex | CSC SEND
+source: east_sussex_county_council
+target: east_sussex_county_council_childrens_services_send
+relationship_type: deliversService
+description: >
+  East Sussex County Council Children’s Services delivers SEND .... 
+
+tags:
+  - childrens_services
+  - safeguarding
+  - send
+  - local_authority

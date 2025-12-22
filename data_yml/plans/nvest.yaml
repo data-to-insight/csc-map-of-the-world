@@ -1,10 +1,9 @@
 '@type': PLAN
-name: NVEST
+name: National Voice for Excellence in Safeguarding Technology
 description: >
-  (National Voice for Excellence in Safeguarding Technology)
   NVEST is a network for systems managers and social work professionals working to manage, maintain, 
-  procure, and improve case management systems and other technologies for social work. 
-  It is funded by Data to Insight and governed by a steering group of Local Authority representatives.
+  procure, and improve CMS and other technologies for social work. 
+  Funded by Data to Insight and governed by a steering group of LA representatives.
 
 # --- Shared metadata (optional) ---
 tags:

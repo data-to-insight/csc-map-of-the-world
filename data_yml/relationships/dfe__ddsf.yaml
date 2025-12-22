@@ -1,0 +1,15 @@
+'@type': RELATIONSHIP
+name: Department for Education | The Data and Digital Solutions Fund 
+source: dfe
+target: ddsf
+relationship_type: provides
+description: >
+  The DfE provided and outlined potential funded project work within Data and Digital Solutions Fund
+tags:
+  - safeguarding
+  - dfe
+  - ddsf
+  - ddsf1a
+  - ddsf1b
+  - ddsf2
+  - collaboration

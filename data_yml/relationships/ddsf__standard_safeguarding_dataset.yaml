@@ -1,0 +1,13 @@
+'@type': RELATIONSHIP
+name: Standard Safeguarding Dataset Development
+source: ddsf
+target: standard_safeguarding_dataset
+relationship_type: maintains
+description: >
+  The DDSF(1a+1b) provides the source of funding to enable development of the Standard Safeguarding Dataset (SSD)
+tags:
+  - ddsf1a
+  - ddsf1b
+  - ssd
+  - cms
+  - middleware
