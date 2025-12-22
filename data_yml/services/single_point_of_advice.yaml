@@ -1,6 +1,6 @@
 '@type': SERVICE
 super_concept: Agent
-sub_concept:''
+sub_concept:
 
 name: Single Point of Advice (SPoA) - East Sussex
 
@@ -22,6 +22,7 @@ date_published: 2025-01-01
 website: https://www.eastsussex.gov.uk/children-families/report-a-concern-child
 
 service_fields:
+  lead_organisation: east_sussex_county_council
   service_type: safeguarding_referral
   contact:
     phone: "01323 464222"

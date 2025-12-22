@@ -1,12 +1,12 @@
 '@type': SERVICE
 super_concept: Agent
-sub_concept:''
+sub_concept:
 
-name: Special Educational Needs and Disabilities (SEND) Services – East Sussex
+name: Special Educational Needs and Disabilities (SEND) Services - East Sussex
 
 description: >
   East Sussex SEND Services provide statutory assessment, planning, and support
-  for children and young people aged 0–25 with special educational needs and
+  for children and young people aged 0-25 with special educational needs and
   disabilities. Information and access to SEND support is primarily provided
   through the East Sussex Local Offer.
 
@@ -43,7 +43,7 @@ notes: >
 
 service_fields:
   service_type: statutory_support
-  lead_organisation: east_sussex_county_council_childrens_services
+  lead_organisation: east_sussex_county_council
   region: East Sussex
   age_range: 0-25
   status: active
