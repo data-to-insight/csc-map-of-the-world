@@ -1,6 +1,13 @@
-// Minimal search for search_index.json (docs array)
-// Uses: name, excerpt, keywords (fallback: tags)
-// Works on mkdocs serve and GH Pages
+
+/*
+docs/js/search_tool.js
+
+Minimal search for search_index.json (docs array)
+Uses: name, excerpt, keywords (fallback: tags)
+Works on mkdocs serve and GH Pages
+
+ */
+
 
 
 // wrap & guard (removed)
