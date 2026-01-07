@@ -1,9 +1,10 @@
-/**
- * Lite renderer (large-graph friendly)
- * - Loads docs/data/graph_data.lite.json (or window.MOTW.graphLite if preloaded)
- * - Adds nodes immediately, edges in staged chunks (haystack → bezier on zoom)
- * - Optional UI: typeFilter (Choices.js), contextModeToggle, resetView, textSearch
- * - Info panel: enriches from standard graph JSON if available (fields/tags/website/links)
+/*
+docs/js/render_graph_lite.js
+ Lite renderer (large-graph friendly)
+ - Loads docs/data/graph_data.lite.json (or window.MOTW.graphLite if preloaded)
+ - Adds nodes immediately, edges in staged chunks (haystack -> bezier on zoom)
+ - Optional UI: typeFilter (Choices.js), contextModeToggle, resetView, textSearch
+ - Info panel: enriches from standard graph JSON if available (fields/tags/website/links)
  */
 
 (function () {
@@ -84,21 +85,24 @@
     return String(s == null ? "" : s).replace(/[&<>"']/g, m =>
       ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
+  
   function buildFieldsHTML(d){
     const f = d.fields || {};
     const rows = [];
 
-    const orgType  = f.organisation_type || f.organization_type || d.organisation_type;
-    const region   = f.region || d.region;
-    const projects = Array.isArray(f.projects) ? f.projects
-                   : Array.isArray(d.projects) ? d.projects : [];
-    const persons  = Array.isArray(f.persons) ? f.persons
-                   : Array.isArray(d.persons) ? d.persons : [];
+    const orgType   = f.organisation_type || f.organization_type || d.organisation_type;
+    const region    = f.region || d.region;
+    const projects  = Array.isArray(f.projects) ? f.projects
+                    : Array.isArray(d.projects) ? d.projects : [];
+    const persons   = Array.isArray(f.persons) ? f.persons
+                    : Array.isArray(d.persons) ? d.persons : [];
+    const published = d.date_published || d.published || d.date;
 
-    if (d.type)           rows.push(`<div class="row"><span class="subhead">Type</span><div class="meta">${esc(d.type)}</div></div>`);
-    if (d.slug)           rows.push(`<div class="row"><span class="subhead">Slug</span><div class="meta">${esc(d.slug)}</div></div>`);
-    if (d.website)        rows.push(`<div class="row"><span class="subhead">Website</span> <a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>`);
-    if (d.date_published) rows.push(`<div class="row"><span class="subhead">Published</span><div class="meta">${esc(d.date_published)}</div></div>`);
+    if (d.type)      rows.push(`<div class="row"><span class="subhead">Type</span><div class="meta">${esc(d.type)}</div></div>`);
+    if (d.slug)      rows.push(`<div class="row"><span class="subhead">Slug</span><div class="meta">${esc(d.slug)}</div></div>`);
+    if (d.website)   rows.push(`<div class="row"><span class="subhead">Website</span> <a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>`);
+    if (published)   rows.push(`<div class="row"><span class="subhead">Published</span><div class="meta">${esc(published)}</div></div>`);
+    
     if (Array.isArray(d.tags) && d.tags.length){
       rows.push(`<div class="row"><div class="subhead">Tags</div><div class="tags">${
         d.tags.map(t=>`<span>${esc(t)}</span>`).join(" ")

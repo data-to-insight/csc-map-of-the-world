@@ -13,15 +13,48 @@ hide:
   .md-grid { max-width: initial; }
   .md-main__inner { margin: 0; }
 
-  #network-app { width: 100%, min-height: 60vh, position: relative }
+  #network-app {
+    width: 100%;
+    min-height: 60vh;
+    position: relative;
+  }
 
   /* small status chip inside graph */
   #network-status {
-    position: absolute, top: 8px, left: 8px, z-index: 10,
-    background: rgba(255,255,255,.95), border: 1px solid #ddd,
-    padding: 6px 10px, border-radius: 6px, font-size: .9em, color: #333
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 10;
+    background: rgba(255,255,255,.95);
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: .9em;
+    color: #333;
+  }
+
+  /* node info panel, match panel behivour from explore.md */
+  .node-panel {
+    position: fixed;
+    top: 96px;
+    right: 16px;
+    width: min(380px, 95vw);
+    max-height: 70vh;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.12);
+    padding: 12px 14px;
+    z-index: 9999;
+    transform: translateX(110%);
+    transition: transform 160ms ease-in-out;
+  }
+  .node-panel.open {
+    transform: translateX(0);
   }
 </style>
+
 
 <div id="network-app"></div>
 
@@ -518,8 +551,6 @@ E.g. Same hood, zoom out slightly
           if (orgType) {
             html += '    <tr><td>Organisation type</td><td>' + esc(orgType) + '</td></tr>';
           }
-
-          html += '    <tr><td>Id</td><td>' + esc(id) + '</td></tr>';
 
           html += '  </tbody></table>';
           html += '</div>';

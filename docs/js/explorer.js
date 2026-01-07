@@ -1,6 +1,7 @@
-// docs/js/explorer.js
-// Search-first Explorer: load small ego subgraphs on demand (starts blank|empty)
-
+/*
+docs/js/explorer.js
+Search-first Explorer: load small ego subgraphs on demand (starts blank|empty)
+*/
 
 
 (function () {
@@ -204,10 +205,7 @@
                   <td>Organisation type</td>
                   <td>${esc(orgType)}</td>
                 </tr>` : ""}
-              <tr>
-                <td>Id</td>
-                <td>${esc(id)}</td>
-              </tr>
+
             </tbody>
           </table>
         </div>

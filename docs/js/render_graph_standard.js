@@ -1,11 +1,13 @@
-/**
- * Standard renderer with degree-seeded staged load
- * - consumes docs/data/graph_data.json or window.MOTW.graphStd if preloaded
- * - loads docs/data/degree.json or uses window.MOTW.degree, falls back to compute
- * - Stage 1: show top 3 highest-degree org nodes + their 1-hop org neighbours (org↔org edges only)
- * - Stage 2: add remaining nodes/edges in chunks while showing a status chip
- * - Edges start as haystack for speed, switch to bezier on zoom-in
- * - Info panel uses a type-agnostic "fields" bag (parity with lite)
+/*
+docs/js/render_graph_standard.js
+
+Standard renderer with degree-seeded staged load
+- consumes docs/data/graph_data.json or window.MOTW.graphStd if preloaded
+- loads docs/data/degree.json or uses window.MOTW.degree, falls back to compute
+- Stage 1: show top 3 highest-degree org nodes + their 1-hop org neighbours (org<->org edges only)
+- Stage 2: add remaining nodes/edges in chunks while showing a status chip
+- Edges start as haystack for speed, switch to bezier on zoom-in
+- Info panel uses a type-agnostic "fields" bag (parity with lite)
  */
 (function () {
   const EDGE_FIRST_BATCH = 800;
@@ -175,17 +177,21 @@
     const f = d.fields || {};
     const rows = [];
 
-    const orgType  = f.organisation_type || f.organization_type || d.organisation_type;
-    const region   = f.region || d.region;
-    const projects = Array.isArray(f.projects) ? f.projects
-                   : Array.isArray(d.projects) ? d.projects : [];
-    const persons  = Array.isArray(f.persons) ? f.persons
-                   : Array.isArray(d.persons) ? d.persons : [];
+    const orgType   = f.organisation_type || f.organization_type || d.organisation_type;
+    const region    = f.region || d.region;
+    const projects  = Array.isArray(f.projects) ? f.projects
+                    : Array.isArray(d.projects) ? d.projects : [];
+    const persons   = Array.isArray(f.persons) ? f.persons
+                    : Array.isArray(d.persons) ? d.persons : [];
+    const published = d.date_published || d.published || d.date;
+
 
     if (d.type)           rows.push(`<div class="row"><span class="subhead">Type</span><div class="meta">${esc(d.type)}</div></div>`);
     if (d.slug)           rows.push(`<div class="row"><span class="subhead">Slug</span><div class="meta">${esc(d.slug)}</div></div>`);
     if (d.website)        rows.push(`<div class="row"><span class="subhead">Website</span> <a href="${esc(d.website)}" target="_blank" rel="noopener">${esc(d.website)}</a></div>`);
-    if (d.date_published) rows.push(`<div class="row"><span class="subhead">Published</span><div class="meta">${esc(d.date_published)}</div></div>`);
+    // if (d.date_published) rows.push(`<div class="row"><span class="subhead">Published</span><div class="meta">${esc(d.date_published)}</div></div>`);
+    if (published) rows.push(`<div class="row"><span class="subhead">Published</span><div class="meta">${esc(published)}</div></div>`);
+
     if (Array.isArray(d.tags) && d.tags.length){
       rows.push(`<div class="row"><div class="subhead">Tags</div><div class="tags">${
         d.tags.map(t=>`<span>${esc(t)}</span>`).join(" ")
@@ -212,6 +218,7 @@
       }</ul></div>`);
     }
 
+    // optional appear in panel IF exist
     if (f.lead_organisation) rows.push(`<div class="row"><span class="subhead">Lead organisation</span><div class="meta">${esc(f.lead_organisation)}</div></div>`);
     if (f.location)          rows.push(`<div class="row"><span class="subhead">Location</span><div class="meta">${esc(f.location)}</div></div>`);
     if (f.date)              rows.push(`<div class="row"><span class="subhead">Date</span><div class="meta">${esc(f.date)}</div></div>`);
