@@ -1,3 +1,6 @@
+[![Deploy](https://img.shields.io/github/actions/workflow/status/data-to-insight/csc-map-of-the-world/deploy.yml?branch=main&style=flat-square)](https://github.com/data-to-insight/csc-map-of-the-world/actions/workflows/deploy.yml) [![Docs](https://img.shields.io/badge/docs-live-brightgreen?style=flat-square)](https://data-to-insight.github.io/csc-map-of-the-world/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://choosealicense.com/licenses/mit/) [![Data refreshed](https://img.shields.io/github/last-commit/data-to-insight/csc-map-of-the-world?path=docs/data/graph_data.json&label=data%20refreshed&style=flat-square)](https://github.com/data-to-insight/csc-map-of-the-world/commits/main/docs/data/graph_data.json)
+
+
 # About this project
 
 Map of the World is an open-source knowledge base for Children’s Social Care (CSC). It brings together key documents, tools, services, and guidance into one structured, searchable map.
@@ -172,6 +175,7 @@ This PoC forms part of the work towards a [Centre of Excellence](https://www.dat
   }
 })();
 </script>
+
 ## Soft Systems Conceptual Mapping
 
 **System of Interest**  
@@ -223,3 +227,27 @@ We hope it supports your work, and welcome your feedback as we continue to impro
 | [Sector Tools](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=166) | [PATCH](https://www.datatoinsight.org/patch), ChAT                                                                      |
 | [Services](http://www.smartcityconceptmodel.com/index.php?Action=ShowConcept&Id=169)     |                                                                                                                         |
                                                                                                         |
+
+
+---
+
+## Data and formats
+
+The network visualisations, and meta data about those objects, within the site are built from structured YAML records (the source of truth), processed and published as static JSON files that the browser app loads at runtime. Parquet and FAISS artifacts built from an increasing corpora of publically available CSC sector reference data used for the search/back-end are made available for offline or downstream semantic search workflows (e.g. for LAs/data teams/stakeholders). At the moment these artifacts are built exclusively from externally sourced documents, official reports, DfE/Gov guidance, Official validation rules, social care frameworks and much, much more that defines what is currently happening within the CSC and directly related sectors' data ecosystems; but part of the planned development is to additionally include all data from the defined yaml objects shown in the network graph(s). 
+
+## Reuse and downloads
+
+The published set of downloadable artifacts for reuse (Parquet, FAISS), plus lightweight JSON outputs used by the website.
+
+??? tip "Downloadable artifacts (Parquet and FAISS)"
+    | Artifact | Format | Link on the site | Path in repo | What it is for |
+    |---|---|---|---|---|
+    | Vector chunks | Parquet | [motw_chunks.parquet](data/csc_artifacts/motw_chunks.parquet) | `docs/data/csc_artifacts/motw_chunks.parquet` | Text chunks table for semantic retrieval |
+    | Vector embeddings | Parquet | [motw_vectors.parquet](data/csc_artifacts/motw_vectors.parquet) | `docs/data/csc_artifacts/motw_vectors.parquet` | Embeddings aligned to chunk ids |
+    | Vector index | FAISS | [motw_index.faiss](data/csc_artifacts/motw_index.faiss) | `docs/data/csc_artifacts/motw_index.faiss` | Nearest neighbour index over embeddings |
+
+??? info "Site outputs (JSON used by the browser)"
+    | Artifact | Format | Link on the site | Path in repo | What it is for |
+    |---|---|---|---|---|
+    | Graph data | JSON | [graph_data.json](data/graph_data.json) | `docs/data/graph_data.json` | Nodes and edges for the Cytoscape network |
+    | Search indexes | JSON | [search_index.json](data/search_index.json), [graph_search_index.json](data/graph_search_index.json) | `docs/data/search_index.json`, `docs/data/graph_search_index.json` | Fast static search for the site |
