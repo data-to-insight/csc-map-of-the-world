@@ -388,6 +388,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#data-and-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data and formats
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reuse-and-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reuse and downloads
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -759,6 +781,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#data-and-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data and formats
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reuse-and-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reuse and downloads
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -776,6 +820,7 @@
 
 
 
+<p><a href="https://github.com/data-to-insight/csc-map-of-the-world/actions/workflows/deploy.yml"><img alt="Deploy" src="https://img.shields.io/github/actions/workflow/status/data-to-insight/csc-map-of-the-world/deploy.yml?branch=main&amp;style=flat-square" /></a> <a href="https://data-to-insight.github.io/csc-map-of-the-world/"><img alt="Docs" src="https://img.shields.io/badge/docs-live-brightgreen?style=flat-square" /></a> <a href="https://choosealicense.com/licenses/mit/"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" /></a> <a href="https://github.com/data-to-insight/csc-map-of-the-world/commits/main/docs/data/graph_data.json"><img alt="Data refreshed" src="https://img.shields.io/github/last-commit/data-to-insight/csc-map-of-the-world?path=docs/data/graph_data.json&amp;label=data%20refreshed&amp;style=flat-square" /></a></p>
 <h1 id="about-this-project">About this project</h1>
 <p>Map of the World is an open-source knowledge base for Children’s Social Care (CSC). It brings together key documents, tools, services, and guidance into one structured, searchable map.</p>
 <h2 id="what-youll-find">What you’ll find</h2>
@@ -927,6 +972,7 @@ This PoC forms part of the work towards a <a href="https://www.datatoinsight.org
   }
 })();
 </script>
+
 <h2 id="soft-systems-conceptual-mapping">Soft Systems Conceptual Mapping</h2>
 <p><strong>System of Interest</strong>  </p>
 <blockquote>
@@ -1016,6 +1062,78 @@ We hope it supports your work, and welcome your feedback as we continue to impro
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="data-and-formats">Data and formats</h2>
+<p>The network visualisations, and meta data about those objects, within the site are built from structured YAML records (the source of truth), processed and published as static JSON files that the browser app loads at runtime. Parquet and FAISS artifacts built from an increasing corpora of publically available CSC sector reference data used for the search/back-end are made available for offline or downstream semantic search workflows (e.g. for LAs/data teams/stakeholders). At the moment these artifacts are built exclusively from externally sourced documents, official reports, DfE/Gov guidance, Official validation rules, social care frameworks and much, much more that defines what is currently happening within the CSC and directly related sectors' data ecosystems; but part of the planned development is to additionally include all data from the defined yaml objects shown in the network graph(s). </p>
+<h2 id="reuse-and-downloads">Reuse and downloads</h2>
+<p>The published set of downloadable artifacts for reuse (Parquet, FAISS), plus lightweight JSON outputs used by the website.</p>
+<details class="tip">
+<summary>Downloadable artifacts (Parquet and FAISS)</summary>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Format</th>
+<th>Link on the site</th>
+<th>Path in repo</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vector chunks</td>
+<td>Parquet</td>
+<td><a href="data/csc_artifacts/motw_chunks.parquet">motw_chunks.parquet</a></td>
+<td><code>docs/data/csc_artifacts/motw_chunks.parquet</code></td>
+<td>Text chunks table for semantic retrieval</td>
+</tr>
+<tr>
+<td>Vector embeddings</td>
+<td>Parquet</td>
+<td><a href="data/csc_artifacts/motw_vectors.parquet">motw_vectors.parquet</a></td>
+<td><code>docs/data/csc_artifacts/motw_vectors.parquet</code></td>
+<td>Embeddings aligned to chunk ids</td>
+</tr>
+<tr>
+<td>Vector index</td>
+<td>FAISS</td>
+<td><a href="data/csc_artifacts/motw_index.faiss">motw_index.faiss</a></td>
+<td><code>docs/data/csc_artifacts/motw_index.faiss</code></td>
+<td>Nearest neighbour index over embeddings</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="info">
+<summary>Site outputs (JSON used by the browser)</summary>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Format</th>
+<th>Link on the site</th>
+<th>Path in repo</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Graph data</td>
+<td>JSON</td>
+<td><a href="data/graph_data.json">graph_data.json</a></td>
+<td><code>docs/data/graph_data.json</code></td>
+<td>Nodes and edges for the Cytoscape network</td>
+</tr>
+<tr>
+<td>Search indexes</td>
+<td>JSON</td>
+<td><a href="data/search_index.json">search_index.json</a>, <a href="data/graph_search_index.json">graph_search_index.json</a></td>
+<td><code>docs/data/search_index.json</code>, <code>docs/data/graph_search_index.json</code></td>
+<td>Fast static search for the site</td>
+</tr>
+</tbody>
+</table>
+</details>
 
 
 
