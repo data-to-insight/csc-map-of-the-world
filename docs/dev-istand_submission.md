@@ -1,5 +1,7 @@
 # CSC Map of the World Award submission
 
+Notes towards a possible Jan 2026-27 iStand project submission. 
+
 ## Name of the initiative or project
 
 Children's Social Care Map of the World (CSC Map of the World)

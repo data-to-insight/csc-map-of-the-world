@@ -2,6 +2,16 @@
 
 Short notes so others can see journey. Focus on pivots and trade offs. Static GitHub Pages, no server. Graph must load fast.
 
+
+---
+
+## 2026-01-14
+
+- Rethinking what data points 'should' be included in the yml files. Need to establish baselines here - forum collab/collectively?  
+- Some further work adding primarily new org objects, with some connected relations (JB)  
+- Fixed non-disappearing/persistent info panel on full-network page  
+- centralised the info panel formatting... trying to remove some of the inconsistencies seen between the 3 instances of this  
+
 ---
 
 ## 2025-12-02  
