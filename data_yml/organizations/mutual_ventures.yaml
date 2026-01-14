@@ -1,0 +1,39 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Mutual Ventures
+description: >
+  Mutual Ventures is a consultancy and improvement organisation that works with
+  public services to deliver change, transformation and better outcomes. It
+  supports local authorities, health bodies and partners with service redesign,
+  improvement programmes, data-led change and system transformation, including
+  work in children’s services and social care.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: Consultancy
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - consultancy
+  - improvement
+  - transformation
+  - public_sector
+  - childrens_services
+  - social_care
+  - data
+
+version: 2026.01
+date_published: 2026-01-14
+
+website: https://www.mutualventures.co.uk/
+phone: 02037143901
+email: info@mutualventures.co.uk
+
+notes: >
+  Mutual Ventures specialises in supporting public service organisations with
+  transformation programmes, improvement work, and delivery of change across
+  complex systems.

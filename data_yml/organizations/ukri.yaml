@@ -1,0 +1,37 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: UK Research and Innovation
+
+description: >
+  Innovate UK is the UK’s innovation agency that supports businesses and
+  organisations to develop and realise disruptive innovation. As part of UK
+  Research and Innovation (UKRI), Innovate UK funds, connects and catalyses
+  innovation in science and technology, spanning sectors including digital,
+  health, and public services.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: innovation_agency
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - innovate_uk
+  - ukri
+  - public_funding
+  - innovation
+  - research
+  - science
+  - technology
+
+version: 2026.01
+date_published: 2026-01-14
+
+website: https://www.ukri.org/councils/innovate-uk/
+notes: >
+  Innovate UK operates as the UK’s national innovation agency, providing
+  funding, support, and networks for innovation-driven organisations, and
+  works closely with government, research councils, and industry partners.

@@ -3,11 +3,18 @@ super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.)
 sub_concept:      # optional sub-role
 name: CORAM
 description: >
-  Description, summary text to come
+
+  Coram is the first and longest serving charity in the UK.
+  Our work enables us to better understand what works for children and young people,
+  and communicate with those in a position to make a real difference.
+  We use our insight and experience to engage with government, local authorities,
+  social workers, teachers, carers and families to help deliver better practice,
+  systems and laws.
+
 
 #--- ORGANIZATION-specific fields ---
 organization_fields:
-  organisation_type:    # e.g.<e.g. Local Authority, Charity, Academic, Community/Network, Vendor>
+  organisation_type: Charity  # e.g.<e.g. Local Authority, Charity, Academic, Community/Network, Vendor>
   region: England
   projects:
     -                              # must match a known snake_case ID
@@ -22,8 +29,10 @@ tags:
   - example_tag        # lowercase, snake_case if multi-word
   - data_tools
 version: 2025.07
-date_published: 2025-07-21
+date_published: 2026-01-14
+
 website: https://www.coram.org.uk
+phone: 020 7520 0300
 notes: >
   Optional notes for further detail, sources or internal use
 

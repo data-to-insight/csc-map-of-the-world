@@ -1,0 +1,38 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Children’s Commissioner for England
+
+description: >
+  The Children’s Commissioner for England is an independent statutory
+  advocate for children and young people. The office works to promote the
+  rights, views and interests of children and young people, especially the
+  most vulnerable, by carrying out research, influencing policy, and holding
+  government and public bodies to account.
+
+# --- ORGANIZATION-specific fields ---
+
+organization_fields:
+  organisation_type: central_goverment
+  region: England
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+
+tags:
+  - childrens_rights
+  - advocacy
+  - research
+  - policy
+  - public_body
+  - england
+
+version: 2026.01
+date_published: 2026-01-14
+website: https://www.childrenscommissioner.gov.uk/
+
+notes: >
+  The Children’s Commissioner role was established by the Children Act 2004
+  and provides independent oversight, advocacy and research to safeguard and
+  promote the views and interests of children and young people in England.

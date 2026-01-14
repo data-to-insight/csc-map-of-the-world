@@ -1,0 +1,38 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Department of Health and Social Care
+
+description: >
+  The Department of Health and Social Care (DHSC) is a UK government department
+  responsible for policy and legislation on health and adult social care in
+  England. It leads on improving health outcomes, public health, social care,
+  and integration across health and care systems.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: central_government 
+  region: England
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - central_government
+  - health
+  - social_care
+  - adult_social_care
+  - public_health
+  - public_sector
+  - england
+
+version: 2026.01
+date_published: 2018-01-08
+
+website: https://www.gov.uk/government/organisations/department-of-health-and-social-care
+phone:0300 790 4007
+
+notes: >
+  DHSC works with arm’s-length bodies including NHS England, the UK Health
+  Security Agency, and the Care Quality Commission. It also collaborates with
+  local authorities and partners on adult social care and health integration.

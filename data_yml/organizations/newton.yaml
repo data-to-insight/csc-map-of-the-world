@@ -1,0 +1,36 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Newton
+description: >
+  Newton is a consultancy and improvement organisation that supports public
+  services and organisations to deliver change, improve outcomes, and build
+  capability. It works with partners across sectors to design and implement
+  improvement programmes, often using data-led approaches and performance
+  improvement methods.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: Consultancy
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - consultancy
+  - improvement
+  - transformation
+  - public_sector
+  - data
+  - outcomes
+
+version: 2026.01
+date_published:2026-01-14
+
+website: https://newtonimpact.com/
+phone: 01865 601300
+
+notes: >
+  Newton works as an improvement partner, supporting organisations with service
+  transformation, capability building, and delivery of change programmes.

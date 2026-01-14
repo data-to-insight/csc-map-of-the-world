@@ -1,0 +1,32 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Dorset Council
+
+description: >
+  Dorset Council is a unitary local authority in England. It delivers local
+  government services across Dorset, and statutory provider of all front-line children's social care services.
+
+tags:
+  - local_authority
+  - dorset
+  - public_sector
+  - england
+
+version: 2026.01
+date_published: 2026-01-14
+
+website: https://www.dorsetcouncil.gov.uk/
+e-mail: customerservices@dorsetcouncil.gov.uk
+phone: 01305 221000
+out_of_hours: 01305 221000
+
+notes: >
+  Dorset Council became the unitary authority on 1 April 2019, replacing the
+  former Dorset County Council and the previous district councils in its area.
+  Children’s services contact information is provided on the council website.
+
+organization_fields:
+  organisation_type: local_authority
+  region: England
+  area_covered: Dorset

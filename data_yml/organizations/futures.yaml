@@ -1,0 +1,35 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Futures
+description: >
+  Futures is a UK-based digital, data and technology consultancy that works
+  with government and public sector organisations to deliver transformation,
+  system improvement and better outcomes. Its work spans service design,
+  data strategy, digital capability building, and technology implementation.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: Consultancy
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - technology
+  - data
+  - digital
+  - consultancy
+  - transformation
+
+version: 2026.01
+date_published: 2026-01-14
+website: https://www.futures.co.uk/
+phone: 0113 205 0120
+email: info@futures.co.uk
+
+notes: >
+  Futures supports the design and delivery of digital and data-enabled change
+  programmes across public services including local government and health and
+  care sectors.

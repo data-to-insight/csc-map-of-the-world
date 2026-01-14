@@ -1,0 +1,38 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: ImPower
+description: >
+  ImPower is a UK consultancy and improvement partner specialising in public
+  services transformation, outcomes improvement and systems change. It works
+  with local authorities, health and care systems, and other partners to
+  design, deliver and embed improvements across services including children’s
+  social care, early help and community support.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: Consultancy
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - improvement
+  - consultancy
+  - public_sector
+  - transformation
+  - childrens_services
+  - social_care
+  - data
+
+version: 2026.01
+date_published: 2009-01-01
+
+website: https://impower.co.uk/
+phone: +44 (0)20 7017 8030
+email: enquiries@impower.co.uk
+
+notes: >
+  ImPower focuses on supporting organisations with evidence-based improvement,
+  outcomes measurement, collaborative design and sustainable systems change.

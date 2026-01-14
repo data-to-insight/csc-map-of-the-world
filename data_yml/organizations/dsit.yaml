@@ -1,0 +1,37 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Department for Science, Innovation and Technology
+
+description: >
+  The Department for Science, Innovation and Technology (DSIT) is a UK government
+  department responsible for driving science, innovation and technology policy.
+  It supports research and innovation, digital infrastructure, data, and the
+  adoption of new technologies across the economy and public services.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: central_government
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - central_government
+  - science
+  - innovation
+  - technology
+  - digital
+  - public_sector
+  - united_kingdom
+
+version: 2026.01
+date_published: 2026-01-14
+
+website: https://www.gov.uk/government/organisations/department-for-science-innovation-and-technology
+
+notes: >
+  DSIT was established in 2023 and leads UK government policy on science,
+  research, innovation, data, and emerging technologies, working closely with
+  delivery partners such as UK Research and Innovation.

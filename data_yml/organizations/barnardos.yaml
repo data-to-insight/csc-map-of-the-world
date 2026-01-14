@@ -1,0 +1,36 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Barnardo’s
+description: >
+  Barnardo’s is one of the UK’s largest children’s charities. It works to support
+  children, young people and families, particularly those who are vulnerable or
+  at risk. Barnardo’s delivers services across the UK in areas such as children’s
+  social care, fostering and adoption, family support, mental health, disability,
+  and care leavers.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: Charity
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - charity
+  - safeguarding
+  - family_support
+  - fostering
+  - adoption
+  - care_leavers
+  - disability
+  - mental_health
+
+version: 2026.01
+date_published: 2026-01-14
+website: https://www.barnardos.org.uk/
+notes: >
+  Barnardo’s delivers hundreds of services across the UK and works in partnership
+  with local authorities, health services and voluntary organisations to support
+  children and families.

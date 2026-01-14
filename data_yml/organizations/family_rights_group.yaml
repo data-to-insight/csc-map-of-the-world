@@ -1,0 +1,34 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Family Rights Group
+description: >
+  Family Rights Group (FRG) is a UK charity that supports families involved with
+  children’s social care. It provides information, advice, advocacy and training
+  to parents and carers, campaigns for better policy and practice, and works
+  with professionals to improve family outcomes and safeguard children.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: Charity
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - charity
+  - family_support
+  - advocacy
+  - training
+  - safeguarding
+  - social_care
+
+version: 2026.01
+date_published: 2026-01-14
+website: https://frg.org.uk/
+phone: 0808 801 0366
+notes: >
+  FRG focuses on supporting families in contact with children’s social care,
+  providing independent advocacy and advice, and influencing policy to improve
+  outcomes for children and families.

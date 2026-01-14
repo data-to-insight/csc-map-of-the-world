@@ -9,7 +9,7 @@ description: >
 tags:
   - local_authority
 version: 2025.07
-date_published: 1900-01-01
+date_published: 2026-01-14
 website: https://www.essex.gov.uk/
 notes: >
   Essex has been an early and active partner in the development of cross-authority data standards and practices,
@@ -23,4 +23,5 @@ organization_fields:
   region: east_of_england
   projects:
     - standard_safeguarding_dataset
+    - ssd
   persons: []

@@ -1,0 +1,40 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: NSPCC (National Society for the Prevention of Cruelty to Children)
+description: >
+  The NSPCC is a UK children’s charity dedicated to preventing abuse and
+  protecting children. It provides services for children and families,
+  including the Childline service, helplines, advice, training and support for
+  professionals, and works to influence policy and public awareness on child
+  protection.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: Charity
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - charity
+  - safeguarding
+  - child_protection
+  - helplines
+  - advice
+  - training
+  - policy
+
+version: 2026.01
+date_published: 2026-01-14
+
+website: https://www.nspcc.org.uk/
+email: help@NSPCC.org.uk
+helpline: 0808 8005000
+general:  020 7825 2505 
+
+notes: >
+  NSPCC delivers frontline services and national campaigns, works with
+  government and partners to improve child protection policy, and runs the
+  Childline service for children and young people.

@@ -1,0 +1,38 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: System C
+description: >
+  System C is a UK-based technology company providing digital software and
+  technology services for health, care, education and digital records
+  management. Its solutions are used by NHS trusts, local authorities and
+  health and social care partners to manage clinical, care and education
+  workflows, data and processes.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: Vendor
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - system_c
+  - systemc
+  - liquidlogic
+  - technology
+  - digital_health
+  - digital_social_care
+  - vendor
+  - education
+  - public_sector
+
+version: 2026.01
+date_published: 2026-01-14
+
+website: https://www.systemc.com/
+phone: +44 (0) 1622 691 616
+notes: >
+  The UK's number-one case management solution, transforming children’s social
+  care through efficient and user-friendly technology.

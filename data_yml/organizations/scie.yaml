@@ -1,0 +1,41 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Social Care Institute for Excellence (SCIE)
+
+description: >
+  The Social Care Institute for Excellence (SCIE) is an independent improvement
+  organisation that supports positive change in social care. SCIE collaborates and innovates
+  in social care to improve people’s lives, adults and children, working with a wide range of 
+  partners and people with lived experience.SCIE do this by providing innovative consultancy, 
+  expert training, extensive resources and information and evidence-based insights.
+
+We do this by providing innovative consultancy, expert training, extensive resources and information and evidence-based insights.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: independent_charity
+  region: England
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - social_care
+  - childrens_services
+  - adult_social_care
+  - improvement
+  - evidence
+  - practice
+  - public_sector
+
+version: 2026.01
+date_published: 2001-01-01
+website: https://www.scie.org.uk/
+email: info@scie.org.uk
+phone: 0203 8404040
+
+notes: >
+  SCIE provides guidance, tools, learning resources, and support to improve
+  social care practice and services. It works closely with government,
+  local authorities, providers, and people with lived experience.

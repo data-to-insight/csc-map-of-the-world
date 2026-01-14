@@ -1,0 +1,34 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Integrated Care Boards (ICBs)
+
+description: >
+  Integrated Care Boards (ICBs) are statutory NHS organisations responsible for
+  planning and funding health services within Integrated Care Systems (ICSs).
+  They work with local authorities and partners to improve population health,
+  reduce inequalities and integrate health, social care and wider public
+  services, including services for children and families.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: nhs_statutory_body
+  region: England
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - nhs
+  - health
+  - integrated_care
+  - social_care
+  - england
+
+version: 2026.01
+date_published: 2026-01-14
+website: https://www.england.nhs.uk/integratedcare/
+notes: >
+  Integrated Care Boards were established in July 2022 to replace Clinical
+  Commissioning Groups (CCGs). They lead NHS planning and funding within their
+  local Integrated Care Systems and work closely with councils and partners.

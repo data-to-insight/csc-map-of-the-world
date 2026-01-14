@@ -1,0 +1,34 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: ICT Revolution
+
+description: >
+  ICT Revolution is a technology supplier that provides digital solutions and
+  services to public sector organisations, including local authorities.
+  Its work focuses on supporting data, digital transformation, and technology
+  delivery within areas such as children’s services and social care.
+
+organization_fields:
+  organisation_type: Vendor
+  region: England
+  projects:
+  persons:
+
+tags:
+  - technology
+  - digital
+  - public_sector
+  - vendor
+
+version: 2025.07
+date_published: 2026-01-14
+
+website: https://www.ictrevolution.co.uk
+email: info@ictrevolutions.com
+phone: 01691664256
+
+notes: >
+  ICT Revolution operates as a supplier and delivery partner, providing
+  technology and digital services rather than acting as a statutory body
+  or service owner.

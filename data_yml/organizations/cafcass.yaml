@@ -1,0 +1,35 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: Cafcass (Children and Family Court Advisory and Support Service)
+description: >
+  Cafcass is a national public body in England that represents children’s
+  interests in family court cases. Cafcass Family Court Advisers (FCAs) work
+  with children and families, advise the court on what is in a child’s best
+  interests, and support safe and appropriate arrangements for children.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: public_body
+  region: England
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - family_courts
+  - safeguarding
+  - public_body
+  - england
+  - advocacy
+
+version: 2026.01
+date_published: 2026-01-14
+
+website: https://www.cafcass.gov.uk/
+phone: 0300 456 4000
+
+notes: >
+  Cafcass works alongside the family courts and partner agencies, including
+  local authorities, to support decision-making that protects children and
+  promotes their welfare.

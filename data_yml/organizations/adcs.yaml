@@ -1,28 +1,38 @@
 '@type': ORGANIZATION
-super_concept: AGENT   # SCCM root (AGENT, OBJECT, EVENT, etc.) 
-sub_concept:      # optional sub-role
-name: ADCS
+super_concept: AGENT
+sub_concept:
+name: Association of Directors of Children's Services (ADCS)
 description: >
-  Description, summary text to come
+  ADCS is the national leadership membership association in England for
+  Directors of Children’s Services (DCS) and their senior leadership teams in
+  local authorities. It supports sector-led improvement, policy development,
+  research, and collaboration across children’s services including education,
+  early years, youth, health and social care.
 
 # --- ORGANIZATION-specific fields ---
 organization_fields:
-  organisation_type:  
+  organisation_type: central_goverment
   region: England
   projects:
-    - 
-  persons:
-    - name: 
-      role: 
-      from: 1900-01-01
+  persons: Esther Kavanagh Dixon(Chief Officer) - esther@adcs.org.uk
 
 # --- Shared metadata (optional) ---
 tags:
-  - dcs
+  - membership_body
+  - local_authorities
+  - childrens_services
+  - leadership
+  - safeguarding
+  - england
 version: 2025.07
 date_published: 2020-01-01
-website: https://www.adcs.org.uk
+
+website: https://www.adcs.org.uk/
+email:  info@adcs.org.uk
+
+phone: 0161 513 4299
+
 notes: >
-  - 
-
-
+  ADCS was established in 2007 and represents senior children’s services leaders
+  in English local authorities. It publishes briefings and research, convenes
+  networks, and supports improvement activity across the sector.

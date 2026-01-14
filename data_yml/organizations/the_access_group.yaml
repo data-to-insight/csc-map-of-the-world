@@ -1,0 +1,39 @@
+'@type': ORGANIZATION
+super_concept: AGENT
+sub_concept:
+name: The Access Group
+description: >
+  The Access Group is a UK technology company providing business management
+  software and services across sectors including education, social care, finance,
+  HR and payroll. Its solutions support organisations in improving efficiency,
+  data management and service delivery.
+
+# --- ORGANIZATION-specific fields ---
+organization_fields:
+  organisation_type: system_supplier
+  region: United Kingdom
+  projects:
+  persons:
+
+# --- Shared metadata (optional) ---
+tags:
+  - the_access_group
+  - mosaic
+  - technology
+  - software
+  - digital
+  - vendor
+  - public_sector
+  - social_care
+  - education
+
+version: 2026.01
+date_published: 2026-01-14
+
+website: https://www.theaccessgroup.com/en-gb/
+phone: 0845 345 3300
+
+notes: >
+  The Access Group develops and delivers a broad suite of business software
+  solutions tailored to public and private sector needs, including tools used by
+  local authorities and care providers.
