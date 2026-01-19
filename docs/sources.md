@@ -2,7 +2,7 @@
 
 _To add transparency to the search in particular, below is the current scope of the input data/sources. Some of the labelling comes direct/dynamically off the sources themselves and may therefore be inconsistent. _
 
-## SCCM-aligned YAML Metadata *(~55 sources)*
+## SCCM-aligned YAML Metadata *(~77 sources)*
 ### events
 | Source | File Type | Word Count | Last Refreshed |
 |--------|-----------|------------|----------------|
@@ -16,19 +16,39 @@ _To add transparency to the search in particular, below is the current scope of 
 ### organizations
 | Source | File Type | Word Count | Last Refreshed |
 |--------|-----------|------------|----------------|
-| adcs | .yaml | - | 02/12/2025 |
-| coram | .yaml | - | 02/12/2025 |
+| action_for_children | .yaml | - | 14/01/2026 |
+| adass | .yaml | - | 14/01/2026 |
+| adcs | .yaml | - | 14/01/2026 |
+| barnardos | .yaml | - | 14/01/2026 |
+| cafcass | .yaml | - | 14/01/2026 |
+| childrens_commissioner | .yaml | - | 14/01/2026 |
+| coram | .yaml | - | 14/01/2026 |
 | csdug | .yaml | - | 02/12/2025 |
 | data_to_insight | .yaml | - | 02/12/2025 |
 | department_for_education | .yaml | - | 02/12/2025 |
-| east_sussex_county_council | .yaml | - | 22/12/2025 |
-| essex_county_council | .yaml | - | 02/12/2025 |
+| dhsc | .yaml | - | 19/01/2026 |
+| dorset_council | .yaml | - | 14/01/2026 |
+| dsit | .yaml | - | 14/01/2026 |
+| east_sussex_county_council | .yaml | - | 14/01/2026 |
+| essex_county_council | .yaml | - | 14/01/2026 |
+| family_rights_group | .yaml | - | 14/01/2026 |
+| futures | .yaml | - | 14/01/2026 |
 | hertfordshire_county_council | .yaml | - | 02/12/2025 |
+| ict_revolution | .yaml | - | 14/01/2026 |
+| impower | .yaml | - | 14/01/2026 |
+| integrated_care_boards | .yaml | - | 14/01/2026 |
 | knowsley_council | .yaml | - | 02/12/2025 |
 | lancaster_university | .yaml | - | 02/12/2025 |
-| lga | .yaml | - | 02/12/2025 |
-| research_in_practice | .yaml | - | 02/12/2025 |
+| lga | .yaml | - | 14/01/2026 |
+| ministry_of_justice | .yaml | - | 14/01/2026 |
+| mutual_ventures | .yaml | - | 14/01/2026 |
+| newton | .yaml | - | 19/01/2026 |
+| nspcc | .yaml | - | 14/01/2026 |
+| ofsted | .yaml | - | 14/01/2026 |
+| research_in_practice | .yaml | - | 14/01/2026 |
+| scie | .yaml | - | 19/01/2026 |
 | social_finance | .yaml | - | 02/12/2025 |
+| system_c | .yaml | - | 14/01/2026 |
 | test_0001 | .yaml | - | 22/12/2025 |
 | test_0002 | .yaml | - | 22/12/2025 |
 | test_0003 | .yaml | - | 22/12/2025 |
@@ -49,6 +69,8 @@ _To add transparency to the search in particular, below is the current scope of 
 | test_0018 | .yaml | - | 22/12/2025 |
 | test_0019 | .yaml | - | 22/12/2025 |
 | test_0020 | .yaml | - | 22/12/2025 |
+| the_access_group | .yaml | - | 14/01/2026 |
+| ukri | .yaml | - | 14/01/2026 |
 
 ### plans
 | Source | File Type | Word Count | Last Refreshed |
@@ -57,7 +79,7 @@ _To add transparency to the search in particular, below is the current scope of 
 | ddsf | .yaml | - | 22/12/2025 |
 | ffp_programme_guide_2025 | .yaml | - | 02/12/2025 |
 | national_kinship_care_strategy | .yaml | - | 02/12/2025 |
-| nvest | .yaml | - | 02/12/2025 |
+| nvest | .yaml | - | 22/12/2025 |
 
 ### resources
 | Source | File Type | Word Count | Last Refreshed |

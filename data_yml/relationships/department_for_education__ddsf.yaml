@@ -1,6 +1,6 @@
 '@type': RELATIONSHIP
 name: Department for Education | The Data and Digital Solutions Fund 
-source: dfe
+source: department_for_education
 target: ddsf
 relationship_type: provides
 description: >
