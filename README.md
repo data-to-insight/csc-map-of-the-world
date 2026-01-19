@@ -1,3 +1,7 @@
+[![Deploy](https://img.shields.io/github/actions/workflow/status/data-to-insight/csc-map-of-the-world/deploy.yml?branch=main&style=flat-square)](https://github.com/data-to-insight/csc-map-of-the-world/actions/workflows/deploy.yml) [![Docs](https://img.shields.io/badge/docs-live-brightgreen?style=flat-square)](https://data-to-insight.github.io/csc-map-of-the-world/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://choosealicense.com/licenses/mit/) [![Data refreshed](https://img.shields.io/github/last-commit/data-to-insight/csc-map-of-the-world?path=docs/data/graph_data.json&label=data%20refreshed&style=flat-square)](https://github.com/data-to-insight/csc-map-of-the-world/commits/main/docs/data/graph_data.json)
+
+
+
 # CSC Knowledge Base Network
 
 A structured, open-source knowledge base and ecosystem map for the **Children’s Social Care (CSC)** sector. This project brings together [Documentation], [Relationships], [Services], [Sector_Tools], [Rules], [Plans], [Events] using a flexible YAML-based data model and aiming for alignment with the [Smart City Concept Model (SCCM)](http://www.smartcityconceptmodel.com/) towards sector data interoperability.
