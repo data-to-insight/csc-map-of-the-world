@@ -2,24 +2,26 @@
 """
 admin-zip_folder_for_download.py
 
-Zip up a folder for easy download/sharing.
+Zip up a folder for easy offline download/sharing of folders with multiple file contents. 
+This is a stand-alone process. Just run as-is to get the needed zip - some options
+allow specifying the output name, others just take the raw folder name. 
 
 Key behaviours:
-- You can pass an explicit folder path, or a folder name to search for.
-- By default, the zip is created next to the folder (same parent directory).
-- The zip contains a top level folder, so extracting recreates the folder cleanly.
-- Sensible default excludes, plus your own --exclude patterns.
-- If the output zip is placed inside the folder being zipped, it will be skipped.
+- pass an explicit folder path, or a folder name to search for(to zip up)
+- By default, zip is created next to the folder (same parent directory)
+- The zip contains a top level folder, so extracting recreates the folder cleanly
+- Sensible default excludes, plus your own --exclude patterns
+- btw if output zip is placed inside the folder being zipped, it will be skipped
 
-Examples
+E.g
 1) Zip an explicit folder path, output next to it
-   python3 admin_scripts/admin-zip_folder_for_download.py --path docs/data
+   python3 admin_scripts/admin-zip_folder_for_download.py --path docs/data_yml
 
 2) Find folder by name anywhere under repo root, error if multiple matches
    python3 admin_scripts/admin-zip_folder_for_download.py --name data_yml
 
-3) Find by name under a specific root, and set an explicit output path
-   python3 admin_scripts/admin-zip_folder_for_download.py --name data_yml --search-root /workspaces/csc-map-of-the-world --out /workspaces/csc-map-of-the-world/data_yml.zip
+3) Find by name under specific root, and set an explicit output path
+   python3 admin_scripts/admin-zip_folder_for_download.py --name data_yml --search-root /workspaces/csc-map-of-the-world --out /workspaces/csc-map-of-the-world/data_yml_for_download.zip
 
 4) Add excludes
    python3 admin_scripts/admin-zip_folder_for_download.py --path . --exclude ".git/*" --exclude "site/*"
@@ -64,7 +66,7 @@ class ResolveResult:
 
 def find_repo_root(start: Path) -> Path:
     """
-    Walk upwards looking for a .git folder. If not found, use the start dir.
+    Walk upwards looking for a .git folder. If not found, use the start dir
     """
     cur = start.resolve()
     for _ in range(50):
@@ -141,7 +143,7 @@ def safe_zip_write(
     arcname: Path,
 ) -> None:
     """
-    Write file into zip, preserving unix mode where possible.
+    Write file into zip, preserving unix mode where possible
     """
     st = src_file.stat()
     zi = zipfile.ZipInfo.from_file(src_file, arcname.as_posix())
@@ -212,14 +214,14 @@ def zip_folder(
 
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Zip a folder for download.")
+    p = argparse.ArgumentParser(description="Zip a folder for download")
     g = p.add_mutually_exclusive_group(required=True)
-    g.add_argument("--path", help="Explicit folder path to zip, relative or absolute.")
-    g.add_argument("--name", help="Folder name to search for under --search-root (or repo root by default).")
+    g.add_argument("--path", help="Explicit folder path to zip, relative or absolute")
+    g.add_argument("--name", help="Folder name to search for under --search-root (or repo root by default)")
 
     p.add_argument(
         "--search-root",
-        help="Root directory to search under when using --name. Default is repo root (detected via .git), else CWD.",
+        help="Root directory to search under when using --name. Default is repo root (detected via .git), else CWD",
     )
     p.add_argument(
         "--out",
@@ -227,7 +229,7 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
     )
     p.add_argument(
         "--suffix",
-        help="Optional suffix appended to output file name, ignored if --out is provided.",
+        help="Optional suffix appended to output file name, ignored if --out is provided",
         default="",
     )
     p.add_argument(
@@ -239,17 +241,17 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
     p.add_argument(
         "--no-default-excludes",
         action="store_true",
-        help="Disable built in excludes like .git, node_modules, site, caches.",
+        help="Disable built in excludes like .git, node_modules, site, caches",
     )
     p.add_argument(
         "--include-hidden",
         action="store_true",
-        help="Include dotfiles and dotfolders. By default they are skipped.",
+        help="Include dotfiles and dotfolders. By default they are skipped",
     )
     p.add_argument(
         "--dry-run",
         action="store_true",
-        help="Do not write a zip, just report what would be included.",
+        help="Do not write a zip, just report what would be included",
     )
     return p.parse_args(argv)
 
