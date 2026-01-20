@@ -69,7 +69,7 @@ def generate_markdown():
     lines = [
         "# Data Sources",
         "",
-        "_To add transparency to the search in particular, below is the current scope of the input data/sources. Some of the labelling comes direct/dynamically off the sources themselves and may therefore be inconsistent. _",
+        "To add transparency to the search in particular, below is the current scope of the input data/sources enabling the network graph|visualisations; these sources also contribute to the expanded 'full search' resource). Note: Some of the visualisation labelling is feed dynamically off the sources themselves and may therefore be inconsistent. ",
         ""
     ]
 
