@@ -3,7 +3,8 @@
 
 """
 This is the script to kick-off everything needed when new data is added, refreshed etc. 
-Should just run as-is within the codespace. 
+Should just run as-is within the codespace. For an overview of what is about to be run
+look below for the block '# Scripts'
 
 Rebuild graph assets, then ingest external search and vector artifacts.
 
@@ -35,7 +36,7 @@ DOCS_DATA = ROOT / "docs" / "data"
 EXT_INBOX = ROOT / "data_externally_processed"
 ARTI_DIR  = DOCS_DATA / "csc_artifacts"
 
-# Scripts
+## Scripts
 # This is what we're going to run here, order (for some) is important
 # note that all scripts should be prefixed with admin- for consistency/visibility
 S_FULL   = ROOT / "admin_scripts" / "admin-build_cytoscape_json.py"
@@ -46,6 +47,7 @@ S_SRC_V2 = ROOT / "admin_scripts" / "admin-extract_DICT_form_sources_relations_v
 S_PAGE   = ROOT / "admin_scripts" / "admin-re-build-sources-page.py"
 if not S_PAGE.exists():
     S_PAGE = ROOT / "admin_scripts" / "admin-re_build-sources-page.py"
+##
 
 # Our back-end data source files, underpinning front-end graphs/search etc. 
 REPORT_FILES = [

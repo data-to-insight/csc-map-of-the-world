@@ -1,6 +1,5 @@
 # scripts/build_cytoscape_json.py
 
-
 # full builder
 # Purpose: build complete graph payload for analysis, debugging, richer UI features
 # Data shape: verbose nodes and edges, plus a crosswalk, anything site or tools might need. prefers id then file stem, and it resolves relationship endpoints through the crosswalk.
