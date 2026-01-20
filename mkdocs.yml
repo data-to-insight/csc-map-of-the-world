@@ -8,12 +8,12 @@ theme:
 
 nav:
   - Home: index.md
-  - Network Search First: explore.md
-
+  
+  - Network Search First: explore.md                # TESTING
   - Network Full: network_fullscreen.md             # TESTING
+  - Network SCCM: network.md                        # TESTING
 
-  - Network SCCM: network.md
-  - Network Relations: sccm_relation_types.md   
+  - Network Relations: sccm_relation_types.md       
   - Search: search.md
   - Search Strategy: search_pipeline.md
   - Search Sources: sources.md
