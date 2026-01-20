@@ -1,0 +1,32 @@
+Active
+
+File	Role
+data/crosswalk.json	Id to slug and page URL lookups, links from graph and search to MkDocs pages
+data/degree.json	Degree metrics for staged loading and node order
+data/graph_data.json	Minimal nodes and edges for Cytoscape render
+data/graph_search_index.json	Token index for quick find in graph, id mapping for jump to node
+data/node_details.json	Detail fields for side panel, keeps heavy text out of main payload
+data/search_index.json	Main site search index for search page and header search
+data/source_nodes.dict.json	Mapping of source types to source names for RELATIONSHIP form filtering
+
+Active optional
+
+File	Role
+data/graph_data.lite.json	Smaller demo or fallback graph payload
+data/related_nodes.json	Precomputed related suggestions for detail panel
+
+Inactive
+
+File	Role
+data/csc_artifacts/motw_chunks.parquet	Local build table for text chunks, offline only
+data/csc_artifacts/motw_vectors.parquet	Local build table for embeddings, offline only
+data/csc_artifacts/motw_index.faiss	Local vector index for ANN queries, offline only
+data/csc_artifacts/state.json	Build manifest or debug state, not used by site
+data/source_nodes.list.json	Older flat list for forms, superseded by dict version
+
+Unknown
+
+File	Role
+data/adjacency.json	unknown
+data/lite_index.json	unknown
+data/source_nodes.json	unknown
