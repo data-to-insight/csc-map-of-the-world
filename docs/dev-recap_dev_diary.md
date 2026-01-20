@@ -1,7 +1,16 @@
 # MapOfTheWorld development log v4.2  
 
-Short notes so others can see journey. Focus on pivots and trade offs. Static GitHub Pages, no server. Graph must load fast.
+Short notes so others can see journey, also as reminder for me :) - might use this for some later reflective write-up work. 
 
+
+---
+
+## 2026-01-20
+
+- Having to remind myself how the backend .pynb process actually works! Need some better notes/documentation somewhere on a simple level and this despite the dev diary and other notes made already. Possible re-think?  Thank my lucky stars for my simplified admin-ORCHASTRATOR-rebuild_all_assets.py
+- Some further objects and relations from JB updloaded. Some minoir yml corrections needed in order to run orchastrator (e.g. space afrer : colons)
+- Still see some panel inconsistencies and the slug is still appearing as a secondary heading under the title... i thought i'd dropped this in the last pull? 
+- first wider team collab session AH, JB, A, RH - set up recurring sesisons to move this forward.
 
 ---
 
